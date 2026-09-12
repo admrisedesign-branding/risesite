@@ -27,63 +27,90 @@ gtag('config', 'G-0ZZ46BRRSL');
 
 <style>
 :root{
-  --bg:#F5F6F2;
-  --paper:#FFFFFF;
-  --ink:#141A2E;
-  --ink-2:#4B5268;
-  --line:#D9DCD3;
-  --blue:#2448F0;
-  --blue-soft:#E4E9FF;
-  --gold:#F2B441;
+  --bg:#0B0C10;
+  --bg-2:#121419;
+  --panel:#171A21;
+  --ink:#F4F2EC;
+  --ink-2:#A6A9B3;
+  --line:rgba(255,255,255,.09);
+  --orange:#FF6A1A;
+  --orange-2:#FF9A3C;
+  --orange-soft:rgba(255,106,26,.14);
   --display:"Bricolage Grotesque",system-ui,sans-serif;
   --body:"Instrument Sans",system-ui,sans-serif;
   --max:1120px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{font-family:var(--body);font-size:17px;line-height:1.55;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+body{font-family:var(--body);font-size:17px;line-height:1.55;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+:focus-visible{outline:3px solid var(--orange-2);outline-offset:3px}
 h1,h2,h3{font-family:var(--display);font-weight:700;line-height:1.05;letter-spacing:-.02em}
 h1{font-size:clamp(2.6rem,7vw,5.4rem);font-weight:800}
 h2{font-size:clamp(1.9rem,4vw,3rem)}
 h3{font-size:1.35rem;line-height:1.2}
 p{max-width:62ch}
-.wrap{width:min(var(--max),calc(100% - 2.5rem));margin-inline:auto}
-section{padding:6rem 0}
+.wrap{width:min(var(--max),calc(100% - 2.5rem));margin-inline:auto;position:relative}
+section{padding:6rem 0;position:relative}
 @media (max-width:720px){section{padding:4rem 0}}
 
-/* header */
-header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+/* ---------- background: auras + grid + grain ---------- */
+.bgfx{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bgfx .aura{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;will-change:transform}
+.bgfx .a1{width:60vw;height:60vw;left:-15vw;top:-25vw;background:radial-gradient(circle,#FF6A1A 0%,rgba(255,106,26,0) 65%);animation:drift1 26s ease-in-out infinite alternate}
+.bgfx .a2{width:50vw;height:50vw;right:-18vw;top:30vh;background:radial-gradient(circle,#FF9A3C 0%,rgba(255,154,60,0) 65%);opacity:.3;animation:drift2 32s ease-in-out infinite alternate}
+.bgfx .grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:56px 56px;mask-image:radial-gradient(ellipse 70% 60% at 50% 20%,#000 20%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 20%,#000 20%,transparent 75%)}
+.bgfx .grain{position:absolute;inset:-50%;width:200%;height:200%;opacity:.07;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='.9'/></svg>");animation:grain 1.2s steps(6) infinite}
+@keyframes drift1{from{transform:translate(0,0) scale(1)}to{transform:translate(10vw,12vh) scale(1.15)}}
+@keyframes drift2{from{transform:translate(0,0) scale(1)}to{transform:translate(-12vw,-10vh) scale(.9)}}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-4%)}60%{transform:translate(-4%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+main,header,footer{position:relative;z-index:1}
+
+/* ---------- reveal on scroll (content visible before JS) ---------- */
+.reveal{opacity:1;transform:none}
+.reveal.anim{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.anim.in{opacity:1;transform:translateY(0)}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:10;background:rgba(11,12,16,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
 .logo{font-family:var(--display);font-weight:800;font-size:1.5rem;letter-spacing:-.03em;text-decoration:none}
-.logo span{color:var(--blue)}
-nav a{text-decoration:none;font-weight:500;margin-left:1.6rem;font-size:.95rem}
-nav a:hover{color:var(--blue)}
+.logo span{color:var(--orange)}
+nav a{text-decoration:none;font-weight:500;margin-left:1.6rem;font-size:.95rem;color:var(--ink-2)}
+nav a:hover{color:var(--ink)}
 @media (max-width:720px){nav a:not(.btn){display:none}}
 
-.btn{display:inline-block;padding:.85rem 1.4rem;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid var(--ink);transition:background .15s,color .15s}
-.btn-solid{background:var(--ink);color:#fff}
-.btn-solid:hover{background:var(--blue);border-color:var(--blue)}
-.btn-ghost:hover{background:var(--ink);color:#fff}
+.btn{display:inline-block;padding:.85rem 1.4rem;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid var(--ink);color:var(--ink);position:relative;overflow:hidden;transition:transform .2s,box-shadow .25s,border-color .2s,color .2s,background .2s}
+.btn-solid{background:var(--orange);border-color:var(--orange);color:#12100E}
+.btn-solid::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);transform:translateX(-120%);transition:transform .6s ease}
+.btn-solid:hover::after{transform:translateX(120%)}
+.btn-solid:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(255,106,26,.35)}
+.btn-ghost{border-color:rgba(255,255,255,.35)}
+.btn-ghost:hover{border-color:var(--ink);background:rgba(255,255,255,.06)}
 nav .btn{padding:.6rem 1.1rem;font-size:.95rem}
 
-/* hero */
-.hero{padding:5rem 0 3rem}
+/* ---------- hero ---------- */
+.hero{padding:5rem 0 3.5rem}
+.hero h1{opacity:0;transform:translateY(18px);animation:up .8s .1s cubic-bezier(.2,.7,.2,1) forwards}
+.hero .funnel{opacity:0;animation:up .8s .35s cubic-bezier(.2,.7,.2,1) forwards}
+.hero p.lead,.hero .actions{opacity:0;animation:up .8s .6s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes up{to{opacity:1;transform:translateY(0)}}
 .hero p.lead{font-size:1.25rem;color:var(--ink-2);margin:2.2rem 0 1.6rem;max-width:56ch}
 .hero .actions{display:flex;gap:.9rem;flex-wrap:wrap}
 
-/* funnel — the memorable thing */
-.funnel{margin-top:2.5rem;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+/* ---------- funnel: the memorable thing ---------- */
+.funnel{margin-top:2.5rem;position:relative;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.funnel::before{content:"";position:absolute;left:0;right:0;top:-1px;height:1px;background:linear-gradient(90deg,transparent,var(--orange) 35%,var(--orange-2) 50%,var(--orange) 65%,transparent);background-size:40% 100%;background-repeat:no-repeat;animation:flow 3.2s linear infinite}
+@keyframes flow{from{background-position:-40% 0}to{background-position:140% 0}}
 .funnel ol{list-style:none;display:grid;grid-template-columns:repeat(5,1fr)}
-.funnel li{padding:1.6rem 1.2rem 1.8rem 0;border-right:1px solid var(--line);position:relative}
+.funnel li{padding:1.6rem 1.2rem 1.8rem 0;border-right:1px solid var(--line);position:relative;transition:background .3s}
+.funnel li:hover{background:var(--orange-soft)}
 .funnel li:last-child{border-right:0}
 .funnel li:not(:first-child){padding-left:1.2rem}
-.funnel .n{font-family:var(--display);font-size:.9rem;font-weight:700;color:var(--blue)}
+.funnel .n{font-family:var(--display);font-size:.9rem;font-weight:700;color:var(--orange)}
 .funnel .stage{font-family:var(--display);font-weight:800;font-size:clamp(1.3rem,2.2vw,1.8rem);letter-spacing:-.02em;margin:.4rem 0 .6rem;line-height:1}
 .funnel .what{font-size:.95rem;color:var(--ink-2)}
-.funnel .arrow{position:absolute;right:-9px;top:50%;transform:translateY(-50%);width:16px;height:16px;background:var(--bg);color:var(--ink);font-weight:700;text-align:center;line-height:16px;font-size:14px}
+.funnel .arrow{position:absolute;right:-8px;top:50%;transform:translateY(-50%);width:16px;height:16px;background:var(--bg);color:var(--orange);font-weight:700;text-align:center;line-height:16px;font-size:14px;z-index:1}
 .funnel li:last-child .arrow{display:none}
 @media (max-width:820px){
   .funnel ol{grid-template-columns:1fr 1fr}
@@ -106,74 +133,88 @@ nav .btn{padding:.6rem 1.1rem;font-size:.95rem}
   .hero p.lead{font-size:1.05rem;margin:1.4rem 0 1.2rem}
   .hero .actions .btn{width:100%;text-align:center}
 }
-.funnel-caption{padding:1rem 0 0;font-size:.95rem;color:var(--ink-2)}
 
-/* pain */
-.pain{background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+/* ---------- pain ---------- */
+.pain{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .pain .grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
 @media (max-width:820px){.pain .grid{grid-template-columns:1fr;gap:2rem}}
 .pain ul{list-style:none;margin-top:.5rem}
 .pain li{padding:1.1rem 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:baseline}
 .pain li:last-child{border-bottom:0}
-.pain li b{font-family:var(--display);color:var(--blue);font-weight:700;white-space:nowrap}
+.pain li b{font-family:var(--display);color:var(--orange);font-weight:700;white-space:nowrap}
+.pain li span{color:var(--ink-2)}
 .pain .close{margin-top:2rem;font-family:var(--display);font-size:1.4rem;font-weight:700;letter-spacing:-.02em;line-height:1.2;max-width:24ch}
 
-/* stages detail */
+/* ---------- stages ---------- */
 .stages h2{max-width:22ch}
 .stages .intro{color:var(--ink-2);margin:1rem 0 3rem;font-size:1.1rem}
-.stage-row{display:grid;grid-template-columns:120px 1fr 1fr;gap:2rem;padding:2.2rem 0;border-top:1px solid var(--line)}
+.stage-row{display:grid;grid-template-columns:120px 1fr 1fr;gap:2rem;padding:2.2rem 0;border-top:1px solid var(--line);position:relative}
+.stage-row::before{content:"";position:absolute;left:0;top:-1px;height:1px;width:0;background:var(--orange);transition:width .9s ease}
+.stage-row.in::before{width:100%}
 .stage-row:last-of-type{border-bottom:1px solid var(--line)}
-.stage-row .k{font-family:var(--display);font-size:2.8rem;font-weight:800;color:var(--blue);line-height:1;letter-spacing:-.04em}
+.stage-row .k{font-family:var(--display);font-size:2.8rem;font-weight:800;color:var(--orange);line-height:1;letter-spacing:-.04em}
 .stage-row h3{margin-bottom:.6rem}
 .stage-row .do{color:var(--ink-2)}
-.stage-row .metric{font-size:.95rem;color:var(--ink-2);border-left:3px solid var(--gold);padding-left:1rem;align-self:start}
+.stage-row .metric{font-size:.95rem;color:var(--ink-2);border-left:3px solid var(--orange);padding-left:1rem;align-self:start}
 .stage-row .metric strong{display:block;color:var(--ink);font-weight:600;margin-bottom:.15rem}
 @media (max-width:820px){
   .stage-row{grid-template-columns:1fr;gap:1rem}
   .stage-row .k{font-size:2rem}
 }
 
-/* proof */
-.proof{background:var(--ink);color:#fff}
-.proof h2{color:#fff;max-width:20ch}
-.proof .sub{color:#B8BDD1;margin:1rem 0 3rem;font-size:1.1rem}
-.cases{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#2A3150;border:1px solid #2A3150}
+/* ---------- proof ---------- */
+.proof{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.proof h2{max-width:20ch}
+.proof .sub{color:var(--ink-2);margin:1rem 0 3rem;font-size:1.1rem}
+.cases{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
 @media (max-width:720px){.cases{grid-template-columns:1fr}}
-.case{background:var(--ink);padding:2rem;text-decoration:none;display:block;transition:background .15s}
-.case:hover{background:#1D2340}
-.case .seg{font-size:.85rem;color:#B8BDD1}
-.case h3{margin:.3rem 0 .8rem;color:#fff;font-size:1.6rem}
-.case p{color:#D5D8E6;max-width:none;font-size:.98rem}
-.case .num{margin-top:1.4rem;font-family:var(--display);font-size:2rem;font-weight:800;color:var(--gold);letter-spacing:-.03em;line-height:1}
-.case .num small{display:block;font-family:var(--body);font-size:.85rem;font-weight:400;color:#B8BDD1;letter-spacing:0;margin-top:.3rem}
+.case{background:var(--panel);padding:2rem;text-decoration:none;display:block;position:relative;overflow:hidden;transition:background .25s}
+.case::before{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(255,106,26,.18),transparent 60%);opacity:0;transition:opacity .3s}
+.case:hover::before{opacity:1}
+.case>*{position:relative}
+.case .seg{font-size:.85rem;color:var(--ink-2)}
+.case h3{margin:.3rem 0 .8rem;font-size:1.6rem}
+.case p{color:var(--ink-2);max-width:none;font-size:.98rem}
+.case .num{margin-top:1.4rem;font-family:var(--display);font-size:2rem;font-weight:800;color:var(--orange);letter-spacing:-.03em;line-height:1}
+.case .num small{display:block;font-family:var(--body);font-size:.85rem;font-weight:400;color:var(--ink-2);letter-spacing:0;margin-top:.3rem}
 
-/* how */
+/* ---------- how ---------- */
 .how .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2.5rem;margin-top:3rem}
 @media (max-width:820px){.how .grid{grid-template-columns:1fr;gap:2rem}}
 .how h3{margin-bottom:.6rem}
 .how p{color:var(--ink-2);max-width:none}
-.how .t{font-family:var(--display);font-weight:700;color:var(--blue);font-size:.95rem;margin-bottom:.5rem}
+.how .t{font-family:var(--display);font-weight:700;color:var(--orange);font-size:.95rem;margin-bottom:.5rem}
 
-/* cta */
-.cta{background:var(--blue);color:#fff}
+/* ---------- cta ---------- */
+.cta{background:linear-gradient(135deg,#FF6A1A,#FF8C2E 60%,#FFA43C);color:#12100E;overflow:hidden}
+.cta::after{content:"";position:absolute;width:70vw;height:70vw;right:-30vw;bottom:-45vw;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.35),transparent 65%);pointer-events:none}
 .cta .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:3rem;align-items:center}
 @media (max-width:820px){.cta .wrap{grid-template-columns:1fr}}
-.cta h2{color:#fff}
-.cta p{color:#DDE3FF;margin-top:1rem;font-size:1.1rem}
-.cta .box{background:#fff;color:var(--ink);padding:2rem;border-radius:20px}
+.cta h2{color:#12100E}
+.cta p{color:rgba(18,16,14,.8);margin-top:1rem;font-size:1.1rem}
+.cta .box{background:var(--bg);color:var(--ink);padding:2rem;border-radius:20px;box-shadow:0 30px 60px rgba(0,0,0,.35)}
 .cta .box h3{margin-bottom:.5rem}
 .cta .box p{color:var(--ink-2);font-size:1rem;margin:0 0 1.4rem}
 .cta .box .btn{width:100%;text-align:center;margin-bottom:.7rem}
-.cta .box .btn-wa{border-color:var(--line);background:var(--paper);color:var(--ink)}
+.cta .box .btn-wa{border-color:rgba(255,255,255,.25);background:transparent;color:var(--ink)}
 .cta .box .btn-wa:hover{border-color:var(--ink)}
 
 footer{padding:3rem 0;font-size:.9rem;color:var(--ink-2)}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
 footer a{text-decoration:none}
-footer a:hover{color:var(--blue)}
+footer a:hover{color:var(--orange)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .bgfx .aura,.bgfx .grain,.funnel::before{animation:none}
+  .hero h1,.hero .funnel,.hero p.lead,.hero .actions{animation:none;opacity:1;transform:none}
+  .reveal.anim{opacity:1;transform:none;transition:none}
+  .btn-solid::after{display:none}
+}
 </style>
 </head>
 <body>
+<div class="bgfx" aria-hidden="true"><div class="aura a1"></div><div class="aura a2"></div><div class="grid"></div><div class="grain"></div></div>
 
 <header>
   <div class="wrap">
@@ -210,7 +251,7 @@ footer a:hover{color:var(--blue)}
   </div>
 </section>
 
-<section class="pain">
+<section class="reveal pain">
   <div class="wrap grid">
     <div>
       <h2>O funil quebra sempre no mesmo lugar: na passagem de bastão.</h2>
@@ -225,36 +266,36 @@ footer a:hover{color:var(--blue)}
   </div>
 </section>
 
-<section class="stages" id="metodo">
+<section class="reveal stages" id="metodo">
   <div class="wrap">
     <h2>O que a RISE assume em cada etapa</h2>
     <p class="intro">Você não contrata "tráfego" ou "site". Você contrata um funil que funciona — e nós respondemos por ele em cada ponto.</p>
 
-    <div class="stage-row">
+    <div class="stage-row reveal">
       <div class="k">1</div>
       <div><h3>Tráfego</h3><p class="do">Gestão de Meta Ads com evento de conversão ligado ao CRM. A campanha aprende com o que virou cliente, não com quem só clicou. Diagnóstico da conta antes de qualquer otimização.</p></div>
       <div class="metric"><strong>Como medimos</strong>Custo por lead qualificado e custo por cliente — não por clique.</div>
     </div>
 
-    <div class="stage-row">
+    <div class="stage-row reveal">
       <div class="k">2</div>
       <div><h3>Site</h3><p class="do">Site ou landing page desenvolvida para o seu funil, com velocidade, rastreamento e formulário integrados desde o primeiro dia. Feito por quem vai atender o lead que sai dele.</p></div>
       <div class="metric"><strong>Como medimos</strong>Taxa de conversão de visita em contato.</div>
     </div>
 
-    <div class="stage-row">
+    <div class="stage-row reveal">
       <div class="k">3</div>
       <div><h3>Captação de leads</h3><p class="do">Todo contato — formulário, WhatsApp, Instagram — entra no CRM com origem, campanha e histórico. Nada se perde em conversa solta no celular de alguém.</p></div>
       <div class="metric"><strong>Como medimos</strong>Leads registrados vs. leads gerados. A meta é 100%.</div>
     </div>
 
-    <div class="stage-row">
+    <div class="stage-row reveal">
       <div class="k">4</div>
       <div><h3>Atendimento</h3><p class="do">Nossa equipe assume o primeiro contato: responde em minutos, qualifica com o roteiro do seu negócio, tira dúvidas e agenda. Você só entra quando o lead está pronto.</p></div>
       <div class="metric"><strong>Como medimos</strong>Tempo de primeira resposta e taxa de qualificação.</div>
     </div>
 
-    <div class="stage-row">
+    <div class="stage-row reveal">
       <div class="k">5</div>
       <div><h3>Conversão</h3><p class="do">O lead qualificado chega até você com contexto completo. Acompanhamos o fechamento e devolvemos o resultado para o tráfego, fechando o ciclo.</p></div>
       <div class="metric"><strong>Como medimos</strong>Clientes fechados e receita por campanha.</div>
@@ -262,30 +303,30 @@ footer a:hover{color:var(--blue)}
   </div>
 </section>
 
-<section class="proof" id="casos">
+<section class="reveal proof" id="casos">
   <div class="wrap">
     <h2>Funis que já rodam com a RISE</h2>
     <p class="sub">Projetos reais, com cliente pagando e resultado medido.</p>
     <div class="cases">
-      <a class="case" href="https://myrobotmanaus.com" target="_blank" rel="noopener">
+      <a class="case reveal" href="https://myrobotmanaus.com" target="_blank" rel="noopener">
         <div class="seg">Educação · Manaus</div>
         <h3>My Robot Manaus</h3>
         <p>Site, funil, CRM e atendimento na recepção integrados. Meta Ads alimentado pelo desfecho real de cada lead.</p>
         <div class="num">[X]<small>leads atendidos em jun→jul/2026 — substituir pelo dado do relatório</small></div>
       </a>
-      <a class="case" href="#" target="_blank" rel="noopener">
+      <a class="case reveal" href="#" target="_blank" rel="noopener">
         <div class="seg">Serviços · Manaus</div>
         <h3>Calhas Manaus</h3>
         <p>Site de conversão com foco em mobile, integrado ao Capta para qualificação automática dos contatos.</p>
         <div class="num">[X]<small>substituir pelo número principal do projeto</small></div>
       </a>
-      <a class="case" href="#" target="_blank" rel="noopener">
+      <a class="case reveal" href="#" target="_blank" rel="noopener">
         <div class="seg">Mentoria</div>
         <h3>Lidiane Cunha</h3>
         <p>Página de captação para mentoria, com formulário e fluxo de contato estruturados.</p>
         <div class="num">[X]<small>substituir pelo número principal do projeto</small></div>
       </a>
-      <a class="case" href="#" target="_blank" rel="noopener">
+      <a class="case reveal" href="#" target="_blank" rel="noopener">
         <div class="seg">Desenvolvimento infantil</div>
         <h3>Neuroplasticidar</h3>
         <p>Plataforma, blog, captação de leads e automação de e-mails em sequência.</p>
@@ -295,7 +336,7 @@ footer a:hover{color:var(--blue)}
   </div>
 </section>
 
-<section class="how">
+<section class="reveal how">
   <div class="wrap">
     <h2>Como a parceria funciona</h2>
     <div class="grid">
@@ -306,7 +347,7 @@ footer a:hover{color:var(--blue)}
   </div>
 </section>
 
-<section class="cta" id="contato">
+<section class="reveal cta" id="contato">
   <div class="wrap">
     <div>
       <h2>Comece descobrindo onde o seu funil está perdendo cliente.</h2>
@@ -330,5 +371,30 @@ footer a:hover{color:var(--blue)}
   </div>
 </footer>
 
+
+<script>
+(function(){
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!rm && 'IntersectionObserver' in window){
+    requestAnimationFrame(function(){
+      document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('anim'); });
+    });
+    var ob = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); ob.unobserve(e.target); } });
+    },{threshold:.08});
+    document.querySelectorAll('.reveal').forEach(function(el){ ob.observe(el); });
+  } else {
+    document.querySelectorAll('.stage-row').forEach(function(el){ el.classList.add('in'); });
+  }
+  // spotlight follows the cursor on case cards
+  document.querySelectorAll('.case').forEach(function(c){
+    c.addEventListener('pointermove', function(ev){
+      var r = c.getBoundingClientRect();
+      c.style.setProperty('--mx', (ev.clientX - r.left) + 'px');
+      c.style.setProperty('--my', (ev.clientY - r.top) + 'px');
+    });
+  });
+})();
+</script>
 </body>
 </html>
