@@ -194,19 +194,26 @@ main,footer{position:relative;z-index:1}
 
 /* ---------- proof ---------- */
 .proof{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.proof h2{max-width:20ch}
+.proof h2{max-width:22ch}
 .proof .sub{color:var(--ink-2);margin:1rem 0 3rem;font-size:1.1rem}
-.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-@media (max-width:900px){.cases{grid-template-columns:1fr}}
-.case{background:var(--panel);padding:2rem;text-decoration:none;display:block;position:relative;overflow:hidden;transition:background .25s}
-.case::before{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(232,83,26,.18),transparent 60%);opacity:0;transition:opacity .3s}
-.case:hover::before{opacity:1}
-.case>*{position:relative}
-.case .seg{font-size:.85rem;color:var(--ink-2)}
-.case h3{margin:.3rem 0 .8rem;font-size:1.6rem}
-.case p{color:var(--ink-2);max-width:none;font-size:.98rem}
-.case .num{margin-top:1.4rem;font-family:var(--display);font-size:2rem;font-weight:800;color:var(--orange);letter-spacing:-.03em;line-height:1}
-.case .num small{display:block;font-family:var(--body);font-size:.85rem;font-weight:400;color:var(--ink-2);letter-spacing:0;margin-top:.3rem}
+.case-head .seg{font-size:.85rem;color:var(--orange);font-weight:600;letter-spacing:.02em;margin-bottom:.8rem}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:3rem 0 2.5rem}
+@media (max-width:900px){.stats{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.stats{grid-template-columns:1fr}}
+.stat{background:var(--panel);padding:1.8rem 1.5rem;position:relative;overflow:hidden}
+.stat::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:0;background:linear-gradient(90deg,var(--orange),var(--orange-2));transition:width 1s ease .2s}
+.stat.in::after{width:100%}
+.stat .num{font-family:var(--display);font-size:clamp(2rem,3.4vw,2.8rem);font-weight:800;color:var(--orange);letter-spacing:-.03em;line-height:1;margin-bottom:.7rem}
+.stat .num em{font-style:normal;font-size:.5em;color:var(--ink-2);font-weight:600;margin:0 .15em}
+.stat .lbl{font-size:.92rem;color:var(--ink-2);line-height:1.4}
+.insights{display:grid;grid-template-columns:1fr 2fr;gap:3rem;align-items:start}
+@media (max-width:820px){.insights{grid-template-columns:1fr;gap:1.5rem}}
+.insights h3{font-size:1.6rem;max-width:14ch}
+.insights ul{list-style:none}
+.insights li{padding:1.1rem 0;border-top:1px solid var(--line);color:var(--ink-2);font-size:1rem}
+.insights li:last-of-type{border-bottom:1px solid var(--line)}
+.insights li b{display:block;color:var(--ink);font-family:var(--display);font-size:1.15rem;font-weight:700;margin-bottom:.3rem}
+.insights .note{font-size:.8rem;color:var(--ink-2);opacity:.7;margin-top:1.2rem}
 
 /* ---------- how ---------- */
 .how .grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2.5rem;margin-top:3rem}
@@ -341,27 +348,27 @@ footer a:hover{color:var(--orange)}
 
 <section class="reveal proof" id="casos">
   <div class="wrap">
-    <h2><span data-pt>Funis que já rodam com a RISE</span><span data-en>Funnels already running with RISE</span></h2>
-    <p class="sub"><span data-pt>Projetos reais, com cliente pagando e resultado medido.</span><span data-en>Real projects, paying clients, measured results.</span></p>
-    <div class="cases">
-      <a class="case reveal" href="https://myrobotmanaus.com" target="_blank" rel="noopener">
-        <div class="seg"><span data-pt>Educação · Manaus</span><span data-en>Education · Manaus</span></div>
-        <h3>My Robot Manaus</h3>
-        <p><span data-pt>Site, funil, CRM e atendimento na recepção integrados. Meta Ads alimentado pelo desfecho real de cada lead.</span><span data-en>Website, funnel, CRM and front-desk follow-up integrated. Meta Ads fed by the real outcome of every lead.</span></p>
-        <div class="num">−74%<small><span data-pt>no custo por lead em 30 dias · leads dos anúncios de 3 para 39/mês</span><span data-en>cost per lead in 30 days · ad leads from 3 to 39/month</span></small></div>
-      </a>
-      <a class="case reveal" href="https://calhasmanaus.com.br" target="_blank" rel="noopener">
-        <div class="seg"><span data-pt>Serviços · Manaus</span><span data-en>Services · Manaus</span></div>
-        <h3>Calhas Manaus</h3>
-        <p><span data-pt>Site de conversão com foco em mobile, integrado ao Capta para qualificação automática dos contatos.</span><span data-en>Mobile-first conversion website, integrated with Capta for automatic lead qualification.</span></p>
-        <div class="num">2 → 1<small><span data-pt>formulário e WhatsApp viram um único lead, com origem e temperatura no painel</span><span data-en>form and WhatsApp become a single lead, with source and temperature on the dashboard</span></small></div>
-      </a>
-      <a class="case reveal" href="https://neuroplasticidar.com.br" target="_blank" rel="noopener">
-        <div class="seg"><span data-pt>Desenvolvimento infantil</span><span data-en>Child development</span></div>
-        <h3>Neuroplasticidar</h3>
-        <p><span data-pt>Plataforma, blog, captação de leads e automação de e-mails em sequência.</span><span data-en>Platform, blog, lead capture and drip email automation.</span></p>
-        <div class="num">4 perfis<small><span data-pt>captação segmentada por público, com quiz e e-mails por foco</span><span data-en>audience-segmented capture, with a quiz and emails per focus</span></small></div>
-      </a>
+    <div class="case-head">
+      <div class="seg"><span data-pt>Caso real · escola infantil em Manaus · 4 meses de funil</span><span data-en>Real case · children’s school in Manaus · 4 months of funnel</span></div>
+      <h2><span data-pt>O que um funil inteiro revelou sobre onde o dinheiro estava vazando</span><span data-en>What a full funnel revealed about where the money was leaking</span></h2>
+      <p class="sub"><span data-pt>Entramos pelo tráfego e pelo site. Os números do primeiro mês foram bons — e foram eles que mostraram onde o negócio estava perdendo cliente de verdade.</span><span data-en>We came in through ads and the website. The first month’s numbers were good — and they were what showed where the business was really losing customers.</span></p>
+    </div>
+
+    <div class="stats">
+      <div class="stat reveal"><div class="num">−74%</div><div class="lbl"><span data-pt>no custo por lead em 30 dias, com anúncios otimizados pelo que virou cliente — não por clique</span><span data-en>cost per lead in 30 days, with ads optimized for who became a customer — not for clicks</span></div></div>
+      <div class="stat reveal"><div class="num">3 → 39</div><div class="lbl"><span data-pt>leads por mês vindos dos anúncios, com o site refeito para converter</span><span data-en>leads per month from ads, with the website rebuilt to convert</span></div></div>
+      <div class="stat reveal"><div class="num">8,3x</div><div class="lbl"><span data-pt>de retorno sobre o investimento em mídia nos dois primeiros meses</span><span data-en>return on media spend in the first two months</span></div></div>
+      <div class="stat reveal"><div class="num">40% <em>vs</em> 2%</div><div class="lbl"><span data-pt>conversão em matrícula quando uma pessoa atende o lead, contra formulário ou robô sem retorno</span><span data-en>enrollment conversion when a person handles the lead, versus a form or bot with no follow-up</span></div></div>
+    </div>
+
+    <div class="insights">
+      <h3><span data-pt>O que isso ensina sobre o seu negócio</span><span data-en>What this teaches about your business</span></h3>
+      <ul>
+        <li><b><span data-pt>O gargalo raramente é falta de lead.</span><span data-en>The bottleneck is rarely a lack of leads.</span></b> <span data-pt>Com o CRM aberto, 3 em cada 4 leads estavam parados na primeira etapa, sem ninguém ter falado com eles. Mais tráfego só encheria a mesma fila.</span><span data-en>With the CRM open, 3 out of 4 leads were sitting in the first stage with no one having spoken to them. More traffic would only lengthen the same queue.</span></li>
+        <li><b><span data-pt>Lead sem resposta vira cliente de outro.</span><span data-en>An unanswered lead becomes someone else’s customer.</span></b> <span data-pt>Dezenas de mensagens sem retorno e pessoas querendo fechar sem horário marcado. O custo por lead caiu, mas o custo por cliente não caía — porque a perda estava depois do anúncio.</span><span data-en>Dozens of messages with no reply and people wanting to close without a slot booked. Cost per lead dropped, but cost per customer didn’t — because the loss happened after the ad.</span></li>
+        <li><b><span data-pt>Quem captura e quem atende precisam ser o mesmo time.</span><span data-en>Whoever captures and whoever follows up need to be the same team.</span></b> <span data-pt>Quase 90 contatos captados em eventos não receberam um único retorno. Por isso hoje a RISE assume também o atendimento — o lead que chega é nosso até virar cliente.</span><span data-en>Nearly 90 contacts captured at events never got a single reply. That’s why RISE now takes over follow-up too — the lead that comes in is ours until it becomes a customer.</span></li>
+      </ul>
+      <p class="note"><span data-pt>Números do CRM e do Meta Ads do cliente, jun–set/2026. Nome preservado a pedido.</span><span data-en>Figures from the client’s CRM and Meta Ads, Jun–Sep 2026. Name withheld by request.</span></p>
     </div>
   </div>
 </section>
