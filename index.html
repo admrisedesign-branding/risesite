@@ -210,8 +210,8 @@ footer a{text-decoration:none}footer a:hover{color:var(--orange)}
     <h1><span data-pt>Cuidamos do <em>funil inteiro</em> do seu negócio.</span><span data-en>We take care of your <em>entire funnel</em>.</span></h1>
     <p class="lead"><span data-pt>Toque em cada etapa para ver o que fazemos por você.</span><span data-en>Tap each step to see what we do for you.</span></p>
     <div class="steps">
-      <div class="step on" data-s="trafego">
-        <button class="step-h" onclick="pick('trafego')" aria-expanded="true">
+      <div class="step" data-s="trafego">
+        <button class="step-h" onclick="pick('trafego')" aria-expanded="false">
           <span class="sn">01</span>
           <span class="sl"><span data-pt>Tráfego pago</span><span data-en>Paid ads</span></span>
           <span class="sx" aria-hidden="true"></span>
@@ -343,8 +343,10 @@ window.addEventListener('scroll',function(){rnavEl.classList.toggle('sc',scrollY
 function toggleMenu(){const m=document.getElementById('mob-menu'),h=document.getElementById('ham');m.classList.toggle('open');h.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
 function closeMenu(){document.getElementById('mob-menu').classList.remove('open');document.getElementById('ham').classList.remove('open');document.body.style.overflow='';}
 function pick(k){
-  document.querySelectorAll('.step').forEach(function(st){var on=st.dataset.s===k;st.classList.toggle('on',on);st.querySelector('.step-h').setAttribute('aria-expanded',on)});
   var el=document.querySelector('.step[data-s="'+k+'"]');
+  var wasOpen=el.classList.contains('on');
+  document.querySelectorAll('.step').forEach(function(st){var on=!wasOpen&&st.dataset.s===k;st.classList.toggle('on',on);st.querySelector('.step-h').setAttribute('aria-expanded',on)});
+  if(wasOpen)return;
   if(window.innerWidth<640){setTimeout(function(){var y=el.getBoundingClientRect().top+scrollY-84;window.scrollTo({top:y,behavior:'smooth'})},80)}
   if(window.gtag)gtag('event','servico_toque',{servico:k});
 }
