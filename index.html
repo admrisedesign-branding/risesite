@@ -82,73 +82,87 @@ main,footer{position:relative;z-index:1}
 
 
 /* ---------- 1. serviços ---------- */
-.hero{padding:8.5rem 0 4rem}
-.hero h1{font-size:clamp(2rem,5.5vw,3.6rem);text-align:center;max-width:22ch;margin:0 auto 1rem}
-.hero .lead{text-align:center;color:var(--ink-2);max-width:40ch;margin:0 auto 2rem;font-size:1.05rem}
-.hero h1,.hero .lead,.tabs,.panels{opacity:0;transform:translateY(16px);animation:up .8s cubic-bezier(.2,.7,.2,1) forwards}
-.hero .lead{animation-delay:.15s}.tabs{animation-delay:.3s}.panels{animation-delay:.45s}
+.hero{padding:8rem 0 4rem}
+.hero::before{content:"";position:absolute;left:50%;top:6rem;width:520px;height:520px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(232,83,26,.28),transparent 62%);filter:blur(30px);pointer-events:none}
+.eyebrow{text-align:center;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--orange);margin-bottom:1.2rem}
+.hero h1{font-size:clamp(2.4rem,6.2vw,4.2rem);text-align:center;max-width:16ch;margin:0 auto 1rem;letter-spacing:-.035em}
+.hero h1 em{font-style:normal;background:linear-gradient(95deg,#ffb27a,var(--orange) 55%,#ff5a00);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .lead{text-align:center;color:var(--ink-2);max-width:36ch;margin:0 auto 2.4rem;font-size:1.05rem}
+.eyebrow,.hero h1,.hero .lead,.steps{opacity:0;transform:translateY(16px);animation:up .8s cubic-bezier(.2,.7,.2,1) forwards}
+.hero h1{animation-delay:.08s}.hero .lead{animation-delay:.18s}.steps{animation-delay:.3s}
 @keyframes up{to{opacity:1;transform:none}}
-.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:1rem}
-.tab{font-family:var(--body);font-size:.95rem;font-weight:600;color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:.9rem .6rem;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:.35rem;text-align:center;transition:all .25s;position:relative;overflow:hidden}
-.tab .tn{font-family:var(--display);font-size:.8rem;font-weight:800;color:var(--orange);width:24px;height:24px;border-radius:50%;border:1.5px solid var(--orange);display:grid;place-items:center;transition:all .25s}
-.tab:hover{border-color:rgba(232,83,26,.5);background:var(--orange-soft)}
-.tab.on{background:linear-gradient(135deg,var(--orange),#d94814);border-color:transparent;box-shadow:0 0 28px rgba(232,83,26,.35)}
-.tab.on .tn{background:#fff;color:var(--orange);border-color:#fff}
-.panels{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:2rem;min-height:300px;overflow:hidden}
-.panels::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:linear-gradient(90deg,transparent,var(--orange) 35%,var(--orange-2) 50%,var(--orange) 65%,transparent);background-size:40% 100%;background-repeat:no-repeat;animation:flow 3.2s linear infinite}
-@keyframes flow{from{background-position:-40% 0}to{background-position:140% 0}}
-.panel{display:none;animation:fade .35s ease}
-.panel.on{display:block}
-@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.panel .pk{font-size:.8rem;font-weight:700;color:var(--orange);letter-spacing:.04em;text-transform:uppercase;margin-bottom:.6rem}
-.panel h2{font-size:clamp(1.5rem,3.4vw,2.2rem);margin-bottom:.8rem}
-.panel p{color:var(--ink-2);max-width:60ch;margin-bottom:1.3rem}
-.panel ul{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem}
-.panel li{font-size:.9rem;padding:.45rem .9rem;border:1px solid var(--line);border-radius:100px;background:rgba(255,255,255,.03)}
-.panel li::before{content:"✓ ";color:var(--orange);font-weight:700}
-.hero .actions{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1.6rem}
-.btn{display:inline-block;padding:.9rem 1.5rem;border-radius:100px;font-weight:600;text-decoration:none;border:2px solid rgba(255,255,255,.3);color:var(--ink);transition:all .2s;font-size:.95rem}
-.btn:hover{border-color:var(--ink);background:rgba(255,255,255,.06)}
-.btn-solid{background:linear-gradient(135deg,var(--orange),#d94814);border-color:transparent;color:#fff;box-shadow:0 0 20px rgba(232,83,26,.32)}
-.btn-solid:hover{box-shadow:0 0 36px rgba(232,83,26,.55);transform:translateY(-1px);background:linear-gradient(135deg,var(--orange),#d94814)}
+
+.steps{position:relative;max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.step{position:relative;border-radius:18px;background:rgba(255,255,255,.025);border:1px solid var(--line);overflow:hidden;transition:border-color .3s,background .3s,box-shadow .3s}
+.step::before{content:"";position:absolute;inset:0;border-radius:18px;padding:1px;background:linear-gradient(135deg,rgba(255,178,122,.9),var(--orange) 45%,rgba(232,83,26,.15));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .3s;pointer-events:none}
+.step:hover{background:rgba(255,255,255,.04);border-color:rgba(232,83,26,.35)}
+.step.on{background:linear-gradient(180deg,rgba(232,83,26,.13),rgba(232,83,26,.04));border-color:transparent;box-shadow:0 20px 60px -20px rgba(232,83,26,.45)}
+.step.on::before{opacity:1}
+.step-h{width:100%;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:1rem;padding:1.1rem 1.3rem;background:none;border:0;color:var(--ink);cursor:pointer;text-align:left;font-family:var(--body)}
+.sn{font-family:var(--display);font-size:.85rem;font-weight:800;color:var(--orange);letter-spacing:.04em;width:2.6rem;height:2.6rem;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(232,83,26,.45);transition:all .3s}
+.step.on .sn{background:linear-gradient(135deg,var(--orange),#d94814);color:#fff;border-color:transparent;box-shadow:0 0 22px rgba(232,83,26,.5)}
+.sl{font-family:var(--display);font-size:1.35rem;font-weight:700;letter-spacing:-.02em}
+.sx{width:12px;height:12px;border-right:2px solid var(--ink-2);border-bottom:2px solid var(--ink-2);transform:rotate(45deg);transition:transform .3s,border-color .3s;margin-right:.3rem}
+.step.on .sx{transform:rotate(-135deg);border-color:var(--orange)}
+.step-b{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s cubic-bezier(.2,.7,.2,1)}
+.step.on .step-b{grid-template-rows:1fr}
+.step-i{overflow:hidden;min-height:0;padding:0 1.3rem 0 1.3rem;opacity:0;transition:opacity .35s .1s}
+.step.on .step-i{padding-bottom:1.5rem;opacity:1}
+.step-i h2{font-size:clamp(1.35rem,3vw,1.9rem);margin:.2rem 0 .6rem;letter-spacing:-.025em}
+.step-i p{color:var(--ink-2);max-width:56ch;margin-bottom:1.1rem;font-size:1rem}
+.step-i ul{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem}
+.step-i li{font-size:.88rem;padding:.45rem .85rem;border-radius:100px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)}
+.step-i li::before{content:"";display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--orange);margin-right:.55rem;vertical-align:middle;box-shadow:0 0 8px var(--orange)}
+@media (min-width:820px){
+  .step-h{padding:1.3rem 1.6rem}
+  .step-i{padding:0 1.6rem}
+  .step.on .step-i{padding-left:calc(1.6rem + 2.6rem + 1rem)}
+}
+.hero .actions{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:2rem}
+.btn{display:inline-block;padding:.95rem 1.6rem;border-radius:100px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,.18);color:var(--ink);transition:all .25s;font-size:.95rem;background:rgba(255,255,255,.04)}
+.btn:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.08)}
+.btn-solid{background:linear-gradient(135deg,var(--orange),#d94814);border-color:transparent;color:#fff;box-shadow:0 8px 30px -8px rgba(232,83,26,.7),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn-solid:hover{box-shadow:0 12px 40px -8px rgba(232,83,26,.9),inset 0 1px 0 rgba(255,255,255,.25);transform:translateY(-1px);background:linear-gradient(135deg,#ff6a2a,#e04a12)}
 @media (max-width:640px){
   .hero{padding:6rem 0 3rem}
-  .tabs{grid-template-columns:1fr;gap:6px}
-  .tab{flex-direction:row;justify-content:flex-start;padding:.8rem 1rem;text-align:left;gap:.7rem;font-size:1rem}
-  .tab .tn{width:26px;height:26px;flex:none}
-  .tab::after{content:"›";margin-left:auto;color:var(--ink-2);font-size:1.3rem;line-height:1}
-  .tab.on::after{color:#fff}
-  .panels{padding:1.4rem;min-height:0}
+  .hero::before{width:360px;height:360px;top:4rem}
+  .step-h{padding:.95rem 1rem}
+  .sl{font-size:1.15rem}
+  .sn{width:2.2rem;height:2.2rem;font-size:.75rem}
+  .step-i{padding:0 1rem}
+  .step.on .step-i{padding-bottom:1.2rem}
   .hero .actions .btn{width:100%;text-align:center}
 }
 
 /* ---------- 2. outros serviços ---------- */
-.outros{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.outros h2{font-size:clamp(1.6rem,3.6vw,2.4rem);margin-bottom:.6rem}
-.outros .sub{color:var(--ink-2);margin-bottom:1.8rem;max-width:52ch}
-.chips{list-style:none;display:flex;flex-wrap:wrap;gap:.6rem}
-.chips li{padding:.7rem 1.1rem;border:1px solid var(--line);border-radius:100px;font-size:.95rem;background:rgba(255,255,255,.03);transition:all .2s}
-.chips li:hover{border-color:var(--orange);color:var(--orange)}
+.outros{background:linear-gradient(180deg,var(--bg-2),var(--bg));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.outros h2,.contato h2{font-size:clamp(1.7rem,3.8vw,2.5rem);margin-bottom:.6rem;letter-spacing:-.03em}
+.outros .sub,.contato .sub{color:var(--ink-2);margin-bottom:2rem;max-width:52ch}
+.chips{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media (max-width:900px){.chips{grid-template-columns:repeat(2,1fr)}}
+.chips li{display:flex;align-items:center;gap:.8rem;padding:1.1rem 1.2rem;border:1px solid var(--line);border-radius:16px;font-size:.95rem;font-weight:500;background:rgba(255,255,255,.025);transition:all .25s;line-height:1.3}
+.chips li:hover{border-color:rgba(232,83,26,.5);background:var(--orange-soft);transform:translateY(-2px)}
+.chips .dot{width:10px;height:10px;border-radius:50%;background:var(--orange);box-shadow:0 0 12px var(--orange);flex:none}
 
 /* ---------- 3. contato ---------- */
-.contato h2{font-size:clamp(1.6rem,3.6vw,2.4rem);margin-bottom:.6rem}
-.contato .sub{color:var(--ink-2);margin-bottom:2rem;max-width:52ch}
-.cgrid{display:grid;grid-template-columns:1.1fr 1fr;gap:2.5rem;align-items:start}
+.contato::before{content:"";position:absolute;right:-10%;bottom:-20%;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(232,83,26,.2),transparent 62%);filter:blur(30px);pointer-events:none}
+.cgrid{display:grid;grid-template-columns:1.15fr 1fr;gap:2rem;align-items:start}
 @media (max-width:820px){.cgrid{grid-template-columns:1fr}}
-.form{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:1.8rem}
-.form label{display:block;font-size:.85rem;font-weight:600;color:var(--ink-2);margin:0 0 .35rem}
-.form input,.form select,.form textarea{width:100%;font-family:var(--body);font-size:1rem;color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:.8rem 1rem;margin-bottom:1rem;outline:none;transition:border-color .2s}
-.form input:focus,.form select:focus,.form textarea:focus{border-color:var(--orange)}
+.form{position:relative;background:rgba(15,13,16,.9);border:1px solid var(--line);border-radius:22px;padding:1.8rem;backdrop-filter:blur(10px)}
+.form::before{content:"";position:absolute;inset:0;border-radius:22px;padding:1px;background:linear-gradient(160deg,rgba(255,178,122,.7),rgba(232,83,26,.35) 40%,transparent 75%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.form label{display:block;font-size:.8rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-2);margin:0 0 .4rem}
+.form input,.form select,.form textarea{width:100%;font-family:var(--body);font-size:1rem;color:var(--ink);background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:12px;padding:.85rem 1rem;margin-bottom:1.1rem;outline:none;transition:border-color .2s,box-shadow .2s}
+.form input:focus,.form select:focus,.form textarea:focus{border-color:var(--orange);box-shadow:0 0 0 3px rgba(232,83,26,.18)}
 .form select option{color:#111}
 .form textarea{min-height:90px;resize:vertical}
-.form .btn{width:100%;text-align:center;border:0;cursor:pointer;font-family:var(--body);font-size:1rem}
+.form .btn{width:100%;text-align:center;border:0;cursor:pointer;font-family:var(--body);font-size:1rem;margin-top:.2rem}
 .form .ok{display:none;color:var(--ink-2);font-size:.9rem;margin-top:.8rem;text-align:center}
-.alt{display:flex;flex-direction:column;gap:.9rem}
-.alt a{display:flex;align-items:center;gap:1rem;padding:1.2rem 1.4rem;border:1px solid var(--line);border-radius:16px;text-decoration:none;background:rgba(255,255,255,.03);transition:all .2s}
-.alt a:hover{border-color:var(--orange);background:var(--orange-soft)}
-.alt b{display:block;font-family:var(--display);font-size:1.1rem}
-.alt small{color:var(--ink-2);font-size:.9rem}
-.alt .ic{width:40px;height:40px;border-radius:12px;background:var(--orange-soft);color:var(--orange);display:grid;place-items:center;font-weight:800;flex:none}
+.alt{display:flex;flex-direction:column;gap:.8rem}
+.alt a{display:flex;align-items:center;gap:1rem;padding:1.2rem 1.3rem;border:1px solid var(--line);border-radius:18px;text-decoration:none;background:rgba(255,255,255,.025);transition:all .25s}
+.alt a:hover{border-color:rgba(232,83,26,.5);background:var(--orange-soft);transform:translateY(-2px)}
+.alt b{display:block;font-family:var(--display);font-size:1.1rem;letter-spacing:-.01em}
+.alt small{color:var(--ink-2);font-size:.88rem;line-height:1.3;display:block}
+.alt .ic{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,rgba(232,83,26,.35),rgba(232,83,26,.1));color:var(--orange);display:grid;place-items:center;font-weight:800;font-size:.85rem;flex:none;border:1px solid rgba(232,83,26,.3)}
 
 footer{padding:2.5rem 0;font-size:.85rem;color:var(--ink-2)}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
@@ -156,8 +170,8 @@ footer a{text-decoration:none}footer a:hover{color:var(--orange)}
 
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .bgfx .aura,.bgfx .grain,.panels::before{animation:none}
-  .hero h1,.hero .lead,.tabs,.panels{animation:none;opacity:1;transform:none}
+  .bgfx .aura,.bgfx .grain{animation:none}
+  .eyebrow,.hero h1,.hero .lead,.steps{animation:none;opacity:1;transform:none}
   .reveal.anim{opacity:1;transform:none;transition:none}
 }
 </style>
@@ -192,35 +206,69 @@ footer a{text-decoration:none}footer a:hover{color:var(--orange)}
 
 <section class="hero" id="servicos">
   <div class="wrap">
-    <h1><span data-pt>Cuidamos do funil inteiro do seu negócio.</span><span data-en>We take care of your entire funnel.</span></h1>
+    <div class="eyebrow"><span data-pt>Agência de marketing · Manaus</span><span data-en>Marketing agency · Manaus</span></div>
+    <h1><span data-pt>Cuidamos do <em>funil inteiro</em> do seu negócio.</span><span data-en>We take care of your <em>entire funnel</em>.</span></h1>
     <p class="lead"><span data-pt>Toque em cada etapa para ver o que fazemos por você.</span><span data-en>Tap each step to see what we do for you.</span></p>
-    <div class="tabs" role="tablist"><button class="tab on" data-s="trafego" onclick="pick('trafego')"><span class="tn">1</span><span data-pt>Tráfego pago</span><span data-en>Paid ads</span></button><button class="tab" data-s="site" onclick="pick('site')"><span class="tn">2</span><span data-pt>Site</span><span data-en>Website</span></button><button class="tab" data-s="captacao" onclick="pick('captacao')"><span class="tn">3</span><span data-pt>Captação de leads</span><span data-en>Lead capture</span></button><button class="tab" data-s="atendimento" onclick="pick('atendimento')"><span class="tn">4</span><span data-pt>Atendimento</span><span data-en>Follow-up</span></button><button class="tab" data-s="conversao" onclick="pick('conversao')"><span class="tn">5</span><span data-pt>Conversão</span><span data-en>Conversion</span></button></div>
-    <div class="panels">
-      <div class="panel on" data-s="trafego">
-        <div class="pk">1/5 · <span data-pt>Tráfego pago</span><span data-en>Paid ads</span></div>
-        <h2><span data-pt>Anunciamos a sua empresa na internet.</span><span data-en>We advertise your business online.</span></h2>
-        <p><span data-pt>Criamos e gerenciamos os anúncios no Instagram, Facebook e Google para que as pessoas certas encontrem você — e medimos pelo que vira cliente, não por clique.</span><span data-en>We create and manage your ads on Instagram, Facebook and Google so the right people find you — measured by who becomes a customer, not by clicks.</span></p>
-        <ul><li><span data-pt>Anúncios criados e no ar</span><span data-en>Ads created and live</span></li><li><span data-pt>Público certo, na sua cidade</span><span data-en>The right audience, in your city</span></li><li><span data-pt>Relatório simples todo mês</span><span data-en>A simple report every month</span></li></ul>
-      </div><div class="panel" data-s="site">
-        <div class="pk">2/5 · <span data-pt>Site</span><span data-en>Website</span></div>
-        <h2><span data-pt>Colocamos o seu site no ar.</span><span data-en>We put your website online.</span></h2>
-        <p><span data-pt>Um site rápido, bonito no celular e feito para que quem entra vire contato. Não é vitrine: é a porta de entrada do seu cliente.</span><span data-en>A fast website, great on mobile and built so visitors become contacts. Not a showcase: it’s your customer’s front door.</span></p>
-        <ul><li><span data-pt>Pronto em semanas, não meses</span><span data-en>Ready in weeks, not months</span></li><li><span data-pt>Domínio, hospedagem e segurança inclusos</span><span data-en>Domain, hosting and security included</span></li><li><span data-pt>Botão de WhatsApp e formulário</span><span data-en>WhatsApp button and form</span></li></ul>
-      </div><div class="panel" data-s="captacao">
-        <div class="pk">3/5 · <span data-pt>Captação de leads</span><span data-en>Lead capture</span></div>
-        <h2><span data-pt>Transformamos visitas em contatos.</span><span data-en>We turn visits into contacts.</span></h2>
-        <p><span data-pt>Cada pessoa interessada fica registrada com nome, telefone e de onde veio — do site, do anúncio, do Instagram ou de um evento. Nada se perde no celular de alguém.</span><span data-en>Every interested person is recorded with name, phone and where they came from — website, ad, Instagram or an event. Nothing gets lost on someone’s phone.</span></p>
-        <ul><li><span data-pt>Todos os contatos num só lugar</span><span data-en>All contacts in one place</span></li><li><span data-pt>Você sabe de onde cada cliente veio</span><span data-en>You know where each customer came from</span></li><li><span data-pt>Formulários para feiras e eventos</span><span data-en>Forms for fairs and events</span></li></ul>
-      </div><div class="panel" data-s="atendimento">
-        <div class="pk">4/5 · <span data-pt>Atendimento</span><span data-en>Follow-up</span></div>
-        <h2><span data-pt>Nós respondemos os seus clientes.</span><span data-en>We reply to your customers.</span></h2>
-        <p><span data-pt>Nossa equipe atende no WhatsApp em minutos, tira dúvidas, qualifica e agenda. Você não perde mais cliente por demora na resposta.</span><span data-en>Our team replies on WhatsApp within minutes, answers questions, qualifies and books. You no longer lose customers to slow replies.</span></p>
-        <ul><li><span data-pt>Resposta em até 30 minutos</span><span data-en>Reply within 30 minutes</span></li><li><span data-pt>Segunda a sexta, horário comercial</span><span data-en>Monday to Friday, business hours</span></li><li><span data-pt>Roteiro feito para o seu negócio</span><span data-en>A script built for your business</span></li></ul>
-      </div><div class="panel" data-s="conversao">
-        <div class="pk">5/5 · <span data-pt>Conversão</span><span data-en>Conversion</span></div>
-        <h2><span data-pt>Entregamos o cliente pronto para fechar.</span><span data-en>We hand you the customer ready to close.</span></h2>
-        <p><span data-pt>Você recebe só quem já está decidido, com todo o histórico da conversa. E acompanhamos até a venda acontecer.</span><span data-en>You get only those who are already decided, with the full conversation history. And we follow through until the sale happens.</span></p>
-        <ul><li><span data-pt>Cliente chega com contexto</span><span data-en>Customer arrives with context</span></li><li><span data-pt>Você fecha, nós acompanhamos</span><span data-en>You close, we follow through</span></li><li><span data-pt>Sabemos o que cada anúncio vendeu</span><span data-en>We know what each ad sold</span></li></ul>
+    <div class="steps">
+      <div class="step on" data-s="trafego">
+        <button class="step-h" onclick="pick('trafego')" aria-expanded="true">
+          <span class="sn">01</span>
+          <span class="sl"><span data-pt>Tráfego pago</span><span data-en>Paid ads</span></span>
+          <span class="sx" aria-hidden="true"></span>
+        </button>
+        <div class="step-b"><div class="step-i">
+          <h2><span data-pt>Anunciamos a sua empresa na internet.</span><span data-en>We advertise your business online.</span></h2>
+          <p><span data-pt>Criamos e gerenciamos os anúncios no Instagram, Facebook e Google para que as pessoas certas encontrem você — e medimos pelo que vira cliente, não por clique.</span><span data-en>We create and manage your ads on Instagram, Facebook and Google so the right people find you — measured by who becomes a customer, not by clicks.</span></p>
+          <ul><li><span data-pt>Anúncios criados e no ar</span><span data-en>Ads created and live</span></li><li><span data-pt>Público certo, na sua cidade</span><span data-en>The right audience, in your city</span></li><li><span data-pt>Relatório simples todo mês</span><span data-en>A simple report every month</span></li></ul>
+        </div></div>
+      </div>
+      <div class="step" data-s="site">
+        <button class="step-h" onclick="pick('site')" aria-expanded="false">
+          <span class="sn">02</span>
+          <span class="sl"><span data-pt>Site</span><span data-en>Website</span></span>
+          <span class="sx" aria-hidden="true"></span>
+        </button>
+        <div class="step-b"><div class="step-i">
+          <h2><span data-pt>Colocamos o seu site no ar.</span><span data-en>We put your website online.</span></h2>
+          <p><span data-pt>Um site rápido, bonito no celular e feito para que quem entra vire contato. Não é vitrine: é a porta de entrada do seu cliente.</span><span data-en>A fast website, great on mobile and built so visitors become contacts. Not a showcase: it’s your customer’s front door.</span></p>
+          <ul><li><span data-pt>Pronto em semanas, não meses</span><span data-en>Ready in weeks, not months</span></li><li><span data-pt>Domínio, hospedagem e segurança inclusos</span><span data-en>Domain, hosting and security included</span></li><li><span data-pt>Botão de WhatsApp e formulário</span><span data-en>WhatsApp button and form</span></li></ul>
+        </div></div>
+      </div>
+      <div class="step" data-s="captacao">
+        <button class="step-h" onclick="pick('captacao')" aria-expanded="false">
+          <span class="sn">03</span>
+          <span class="sl"><span data-pt>Captação de leads</span><span data-en>Lead capture</span></span>
+          <span class="sx" aria-hidden="true"></span>
+        </button>
+        <div class="step-b"><div class="step-i">
+          <h2><span data-pt>Transformamos visitas em contatos.</span><span data-en>We turn visits into contacts.</span></h2>
+          <p><span data-pt>Cada pessoa interessada fica registrada com nome, telefone e de onde veio — do site, do anúncio, do Instagram ou de um evento. Nada se perde no celular de alguém.</span><span data-en>Every interested person is recorded with name, phone and where they came from — website, ad, Instagram or an event. Nothing gets lost on someone’s phone.</span></p>
+          <ul><li><span data-pt>Todos os contatos num só lugar</span><span data-en>All contacts in one place</span></li><li><span data-pt>Você sabe de onde cada cliente veio</span><span data-en>You know where each customer came from</span></li><li><span data-pt>Formulários para feiras e eventos</span><span data-en>Forms for fairs and events</span></li></ul>
+        </div></div>
+      </div>
+      <div class="step" data-s="atendimento">
+        <button class="step-h" onclick="pick('atendimento')" aria-expanded="false">
+          <span class="sn">04</span>
+          <span class="sl"><span data-pt>Atendimento</span><span data-en>Follow-up</span></span>
+          <span class="sx" aria-hidden="true"></span>
+        </button>
+        <div class="step-b"><div class="step-i">
+          <h2><span data-pt>Nós respondemos os seus clientes.</span><span data-en>We reply to your customers.</span></h2>
+          <p><span data-pt>Nossa equipe atende no WhatsApp em minutos, tira dúvidas, qualifica e agenda. Você não perde mais cliente por demora na resposta.</span><span data-en>Our team replies on WhatsApp within minutes, answers questions, qualifies and books. You no longer lose customers to slow replies.</span></p>
+          <ul><li><span data-pt>Resposta em até 30 minutos</span><span data-en>Reply within 30 minutes</span></li><li><span data-pt>Segunda a sexta, horário comercial</span><span data-en>Monday to Friday, business hours</span></li><li><span data-pt>Roteiro feito para o seu negócio</span><span data-en>A script built for your business</span></li></ul>
+        </div></div>
+      </div>
+      <div class="step" data-s="conversao">
+        <button class="step-h" onclick="pick('conversao')" aria-expanded="false">
+          <span class="sn">05</span>
+          <span class="sl"><span data-pt>Conversão</span><span data-en>Conversion</span></span>
+          <span class="sx" aria-hidden="true"></span>
+        </button>
+        <div class="step-b"><div class="step-i">
+          <h2><span data-pt>Entregamos o cliente pronto para fechar.</span><span data-en>We hand you the customer ready to close.</span></h2>
+          <p><span data-pt>Você recebe só quem já está decidido, com todo o histórico da conversa. E acompanhamos até a venda acontecer.</span><span data-en>You get only those who are already decided, with the full conversation history. And we follow through until the sale happens.</span></p>
+          <ul><li><span data-pt>Cliente chega com contexto</span><span data-en>Customer arrives with context</span></li><li><span data-pt>Você fecha, nós acompanhamos</span><span data-en>You close, we follow through</span></li><li><span data-pt>Sabemos o que cada anúncio vendeu</span><span data-en>We know what each ad sold</span></li></ul>
+        </div></div>
       </div>
     </div>
     <div class="actions">
@@ -234,7 +282,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--orange)}
   <div class="wrap">
     <h2><span data-pt>Outros serviços</span><span data-en>Other services</span></h2>
     <p class="sub"><span data-pt>Além do funil completo, também atendemos pedidos avulsos.</span><span data-en>Beyond the full funnel, we also take on standalone requests.</span></p>
-    <ul class="chips"><li><span data-pt>Identidade visual e marca</span><span data-en>Brand identity</span></li><li><span data-pt>Gestão de Instagram e criativos</span><span data-en>Instagram management and creatives</span></li><li><span data-pt>Landing pages de campanha</span><span data-en>Campaign landing pages</span></li><li><span data-pt>CRM e sistemas de atendimento</span><span data-en>CRM and support systems</span></li><li><span data-pt>Automação de WhatsApp e e-mail</span><span data-en>WhatsApp and email automation</span></li><li><span data-pt>Blog e SEO</span><span data-en>Blog and SEO</span></li><li><span data-pt>Captação em feiras e eventos</span><span data-en>Lead capture at fairs and events</span></li><li><span data-pt>Consultoria de processos comerciais</span><span data-en>Sales process consulting</span></li></ul>
+    <ul class="chips"><li><span class="dot"></span><span data-pt>Identidade visual e marca</span><span data-en>Brand identity</span></li><li><span class="dot"></span><span data-pt>Gestão de Instagram e criativos</span><span data-en>Instagram management and creatives</span></li><li><span class="dot"></span><span data-pt>Landing pages de campanha</span><span data-en>Campaign landing pages</span></li><li><span class="dot"></span><span data-pt>CRM e sistemas de atendimento</span><span data-en>CRM and support systems</span></li><li><span class="dot"></span><span data-pt>Automação de WhatsApp e e-mail</span><span data-en>WhatsApp and email automation</span></li><li><span class="dot"></span><span data-pt>Blog e SEO</span><span data-en>Blog and SEO</span></li><li><span class="dot"></span><span data-pt>Captação em feiras e eventos</span><span data-en>Lead capture at fairs and events</span></li><li><span class="dot"></span><span data-pt>Consultoria de processos comerciais</span><span data-en>Sales process consulting</span></li></ul>
   </div>
 </section>
 
@@ -252,11 +300,11 @@ footer a{text-decoration:none}footer a:hover{color:var(--orange)}
         <input id="f-tel" type="tel" autocomplete="tel" placeholder="(92) 9 9999-9999">
         <label for="f-serv"><span data-pt>O que você precisa?</span><span data-en>What do you need?</span></label>
         <select id="f-serv">
-          <option value="funil"><span data-pt>O funil completo</span><span data-en>The full funnel</span></option>
-          <option value="trafego"><span data-pt>Anunciar minha empresa</span><span data-en>Advertise my business</span></option>
-          <option value="site"><span data-pt>Um site novo</span><span data-en>A new website</span></option>
-          <option value="atendimento"><span data-pt>Atendimento dos meus clientes</span><span data-en>Customer follow-up</span></option>
-          <option value="outro"><span data-pt>Outro serviço</span><span data-en>Another service</span></option>
+          <option value="funil" data-pt="O funil completo" data-en="The full funnel">O funil completo</option>
+          <option value="trafego" data-pt="Anunciar minha empresa" data-en="Advertise my business">Anunciar minha empresa</option>
+          <option value="site" data-pt="Um site novo" data-en="A new website">Um site novo</option>
+          <option value="atendimento" data-pt="Atendimento dos meus clientes" data-en="Customer follow-up">Atendimento dos meus clientes</option>
+          <option value="outro" data-pt="Outro serviço" data-en="Another service">Outro serviço</option>
         </select>
         <label for="f-msg"><span data-pt>Mensagem (opcional)</span><span data-en>Message (optional)</span></label>
         <textarea id="f-msg"></textarea>
@@ -287,6 +335,7 @@ function setLang(lang){
   document.documentElement.lang = lang==='pt'?'pt-BR':'en';
   try{localStorage.setItem('rise_lang',lang)}catch(e){}
   document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('on',b.textContent.trim().toLowerCase()===lang)});
+  document.querySelectorAll('option[data-pt]').forEach(function(o){o.textContent=o.getAttribute('data-'+lang)});
 }
 (function(){try{var l=localStorage.getItem('rise_lang');if(l==='en')setLang('en');}catch(e){}})();
 var rnavEl=document.getElementById('rnav');
@@ -294,15 +343,15 @@ window.addEventListener('scroll',function(){rnavEl.classList.toggle('sc',scrollY
 function toggleMenu(){const m=document.getElementById('mob-menu'),h=document.getElementById('ham');m.classList.toggle('open');h.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
 function closeMenu(){document.getElementById('mob-menu').classList.remove('open');document.getElementById('ham').classList.remove('open');document.body.style.overflow='';}
 function pick(k){
-  document.querySelectorAll('.tab').forEach(function(t){t.classList.toggle('on',t.dataset.s===k)});
-  document.querySelectorAll('.panel').forEach(function(p){p.classList.toggle('on',p.dataset.s===k)});
-  if(window.innerWidth<640){var el=document.querySelector('.panels');var y=el.getBoundingClientRect().top+scrollY-80;window.scrollTo({top:y,behavior:'smooth'});}
+  document.querySelectorAll('.step').forEach(function(st){var on=st.dataset.s===k;st.classList.toggle('on',on);st.querySelector('.step-h').setAttribute('aria-expanded',on)});
+  var el=document.querySelector('.step[data-s="'+k+'"]');
+  if(window.innerWidth<640){setTimeout(function(){var y=el.getBoundingClientRect().top+scrollY-84;window.scrollTo({top:y,behavior:'smooth'})},80)}
   if(window.gtag)gtag('event','servico_toque',{servico:k});
 }
 function enviar(){
   var g=function(id){return document.getElementById(id).value.trim()};
   var en=document.documentElement.lang==='en';
-  var serv=document.getElementById('f-serv');var servTxt=serv.options[serv.selectedIndex].querySelector(en?'[data-en]':'[data-pt]').textContent;
+  var serv=document.getElementById('f-serv');var servTxt=serv.options[serv.selectedIndex].textContent;
   var msg=(en?'Hi, I came from the RISE website.':'Olá, vim pelo site da RISE.')+'\n'+(en?'Name':'Nome')+': '+g('f-nome')+'\n'+(en?'Company':'Empresa')+': '+g('f-emp')+'\nWhatsApp: '+g('f-tel')+'\n'+(en?'Need':'Preciso')+': '+servTxt+(g('f-msg')?'\n'+g('f-msg'):'');
   document.getElementById('ok').style.display='block';
   if(window.gtag)gtag('event','generate_lead',{servico:serv.value});
