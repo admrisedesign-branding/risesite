@@ -43,6 +43,9 @@ gtag('config', 'G-0ZZ46BRRSL');
   --max:1120px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
+[data-en]{display:none !important}
+html[lang="en"] [data-pt]{display:none !important}
+html[lang="en"] [data-en]{display:revert !important}
 html{scroll-behavior:smooth}
 body{font-family:var(--body);font-size:17px;line-height:1.55;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 a{color:inherit}
@@ -85,6 +88,11 @@ main,footer{position:relative;z-index:1}
 .rnav-right{display:flex;align-items:center;gap:14px;justify-self:end}
 .rnav-cta{background:linear-gradient(135deg,var(--orange),#d94814);color:#fff;padding:10px 20px;border-radius:100px;font-weight:600;font-size:13px;text-decoration:none;box-shadow:0 0 20px rgba(232,83,26,.32);transition:all .2s;white-space:nowrap}
 .rnav-cta:hover{box-shadow:0 0 36px rgba(232,83,26,.55);transform:translateY(-1px)}
+.lang-sw{display:flex;gap:2px;background:rgba(255,255,255,.06);border:1px solid var(--line);border-radius:100px;padding:4px}
+.lang-btn{font-size:11px;font-weight:700;letter-spacing:.5px;padding:5px 12px;border-radius:100px;cursor:pointer;border:none;background:transparent;color:rgba(242,237,232,.26);transition:all .2s;font-family:var(--body)}
+.lang-btn.on{background:var(--orange);color:#fff;box-shadow:0 0 12px rgba(232,83,26,.32)}
+.mob-lang{display:flex;gap:8px;margin-top:24px}
+.mob-lang .lang-btn{font-size:13px;padding:8px 20px}
 .ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none;justify-self:end}
 .ham span{display:block;width:24px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s}
 .ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -116,7 +124,9 @@ main,footer{position:relative;z-index:1}
 .hero p.lead,.hero .actions{opacity:0;animation:up .8s .6s cubic-bezier(.2,.7,.2,1) forwards}
 @keyframes up{to{opacity:1;transform:translateY(0)}}
 .hero p.lead{font-size:1.25rem;color:var(--ink-2);margin:2.2rem 0 1.6rem;max-width:56ch}
-.hero .actions{display:flex;gap:.9rem;flex-wrap:wrap}
+.hero .actions{display:flex;gap:.9rem;flex-wrap:wrap;justify-content:center}
+.hero h1,.hero p.lead{text-align:center;margin-left:auto;margin-right:auto}
+.hero h1{max-width:18ch}
 
 /* ---------- funnel: the memorable thing ---------- */
 .funnel{margin-top:2.5rem;position:relative;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
@@ -239,127 +249,124 @@ footer a:hover{color:var(--orange)}
 <nav class="rnav" id="rnav">
   <a href="/" class="rnav-logo"><img src="data:image/png;base64,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" alt="Rise"/><span class="rlogo-nm">rise</span></a>
   <ul class="rnav-links">
-    <li><a href="#metodo">Método</a></li>
-    <li><a href="#casos">Casos</a></li>
+    <li><a href="#metodo"><span data-pt>Método</span><span data-en>Method</span></a></li>
+    <li><a href="#casos"><span data-pt>Casos</span><span data-en>Cases</span></a></li>
     <li><a href="https://blog.riseagencia.com/blog/">Blog</a></li>
-    <li><a href="#contato">Contato</a></li>
+    <li><a href="#contato"><span data-pt>Contato</span><span data-en>Contact</span></a></li>
   </ul>
   <div class="rnav-right">
-    <a href="https://raiox.riseagencia.com" class="rnav-cta">Fazer o Raio-X</a>
+    <div class="lang-sw"><button class="lang-btn on" onclick="setLang('pt')">PT</button><button class="lang-btn" onclick="setLang('en')">EN</button></div>
+    <a href="https://raiox.riseagencia.com" class="rnav-cta"><span data-pt>Fazer o Raio-X</span><span data-en>Get the X-Ray</span></a>
   </div>
   <button class="ham" id="ham" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 <div class="mob-menu" id="mob-menu">
-  <a href="#metodo" onclick="closeMenu()">Método</a>
-  <a href="#casos" onclick="closeMenu()">Casos</a>
+  <a href="#metodo" onclick="closeMenu()"><span data-pt>Método</span><span data-en>Method</span></a>
+  <a href="#casos" onclick="closeMenu()"><span data-pt>Casos</span><span data-en>Cases</span></a>
   <a href="https://blog.riseagencia.com/blog/">Blog</a>
-  <a href="#contato" onclick="closeMenu()">Contato</a>
-  <a href="https://raiox.riseagencia.com" class="mob-cta">Fazer o Raio-X</a>
+  <a href="#contato" onclick="closeMenu()"><span data-pt>Contato</span><span data-en>Contact</span></a>
+  <a href="https://raiox.riseagencia.com" class="mob-cta"><span data-pt>Fazer o Raio-X</span><span data-en>Get the X-Ray</span></a>
+  <div class="mob-lang"><button class="lang-btn on" onclick="setLang('pt')">PT</button><button class="lang-btn" onclick="setLang('en')">EN</button></div>
 </div>
 
 <main>
 
 <section class="hero">
   <div class="wrap">
-    <h1>Tráfego, site, leads, atendimento e conversão.<br class="desk">Tudo com a RISE.</h1>
-    <div class="funnel" aria-label="As cinco etapas do funil RISE">
+    <h1><span data-pt>Tráfego, site, leads, atendimento e conversão.<br class="desk">Tudo com a RISE.</span><span data-en>Traffic, website, leads, follow-up and conversion.<br class="desk">All with RISE.</span></h1>
+    <div class="funnel" aria-label="Funil RISE">
       <ol>
-        <li><span class="n">1</span><div class="stage">Tráfego</div><div class="what">Anúncios com sinal limpo, medidos pelo que vira venda</div><span class="arrow" aria-hidden="true">›</span></li>
-        <li><span class="n">2</span><div class="stage">Site</div><div class="what">Página feita para converter, não para decorar</div><span class="arrow" aria-hidden="true">›</span></li>
-        <li><span class="n">3</span><div class="stage">Captação</div><div class="what">Cada lead cai no CRM com origem e contexto</div><span class="arrow" aria-hidden="true">›</span></li>
-        <li><span class="n">4</span><div class="stage">Atendimento</div><div class="what">Nossa equipe responde, qualifica e agenda</div><span class="arrow" aria-hidden="true">›</span></li>
-        <li><span class="n">5</span><div class="stage">Conversão</div><div class="what">Você recebe o cliente pronto para fechar</div></li>
+        <li><span class="n">1</span><div class="stage"><span data-pt>Tráfego</span><span data-en>Traffic</span></div><div class="what"><span data-pt>Anúncios com sinal limpo, medidos pelo que vira venda</span><span data-en>Ads with clean signal, measured by what becomes a sale</span></div><span class="arrow" aria-hidden="true">›</span></li>
+        <li><span class="n">2</span><div class="stage"><span data-pt>Site</span><span data-en>Website</span></div><div class="what"><span data-pt>Página feita para converter, não para decorar</span><span data-en>A page built to convert, not to decorate</span></div><span class="arrow" aria-hidden="true">›</span></li>
+        <li><span class="n">3</span><div class="stage"><span data-pt>Captação</span><span data-en>Lead capture</span></div><div class="what"><span data-pt>Cada lead cai no CRM com origem e contexto</span><span data-en>Every lead lands in the CRM with source and context</span></div><span class="arrow" aria-hidden="true">›</span></li>
+        <li><span class="n">4</span><div class="stage"><span data-pt>Atendimento</span><span data-en>Follow-up</span></div><div class="what"><span data-pt>Nossa equipe responde, qualifica e agenda</span><span data-en>Our team replies, qualifies and books</span></div><span class="arrow" aria-hidden="true">›</span></li>
+        <li><span class="n">5</span><div class="stage"><span data-pt>Conversão</span><span data-en>Conversion</span></div><div class="what"><span data-pt>Você recebe o cliente pronto para fechar</span><span data-en>You get the customer ready to close</span></div></li>
       </ol>
     </div>
-        <p class="lead">A agência que assume o funil completo do seu negócio: do anúncio ao cliente fechado. Uma equipe, um responsável pelo resultado.</p>
+    <p class="lead"><span data-pt>A agência que assume o funil completo do seu negócio: do anúncio ao cliente fechado. Uma equipe, um responsável pelo resultado.</span><span data-en>The agency that owns your entire funnel: from the ad to the closed customer. One team, one owner of the result.</span></p>
     <div class="actions">
-      <a class="btn btn-solid" href="https://raiox.riseagencia.com">Descobrir onde meu funil quebra</a>
-      <a class="btn btn-ghost" href="#metodo">Ver como funciona</a>
+      <a class="btn btn-solid" href="https://raiox.riseagencia.com"><span data-pt>Descobrir onde meu funil quebra</span><span data-en>Find where my funnel breaks</span></a>
+      <a class="btn btn-ghost" href="#metodo"><span data-pt>Ver como funciona</span><span data-en>See how it works</span></a>
     </div>
-
   </div>
 </section>
 
 <section class="reveal pain">
   <div class="wrap grid">
     <div>
-      <h2>O funil quebra sempre no mesmo lugar: na passagem de bastão.</h2>
-      <p class="close">Quando cada etapa é de alguém diferente, o resultado não é de ninguém.</p>
+      <h2><span data-pt>O funil quebra sempre no mesmo lugar: na passagem de bastão.</span><span data-en>The funnel always breaks in the same place: the handoff.</span></h2>
+      <p class="close"><span data-pt>Quando cada etapa é de alguém diferente, o resultado não é de ninguém.</span><span data-en>When every stage belongs to someone else, the result belongs to no one.</span></p>
     </div>
     <ul>
-      <li><b>Tráfego</b><span>O gestor entrega cliques e diz que o problema é o site.</span></li>
-      <li><b>Site</b><span>O site captura o lead e diz que o problema é o atendimento.</span></li>
-      <li><b>Atendimento</b><span>O WhatsApp responde no dia seguinte e o lead já fechou com outro.</span></li>
-      <li><b>Comercial</b><span>Ninguém sabe quantos leads chegaram, de onde vieram, nem por que não fecharam.</span></li>
+      <li><b><span data-pt>Tráfego</span><span data-en>Traffic</span></b><span><span data-pt>O gestor entrega cliques e diz que o problema é o site.</span><span data-en>The ads manager delivers clicks and says the website is the problem.</span></span></li>
+      <li><b><span data-pt>Site</span><span data-en>Website</span></b><span><span data-pt>O site captura o lead e diz que o problema é o atendimento.</span><span data-en>The website captures the lead and says follow-up is the problem.</span></span></li>
+      <li><b><span data-pt>Atendimento</span><span data-en>Follow-up</span></b><span><span data-pt>O WhatsApp responde no dia seguinte e o lead já fechou com outro.</span><span data-en>WhatsApp replies the next day and the lead already closed with someone else.</span></span></li>
+      <li><b><span data-pt>Comercial</span><span data-en>Sales</span></b><span><span data-pt>Ninguém sabe quantos leads chegaram, de onde vieram, nem por que não fecharam.</span><span data-en>Nobody knows how many leads came in, where from, or why they didn’t close.</span></span></li>
     </ul>
   </div>
 </section>
 
 <section class="reveal stages" id="metodo">
   <div class="wrap">
-    <h2>O que a RISE assume em cada etapa</h2>
-    <p class="intro">Você não contrata "tráfego" ou "site". Você contrata um funil que funciona — e nós respondemos por ele em cada ponto.</p>
+    <h2><span data-pt>O que a RISE assume em cada etapa</span><span data-en>What RISE owns at each stage</span></h2>
+    <p class="intro"><span data-pt>Você não contrata "tráfego" ou "site". Você contrata um funil que funciona — e nós respondemos por ele em cada ponto.</span><span data-en>You don’t hire "ads" or "a website". You hire a funnel that works — and we answer for it at every point.</span></p>
 
     <div class="stage-row reveal">
       <div class="k">1</div>
-      <div><h3>Tráfego</h3><p class="do">Gestão de Meta Ads com evento de conversão ligado ao CRM. A campanha aprende com o que virou cliente, não com quem só clicou. Diagnóstico da conta antes de qualquer otimização.</p></div>
-      <div class="metric"><strong>Como medimos</strong>Custo por lead qualificado e custo por cliente — não por clique.</div>
+      <div><h3><span data-pt>Tráfego</span><span data-en>Traffic</span></h3><p class="do"><span data-pt>Gestão de Meta Ads com evento de conversão ligado ao CRM. A campanha aprende com o que virou cliente, não com quem só clicou. Diagnóstico da conta antes de qualquer otimização.</span><span data-en>Meta Ads management with the conversion event wired to the CRM. The campaign learns from who became a customer, not who merely clicked. Account diagnosis before any optimization.</span></p></div>
+      <div class="metric"><strong><span data-pt>Como medimos</span><span data-en>How we measure</span></strong><span data-pt>Custo por lead qualificado e custo por cliente — não por clique.</span><span data-en>Cost per qualified lead and cost per customer — not per click.</span></div>
     </div>
-
     <div class="stage-row reveal">
       <div class="k">2</div>
-      <div><h3>Site</h3><p class="do">Site ou landing page desenvolvida para o seu funil, com velocidade, rastreamento e formulário integrados desde o primeiro dia. Feito por quem vai atender o lead que sai dele.</p></div>
-      <div class="metric"><strong>Como medimos</strong>Taxa de conversão de visita em contato.</div>
+      <div><h3><span data-pt>Site</span><span data-en>Website</span></h3><p class="do"><span data-pt>Site ou landing page desenvolvida para o seu funil, com velocidade, rastreamento e formulário integrados desde o primeiro dia. Feito por quem vai atender o lead que sai dele.</span><span data-en>A website or landing page built for your funnel, with speed, tracking and forms integrated from day one. Built by the same team that will handle the leads it generates.</span></p></div>
+      <div class="metric"><strong><span data-pt>Como medimos</span><span data-en>How we measure</span></strong><span data-pt>Taxa de conversão de visita em contato.</span><span data-en>Visit-to-contact conversion rate.</span></div>
     </div>
-
     <div class="stage-row reveal">
       <div class="k">3</div>
-      <div><h3>Captação de leads</h3><p class="do">Todo contato — formulário, WhatsApp, Instagram — entra no CRM com origem, campanha e histórico. Nada se perde em conversa solta no celular de alguém.</p></div>
-      <div class="metric"><strong>Como medimos</strong>Leads registrados vs. leads gerados. A meta é 100%.</div>
+      <div><h3><span data-pt>Captação de leads</span><span data-en>Lead capture</span></h3><p class="do"><span data-pt>Todo contato — formulário, WhatsApp, Instagram — entra no CRM com origem, campanha e histórico. Nada se perde em conversa solta no celular de alguém.</span><span data-en>Every contact — form, WhatsApp, Instagram — enters the CRM with source, campaign and history. Nothing gets lost in loose chats on someone’s phone.</span></p></div>
+      <div class="metric"><strong><span data-pt>Como medimos</span><span data-en>How we measure</span></strong><span data-pt>Leads registrados vs. leads gerados. A meta é 100%.</span><span data-en>Leads logged vs. leads generated. The target is 100%.</span></div>
     </div>
-
     <div class="stage-row reveal">
       <div class="k">4</div>
-      <div><h3>Atendimento</h3><p class="do">Nossa equipe assume o primeiro contato: responde em minutos, qualifica com o roteiro do seu negócio, tira dúvidas e agenda. Você só entra quando o lead está pronto.</p></div>
-      <div class="metric"><strong>Como medimos</strong>Tempo de primeira resposta e taxa de qualificação.</div>
+      <div><h3><span data-pt>Atendimento</span><span data-en>Follow-up</span></h3><p class="do"><span data-pt>Nossa equipe assume o primeiro contato: responde em minutos, qualifica com o roteiro do seu negócio, tira dúvidas e agenda. Você só entra quando o lead está pronto.</span><span data-en>Our team takes the first contact: replies within minutes, qualifies with your business script, answers questions and books. You step in only when the lead is ready.</span></p></div>
+      <div class="metric"><strong><span data-pt>Como medimos</span><span data-en>How we measure</span></strong><span data-pt>Tempo de primeira resposta e taxa de qualificação.</span><span data-en>First-response time and qualification rate.</span></div>
     </div>
-
     <div class="stage-row reveal">
       <div class="k">5</div>
-      <div><h3>Conversão</h3><p class="do">O lead qualificado chega até você com contexto completo. Acompanhamos o fechamento e devolvemos o resultado para o tráfego, fechando o ciclo.</p></div>
-      <div class="metric"><strong>Como medimos</strong>Clientes fechados e receita por campanha.</div>
+      <div><h3><span data-pt>Conversão</span><span data-en>Conversion</span></h3><p class="do"><span data-pt>O lead qualificado chega até você com contexto completo. Acompanhamos o fechamento e devolvemos o resultado para o tráfego, fechando o ciclo.</span><span data-en>The qualified lead reaches you with full context. We track the close and feed the outcome back to the ads, closing the loop.</span></p></div>
+      <div class="metric"><strong><span data-pt>Como medimos</span><span data-en>How we measure</span></strong><span data-pt>Clientes fechados e receita por campanha.</span><span data-en>Closed customers and revenue per campaign.</span></div>
     </div>
   </div>
 </section>
 
 <section class="reveal proof" id="casos">
   <div class="wrap">
-    <h2>Funis que já rodam com a RISE</h2>
-    <p class="sub">Projetos reais, com cliente pagando e resultado medido.</p>
+    <h2><span data-pt>Funis que já rodam com a RISE</span><span data-en>Funnels already running with RISE</span></h2>
+    <p class="sub"><span data-pt>Projetos reais, com cliente pagando e resultado medido.</span><span data-en>Real projects, paying clients, measured results.</span></p>
     <div class="cases">
       <a class="case reveal" href="https://myrobotmanaus.com" target="_blank" rel="noopener">
-        <div class="seg">Educação · Manaus</div>
+        <div class="seg"><span data-pt>Educação · Manaus</span><span data-en>Education · Manaus</span></div>
         <h3>My Robot Manaus</h3>
-        <p>Site, funil, CRM e atendimento na recepção integrados. Meta Ads alimentado pelo desfecho real de cada lead.</p>
-        <div class="num">[X]<small>leads atendidos em jun→jul/2026 — substituir pelo dado do relatório</small></div>
+        <p><span data-pt>Site, funil, CRM e atendimento na recepção integrados. Meta Ads alimentado pelo desfecho real de cada lead.</span><span data-en>Website, funnel, CRM and front-desk follow-up integrated. Meta Ads fed by the real outcome of every lead.</span></p>
+        <div class="num">[X]<small><span data-pt>leads atendidos em jun→jul/2026 — substituir pelo dado do relatório</span><span data-en>leads handled Jun→Jul 2026 — replace with report data</span></small></div>
       </a>
       <a class="case reveal" href="#" target="_blank" rel="noopener">
-        <div class="seg">Serviços · Manaus</div>
+        <div class="seg"><span data-pt>Serviços · Manaus</span><span data-en>Services · Manaus</span></div>
         <h3>Calhas Manaus</h3>
-        <p>Site de conversão com foco em mobile, integrado ao Capta para qualificação automática dos contatos.</p>
-        <div class="num">[X]<small>substituir pelo número principal do projeto</small></div>
+        <p><span data-pt>Site de conversão com foco em mobile, integrado ao Capta para qualificação automática dos contatos.</span><span data-en>Mobile-first conversion website, integrated with Capta for automatic lead qualification.</span></p>
+        <div class="num">[X]<small><span data-pt>substituir pelo número principal do projeto</span><span data-en>replace with the project’s key number</span></small></div>
       </a>
       <a class="case reveal" href="#" target="_blank" rel="noopener">
-        <div class="seg">Mentoria</div>
+        <div class="seg"><span data-pt>Mentoria</span><span data-en>Mentoring</span></div>
         <h3>Lidiane Cunha</h3>
-        <p>Página de captação para mentoria, com formulário e fluxo de contato estruturados.</p>
-        <div class="num">[X]<small>substituir pelo número principal do projeto</small></div>
+        <p><span data-pt>Página de captação para mentoria, com formulário e fluxo de contato estruturados.</span><span data-en>Lead-capture page for a mentoring program, with structured form and contact flow.</span></p>
+        <div class="num">[X]<small><span data-pt>substituir pelo número principal do projeto</span><span data-en>replace with the project’s key number</span></small></div>
       </a>
       <a class="case reveal" href="#" target="_blank" rel="noopener">
-        <div class="seg">Desenvolvimento infantil</div>
+        <div class="seg"><span data-pt>Desenvolvimento infantil</span><span data-en>Child development</span></div>
         <h3>Neuroplasticidar</h3>
-        <p>Plataforma, blog, captação de leads e automação de e-mails em sequência.</p>
-        <div class="num">[X]<small>substituir pelo número principal do projeto</small></div>
+        <p><span data-pt>Plataforma, blog, captação de leads e automação de e-mails em sequência.</span><span data-en>Platform, blog, lead capture and drip email automation.</span></p>
+        <div class="num">[X]<small><span data-pt>substituir pelo número principal do projeto</span><span data-en>replace with the project’s key number</span></small></div>
       </a>
     </div>
   </div>
@@ -367,11 +374,11 @@ footer a:hover{color:var(--orange)}
 
 <section class="reveal how">
   <div class="wrap">
-    <h2>Como a parceria funciona</h2>
+    <h2><span data-pt>Como a parceria funciona</span><span data-en>How the partnership works</span></h2>
     <div class="grid">
-      <div><div class="t">Semana 1</div><h3>Diagnóstico</h3><p>Mapeamos seu funil atual: de onde vem o cliente, onde ele some e o que acontece com quem chama no WhatsApp. Sai um plano por etapa.</p></div>
-      <div><div class="t">Semanas 2 a 4</div><h3>Estruturação</h3><p>Site ou landing, CRM configurado, roteiro de atendimento aprovado com você e campanhas prontas para rodar com rastreamento correto.</p></div>
-      <div><div class="t">A partir do mês 2</div><h3>Operação</h3><p>A RISE roda o funil. Você recebe leads qualificados e um relatório mensal com o que entrou, o que fechou e o que vamos ajustar.</p></div>
+      <div><div class="t"><span data-pt>Semana 1</span><span data-en>Week 1</span></div><h3><span data-pt>Diagnóstico</span><span data-en>Diagnosis</span></h3><p><span data-pt>Mapeamos seu funil atual: de onde vem o cliente, onde ele some e o que acontece com quem chama no WhatsApp. Sai um plano por etapa.</span><span data-en>We map your current funnel: where customers come from, where they vanish and what happens to whoever messages on WhatsApp. You get a plan per stage.</span></p></div>
+      <div><div class="t"><span data-pt>Semanas 2 a 4</span><span data-en>Weeks 2 to 4</span></div><h3><span data-pt>Estruturação</span><span data-en>Setup</span></h3><p><span data-pt>Site ou landing, CRM configurado, roteiro de atendimento aprovado com você e campanhas prontas para rodar com rastreamento correto.</span><span data-en>Website or landing page, CRM configured, follow-up script approved with you and campaigns ready to run with proper tracking.</span></p></div>
+      <div><div class="t"><span data-pt>A partir do mês 2</span><span data-en>From month 2</span></div><h3><span data-pt>Operação</span><span data-en>Operation</span></h3><p><span data-pt>A RISE roda o funil. Você recebe leads qualificados e um relatório mensal com o que entrou, o que fechou e o que vamos ajustar.</span><span data-en>RISE runs the funnel. You receive qualified leads and a monthly report on what came in, what closed and what we’ll adjust.</span></p></div>
     </div>
   </div>
 </section>
@@ -379,14 +386,14 @@ footer a:hover{color:var(--orange)}
 <section class="reveal cta" id="contato">
   <div class="wrap">
     <div>
-      <h2>Comece descobrindo onde o seu funil está perdendo cliente.</h2>
-      <p>O Raio-X leva 3 minutos e devolve um diagnóstico das cinco etapas. Se fizer sentido, a gente conversa depois.</p>
+      <h2><span data-pt>Comece descobrindo onde o seu funil está perdendo cliente.</span><span data-en>Start by finding where your funnel is losing customers.</span></h2>
+      <p><span data-pt>O Raio-X leva 3 minutos e devolve um diagnóstico das cinco etapas. Se fizer sentido, a gente conversa depois.</span><span data-en>The X-Ray takes 3 minutes and returns a diagnosis of all five stages. If it makes sense, we talk afterwards.</span></p>
     </div>
     <div class="box">
-      <h3>Raio-X do funil</h3>
-      <p>Gratuito, sem cadastro em newsletter. Você recebe o resultado na hora.</p>
-      <a class="btn btn-solid" href="https://raiox.riseagencia.com">Fazer o Raio-X agora</a>
-      <a class="btn btn-wa" href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1%2C%20quero%20falar%20sobre%20o%20funil%20do%20meu%20neg%C3%B3cio" target="_blank" rel="noopener">Falar no WhatsApp</a>
+      <h3><span data-pt>Raio-X do funil</span><span data-en>Funnel X-Ray</span></h3>
+      <p><span data-pt>Gratuito, sem cadastro em newsletter. Você recebe o resultado na hora.</span><span data-en>Free, no newsletter signup. You get the result instantly.</span></p>
+      <a class="btn btn-solid" href="https://raiox.riseagencia.com"><span data-pt>Fazer o Raio-X agora</span><span data-en>Get the X-Ray now</span></a>
+      <a class="btn btn-wa" href="https://wa.me/55XXXXXXXXXXX?text=Ol%C3%A1%2C%20quero%20falar%20sobre%20o%20funil%20do%20meu%20neg%C3%B3cio" target="_blank" rel="noopener"><span data-pt>Falar no WhatsApp</span><span data-en>Chat on WhatsApp</span></a>
     </div>
   </div>
 </section>
@@ -395,13 +402,19 @@ footer a:hover{color:var(--orange)}
 
 <footer>
   <div class="wrap">
-    <div>RISE · Marketing de funil completo · Manaus, AM</div>
+    <div>RISE · <span data-pt>Marketing de funil completo</span><span data-en>Full-funnel marketing</span> · Manaus, AM</div>
     <div><a href="https://blog.riseagencia.com">Blog</a> &nbsp;·&nbsp; <a href="https://www.instagram.com/riseagencia" target="_blank" rel="noopener">Instagram</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/joice-molinari-0690a583" target="_blank" rel="noopener">LinkedIn</a></div>
   </div>
 </footer>
 
 
 <script>
+function setLang(lang){
+  document.documentElement.lang = lang==='pt'?'pt-BR':'en';
+  try{localStorage.setItem('rise_lang',lang)}catch(e){}
+  document.querySelectorAll('.lang-btn').forEach(function(b){b.classList.toggle('on',b.textContent.trim().toLowerCase()===lang)});
+}
+(function(){try{var l=localStorage.getItem('rise_lang');if(l==='en')setLang('en');}catch(e){}})();
 var rnavEl=document.getElementById('rnav');
 window.addEventListener('scroll',function(){rnavEl.classList.toggle('sc',scrollY>40)});
 function toggleMenu(){const m=document.getElementById('mob-menu'),h=document.getElementById('ham');m.classList.toggle('open');h.classList.toggle('open');document.body.style.overflow=m.classList.contains('open')?'hidden':'';}
