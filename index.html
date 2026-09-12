@@ -71,11 +71,11 @@ nav .btn{padding:.6rem 1.1rem;font-size:.95rem}
 
 /* hero */
 .hero{padding:5rem 0 3rem}
-.hero p.lead{font-size:1.25rem;color:var(--ink-2);margin:1.5rem 0 2.2rem;max-width:56ch}
+.hero p.lead{font-size:1.25rem;color:var(--ink-2);margin:2.2rem 0 1.6rem;max-width:56ch}
 .hero .actions{display:flex;gap:.9rem;flex-wrap:wrap}
 
 /* funnel — the memorable thing */
-.funnel{margin-top:4.5rem;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.funnel{margin-top:2.5rem;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
 .funnel ol{list-style:none;display:grid;grid-template-columns:repeat(5,1fr)}
 .funnel li{padding:1.6rem 1.2rem 1.8rem 0;border-right:1px solid var(--line);position:relative}
 .funnel li:last-child{border-right:0}
@@ -94,8 +94,17 @@ nav .btn{padding:.6rem 1.1rem;font-size:.95rem}
   .funnel .arrow{display:none}
 }
 @media (max-width:480px){
+  .hero{padding:2rem 0 2.5rem}
+  h1{font-size:2.3rem}
+  .desk{display:none}
+  .funnel{margin-top:1.6rem}
   .funnel ol{grid-template-columns:1fr}
-  .funnel li{border-right:0!important;padding-right:0!important}
+  .funnel li{border-right:0!important;padding:.75rem 0!important;display:grid;grid-template-columns:1.4rem 7.2rem 1fr;gap:.5rem;align-items:baseline}
+  .funnel .n{font-size:.85rem}
+  .funnel .stage{font-size:1.15rem;margin:0}
+  .funnel .what{font-size:.85rem;line-height:1.3}
+  .hero p.lead{font-size:1.05rem;margin:1.4rem 0 1.2rem}
+  .hero .actions .btn{width:100%;text-align:center}
 }
 .funnel-caption{padding:1rem 0 0;font-size:.95rem;color:var(--ink-2)}
 
@@ -182,13 +191,7 @@ footer a:hover{color:var(--blue)}
 
 <section class="hero">
   <div class="wrap">
-    <h1>Você cuida do negócio.<br>A RISE cuida do funil inteiro.</h1>
-    <p class="lead">Somos a agência que assume a responsabilidade de ponta a ponta: do anúncio ao lead atendido e convertido. Sem repassar culpa entre tráfego, site e comercial — porque tudo é nosso.</p>
-    <div class="actions">
-      <a class="btn btn-solid" href="https://raiox.riseagencia.com">Descobrir onde meu funil quebra</a>
-      <a class="btn btn-ghost" href="#metodo">Ver como funciona</a>
-    </div>
-
+    <h1>Tráfego, site, leads, atendimento e conversão.<br class="desk">Tudo com a RISE.</h1>
     <div class="funnel" aria-label="As cinco etapas do funil RISE">
       <ol>
         <li><span class="n">1</span><div class="stage">Tráfego</div><div class="what">Anúncios com sinal limpo, medidos pelo que vira venda</div><span class="arrow" aria-hidden="true">›</span></li>
@@ -198,7 +201,12 @@ footer a:hover{color:var(--blue)}
         <li><span class="n">5</span><div class="stage">Conversão</div><div class="what">Você recebe o cliente pronto para fechar</div></li>
       </ol>
     </div>
-    <p class="funnel-caption">Uma equipe, um funil, um responsável pelo resultado.</p>
+        <p class="lead">A agência que assume o funil completo do seu negócio: do anúncio ao cliente fechado. Uma equipe, um responsável pelo resultado.</p>
+    <div class="actions">
+      <a class="btn btn-solid" href="https://raiox.riseagencia.com">Descobrir onde meu funil quebra</a>
+      <a class="btn btn-ghost" href="#metodo">Ver como funciona</a>
+    </div>
+
   </div>
 </section>
 
