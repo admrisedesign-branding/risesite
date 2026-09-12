@@ -76,8 +76,11 @@ main,footer{position:relative;z-index:1}
 @media(max-width:860px){
   .rnav{padding:16px 24px;grid-template-columns:1fr auto}
   .rnav.sc{padding:12px 24px}
-  .rnav-links,.rnav-right{display:none}
+  .rnav{grid-template-columns:1fr auto auto;gap:12px}
+  .rnav-links,.rnav-cta{display:none}
+  .rnav-right{display:flex;justify-self:end}
   .ham{display:flex}
+  .mob-lang{display:none}
 }
 
 
@@ -118,6 +121,15 @@ main,footer{position:relative;z-index:1}
   .step-i{padding:0 1.6rem}
   .step.on .step-i{padding-left:calc(1.6rem + 2.6rem + 1rem)}
 }
+.works{margin-top:1.3rem;padding-top:1.1rem;border-top:1px solid var(--line)}
+.wk{font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2);margin-bottom:.7rem}
+.wg{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem}
+.wg a{display:block;text-decoration:none;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:rgba(255,255,255,.03);transition:all .25s}
+.wg a:hover{border-color:rgba(232,83,26,.5);transform:translateY(-2px)}
+.wg img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top;border-bottom:1px solid var(--line);background:linear-gradient(135deg,rgba(232,83,26,.25),rgba(232,83,26,.05))}
+.wg b{display:block;font-size:.85rem;padding:.55rem .7rem 0}
+.wg small{display:block;font-size:.72rem;color:var(--ink-2);padding:0 .7rem .6rem}
+@media (max-width:480px){.wg{grid-template-columns:1fr 1fr 1fr;gap:.4rem}.wg b{font-size:.75rem;padding:.4rem .5rem 0}.wg small{display:none}}
 .hero .actions{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:2rem}
 .btn{display:inline-block;padding:.95rem 1.6rem;border-radius:100px;font-weight:600;text-decoration:none;border:1px solid rgba(255,255,255,.18);color:var(--ink);transition:all .25s;font-size:.95rem;background:rgba(255,255,255,.04)}
 .btn:hover{border-color:rgba(255,255,255,.5);background:rgba(255,255,255,.08)}
@@ -232,6 +244,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--orange)}
           <h2><span data-pt>Colocamos o seu site no ar.</span><span data-en>We put your website online.</span></h2>
           <p><span data-pt>Um site rápido, bonito no celular e feito para que quem entra vire contato. Não é vitrine: é a porta de entrada do seu cliente.</span><span data-en>A fast website, great on mobile and built so visitors become contacts. Not a showcase: it’s your customer’s front door.</span></p>
           <ul><li><span data-pt>Pronto em semanas, não meses</span><span data-en>Ready in weeks, not months</span></li><li><span data-pt>Domínio, hospedagem e segurança inclusos</span><span data-en>Domain, hosting and security included</span></li><li><span data-pt>Botão de WhatsApp e formulário</span><span data-en>WhatsApp button and form</span></li></ul>
+          <div class="works"><div class="wk"><span data-pt>Sites que colocamos no ar</span><span data-en>Websites we’ve put online</span></div><div class="wg"><a href="https://myrobotmanaus.com" target="_blank" rel="noopener"><img src="https://image.thum.io/get/width/480/crop/700/https://myrobotmanaus.com" alt="" loading="lazy" onerror="this.remove()"><b>My Robot Manaus</b><small>myrobotmanaus.com</small></a><a href="https://calhasmanaus.com.br" target="_blank" rel="noopener"><img src="https://image.thum.io/get/width/480/crop/700/https://calhasmanaus.com.br" alt="" loading="lazy" onerror="this.remove()"><b>Calhas Manaus</b><small>calhasmanaus.com.br</small></a><a href="https://neuroplasticidar.com.br" target="_blank" rel="noopener"><img src="https://image.thum.io/get/width/480/crop/700/https://neuroplasticidar.com.br" alt="" loading="lazy" onerror="this.remove()"><b>Neuroplasticidar</b><small>neuroplasticidar.com.br</small></a></div></div>
         </div></div>
       </div>
       <div class="step" data-s="captacao">
@@ -314,7 +327,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--orange)}
       <div class="alt">
         <a href="https://wa.me/5592991755756" target="_blank" rel="noopener"><span class="ic">W</span><span><b>WhatsApp</b><small><span data-pt>Fale direto com a gente</span><span data-en>Talk to us directly</span></small></span></a>
         <a href="https://raiox.riseagencia.com"><span class="ic">RX</span><span><b><span data-pt>Raio-X gratuito</span><span data-en>Free X-Ray</span></b><small><span data-pt>Descubra em 3 minutos onde seu funil perde cliente</span><span data-en>Find out in 3 minutes where your funnel loses customers</span></small></span></a>
-        <a href="https://www.instagram.com/riseagencia" target="_blank" rel="noopener"><span class="ic">IG</span><span><b>Instagram</b><small>@riseagencia</small></span></a>
+        <a href="https://www.instagram.com/by.risedsgn/" target="_blank" rel="noopener"><span class="ic">IG</span><span><b>Instagram</b><small>@by.risedsgn</small></span></a>
       </div>
     </div>
   </div>
@@ -325,7 +338,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--orange)}
 <footer>
   <div class="wrap">
     <div>RISE · <span data-pt>Marketing de funil completo</span><span data-en>Full-funnel marketing</span> · Manaus, AM</div>
-    <div><a href="https://blog.riseagencia.com">Blog</a> &nbsp;·&nbsp; <a href="https://www.instagram.com/riseagencia" target="_blank" rel="noopener">Instagram</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/joice-molinari-0690a583" target="_blank" rel="noopener">LinkedIn</a></div>
+    <div><a href="https://blog.riseagencia.com">Blog</a> &nbsp;·&nbsp; <a href="https://www.instagram.com/by.risedsgn/" target="_blank" rel="noopener">Instagram</a> &nbsp;·&nbsp; <a href="https://www.linkedin.com/in/joice-molinari-0690a583" target="_blank" rel="noopener">LinkedIn</a></div>
   </div>
 </footer>
 
