@@ -256,8 +256,11 @@ footer{background:var(--bg2);border-top:1px solid var(--bd);padding:48px 60px;z-
 @media(max-width:860px){
   nav{padding:16px 24px;grid-template-columns:1fr auto}
   nav.sc{padding:12px 24px}
-  .nav-links,.nav-right{display:none}
+  nav{grid-template-columns:1fr auto auto;gap:12px}
+  .nav-links,.nav-cta{display:none}
+  .nav-right{display:flex;justify-self:end}
   .ham{display:flex}
+  .mob-lang{display:none}
   #hero{padding:110px 24px 80px}
   .wrap,.wrap-wide{padding:70px 24px}
   .prob-grid,.mgrid,.fgrid{grid-template-columns:1fr}
@@ -417,6 +420,7 @@ footer{background:var(--bg2);border-top:1px solid var(--bd);padding:48px 60px;z-
     <li><a href="#portfolio" data-pt="Portfólio" data-en="Portfolio">Portfólio</a></li>
     <li><a href="#sites-web" data-pt="Sites" data-en="Sites">Sites</a></li>
     <li><a href="#sobre" data-pt="Sobre" data-en="About">Sobre</a></li>
+    <li><a href="https://blog.riseagencia.com/blog/" data-pt="Blog" data-en="Blog">Blog</a></li>
   </ul>
   <div class="nav-right">
     <div class="lang-sw">
@@ -435,6 +439,7 @@ footer{background:var(--bg2);border-top:1px solid var(--bd);padding:48px 60px;z-
   <a href="#portfolio" onclick="closeMenu()" data-pt="Portfólio" data-en="Portfolio">Portfólio</a>
   <a href="#sites-web" onclick="closeMenu()" data-pt="Sites" data-en="Sites">Sites</a>
   <a href="#sobre" onclick="closeMenu()" data-pt="Sobre" data-en="About">Sobre</a>
+  <a href="https://blog.riseagencia.com/blog/" data-pt="Blog" data-en="Blog">Blog</a>
   <a href="https://wa.me/5592991755756" class="mob-cta" target="_blank" data-pt="Falar com a Rise" data-en="Talk to Rise">Falar com a Rise</a>
   <div class="mob-lang">
     <button class="lang-btn on" onclick="setLang('pt')">PT</button>
