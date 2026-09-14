@@ -1,6 +1,7 @@
 {
-  "redirects": [
-    { "source": "/blog", "destination": "https://blog.riseagencia.com", "permanent": true },
-    { "source": "/blog/:slug", "destination": "https://blog.riseagencia.com/blog/:slug.html", "permanent": true }
+  "rewrites": [
+    { "source": "/blog", "destination": "https://blog.riseagencia.com/blog/" },
+    { "source": "/blog/:path*", "destination": "https://blog.riseagencia.com/blog/:path*" },
+    { "source": "/og/:path*", "destination": "https://blog.riseagencia.com/og/:path*" }
   ]
 }
