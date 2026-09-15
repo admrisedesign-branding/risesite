@@ -412,7 +412,7 @@ body.has-cursor #cursor-glow{opacity:1}
   .carousel-hint{display:block;text-align:center;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dm);margin-top:6px}
 }
 .carousel-hint{display:none}
-html,body{overflow-x:hidden}#hero,.band{overflow:hidden}
+html,body{overflow-x:hidden}.band{overflow:hidden}#hero{overflow:visible}
 </style>
 
 <style id="miniform-css">
@@ -437,8 +437,8 @@ html,body{overflow-x:hidden}#hero,.band{overflow:hidden}
 /* ===== SITES: carrossel com destaque central ===== */
 .sites-grid{display:flex!important;grid-template-columns:none!important;max-width:none!important;gap:28px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:30px 0 40px!important;margin:0}
 .sites-grid::-webkit-scrollbar{display:none}
-.sites-grid::before,.sites-grid::after{content:"";flex:0 0 calc(50% - min(560px,72vw)/2 - 14px)}
-.sites-grid>.site-card{flex:0 0 min(560px,72vw);scroll-snap-align:center;transform:scale(.86);opacity:.45;transition:transform .5s cubic-bezier(.2,.7,.2,1),opacity .5s,box-shadow .5s}
+.sites-grid::before,.sites-grid::after{content:"";flex:0 0 calc(50% - min(860px,82vw)/2 - 14px)}
+.sites-grid>.site-card{flex:0 0 min(860px,82vw);scroll-snap-align:center;transform:scale(.82);opacity:.35;transition:transform .5s cubic-bezier(.2,.7,.2,1),opacity .5s,box-shadow .5s}
 .sites-grid>.site-card.center{transform:scale(1);opacity:1;box-shadow:0 40px 100px -30px rgba(232,83,26,.45),0 30px 60px -30px rgba(0,0,0,.8);border-color:rgba(232,83,26,.5)}
 .sites-nav{display:flex;justify-content:center;align-items:center;gap:14px;margin:-16px 0 100px}
 .sites-nav button{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.04);color:var(--tx);font-size:20px;cursor:pointer;transition:all .2s}
