@@ -404,9 +404,9 @@ body.has-cursor #cursor-glow{opacity:1}
 @media(max-width:860px){
   body{overflow-x:hidden}
   div[style*="max-width:960px"],div[style*="max-width:1240px"]{padding-left:24px!important;padding-right:24px!important}
-  .prob-grid,.mgrid,.port-grid{display:flex!important;grid-template-columns:none!important;overflow-x:auto;overflow-y:hidden;gap:14px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:4px 24px 18px;margin-left:-24px;margin-right:-24px;scrollbar-width:none}
+  .prob-grid,.mgrid,.port-grid{display:flex!important;grid-template-columns:none!important;overflow-x:auto;overflow-y:hidden;gap:14px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;padding:4px 8px 18px;margin:0;scrollbar-width:none;touch-action:pan-x pan-y}
   .prob-grid::-webkit-scrollbar,.mgrid::-webkit-scrollbar,.port-grid::-webkit-scrollbar{display:none}
-  .prob-grid>*,.mgrid>*,.port-grid>*{flex:0 0 82%;max-width:82%;scroll-snap-align:center}
+  .prob-grid>*,.mgrid>*,.sgrid>*,.port-grid>*{flex:0 0 84%;max-width:84%;scroll-snap-align:center}
   .port-grid>.port-item.lg{flex-basis:82%;grid-column:auto!important;grid-row:auto!important}
   .prob-grid>*.reveal,.mgrid>*.reveal,.port-grid>*.reveal{transition-delay:0s!important}
   .carousel-hint{display:block;text-align:center;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dm);margin-top:6px}
@@ -455,6 +455,15 @@ html,body{overflow-x:hidden}.band{overflow:hidden}#hero{overflow:visible}
   .prob-grid,.mgrid,.sgrid,.port-grid{touch-action:pan-x pan-y;overscroll-behavior-x:contain}
   .prob-grid>*,.mgrid>*,.sgrid>*,.port-grid>*{transform:none!important}
 }
+</style>
+
+<style id="mob-nav-css">
+@media(max-width:860px){
+  .grid-nav{display:flex;justify-content:center;align-items:center;gap:14px;margin:-4px 0 28px}
+  .grid-nav button{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.04);color:var(--tx);font-size:18px;cursor:pointer}
+  .grid-nav .gd{display:flex;gap:7px}.grid-nav .gd i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.2);transition:all .3s}.grid-nav .gd i.on{background:var(--or);width:20px;border-radius:4px}
+}
+@media(min-width:861px){.grid-nav{display:none}}
 </style>
 </head>
 <body>
@@ -1210,6 +1219,23 @@ function mfEnviar(f){
   window.addEventListener('resize',function(){goTo(cur,true)});
   // padrão: 2º card (Lidiane) em evidência
   setTimeout(function(){goTo(n+1,true);paint()},50);setTimeout(function(){goTo(n+1,true);paint()},700);
+})();
+</script>
+
+<script id="mob-nav-js">
+(function(){
+  if(!matchMedia('(max-width:860px)').matches)return;
+  document.querySelectorAll('.prob-grid,.mgrid,.sgrid,.port-grid').forEach(function(g){
+    var cards=[].slice.call(g.children);if(cards.length<2)return;
+    var nav=document.createElement('div');nav.className='grid-nav';
+    nav.innerHTML='<button type="button" aria-label="Anterior">‹</button><div class="gd">'+cards.map(function(){return '<i></i>'}).join('')+'</div><button type="button" aria-label="Próximo">›</button>';
+    g.parentNode.insertBefore(nav,g.nextSibling);
+    var dots=[].slice.call(nav.querySelectorAll('i')),cur=0;
+    function go(i){cur=Math.max(0,Math.min(cards.length-1,i));var c=cards[cur];g.scrollTo({left:c.offsetLeft-(g.clientWidth-c.offsetWidth)/2,behavior:'smooth'})}
+    function paint(){var mid=g.scrollLeft+g.clientWidth/2,best=0,bd=1e9;cards.forEach(function(c,i){var d=Math.abs(c.offsetLeft+c.offsetWidth/2-mid);if(d<bd){bd=d;best=i}});cur=best;dots.forEach(function(d,i){d.classList.toggle('on',i===best)})}
+    nav.children[0].onclick=function(){go(cur-1)};nav.children[2].onclick=function(){go(cur+1)};dots.forEach(function(d,i){d.onclick=function(){go(i)}});
+    g.addEventListener('scroll',paint,{passive:true});paint();
+  });
 })();
 </script>
 </body>
