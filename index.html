@@ -453,7 +453,7 @@ html,body{overflow-x:hidden}.band{overflow:hidden}#hero{overflow:visible}
 #sites-web{padding-top:0!important}
 @media(max-width:860px){
   .prob-grid,.mgrid,.sgrid,.port-grid{touch-action:pan-x pan-y;overscroll-behavior-x:contain}
-  .prob-grid>*,.mgrid>*,.sgrid>*,.port-grid>*{transform:none!important}
+  .prob-grid>*,.mgrid>*,.sgrid>*,.port-grid>*{transform:none!important;opacity:1!important}
 }
 </style>
 
@@ -1226,7 +1226,7 @@ function mfEnviar(f){
 (function(){
   if(!matchMedia('(max-width:860px)').matches)return;
   document.querySelectorAll('.prob-grid,.mgrid,.sgrid,.port-grid').forEach(function(g){
-    var cards=[].slice.call(g.children);if(cards.length<2)return;
+    var cards=[].slice.call(g.children);cards.forEach(function(c){c.classList.add('in')});if(cards.length<2)return;
     var nav=document.createElement('div');nav.className='grid-nav';
     nav.innerHTML='<button type="button" aria-label="Anterior">‹</button><div class="gd">'+cards.map(function(){return '<i></i>'}).join('')+'</div><button type="button" aria-label="Próximo">›</button>';
     g.parentNode.insertBefore(nav,g.nextSibling);
