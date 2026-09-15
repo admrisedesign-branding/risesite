@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfólio | Rise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --or:#E8531A;--og:rgba(232,83,26,.32);--os:rgba(232,83,26,.10);
+  --bg:#070508;--bg2:#0c0a0e;--sf:rgba(255,255,255,.038);
+  --bd:rgba(255,255,255,.08);--bo:rgba(232,83,26,.28);
+  --tx:#f2ede8;--dm:rgba(242,237,232,.48);--dr:rgba(242,237,232,.26);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--tx);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+canvas#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:20px 60px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px;transition:all .4s}
+nav.sc{background:rgba(7,5,8,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--bd);padding:14px 60px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;justify-self:start}
+.nav-logo img{height:26px;width:auto}
+.logo-nm{font-size:17px;font-weight:700;letter-spacing:-.3px;color:var(--tx)}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;justify-self:center}
+.nav-links a{color:var(--dm);font-size:14px;font-weight:500;text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--tx)}
+.nav-right{display:flex;align-items:center;gap:14px;justify-self:end}
+.lang-sw{display:flex;gap:2px;background:rgba(255,255,255,.06);border:1px solid var(--bd);border-radius:100px;padding:4px}
+.lang-btn{font-size:11px;font-weight:700;letter-spacing:.5px;padding:5px 12px;border-radius:100px;cursor:pointer;border:none;background:transparent;color:var(--dr);transition:all .2s;font-family:'DM Sans',sans-serif}
+.lang-btn.on{background:var(--or);color:#fff;box-shadow:0 0 12px var(--og)}
+.nav-cta{background:linear-gradient(135deg,var(--or),#d94814);color:#fff;padding:10px 20px;border-radius:100px;font-weight:600;font-size:13px;text-decoration:none;box-shadow:0 0 20px var(--og);transition:all .2s;white-space:nowrap}
+.nav-cta:hover{box-shadow:0 0 36px rgba(232,83,26,.55);transform:translateY(-1px)}
+
+/* HAMBURGER */
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:6px;background:none;border:none}
+.ham span{display:block;width:24px;height:2px;background:var(--tx);border-radius:2px;transition:all .3s}
+.ham.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.ham.open span:nth-child(2){opacity:0}
+.ham.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mob-menu{position:fixed;inset:0;z-index:190;background:rgba(7,5,8,.97);backdrop-filter:blur(20px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;opacity:0;pointer-events:none;transition:opacity .3s}
+.mob-menu.open{opacity:1;pointer-events:all}
+.mob-menu a{font-size:28px;font-weight:700;color:var(--dm);text-decoration:none;padding:12px 40px;transition:color .2s}
+.mob-menu a:hover{color:var(--tx)}
+.mob-cta{background:linear-gradient(135deg,var(--or),#d94814);color:#fff!important;border-radius:100px;padding:16px 40px!important;margin-top:16px;box-shadow:0 0 28px var(--og)}
+.mob-lang{display:flex;gap:8px;margin-top:24px}
+.mob-lang .lang-btn{font-size:13px;padding:8px 20px}
+
+/* HERO */
+#hero{position:relative;min-height:100vh;z-index:1;display:flex;align-items:center;justify-content:center;padding:140px 60px 100px;text-align:center;overflow:hidden}
+.hg1{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(ellipse,rgba(232,83,26,.18) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-60%);pointer-events:none;animation:float1 8s ease-in-out infinite}
+.hg2{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(ellipse,rgba(100,30,160,.12) 0%,transparent 65%);bottom:-100px;right:-100px;pointer-events:none}
+@keyframes float1{0%,100%{transform:translate(-50%,-60%) scale(1)}50%{transform:translate(-50%,-60%) scale(1.07)}}
+.hero-inner{position:relative;z-index:2;max-width:820px;width:100%}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(232,83,26,.1);border:1px solid rgba(232,83,26,.22);color:#ff7a4a;font-size:12px;font-weight:600;letter-spacing:.4px;padding:6px 16px;border-radius:100px;margin-bottom:32px;backdrop-filter:blur(8px)}
+.bdot{width:6px;height:6px;border-radius:50%;background:#ff7a4a;animation:blink 2s infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.htitle{font-size:clamp(52px,7vw,100px);font-weight:800;letter-spacing:-3.5px;line-height:1;margin-bottom:26px}
+.htitle .acc{background:linear-gradient(100deg,var(--or) 0%,#ff9966 60%,var(--or) 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite}
+@keyframes shimmer{to{background-position:200% center}}
+.hsub{font-size:18px;font-weight:400;color:var(--dm);line-height:1.75;max-width:540px;margin:0 auto 48px;letter-spacing:-.1px}
+.hctas{display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:15px;letter-spacing:-.2px;text-decoration:none;border-radius:100px;transition:all .25s;cursor:pointer;border:none}
+.btn-f{background:linear-gradient(135deg,var(--or),#d94814);color:#fff;padding:15px 30px;box-shadow:0 0 28px var(--og),inset 0 1px 0 rgba(255,255,255,.14)}
+.btn-f:hover{transform:translateY(-2px);box-shadow:0 0 48px rgba(232,83,26,.55),inset 0 1px 0 rgba(255,255,255,.14)}
+.btn-g{color:var(--dm);padding:15px 30px;border:1px solid var(--bd);background:var(--sf)}
+.btn-g:hover{color:var(--tx);border-color:var(--bo);background:var(--os)}
+.hero-cards{display:flex;gap:16px;justify-content:center;margin-top:72px;flex-wrap:wrap}
+.hcard{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:20px 24px;backdrop-filter:blur(16px);text-align:left;min-width:180px;position:relative;overflow:hidden}
+.hcard::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(232,83,26,.5),transparent)}
+.hc-label{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--or);margin-bottom:8px}
+.hc-val{font-size:22px;font-weight:700;letter-spacing:-.5px}
+.hc-sub{font-size:12px;color:var(--dr);margin-top:3px}
+
+/* BAND */
+.band{position:relative;z-index:1;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);padding:20px 0;overflow:hidden;background:rgba(255,255,255,.012)}
+.band-track{display:flex;animation:slide 24s linear infinite;white-space:nowrap}
+.bitem{flex-shrink:0;padding:0 44px;font-size:12px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;color:var(--dr);display:flex;align-items:center;gap:44px}
+.bitem::after{content:'';width:3px;height:3px;border-radius:50%;background:var(--or);opacity:.55}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* LAYOUT */
+.wrap{max-width:960px;margin:0 auto;padding:100px 60px;text-align:center}
+.wrap-wide{max-width:1280px;margin:0 auto;padding:100px 60px}
+section{position:relative;z-index:1}
+.eye{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--or);margin-bottom:20px}
+.eye::before,.eye::after{content:'';width:18px;height:1px;background:var(--or);opacity:.6}
+.stitle{font-size:clamp(38px,4.5vw,62px);font-weight:800;letter-spacing:-2px;line-height:1.02;margin-bottom:20px}
+.stitle .acc{background:linear-gradient(100deg,var(--or),#ff9966);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sdesc{font-size:17px;color:var(--dm);line-height:1.75;max-width:560px;margin:0 auto}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* PROBLEM */
+#problema{background:var(--bg2)}
+.prob-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:60px}
+.pcard{background:var(--sf);border:1px solid var(--bd);padding:40px 36px;position:relative;overflow:hidden;transition:border-color .3s;border-radius:4px}
+.pcard:hover{border-color:var(--bo)}
+.pcard::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at top left,rgba(232,83,26,.07) 0%,transparent 60%);opacity:0;transition:opacity .3s}
+.pcard:hover::after{opacity:1}
+.pnum{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--or);margin-bottom:16px;display:block}
+.ptit{font-size:20px;font-weight:700;letter-spacing:-.4px;margin-bottom:10px}
+.pdesc{font-size:14px;color:var(--dm);line-height:1.7}
+.pbanner{margin-top:2px;background:linear-gradient(135deg,rgba(232,83,26,.12),rgba(232,83,26,.04));border:1px solid var(--bo);border-radius:4px;padding:36px 48px;display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;text-align:center}
+.pbanner-q{font-size:22px;font-weight:700;letter-spacing:-.5px;line-height:1.45}
+.pbanner-q .hl{color:var(--or)}
+
+/* METHOD */
+#metodo{background:var(--bg)}
+.mgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:60px}
+@media(max-width:1100px) and (min-width:861px){.mgrid{grid-template-columns:repeat(3,1fr)}}
+.mcard .mtags{flex-wrap:wrap}
+.mcard{background:var(--sf);border:1px solid var(--bd);border-radius:18px;padding:40px 32px;position:relative;overflow:hidden;transition:all .3s;text-align:left}
+.mcard:hover{border-color:var(--bo);transform:translateY(-4px)}
+.mcard-line{position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--or),transparent);opacity:0;transition:opacity .3s}
+.mcard:hover .mcard-line{opacity:1}
+.mnum{width:34px;height:34px;border-radius:10px;background:rgba(232,83,26,.14);border:1px solid rgba(232,83,26,.22);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--or);margin-bottom:24px}
+.mtit{font-size:21px;font-weight:700;letter-spacing:-.4px;margin-bottom:12px}
+.mdesc{font-size:14px;color:var(--dm);line-height:1.75;margin-bottom:22px}
+.mtags{display:flex;flex-wrap:wrap;gap:7px}
+.mtag{font-size:11px;font-weight:500;padding:4px 11px;border-radius:100px;background:rgba(255,255,255,.05);border:1px solid var(--bd);color:var(--dr)}
+
+/* MOCKUP */
+#estrutura{background:var(--bg2);overflow:hidden}
+.mockup-w{max-width:1100px;margin:0 auto;padding:0 60px 0;position:relative}
+.mockup-w img{width:100%;display:block;position:relative;z-index:2}
+.mockup-glow{position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);width:70%;height:200px;background:radial-gradient(ellipse,rgba(232,83,26,.22) 0%,transparent 70%);pointer-events:none;z-index:1}
+
+/* PROJECT */
+#projeto{background:var(--bg)}
+.proj-card{margin-top:56px;background:var(--sf);border:1px solid var(--bd);border-radius:24px;padding:64px;position:relative;overflow:hidden;transition:border-color .3s}
+.proj-card:hover{border-color:var(--bo)}
+.proj-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--or),transparent)}
+.proj-glow{position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:400px;height:400px;background:radial-gradient(ellipse,rgba(232,83,26,.18) 0%,transparent 65%);pointer-events:none}
+.proj-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.proj-l{text-align:left}
+.proj-title{font-size:clamp(28px,3vw,44px);font-weight:800;letter-spacing:-1.5px;line-height:1.05;margin-bottom:16px}
+.proj-desc{font-size:15px;color:var(--dm);line-height:1.8;margin-bottom:32px}
+.proj-price{font-size:32px;font-weight:800;letter-spacing:-1px;color:var(--tx);margin-bottom:6px;display:block}
+.proj-note{font-size:13px;color:var(--dr)}
+.proj-cta{margin-top:36px}
+.proj-r{text-align:left}
+.proj-inc{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--or);margin-bottom:20px}
+.proj-items{list-style:none;display:flex;flex-direction:column;gap:14px}
+.proj-items li{display:flex;align-items:flex-start;gap:12px;font-size:15px;color:var(--dm);line-height:1.5}
+.proj-items li::before{content:'';width:20px;height:20px;border-radius:50%;flex-shrink:0;margin-top:1px;background:rgba(232,83,26,.15) url("data:image/svg+xml,%3Csvg width='10' height='10' viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 5l2 2 4-4' stroke='%23E8531A' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat center;border:1px solid rgba(232,83,26,.25)}
+
+/* PORTFOLIO */
+#portfolio{background:var(--bg2)}
+.port-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:16px}
+.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.port-item{border-radius:18px;overflow:hidden;position:relative;cursor:pointer;background:var(--sf);border:1px solid var(--bd);transition:border-color .3s,transform .3s;display:flex;flex-direction:column}
+.port-item:hover{border-color:var(--bo);transform:translateY(-4px)}
+.port-item.lg{grid-column:span 2;min-height:320px}
+.port-vis{width:100%;height:220px;position:relative;overflow:hidden;transition:transform .5s;flex-shrink:0;flex-grow:1}
+.port-item:hover .port-vis{transform:scale(1.04)}
+.port-glow{position:absolute;width:260px;height:260px;border-radius:50%;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.port-hint{position:absolute;top:12px;right:12px;background:rgba(232,83,26,.15);border:1px solid rgba(232,83,26,.3);border-radius:100px;padding:4px 12px;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#ff7a4a;opacity:0;transition:opacity .3s;z-index:2}
+.port-item:hover .port-hint{opacity:1}
+.port-label{padding:14px 18px;background:none;position:relative;z-index:2}
+.port-cat{font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--or);margin-bottom:3px}
+.port-name{font-size:15px;font-weight:700;letter-spacing:-.2px}
+
+/* MODAL */
+.modal-ov{position:fixed;inset:0;z-index:500;background:rgba(7,5,8,.92);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .3s ease}
+.modal-ov.open{opacity:1;pointer-events:all}
+.modal-box{background:#0f0c14;border:1px solid var(--bd);border-radius:24px;max-width:860px;width:100%;position:relative;overflow:hidden;transform:translateY(24px) scale(.97);transition:transform .35s ease;max-height:90vh}
+.modal-ov.open .modal-box{transform:none}
+/* modal-hdr moved to side layout */
+.modal-close{position:absolute;top:16px;right:16px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--dm);font-size:18px;transition:all .2s;z-index:10}
+.modal-close:hover{background:rgba(232,83,26,.15);border-color:var(--bo);color:var(--tx)}
+/* modal-body moved to side layout */
+.modal-cat{font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--or);margin-bottom:10px}
+.modal-name{font-size:36px;font-weight:800;letter-spacing:-1.5px;margin-bottom:16px;line-height:1}
+.modal-desc{font-size:15px;color:var(--dm);line-height:1.8;margin-bottom:28px}
+.modal-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+.modal-tag{font-size:11px;font-weight:600;padding:5px 14px;border-radius:100px;background:rgba(232,83,26,.1);border:1px solid rgba(232,83,26,.22);color:#ff7a4a}
+.modal-foot{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid var(--bd)}
+
+/* CAROUSEL */
+.carousel{position:relative;width:100%;overflow:hidden;background:#000;user-select:none}
+.car-track{display:flex;transition:transform .4s cubic-bezier(.4,0,.2,1)}
+.car-slide{min-width:100%}
+.car-slide img{width:100%;height:320px;object-fit:cover;display:block}
+.car-btn{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(7,5,8,.7);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:10;backdrop-filter:blur(8px)}
+.car-btn:hover{background:rgba(232,83,26,.8);border-color:var(--or)}
+.car-prev{left:12px}.car-next{right:12px}
+.car-dots{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:10}
+.car-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:all .2s;border:none;padding:0}
+.car-dot.on{background:#fff;width:18px;border-radius:3px}
+.car-count{position:absolute;top:12px;right:12px;background:rgba(7,5,8,.6);backdrop-filter:blur(8px);color:rgba(255,255,255,.8);font-size:11px;font-weight:600;padding:4px 10px;border-radius:100px;z-index:10}
+
+/* ABOUT */
+#sobre{background:var(--bg)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr 1.2fr;gap:28px;align-items:start;margin-top:60px}
+.acard{background:var(--sf);border:1px solid var(--bd);border-radius:22px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+.acard::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(232,83,26,.45),transparent);z-index:1}
+.acard-glow{position:absolute;top:-60px;right:-60px;width:280px;height:280px;background:radial-gradient(ellipse,rgba(232,83,26,.1) 0%,transparent 65%);pointer-events:none}
+.acard img.aphoto{width:100%;height:auto;object-fit:cover;object-position:center top;display:block}
+.acard-body{padding:32px 36px 44px;position:relative;z-index:1}
+.aname{font-size:34px;font-weight:800;letter-spacing:-1.5px;line-height:1;margin-bottom:6px}
+.arole{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--or);margin-bottom:20px}
+.abio{font-size:14px;color:var(--dm);line-height:1.8;margin-bottom:22px}
+.achips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{font-size:11px;font-weight:500;padding:5px 13px;background:rgba(232,83,26,.08);border:1px solid rgba(232,83,26,.18);color:#ff7a4a;border-radius:100px}
+.atext{text-align:left}
+.atext h3{font-size:clamp(32px,3.2vw,46px);font-weight:800;letter-spacing:-1.8px;line-height:1.05;margin-bottom:22px}
+.atext .acc{background:linear-gradient(100deg,var(--or),#ff9966);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.atext p{font-size:15px;color:var(--dm);line-height:1.8;margin-bottom:16px}
+.aacts{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
+
+/* FAQ */
+#faq{background:var(--bg2)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:56px}
+.fitem{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:28px 30px;cursor:pointer;transition:border-color .2s,background .2s;text-align:left}
+.fitem:hover{border-color:var(--bo)}
+.fitem.open{border-color:rgba(232,83,26,.38);background:rgba(232,83,26,.05)}
+.fq{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+.fqt{font-size:16px;font-weight:700;letter-spacing:-.2px;line-height:1.35}
+.fic{width:24px;height:24px;flex-shrink:0;border-radius:50%;border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;font-size:15px;color:var(--dr);transition:all .3s}
+.fitem.open .fic{background:var(--or);border-color:var(--or);color:#fff;transform:rotate(45deg)}
+.fa{font-size:14px;color:var(--dm);line-height:1.75;max-height:0;overflow:hidden;transition:max-height .4s ease,margin-top .3s}
+.fitem.open .fa{max-height:200px;margin-top:14px}
+
+/* CTA */
+#contato{background:var(--bg);position:relative;overflow:hidden}
+.ctag1{position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(ellipse,rgba(232,83,26,.18) 0%,transparent 65%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.ctag2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(ellipse,rgba(100,20,180,.1) 0%,transparent 65%);top:-80px;left:-80px;pointer-events:none}
+.cta-title{font-size:clamp(56px,8vw,110px);font-weight:800;letter-spacing:-4px;line-height:.96;margin-bottom:22px}
+.cta-title .acc{background:linear-gradient(100deg,var(--or),#ff9966,var(--or));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3.5s linear infinite}
+.cta-sub{font-size:17px;color:var(--dm);line-height:1.75;margin-bottom:44px;max-width:520px;margin-left:auto;margin-right:auto}
+.cta-acts{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.btn-ol{display:inline-flex;align-items:center;gap:9px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:15px;text-decoration:none;border-radius:100px;padding:15px 30px;border:1px solid var(--bd);color:var(--dm);background:var(--sf);transition:all .25s}
+.btn-ol:hover{border-color:var(--bo);color:var(--tx);background:var(--os)}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--bd);padding:48px 60px;z-index:1;position:relative}
+.foot-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.foot-brand{display:flex;align-items:center;gap:10px}
+.foot-brand img{height:22px;width:auto}
+.foot-nm{font-size:15px;font-weight:700;letter-spacing:-.2px}
+.foot-links{display:flex;gap:28px;list-style:none;flex-wrap:wrap}
+.foot-links a{font-size:13px;color:var(--dr);text-decoration:none;transition:color .2s}
+.foot-links a:hover{color:var(--tx)}
+.foot-r{display:flex;align-items:center;gap:12px}
+.soc{width:34px;height:34px;border-radius:10px;border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;color:var(--dr);text-decoration:none;transition:all .2s}
+.soc:hover{border-color:var(--bo);color:var(--or);background:var(--os)}
+.foot-copy{font-size:12px;color:var(--dr)}
+
+/* MOBILE */
+@media(max-width:860px){
+  nav{padding:16px 24px;grid-template-columns:1fr auto}
+  nav.sc{padding:12px 24px}
+  nav{grid-template-columns:1fr auto auto;gap:12px}
+  .nav-links,.nav-cta{display:none}
+  .nav-right{display:flex;justify-self:end}
+  .ham{display:flex}
+  .mob-lang{display:none}
+  #hero{padding:110px 24px 80px}
+  .wrap,.wrap-wide{padding:70px 24px}
+  .prob-grid,.mgrid,.fgrid{grid-template-columns:1fr}
+  .port-grid{grid-template-columns:1fr}
+  .port-item.lg{grid-column:span 1}
+  .about-grid{grid-template-columns:1fr;gap:32px}
+  .proj-inner{grid-template-columns:1fr;gap:40px}
+  .proj-card{padding:36px 28px}
+  footer{padding:36px 24px}
+  .foot-in{flex-direction:column;align-items:flex-start;gap:18px}
+  .mockup-w{padding:0 24px}
+  .pbanner{flex-direction:column;gap:20px;padding:28px 24px}
+  .modal-box{border-radius:16px}
+  .modal-body{padding:24px 24px 32px}
+  .modal-name{font-size:28px}
+}
+/* ── HERO ENTRANCE ANIMATION ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.hero-inner .badge   { animation: fadeInUp .7s ease both; animation-delay: .1s; }
+.hero-inner .htitle  { animation: fadeInUp .8s ease both; animation-delay: .3s; }
+.hero-inner .hsub    { animation: fadeInUp .8s ease both; animation-delay: .55s; }
+.hero-inner .hctas   { animation: fadeInUp .7s ease both; animation-delay: .75s; }
+.hero-inner .hero-cards { animation: fadeInUp .7s ease both; animation-delay: .95s; }
+.hg1 { animation: fadeIn 1.2s ease both; animation-delay: .05s; }
+
+/* ── MODAL SIDE BY SIDE ── */
+.modal-inner{display:flex;min-height:480px}
+.modal-hdr{width:420px;flex-shrink:0;position:relative;overflow:hidden;background:#000}
+.modal-hdr img,.modal-hdr .carousel{width:100%;height:100%;object-fit:cover}
+.carousel{height:100%!important}
+.car-slide{height:100%}
+.car-slide img{height:100%!important;object-fit:cover}
+.modal-body{flex:1;padding:40px 36px;overflow-y:auto;max-height:90vh;display:flex;flex-direction:column;justify-content:center}
+.modal-cat{font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--or);margin-bottom:10px}
+.modal-name{font-size:30px;font-weight:800;letter-spacing:-1.2px;margin-bottom:14px;line-height:1.05}
+.modal-desc{font-size:14px;color:var(--dm);line-height:1.8;margin-bottom:24px}
+.modal-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.modal-tag{font-size:11px;font-weight:600;padding:5px 14px;border-radius:100px;background:rgba(232,83,26,.1);border:1px solid rgba(232,83,26,.22);color:#ff7a4a}
+.modal-foot{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid var(--bd);flex-wrap:wrap;gap:10px;margin-top:auto}
+/* close button repositioned */
+.modal-close{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:rgba(7,5,8,.7);border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--dm);font-size:16px;transition:all .2s;z-index:10;backdrop-filter:blur(8px)}
+.modal-close:hover{background:rgba(232,83,26,.2);border-color:var(--bo);color:var(--tx)}
+/* carousel in side panel */
+.car-prev{left:10px}.car-next{right:10px}
+/* responsive: stack on mobile */
+@media(max-width:700px){
+  .modal-inner{flex-direction:column}
+  .modal-hdr{width:100%;height:260px}
+  .modal-body{padding:24px}
+}
+
+/* ── MODAL SIDE BY SIDE — override ── */
+.modal-box{max-width:860px!important}
+.modal-inner{display:flex;min-height:480px}
+.modal-hdr{width:420px!important;flex-shrink:0;position:relative;overflow:hidden;background:#000;min-height:0!important}
+.modal-hdr #car-container,.modal-hdr .carousel{height:100%}
+.car-slide img{height:100%!important;width:100%!important;object-fit:cover!important}
+.car-track{height:100%}
+.car-slide{height:100%;min-width:100%}
+.modal-body{flex:1;padding:36px 32px!important;overflow-y:auto;display:flex;flex-direction:column;justify-content:center;max-height:90vh}
+.modal-name{font-size:28px!important}
+.modal-foot{margin-top:auto;padding-top:20px}
+.modal-close{position:absolute!important;top:14px!important;right:14px!important;z-index:10;margin-left:auto}
+/* close button sits at top-right of text panel */
+.modal-inner{position:relative}
+.modal-box > .modal-inner > .modal-close{
+  position:absolute!important;
+  top:16px!important;
+  right:16px!important;
+  left:auto!important;
+  z-index:20
+}
+@media(max-width:700px){
+  .modal-inner{flex-direction:column}
+  .modal-hdr{width:100%!important;height:260px}
+}
+
+
+/* ===== SITES SECTION ===== */
+#sites-web{padding:100px 0 0}
+.sites-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:960px;margin:0 auto;padding:0 60px 100px}
+.site-card{border-radius:18px;overflow:hidden;cursor:pointer;background:var(--sf);border:1px solid var(--bd);transition:border-color .3s,transform .3s;position:relative}
+.site-card:hover{border-color:var(--or);transform:translateY(-4px)}
+.site-card:hover .site-overlay{opacity:1}
+.site-thumb{width:100%;aspect-ratio:16/10;overflow:hidden;position:relative;background:#0f0d11}
+.site-thumb iframe{width:200%;height:200%;transform:scale(.5);transform-origin:top left;pointer-events:none;border:none}
+.site-overlay{position:absolute;inset:0;background:rgba(7,5,8,.55);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+.site-overlay span{background:var(--or);color:#fff;font-size:12px;font-weight:600;letter-spacing:.08em;padding:8px 18px;border-radius:20px;text-transform:uppercase}
+.site-info{padding:16px 18px 18px}
+.site-tag{font-size:10px;font-weight:700;letter-spacing:.12em;color:var(--or);text-transform:uppercase;margin-bottom:6px}
+.site-name{font-size:15px;font-weight:600;color:var(--tx)}
+.site-desc{font-size:12px;color:var(--tx2);margin-top:4px;line-height:1.5}
+
+/* ===== IFRAME PREVIEW MODAL ===== */
+.site-modal-ov{position:fixed;inset:0;background:rgba(7,5,8,.88);z-index:9000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(6px)}
+.site-modal-ov.open{opacity:1;pointer-events:all}
+.site-modal-box{width:90vw;max-width:1200px;height:85vh;background:#0f0d11;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;border:1px solid rgba(255,255,255,.08);transform:translateY(20px);transition:transform .3s}
+.site-modal-ov.open .site-modal-box{transform:translateY(0)}
+.site-modal-bar{display:flex;align-items:center;gap:12px;padding:10px 16px;background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.07);flex-shrink:0}
+.site-modal-dots{display:flex;gap:6px}
+.site-modal-dots span{width:12px;height:12px;border-radius:50%;display:block}
+.site-modal-dots span:nth-child(1){background:#ff5f56}
+.site-modal-dots span:nth-child(2){background:#febc2e}
+.site-modal-dots span:nth-child(3){background:#27c840}
+.site-modal-url{flex:1;background:rgba(255,255,255,.06);border-radius:6px;padding:5px 12px;font-size:12px;color:rgba(255,255,255,.5);font-family:monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.site-modal-close{background:none;border:none;color:rgba(255,255,255,.4);font-size:20px;cursor:pointer;padding:4px 8px;line-height:1;transition:color .2s}
+.site-modal-close:hover{color:#fff}
+.site-modal-iframe{flex:1;border:none;width:100%;background:#fff}
+.site-modal-open-btn{background:none;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);font-size:11px;padding:5px 12px;border-radius:6px;cursor:pointer;transition:all .2s;white-space:nowrap}
+.site-modal-open-btn:hover{border-color:var(--or);color:var(--or)}
+
+@media(max-width:768px){.sites-grid{grid-template-columns:1fr;padding:0 24px 60px}.site-modal-box{width:95vw;height:80vh}}}
+}
+</style>
+
+<style id="motion-css">
+/* ===== MOTION (mouse-follow, tilt, magnetic, parallax) ===== */
+.mfx{position:relative;isolation:isolate;transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s;will-change:transform}
+.mfx::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(255,140,80,.9),rgba(232,83,26,.25) 40%,transparent 70%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .35s;pointer-events:none;z-index:-1}
+.mfx::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(232,83,26,.14),transparent 60%);opacity:0;transition:opacity .35s;pointer-events:none;z-index:-1}
+.mfx.hov::before,.mfx.hov::after{opacity:1}
+.mfx.hov{box-shadow:0 30px 80px -30px rgba(232,83,26,.45),0 20px 40px -20px rgba(0,0,0,.6)}
+.mag{transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+#cursor-glow{position:fixed;left:0;top:0;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(circle,rgba(232,83,26,.16),rgba(232,83,26,.06) 35%,transparent 65%);filter:blur(30px);transform:translate(-50%,-50%);opacity:0;transition:opacity .6s;mix-blend-mode:screen}
+body.has-cursor #cursor-glow{opacity:1}
+.hg1,.hg2{transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+.htitle .acc{background:linear-gradient(90deg,#ff9a63,#E8531A 45%,#ff7a3d 70%,#ffb27a);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 6s linear infinite}
+@keyframes shine{to{background-position:200% 0}}
+.reveal{transition-timing-function:cubic-bezier(.2,.7,.2,1)!important}
+@media (hover:none),(prefers-reduced-motion:reduce){.mfx::before,.mfx::after,#cursor-glow{display:none}.mfx,.mag,.hg1,.hg2{transform:none!important}.htitle .acc{animation:none}}
+</style>
+
+<style id="mobile-carousel-css">
+@media(max-width:860px){
+  body{overflow-x:hidden}
+  div[style*="max-width:960px"],div[style*="max-width:1240px"]{padding-left:24px!important;padding-right:24px!important}
+  .prob-grid,.mgrid,.sgrid,.port-grid,.sites-grid{display:flex!important;grid-template-columns:none!important;overflow-x:auto;overflow-y:hidden;gap:14px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:4px 24px 18px;margin-left:-24px;margin-right:-24px;scrollbar-width:none}
+  .prob-grid::-webkit-scrollbar,.mgrid::-webkit-scrollbar,.port-grid::-webkit-scrollbar,.sites-grid::-webkit-scrollbar{display:none}
+  .prob-grid>*,.mgrid>*,.port-grid>*,.sites-grid>*{flex:0 0 82%;max-width:82%;scroll-snap-align:center}
+  .port-grid>.port-item.lg{flex-basis:82%;grid-column:auto!important;grid-row:auto!important}
+  .prob-grid>*.reveal,.mgrid>*.reveal,.port-grid>*.reveal,.sites-grid>*.reveal{transition-delay:0s!important}
+  .carousel-hint{display:block;text-align:center;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dm);margin-top:6px}
+}
+.carousel-hint{display:none}
+html,body{overflow-x:hidden}#hero,.band{overflow:hidden}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+
+<!-- MODAL -->
+<div class="modal-ov" id="modal" onclick="closeModalBg(event)">
+  <div class="modal-box">
+    <div class="modal-inner">
+      <div class="modal-hdr" id="modal-hdr">
+        <div id="car-container"></div>
+      </div>
+      <button class="modal-close" onclick="closeModal()">&#10005;</button>
+      <div class="modal-body">
+        <div class="modal-cat" id="mcl-cat"></div>
+        <div class="modal-name" id="mcl-name"></div>
+        <p class="modal-desc" id="mcl-desc"></p>
+        <div class="modal-tags" id="mcl-tags"></div>
+        <div class="modal-foot">
+          <a href="https://byrisedesign.myportfolio.com/work" target="_blank" class="btn btn-f" style="font-size:13px;padding:12px 24px" data-pt="Ver no portfólio →" data-en="View in portfolio →">Ver no portfólio →</a>
+          <a href="https://wa.me/5592991755756" target="_blank" class="btn btn-g" style="font-size:13px;padding:12px 24px" data-pt="Quero um projeto assim" data-en="I want a project like this">Quero um projeto assim</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="/#hero" class="nav-logo">
+    <img src="data:image/png;base64,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" alt="Rise"/>
+    <span class="logo-nm">rise</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#metodo" data-pt="Método" data-en="Method">Método</a></li>
+    <li><a href="/#projeto" data-pt="Projeto" data-en="Project">Projeto</a></li>
+    <li><a href="/#sites-web" data-pt="Sites" data-en="Sites">Sites</a></li>
+    <li><a href="/#sobre" data-pt="Sobre" data-en="About">Sobre</a></li>
+    <li><a href="/portfolio/" data-pt="Portfólio" data-en="Portfolio">Portfólio</a></li>
+    <li><a href="/blog/" data-pt="Blog" data-en="Blog">Blog</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-sw">
+      <button class="lang-btn on" onclick="setLang('pt')">PT</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="https://wa.me/5592991755756" class="nav-cta" target="_blank" data-pt="Falar com a Rise" data-en="Talk to Rise">Falar com a Rise</a>
+  </div>
+  <button class="ham" id="ham" onclick="toggleMenu()"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mob-menu">
+  <a href="/#metodo" onclick="closeMenu()" data-pt="Método" data-en="Method">Método</a>
+  <a href="/#projeto" onclick="closeMenu()" data-pt="Projeto" data-en="Project">Projeto</a>
+  <a href="/#sites-web" onclick="closeMenu()" data-pt="Sites" data-en="Sites">Sites</a>
+  <a href="/#sobre" onclick="closeMenu()" data-pt="Sobre" data-en="About">Sobre</a>
+  <a href="/portfolio/" data-pt="Portfólio" data-en="Portfolio">Portfólio</a>
+  <a href="/blog/" data-pt="Blog" data-en="Blog">Blog</a>
+  <a href="https://wa.me/5592991755756" class="mob-cta" target="_blank" data-pt="Falar com a Rise" data-en="Talk to Rise">Falar com a Rise</a>
+  <div class="mob-lang">
+    <button class="lang-btn on" onclick="setLang('pt')">PT</button>
+    <button class="lang-btn" onclick="setLang('en')">EN</button>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero" class="hero-mini">
+  <div class="hg1"></div><div class="hg2"></div>
+  <div class="hero-inner">
+    <div class="badge"><span class="bdot"></span><span data-pt="Portfólio" data-en="Portfolio">Portfólio</span></div>
+    <h1 class="htitle" data-pt="Sua marca é o que leva a empresa<br>do <span class='acc'>amador ao profissional.</span>" data-en="Your brand is what takes the company<br>from <span class='acc'>amateur to professional.</span>">Sua marca é o que leva a empresa<br>do <span class="acc">amador ao profissional.</span></h1>
+    <p class="hsub" data-pt="Uma marca bem construída faz o cliente confiar antes de você dizer uma palavra. Veja o que já construímos — e o que mais podemos fazer pela sua empresa." data-en="A well-built brand earns the customer's trust before you say a word. See what we've built — and what else we can do for your company.">Uma marca bem construída faz o cliente confiar antes de você dizer uma palavra. Veja o que já construímos — e o que mais podemos fazer pela sua empresa.</p>
+    <div class="hctas">
+      <a href="#portfolio" class="btn btn-f" data-pt="Ver as marcas" data-en="See the brands">Ver as marcas</a>
+      <a href="#servicos" class="btn btn-g" data-pt="Outros serviços →" data-en="Other services →">Outros serviços →</a>
+    </div>
+  </div>
+</section>
+<style>.hero-mini{min-height:0!important;padding-bottom:20px!important}</style>
+<section id="estrutura">
+  <div class="wrap">
+    <div class="eye reveal" data-pt="Resultado" data-en="Result">Resultado</div>
+    <h2 class="stitle reveal" data-pt="Assim fica o seu negócio<br>com <span class='acc'>o funil inteiro.</span>" data-en="This is what your business<br>looks like with <span class='acc'>the whole funnel.</span>">Assim fica o seu negócio<br>com <span class="acc">o funil inteiro.</span></h2>
+    <p class="sdesc reveal d2" data-pt="Anúncio, site, captação e atendimento trabalhando juntos. Não é só marketing — é estrutura de vendas." data-en="Ads, website, capture and follow-up working together. Not just marketing — a sales structure.">Anúncio, site, captação e atendimento trabalhando juntos. Não é só marketing — é estrutura de vendas.</p>
+  </div>
+  <div class="mockup-w reveal">
+    <img src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/69ff457e4a9e5aa15f3150bf_rise_mockup_transparente.png" alt="Rise Brand mockup"/>
+    <div class="mockup-glow"></div>
+  </div>
+  <div style="height:60px"></div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="wrap">
+    <div class="eye reveal" data-pt="Portfólio" data-en="Portfolio">Portfólio</div>
+    <h2 class="stitle reveal" data-pt="Marcas que <span class='acc'>construímos.</span>" data-en="Brands we <span class='acc'>built.</span>">Marcas que <span class="acc">construímos.</span></h2>
+    <p class="sdesc reveal d2" data-pt="Clique em um projeto para ver mais detalhes." data-en="Click a project to see more details.">Clique em um projeto para ver mais detalhes.</p>
+  </div>
+  <div style="max-width:960px;margin:0 auto;padding:0 60px 100px">
+    <div class="port-head">
+      <div></div>
+      <a href="https://byrisedesign.myportfolio.com/work" target="_blank" class="btn btn-g" data-pt="Ver portfólio completo →" data-en="See full portfolio →">Ver portfólio completo →</a>
+    </div>
+    <div class="port-grid">
+
+      <div class="port-item lg reveal d1" onclick="openModal('wildway')">
+        <div class="port-vis" style="background:url('https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a01c38a330ddca8bd1cc479_magnific__luxury-outdoor-clothing-tag-mockup-recycled-kraft-__44742.jpg') center/cover no-repeat"><div class="port-glow" style="background:radial-gradient(ellipse,rgba(30,140,30,.25) 0%,transparent 65%)"></div></div>
+        <span class="port-hint" data-pt="Ver projeto" data-en="View project">Ver projeto</span>
+        <div class="port-label"><div class="port-cat" data-pt="Branding · Acampamento" data-en="Branding · Camping">Branding · Acampamento</div><div class="port-name">Wild Way</div></div>
+      </div>
+
+      <div class="port-item reveal d2" onclick="openModal('emini')">
+        <div class="port-vis" style="background:url('https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a01c38a095f31621afa5520_magnific__premium-reusable-grocery-tote-bag-mockup-with-emin__44737.jpg') center/cover no-repeat"><div class="port-glow" style="background:radial-gradient(ellipse,rgba(50,50,200,.25) 0%,transparent 65%)"></div></div>
+        <span class="port-hint" data-pt="Ver projeto" data-en="View project">Ver projeto</span>
+        <div class="port-label"><div class="port-cat" data-pt="Branding · Mercado Local" data-en="Branding · Local Market">Branding · Mercado Local</div><div class="port-name">eMini</div></div>
+      </div>
+
+      <div class="port-item reveal d1" onclick="openModal('acroarte')">
+        <div class="port-vis" style="background:url('https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a01c38aa8771058e21b0608_magnific__use-the-exact-uploaded-logo-without-modifying-typo__44734.jpeg') center/cover no-repeat"><div class="port-glow" style="background:radial-gradient(ellipse,rgba(180,30,30,.25) 0%,transparent 65%)"></div></div>
+        <span class="port-hint" data-pt="Ver projeto" data-en="View project">Ver projeto</span>
+        <div class="port-label"><div class="port-cat" data-pt="Branding · Arte Cênica" data-en="Branding · Performing Arts">Branding · Arte Cênica</div><div class="port-name">Acroarte</div></div>
+      </div>
+
+      <div class="port-item reveal d2" onclick="openModal('edith')">
+        <div class="port-vis" style="background:url('https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a01c38ad3a2b0e9bba33539_magnific__use-the-uploaded-logo-exactly-as-provided-without-__44741.jpg') center/cover no-repeat"><div class="port-glow" style="background:radial-gradient(ellipse,rgba(140,40,200,.25) 0%,transparent 65%)"></div></div>
+        <span class="port-hint" data-pt="Ver projeto" data-en="View project">Ver projeto</span>
+        <div class="port-label"><div class="port-cat" data-pt="Branding · Beleza" data-en="Branding · Beauty">Branding · Beleza</div><div class="port-name">Edith Hairstylist</div></div>
+      </div>
+
+      <div class="port-item reveal d3" onclick="openModal('moex')">
+        <div class="port-vis" style="background:url('https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a01c38ae41df95a58562244_magnific__use-the-uploaded-logo-exactly-as-provided-without-__44740.jpg') center/cover no-repeat"><div class="port-glow" style="background:radial-gradient(ellipse,rgba(120,40,200,.25) 0%,transparent 65%)"></div></div>
+        <span class="port-hint" data-pt="Ver projeto" data-en="View project">Ver projeto</span>
+        <div class="port-label"><div class="port-cat" data-pt="Branding · Games" data-en="Branding · Games">Branding · Games</div><div class="port-name">Moex</div></div>
+      </div>
+
+      <div class="port-item reveal d1" onclick="openModal('leitura')">
+        <div class="port-vis" style="background:url('https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a01c38aec1b02799da2704d_magnific__use-the-exact-uploaded-logo-without-modifying-typo__44733.jpeg') center/cover no-repeat"><div class="port-glow" style="background:radial-gradient(ellipse,rgba(200,140,20,.25) 0%,transparent 65%)"></div></div>
+        <span class="port-hint" data-pt="Ver projeto" data-en="View project">Ver projeto</span>
+        <div class="port-label"><div class="port-cat" data-pt="Branding · Comunidade Feminina" data-en="Branding · Women's Community">Branding · Comunidade Feminina</div><div class="port-name">Clube de Leitura</div></div>
+      </div>
+
+      <div class="port-item reveal d2" onclick="openModal('afs')">
+        <div class="port-vis" style="background:url('https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a01c38a1881086157f88cc2_magnific__use-the-exact-uploaded-logo-faithfully-without-red__44736.jpeg') center/cover no-repeat"><div class="port-glow" style="background:radial-gradient(ellipse,rgba(20,60,180,.25) 0%,transparent 65%)"></div></div>
+        <span class="port-hint" data-pt="Ver projeto" data-en="View project">Ver projeto</span>
+        <div class="port-label"><div class="port-cat" data-pt="Branding · Contábil" data-en="Branding · Accounting">Branding · Contábil</div><div class="port-name">AFS Contábil</div></div>
+      </div>
+
+      <div class="port-item reveal d3" onclick="openModal('dra_ana')">
+        <div class="port-vis" style="background:url('https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a01c38a277a067402400424_magnific__use-the-exact-uploaded-logo-exactly-as-provided-in__44738.jpg') center/cover no-repeat"><div class="port-glow" style="background:radial-gradient(ellipse,rgba(220,140,80,.25) 0%,transparent 65%)"></div></div>
+        <span class="port-hint" data-pt="Ver projeto" data-en="View project">Ver projeto</span>
+        <div class="port-label"><div class="port-cat" data-pt="Branding · Saúde" data-en="Branding · Healthcare">Branding · Saúde</div><div class="port-name">Dra. Ana Farfan</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- OUTROS SERVICOS -->
+<section id="servicos">
+  <div class="wrap">
+    <div class="eye reveal" data-pt="Outros serviços" data-en="Other services">Outros serviços</div>
+    <h2 class="stitle reveal" data-pt="Além do funil,<br>o que mais <span class='acc'>fazemos.</span>" data-en="Beyond the funnel,<br>what else <span class='acc'>we do.</span>">Além do funil,<br>o que mais <span class="acc">fazemos.</span></h2>
+    <p class="sdesc reveal d2" data-pt="Serviços avulsos para quem precisa de uma peça específica — cada um entra no funil quando fizer sentido." data-en="Standalone services for those who need one specific piece — each one joins the funnel when it makes sense.">Serviços avulsos para quem precisa de uma peça específica — cada um entra no funil quando fizer sentido.</p>
+  </div>
+  <div style="max-width:1240px;margin:0 auto;padding:0 60px 100px">
+    <div class="mgrid sgrid">
+      <div class="mcard reveal d1"><div class="mcard-line"></div><div class="mnum">01</div><div class="mtit" data-pt="Identidade visual" data-en="Brand identity">Identidade visual</div><p class="mdesc" data-pt="Logotipo, paleta, tipografia e manual de aplicação — a base para tudo o que vem depois." data-en="Logo, palette, typography and brand guide — the base for everything that follows.">Logotipo, paleta, tipografia e manual de aplicação — a base para tudo o que vem depois.</p><div class="mtags"><span class="mtag">Logotipo</span><span class="mtag">Paleta</span><span class="mtag">Manual</span></div></div>
+      <div class="mcard reveal d2"><div class="mcard-line"></div><div class="mnum">02</div><div class="mtit" data-pt="Gestão de Instagram" data-en="Instagram management">Gestão de Instagram</div><p class="mdesc" data-pt="Planejamento editorial, criativos e legendas alinhados ao funil, com relatório mensal." data-en="Editorial planning, creatives and captions aligned to the funnel, with a monthly report.">Planejamento editorial, criativos e legendas alinhados ao funil, com relatório mensal.</p><div class="mtags"><span class="mtag">Criativos</span><span class="mtag">Reels</span><span class="mtag">Calendário</span></div></div>
+      <div class="mcard reveal d3"><div class="mcard-line"></div><div class="mnum">03</div><div class="mtit" data-pt="Landing pages" data-en="Landing pages">Landing pages</div><p class="mdesc" data-pt="Páginas de campanha feitas para converter — rápidas, mobile e integradas ao WhatsApp e ao CRM." data-en="Campaign pages built to convert — fast, mobile and wired to WhatsApp and the CRM.">Páginas de campanha feitas para converter — rápidas, mobile e integradas ao WhatsApp e ao CRM.</p><div class="mtags"><span class="mtag">Campanha</span><span class="mtag">Mobile</span><span class="mtag">CRM</span></div></div>
+      <div class="mcard reveal d4"><div class="mcard-line"></div><div class="mnum">04</div><div class="mtit" data-pt="CRM e atendimento" data-en="CRM and support">CRM e atendimento</div><p class="mdesc" data-pt="Implantação de CRM, roteiro de atendimento e organização dos contatos que chegam pelo WhatsApp." data-en="CRM setup, follow-up script and organization of the contacts that arrive on WhatsApp.">Implantação de CRM, roteiro de atendimento e organização dos contatos que chegam pelo WhatsApp.</p><div class="mtags"><span class="mtag">CRM</span><span class="mtag">Roteiro</span><span class="mtag">WhatsApp</span></div></div>
+      <div class="mcard reveal d1"><div class="mcard-line"></div><div class="mnum">05</div><div class="mtit" data-pt="Automação" data-en="Automation">Automação</div><p class="mdesc" data-pt="Sequências de WhatsApp e e-mail que respondem, lembram e reativam clientes sem trabalho manual." data-en="WhatsApp and email sequences that reply, remind and win customers back without manual work.">Sequências de WhatsApp e e-mail que respondem, lembram e reativam clientes sem trabalho manual.</p><div class="mtags"><span class="mtag">WhatsApp</span><span class="mtag">E-mail</span><span class="mtag">Fluxos</span></div></div>
+      <div class="mcard reveal d2"><div class="mcard-line"></div><div class="mnum">06</div><div class="mtit" data-pt="Blog e SEO" data-en="Blog and SEO">Blog e SEO</div><p class="mdesc" data-pt="Conteúdo que traz cliente pelo Google e responde as dúvidas que o seu comercial repete todo dia." data-en="Content that brings customers through Google and answers the questions your sales team repeats daily.">Conteúdo que traz cliente pelo Google e responde as dúvidas que o seu comercial repete todo dia.</p><div class="mtags"><span class="mtag">Artigos</span><span class="mtag">Google</span><span class="mtag">Autoridade</span></div></div>
+      <div class="mcard reveal d3"><div class="mcard-line"></div><div class="mnum">07</div><div class="mtit" data-pt="Captação em eventos" data-en="Event lead capture">Captação em eventos</div><p class="mdesc" data-pt="Formulários e totens para feiras e eventos, com o lead entrando direto no CRM." data-en="Forms and kiosks for fairs and events, with leads going straight into the CRM.">Formulários e totens para feiras e eventos, com o lead entrando direto no CRM.</p><div class="mtags"><span class="mtag">Feiras</span><span class="mtag">Totem</span><span class="mtag">QR code</span></div></div>
+      <div class="mcard reveal d4"><div class="mcard-line"></div><div class="mnum">08</div><div class="mtit" data-pt="Consultoria comercial" data-en="Sales consulting">Consultoria comercial</div><p class="mdesc" data-pt="Diagnóstico do funil, processo de vendas e treinamento da equipe que atende o cliente." data-en="Funnel diagnosis, sales process and training for the team that handles customers.">Diagnóstico do funil, processo de vendas e treinamento da equipe que atende o cliente.</p><div class="mtags"><span class="mtag">Diagnóstico</span><span class="mtag">Processo</span><span class="mtag">Treinamento</span></div></div>
+    </div>
+  </div>
+</section>
+<style>.sgrid{grid-template-columns:repeat(4,1fr)}@media(max-width:1100px) and (min-width:861px){.sgrid{grid-template-columns:repeat(2,1fr)}}</style>
+<!-- SITE PREVIEW MODAL -->
+<div class="site-modal-ov" id="site-modal" onclick="closeSiteModalBg(event)">
+  <div class="site-modal-box">
+    <div class="site-modal-bar">
+      <div class="site-modal-dots"><span></span><span></span><span></span></div>
+      <div class="site-modal-url" id="site-modal-url">https://</div>
+      <button class="site-modal-open-btn" id="site-modal-open" onclick="openSiteExternal()">↗ Abrir</button>
+      <button class="site-modal-close" onclick="closeSiteModal()">✕</button>
+    </div>
+    <iframe class="site-modal-iframe" id="site-modal-iframe" src="" loading="lazy"></iframe>
+  </div>
+</div>
+
+<!-- CTA -->
+<section id="contato">
+  <div class="ctag1"></div><div class="ctag2"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="eye reveal" data-pt="Próximo passo" data-en="Next step">Próximo passo</div>
+    <h2 class="cta-title reveal" data-pt="Vamos <span class='acc'>elevar</span><br>sua marca." data-en="Let's <span class='acc'>elevate</span><br>your brand.">Vamos <span class="acc">elevar</span><br>sua marca.</h2>
+    <p class="cta-sub reveal d2" data-pt="Identifique onde sua marca está perdendo valor — e descubra como estruturá-la para crescer com clareza e autoridade." data-en="Identify where your brand is losing value — and discover how to structure it to grow with clarity and authority.">Identifique onde sua marca está perdendo valor — e descubra como estruturá-la para crescer com clareza e autoridade.</p>
+    <div class="cta-acts reveal d3">
+      <a href="https://wa.me/5592991755756" class="btn btn-f" target="_blank" data-pt="Falar no WhatsApp" data-en="WhatsApp us"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg> Falar no WhatsApp</a>
+      <a href="mailto:molinariseabra@gmail.com.br" class="btn-ol" data-pt="Enviar e-mail →" data-en="Send email →">Enviar e-mail →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-in">
+    <div class="foot-brand"><img src="data:image/png;base64,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" alt="Rise"/><span class="foot-nm">rise | design & branding</span></div>
+    <ul class="foot-links">
+      <li><a href="/#metodo" data-pt="Método" data-en="Method">Método</a></li>
+      <li><a href="/#projeto" data-pt="Projeto" data-en="Project">Projeto</a></li>
+      <li><a href="/#sites-web" data-pt="Sites" data-en="Sites">Sites</a></li>
+      <li><a href="/#sobre" data-pt="Sobre" data-en="About">Sobre</a></li>
+      <li><a href="/#contato" data-pt="Contato" data-en="Contact">Contato</a></li>
+    </ul>
+    <div class="foot-r">
+      <a href="https://www.instagram.com/by.risedsgn/" class="soc" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="https://wa.me/5592991755756" class="soc" target="_blank"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+      <span class="foot-copy">© 2025 Rise</span>
+    </div>
+  </div>
+</footer>
+
+<div id="img-store" style="display:none;position:absolute;width:0;height:0">
+  <img id="img-acroarte-0" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a021202ff0dd38992eb8f47_magnific__use-the-uploaded-logo-exactly-as-provided-preserve__42944.jpg"/>
+  <img id="img-acroarte-1" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a021202d4e27e38841f30b5_magnific__use-the-exact-uploaded-logo-faithfully-without-mod__42955.jpg"/>
+  <img id="img-acroarte-2" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a021202facd8624b88d0ce7_magnific__use-the-exact-uploaded-logo-faithfully-without-red__42946.jpg"/>
+  <img id="img-acroarte-3" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a021202d4e27e38841f30a8_magnific__use-the-uploaded-logo-exactly-as-provided-without-__42947.jpg"/>
+  <img id="img-acroarte-4" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0212015ed64efa8fbdac67_magnific__use-the-uploaded-logo-exactly-as-provided-without-__42954.jpg"/>
+  <img id="img-acroarte-5" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02120192d28e7568b0e571_magnific__use-the-exact-uploaded-logo-faithfully-without-red__42949.jpg"/>
+  <img id="img-acroarte-6" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0212017013f02fd1dfa9a8_magnific__use-the-exact-uploaded-logo-without-changing-typog__42948.jpg"/>
+  <img id="img-acroarte-7" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a021202b01db9ce014fd4fa_magnific__use-the-exact-uploaded-logo-without-altering-any-t__42945.jpg"/>
+  <img id="img-acroarte-8" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0212028d35f6d1430b2058_magnific__use-the-uploaded-logo-exactly-as-provided-without-__42950.jpg"/>
+  <img id="img-acroarte-9" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a021202e843385d56fc6a04_magnific__use-the-exact-uploaded-logo-exactly-as-provided-wi__42943.jpg"/>
+  <img id="img-acroarte-10" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a021201facd8624b88d0cce_magnific__use-the-uploaded-logo-exactly-as-provided-preserve__42952.jpg"/>
+  <img id="img-acroarte-11" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a021201c9f17ba72cf710e9_magnific__use-the-exact-uploaded-logo-without-modifying-any-__42953.jpg"/>
+  <img id="img-acroarte-12" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02120194a9c42d9b8fa204_magnific__use-the-exact-uploaded-logo-without-reinterpretati__42951.jpg"/>
+  <img id="img-acroarte-13" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a01c38aa8771058e21b0608_magnific__use-the-exact-uploaded-logo-without-modifying-typo__44734.jpeg"/>
+  <img id="img-afs-0" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211eb4cb9d946fcd4414d_magnific__use-the-exact-uploaded-logo-without-modifying-typo__42936.jpg"/>
+  <img id="img-afs-1" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211ebaa932422cedf6caf_magnific__use-the-exact-uploaded-logo-without-modifying-typo__42931.jpg"/>
+  <img id="img-afs-2" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211ebb390646b4b040004_magnific__use-the-exact-uploaded-logo-without-modifying-typo__42938.jpg"/>
+  <img id="img-afs-3" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211eb1568df0645049d61_magnific__use-the-exact-uploaded-logo-exactly-as-provided-wi__42939.jpg"/>
+  <img id="img-afs-4" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211eb1fdac6aa3c9b4424_magnific__use-the-exact-uploaded-logo-exactly-as-provided-wi__42932.jpg"/>
+  <img id="img-afs-5" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211eb46de46183e7d8814_magnific__ultra-realistic-corporate-tote-bag-mockup-premium-__42937.jpg"/>
+  <img id="img-afs-6" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211eb629ad71615b0da53_magnific__use-the-uploaded-logo-exactly-as-provided-preserve__42934.jpg"/>
+  <img id="img-afs-7" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211eb1561fe12c12eea99_magnific__use-the-uploaded-logo-exactly-as-provided-preserve__42933.jpg"/>
+  <img id="img-afs-8" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211eb4d6a7b77b2c5c1b2_magnific__use-the-exact-uploaded-logo-without-modifying-any-__42935.jpg"/>
+  <img id="img-afs-9" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a01c38a1881086157f88cc2_magnific__use-the-exact-uploaded-logo-faithfully-without-red__44736.jpeg"/>
+  <img id="img-leitura-0" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02121ca95be1296eb404ff_magnific__use-the-uploaded-logo-exactly-as-provided-preserve__42961.jpg"/>
+  <img id="img-leitura-1" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02121c102b8836a9b0c1a4_magnific__use-the-exact-uploaded-logo-exactly-as-provided-wi__42960.jpg"/>
+  <img id="img-leitura-2" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02121c4d6a7b77b2c5c854_magnific__use-the-exact-uploaded-logo-without-reinterpretati__42963.jpg"/>
+  <img id="img-leitura-3" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02121cf0d0481840159faa_magnific__use-the-exact-uploaded-logo-without-modifying-typo__42969.jpg"/>
+  <img id="img-leitura-4" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02121c60d67c9fe691e480_magnific__use-the-exact-uploaded-logo-without-modifying-typo__42967.jpg"/>
+  <img id="img-leitura-5" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02121c35dabe539e552057_magnific__use-the-exact-uploaded-logo-exactly-as-provided-wi__42957.jpg"/>
+  <img id="img-leitura-6" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02121bb390646b4b04095e_magnific__use-the-exact-uploaded-logo-without-altering-any-t__42958.jpg"/>
+  <img id="img-leitura-7" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02121ca145ccaeea31f275_magnific__use-the-exact-uploaded-logo-faithfully-without-red__42962.jpg"/>
+  <img id="img-leitura-8" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02121c29153b0ba368ce61_magnific__use-the-uploaded-logo-exactly-as-provided-without-__42959.jpg"/>
+  <img id="img-leitura-9" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02121c43398cb8a035e9fe_magnific__use-the-exact-uploaded-logo-faithfully-without-mod__42965.jpg"/>
+  <img id="img-leitura-10" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02121ce5cbf80874dfd7b3_magnific__use-the-exact-uploaded-logo-without-modifying-typo__42968.jpg"/>
+  <img id="img-leitura-11" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02121c60d67c9fe691e46c_magnific__use-the-uploaded-logo-exactly-as-provided-without-__42966.jpg"/>
+  <img id="img-leitura-12" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a01c38aec1b02799da2704d_magnific__use-the-exact-uploaded-logo-without-modifying-typo__44733.jpeg"/>
+  <img id="img-dra_ana-0" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211bae3c75dda9d5efc60_magnific__upload-reference__42903.jpg"/>
+  <img id="img-dra_ana-1" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211baf56fe68e081f5e50_magnific__ultra-realistic-pediatric-clinic-storefront-mockup__42904.jpg"/>
+  <img id="img-dra_ana-2" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211bac5547c829399edb9_magnific__upload-reference__42902.jpg"/>
+  <img id="img-dra_ana-3" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211ba5cb8ee08b5a9619a_magnific__use-the-uploaded-logo-exactly-as-provided-without-__42910.jpg"/>
+  <img id="img-dra_ana-4" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211bacad3c7abc2afc9d3_magnific__use-the-exact-uploaded-logo-without-altering-any-t__42913.jpg"/>
+  <img id="img-dra_ana-5" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211ba519f26d2361f0b04_magnific__use-the-uploaded-logo-exactly-as-provided-without-__42907.jpg"/>
+  <img id="img-dra_ana-6" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211b93b05c5721e437082_magnific__use-the-uploaded-logo-exactly-as-provided-in-the-r__42908.jpg"/>
+  <img id="img-dra_ana-7" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211ba056e3c4c95680f0e_magnific__use-the-exact-uploaded-logo-faithfully-without-red__42915.jpg"/>
+  <img id="img-dra_ana-8" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211bab3e85f732f59dfc6_magnific__use-the-exact-logo-from-the-uploaded-reference-ima__42905.jpg"/>
+  <img id="img-dra_ana-9" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211ba66f64d99c5898faf_magnific__use-the-exact-uploaded-logo-without-redesigning-or__42912.jpg"/>
+  <img id="img-dra_ana-10" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211ba4cb9d946fcd434af_magnific__use-the-exact-uploaded-logo-without-modification-p__42909.jpg"/>
+  <img id="img-dra_ana-11" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211baa13ffe7b0b4a30fd_magnific__use-the-exact-uploaded-logo-without-any-redesign-o__42906.jpg"/>
+  <img id="img-dra_ana-12" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211b946de46183e7d820d_magnific__use-the-exact-uploaded-logo-without-modification-p__42914.jpg"/>
+  <img id="img-dra_ana-13" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a01c38a277a067402400424_magnific__use-the-exact-uploaded-logo-exactly-as-provided-in__44738.jpg"/>
+  <img id="img-edith-0" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02116dfa476c189c361ced_magnific__use-the-exact-uploaded-logo-without-modifying-typo__42882.jpg"/>
+  <img id="img-edith-1" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02116daee93deb0e8a4477_magnific__use-the-uploaded-logo-exactly-as-provided-preserve__42884.jpg"/>
+  <img id="img-edith-2" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02116d0f1eaad41e70ebc6_magnific__use-the-uploaded-logo-exactly-as-provided-without-__42890.jpg"/>
+  <img id="img-edith-3" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02116d7b77bbde9f816cd8_magnific__use-the-exact-uploaded-logo-without-changing-typog__42888.jpg"/>
+  <img id="img-edith-4" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02116da92f210abb330190_magnific__use-the-exact-uploaded-logo-faithfully-without-mod__42894.jpg"/>
+  <img id="img-edith-5" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02116ddcaaa9ff5a2fc9be_magnific__use-the-uploaded-logo-exactly-as-provided-preserve__42892.jpg"/>
+  <img id="img-edith-6" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a01c38ad3a2b0e9bba33539_magnific__use-the-uploaded-logo-exactly-as-provided-without-__44741.jpg"/>
+  <img id="img-edith-7" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02116d573697d5a12a05ac_magnific__use-the-exact-uploaded-logo-exactly-as-provided-wi__42883.jpg"/>
+  <img id="img-edith-8" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02116d9de687965064f60f_magnific__use-the-uploaded-logo-exactly-as-provided-preserve__42889.jpg"/>
+  <img id="img-edith-9" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02116dffa8eddd32c5c7b6_magnific__use-the-exact-uploaded-logo-faithfully-without-red__42886.jpg"/>
+  <img id="img-edith-10" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02116daee93deb0e8a4462_magnific__use-the-exact-uploaded-logo-without-modifying-any-__42893.jpg"/>
+  <img id="img-edith-11" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02116d100e432be0f36d14_magnific__use-the-exact-uploaded-logo-without-altering-any-t__42885.jpg"/>
+  <img id="img-edith-12" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02116d37ca268319cdd267_magnific__use-the-exact-uploaded-logo-without-reinterpretati__42891.jpg"/>
+  <img id="img-emini-0" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a021184e855791f4ed570d4_magnific__upload-reference__42917.jpg"/>
+  <img id="img-emini-1" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a021184b59d78cadeb31c4c_magnific__upload-reference__42918.jpg"/>
+  <img id="img-emini-2" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02118394a9c42d9b8f8ec1_magnific__premium-snack-and-grocery-packaging-mockup-with-em__42923.jpg"/>
+  <img id="img-emini-3" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02118370f06374b54f504d_magnific__modern-coffee-station-inside-emini-condominium-min__42925.jpg"/>
+  <img id="img-emini-4" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a021183cc490a4a1bef47ec_magnific__modern-selfcheckout-kiosk-mockup-for-emini-conveni__42922.jpg"/>
+  <img id="img-emini-5" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211832b10d349fcff15b6_magnific__modern-luxury-condominium-at-night-with-visible-em__42929.jpg"/>
+  <img id="img-emini-6" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211836e088ba7939f2049_magnific__modern-24hour-condominium-convenience-market-with-__42927.jpg"/>
+  <img id="img-emini-7" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02118498a93bb6b727118a_magnific__upload-reference__42916.jpg"/>
+  <img id="img-emini-8" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a021183f20531ac79848abf_magnific__upload-reference__42919.jpg"/>
+  <img id="img-emini-9" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a021183e2e36d70ad285926_magnific__modern-ice-cream-freezer-mockup-with-emini-brandin__42924.jpg"/>
+  <img id="img-emini-10" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a021183c02e4c1a77be29cc_magnific__modern-convenience-store-refrigerator-mockup-with-__42920.jpg"/>
+  <img id="img-emini-11" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211835fa47a487a9b3d4a_magnific__premium-emini-branding-presentation-mockup-logo-ap__42926.jpg"/>
+  <img id="img-emini-12" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211830a676dfd9bfdcd8a_magnific__ultra-realistic-storefront-sign-mockup-mounted-on-__42928.jpg"/>
+  <img id="img-emini-13" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a01c38a095f31621afa5520_magnific__premium-reusable-grocery-tote-bag-mockup-with-emin__44737.jpg"/>
+  <img id="img-moex-0" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02119635b15e1a3dd8c450_magnific__use-the-exact-uploaded-logo-without-altering-any-t__42899.jpg"/>
+  <img id="img-moex-1" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a021196d5ca43463f816741_magnific__use-the-exact-uploaded-logo-faithfully-without-mod__42901.jpg"/>
+  <img id="img-moex-2" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0211968d35f6d1430b099f_magnific__use-the-exact-uploaded-logo-faithfully-without-red__42900.jpg"/>
+  <img id="img-moex-3" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a01c38ae41df95a58562244_magnific__use-the-uploaded-logo-exactly-as-provided-without-__44740.jpg"/>
+  <img id="img-moex-4" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a021196bf738ea2242cfb3e_magnific__use-the-exact-uploaded-logo-without-modifying-typo__42897.jpg"/>
+  <img id="img-moex-5" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a021196a9110fba9931fd86_magnific__use-the-exact-uploaded-logo-exactly-as-provided-wi__42895.jpg"/>
+  <img id="img-moex-6" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a021196fc814f078f1ddf48_magnific__use-the-exact-uploaded-logo-exactly-as-provided-wi__42898.jpg"/>
+  <img id="img-moex-7" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a024290bc074586ecc01b26_magnific__ultra-realistic-collector-fantasy-rpg-box-mockup-f__42975.jpg"/>
+  <img id="img-moex-8" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a024290b8205628643e203b_magnific__premium-oversized-fantasy-rpg-tshirt-mockup-floati__42977.jpg"/>
+  <img id="img-moex-9" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a024290be6da17f06e07b85_magnific__premium-fantasy-adventure-water-bottle-mockup-floa__42978.jpg"/>
+  <img id="img-moex-10" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a024290b1778c306088038f_magnific__ultra-realistic-premium-rpg-dice-mockup-with-color__42974.jpg"/>
+  <img id="img-moex-11" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a024290094d46823bd82448_magnific__premium-fantasy-adventure-backpack-mockup-floating__42976.jpg"/>
+  <img id="img-moex-12" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a02428f07cdfb5615d6e429_magnific__fantasy-rpg-metallic-keychain-mockup-floating-in-a__42979.jpg"/>
+  <img id="img-wildway-0" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0210e0cbabd5e5c3b6402f_magnific__upload-reference__96604.jpeg"/>
+  <img id="img-wildway-1" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0210e0100e432be0f34574_magnific__cinematic-adventure-vehicle-branding-mockup-dark-o__96599.jpeg"/>
+  <img id="img-wildway-2" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0210e0ec09af51cbeaf98f_magnific__modern-outdoor-navigation-mobile-app-mockup-smartp__96601.jpeg"/>
+  <img id="img-wildway-3" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0210e0d486262a5fd84b82_magnific__large-outdoor-adventure-poster-mockup-on-a-concret__96602.jpeg"/>
+  <img id="img-wildway-4" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0210e0cc490a4a1bef2daf_magnific__premium-explorer-journal-mockup-leather-and-canvas__96600.jpeg"/>
+  <img id="img-wildway-5" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0210e0bc5472f3920b20c3_magnific__luxury-outdoor-equipment-packaging-mockup-matte-bl__96591.jpeg"/>
+  <img id="img-wildway-6" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0210e02ed75342771eeee4_magnific__cinematic-outdoor-website-hero-scene-lone-explorer__96592.jpeg"/>
+  <img id="img-wildway-7" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0210e026fc09365c1cd77b_magnific__outdoor-campsite-flag-mockup-wild-way-logo-printed__96589.jpeg"/>
+  <img id="img-wildway-8" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0210e0918b79846434878e_magnific__streetwear-outdoor-fashion-mockup-oversized-offwhi__96593.jpeg"/>
+  <img id="img-wildway-9" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0210e0bc4e50c7832420a0_magnific__vintage-enamel-camping-mug-mockup-white-mug-with-b__96590.jpeg"/>
+  <img id="img-wildway-10" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0210e0d76db6cf88373015_magnific__ultra-realistic-premium-outdoor-brand-mockup-dark-__96594.jpeg"/>
+  <img id="img-wildway-11" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0210dff85c91f1eca92faf_magnific__ultra-realistic-camping-tent-mockup-in-a-dark-fore__96596.jpeg"/>
+  <img id="img-wildway-12" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a0210df9fcc0fb12f255282_magnific__luxury-insulated-outdoor-thermos-bottle-mockup-mat__96597.jpeg"/>
+  <img id="img-wildway-13" src="https://cdn.prod.website-files.com/69fe65ece4a2bb2418b4632c/6a01c38a330ddca8bd1cc479_magnific__luxury-outdoor-clothing-tag-mockup-recycled-kraft-__44742.jpg"/>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+  var m=document.getElementById("rise-mockup");
+  var t=document.querySelector(".mockup-w img");
+  if(m&&t)t.src=m.src;
+});
+</script>
+
+<!-- Rise JS — inline to avoid jsDelivr cache issues -->
+<script>
+// ── PROJECTS DATA ──────────────────────────────────────────────────────────────
+const PROJECTS = {
+  wildway:  { name:'Wild Way',          cat_pt:'Branding · Acampamento', cat_en:'Branding · Camping',  desc_pt:'Equipamentos de camping & aventura. Identidade visual completa com logotipo, sistema de cores, tipografia, aplicações em produtos e redes sociais estruturadas.', desc_en:'Camping & adventure equipment. Full visual identity with logo, color system, typography, product applications and structured social media.', tags:['Logotipo','Brand System','Embalagem','Redes Sociais'], bg:'linear-gradient(135deg,#0a1c0a,#162a18)', glow:'rgba(30,140,30,.4)' },
+  emini:    { name:'eMini',             cat_pt:'Branding · Digital',           cat_en:'Branding · Digital',           desc_pt:'Mercadinho local com presença digital estruturada. Identidade visual moderna e acessível, com comunicação consistente em todos os canais online.', desc_en:'Local grocery with structured digital presence. Modern and accessible visual identity, with consistent communication across all online channels.', tags:['Logotipo','Instagram','Google Meu Negócio','WhatsApp'], bg:'linear-gradient(135deg,#0a0e38,#151550)', glow:'rgba(50,50,200,.4)' },
+  acroarte: { name:'Acroarte',          cat_pt:'Branding · Arte & Circo',      cat_en:'Branding · Art & Circus',      desc_pt:'Escola de acrobacia e artes com identidade visual vintage e circense. Logo aplicado em copo, almofada, sacola, adesivo e embalagem.', desc_en:'Acrobatics and arts school with a vintage circus identity. Logo applied on cups, pillows, bags, stickers and packaging.', tags:['Logotipo','Brand System','Merchandise','Papelaria'], bg:'linear-gradient(135deg,#3a0808,#5a1010)', glow:'rgba(180,30,30,.4)' },
+  edith:    { name:'Edith Hairstylist', cat_pt:'Branding · Beleza',            cat_en:'Branding · Beauty',            desc_pt:'Hairstylist com identidade visual sofisticada e feminina. Logotipo elegante aplicado em sacola, cartão de visita, frascos e embalagens que transmitem luxo e profissionalismo.', desc_en:'Hairstylist with a sophisticated and feminine visual identity. Elegant logo applied on bags, business cards, bottles and packaging.', tags:['Logotipo','Identidade Visual','Papelaria','Aplicações'], bg:'linear-gradient(135deg,#280a40,#3d1260)', glow:'rgba(140,40,200,.4)' },
+  moex:     { name:'Moex',             cat_pt:'Branding · Games',             cat_en:'Branding · Games',             desc_pt:'Identidade visual para marca do universo gamer. Logotipo com força e personalidade, aplicado em produtos físicos como mochila e acessórios.', desc_en:'Visual identity for a gaming brand. Logo with strength and personality, applied on physical products like backpacks and accessories.', tags:['Logotipo','Brand System','Merchandise','Aplicações'], bg:'linear-gradient(135deg,#1a0a38,#2d1260)', glow:'rgba(120,40,200,.4)' },
+  leitura:  { name:'Clube de Leitura', cat_pt:'Branding · Comunidade',        cat_en:'Branding · Community',         desc_pt:'Identidade visual para clube de leitura cristão. Marca acolhedora e com personalidade, aplicada em produtos físicos como caneca e materiais de comunicação.', desc_en:'Visual identity for a Christian book club. Welcoming brand with personality, applied on physical products like mugs and communication materials.', tags:['Logotipo','Brand System','Produtos','Comunicação'], bg:'linear-gradient(135deg,#2a1800,#3d2400)', glow:'rgba(200,140,20,.4)' },
+  dra_ana:  { name:'Dra. Ana Farfan',
+    cat_pt:'Branding · Saúde', cat_en:'Branding · Healthcare',
+    desc_pt:'Identidade visual para pediatra integrativa. Marca acolhedora, delicada e profissional — aplicada em papelaria, uniformes e materiais de atendimento.',
+    desc_en:'Visual identity for an integrative pediatrician. Welcoming, delicate and professional brand — applied on stationery, uniforms and service materials.',
+    tags:['Logotipo','Identidade Visual','Papelaria','Aplicações'],
+    bg:'linear-gradient(135deg,#2a1510,#3d2018)', glow:'rgba(220,140,80,.35)'
+  },
+  afs:      { name:'AFS Contábil',     cat_pt:'Branding · Contábil',          cat_en:'Branding · Accounting',        desc_pt:'Escritório contábil com marca que transmite confiança, seriedade e autoridade no mercado.', desc_en:'Accounting firm with a brand that conveys trust, seriousness and authority in the market.', tags:['Logotipo','Brand System','Papelaria','Digital'], bg:'linear-gradient(135deg,#081a14,#102a20)', glow:'rgba(20,160,90,.4)' },
+};
+
+// ── PORTFOLIO IMAGES ─────────────────────────────────────────────────────────
+const IMGS = {};
+document.querySelectorAll('#img-store img').forEach(img => {
+  const p = img.id.replace('img-','').split('-');
+  const idx = parseInt(p.pop());
+  const pid = p.join('-');
+  if (!IMGS[pid]) IMGS[pid] = [];
+  IMGS[pid][idx] = img.src;
+});
+
+// ── CAROUSEL ─────────────────────────────────────────────────────────────────
+let curProject = null, curSlide = 0;
+function buildCarousel(pid) {
+  const images = IMGS[pid] || [];
+  if (!images.length) return '';
+  const slides = images.map(s => `<div class="car-slide"><img src="${s}" loading="lazy"/></div>`).join('');
+  const dots   = images.map((_,i) => `<button class="car-dot ${i===0?'on':''}" onclick="goSlide(${i})"></button>`).join('');
+  return `<div class="carousel"><div class="car-track" id="car-track">${slides}</div><button class="car-btn car-prev" onclick="prevSlide()">&#8249;</button><button class="car-btn car-next" onclick="nextSlide()">&#8250;</button><div class="car-dots">${dots}</div><div class="car-count" id="car-count">1 / ${images.length}</div></div>`;
+}
+function goSlide(idx) {
+  const track = document.getElementById('car-track');
+  if (!track) return;
+  const total = track.children.length;
+  curSlide = (idx + total) % total;
+  track.style.transform = `translateX(-${curSlide * 100}%)`;
+  document.getElementById('car-count').textContent = `${curSlide+1} / ${total}`;
+  document.querySelectorAll('.car-dot').forEach((d,i) => d.classList.toggle('on', i===curSlide));
+}
+function nextSlide() { goSlide(curSlide+1); }
+function prevSlide() { goSlide(curSlide-1); }
+
+// ── MODAL ─────────────────────────────────────────────────────────────────────
+function openModal(pid) {
+  const p = PROJECTS[pid]; if (!p) return;
+  const lang = document.documentElement.dataset.lang || 'pt';
+  document.getElementById('mcl-cat').textContent  = p['cat_'+lang];
+  document.getElementById('mcl-name').textContent = p.name;
+  document.getElementById('mcl-desc').textContent = p['desc_'+lang];
+  document.getElementById('mcl-tags').innerHTML   = p.tags.map(t=>`<span class="modal-tag">${t}</span>`).join('');
+  curProject = pid; curSlide = 0;
+  document.getElementById('car-container').innerHTML = buildCarousel(pid);
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalBg(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'ArrowRight') nextSlide();
+  if (e.key === 'ArrowLeft')  prevSlide();
+});
+
+// ── LANGUAGE ──────────────────────────────────────────────────────────────────
+function setLang(lang) {
+  document.documentElement.dataset.lang = lang;
+  document.documentElement.lang = lang === 'pt' ? 'pt-BR' : 'en';
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('on', b.textContent.toLowerCase() === lang));
+  document.querySelectorAll('[data-pt],[data-en]').forEach(el => {
+    const val = el.getAttribute('data-'+lang);
+    if (!val) return;
+    if (val.includes('<')) el.innerHTML = val; else el.textContent = val;
+  });
+}
+
+// ── CANVAS PARTICLES ─────────────────────────────────────────────────────────
+(function() {
+  const cv = document.getElementById('bg'), cx = cv.getContext('2d');
+  let W, H, pts = [];
+  function resize() { W = cv.width = innerWidth; H = cv.height = innerHeight; }
+  function Pt() { this.x=Math.random()*W; this.y=Math.random()*H; this.r=Math.random()*1.2+.3; this.vx=(Math.random()-.5)*.18; this.vy=(Math.random()-.5)*.18; this.a=Math.random()*.28+.05; this.hot=Math.random()<.22; }
+  function init() { pts=[]; for(let i=0;i<70;i++) pts.push(new Pt()); }
+  function draw() {
+    cx.clearRect(0,0,W,H);
+    pts.forEach(p => { cx.beginPath(); cx.arc(p.x,p.y,p.r,0,Math.PI*2); cx.fillStyle=p.hot?`rgba(232,83,26,${p.a})`:`rgba(242,237,232,${p.a*.35})`; cx.fill(); p.x+=p.vx; p.y+=p.vy; if(p.x<0)p.x=W; if(p.x>W)p.x=0; if(p.y<0)p.y=H; if(p.y>H)p.y=0; });
+    requestAnimationFrame(draw);
+  }
+  resize(); init(); draw();
+  window.addEventListener('resize', () => { resize(); init(); });
+})();
+
+// ── NAV ───────────────────────────────────────────────────────────────────────
+const navEl = document.getElementById('nav');
+window.addEventListener('scroll', () => navEl.classList.toggle('sc', scrollY > 40));
+
+// ── MOBILE MENU ───────────────────────────────────────────────────────────────
+function toggleMenu() {
+  const m = document.getElementById('mob-menu'), h = document.getElementById('ham');
+  m.classList.toggle('open'); h.classList.toggle('open');
+  document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+}
+function closeMenu() {
+  document.getElementById('mob-menu').classList.remove('open');
+  document.getElementById('ham').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// ── SCROLL REVEAL ─────────────────────────────────────────────────────────────
+const revealOb = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealOb.unobserve(e.target); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => revealOb.observe(el));
+
+// ── FAQ ───────────────────────────────────────────────────────────────────────
+function toggleFaq(el) {
+  const isOpen = el.classList.contains('open');
+  document.querySelectorAll('.fitem').forEach(f => f.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+
+// ── SMOOTH SCROLL ─────────────────────────────────────────────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+  const t = document.querySelector(a.getAttribute('href'));
+  if (t) { e.preventDefault(); closeMenu(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+}));
+
+// ===== SITE MODAL =====
+function openSiteModal(url, name, displayUrl, canOpen) {
+  var modal = document.getElementById('site-modal');
+  var iframe = document.getElementById('site-modal-iframe');
+  var urlEl = document.getElementById('site-modal-url');
+  var openBtn = document.getElementById('site-modal-open');
+  iframe.src = url;
+  urlEl.textContent = displayUrl || url;
+  modal.setAttribute('data-url', url);
+  if (canOpen) {
+    openBtn.style.display = '';
+    openBtn.textContent = '↗ Abrir';
+  } else {
+    openBtn.style.display = 'none';
+  }
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeSiteModal() {
+  var modal = document.getElementById('site-modal');
+  var iframe = document.getElementById('site-modal-iframe');
+  modal.classList.remove('open');
+  setTimeout(function(){ iframe.src = ''; }, 300);
+  document.body.style.overflow = '';
+}
+function closeSiteModalBg(e) {
+  if (e.target === document.getElementById('site-modal')) closeSiteModal();
+}
+function openSiteExternal() {
+  var url = document.getElementById('site-modal').getAttribute('data-url');
+  if (url) window.open(url, '_blank');
+}
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') closeSiteModal();
+});
+
+</script>
+
+<div id="cursor-glow" aria-hidden="true"></div>
+<script id="motion-js">
+(function(){
+  var fine=matchMedia('(hover:hover) and (pointer:fine)').matches, rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!fine||rm) return;
+  var SEL='.pcard,.mcard,.hcard,.site-card,.port-item,.fitem,.proj-card,.acard';
+  var cards=document.querySelectorAll(SEL);
+  cards.forEach(function(c){
+    c.classList.add('mfx');
+    c.addEventListener('pointerenter',function(){c.classList.add('hov')});
+    c.addEventListener('pointerleave',function(){c.classList.remove('hov');c.style.transform=''});
+    c.addEventListener('pointermove',function(e){
+      var r=c.getBoundingClientRect();var x=e.clientX-r.left,y=e.clientY-r.top;
+      c.style.setProperty('--mx',x+'px');c.style.setProperty('--my',y+'px');
+      var big=r.width>520;var rx=((y/r.height)-.5)*(big?-3:-8),ry=((x/r.width)-.5)*(big?3:8);
+      c.style.transform='perspective(900px) rotateX('+rx+'deg) rotateY('+ry+'deg) translateY(-4px)';
+    });
+  });
+  // magnetic buttons
+  document.querySelectorAll('.btn,.nav-cta').forEach(function(b){
+    b.classList.add('mag');
+    b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();var x=(e.clientX-r.left-r.width/2)*.25,y=(e.clientY-r.top-r.height/2)*.35;b.style.transform='translate('+x+'px,'+y+'px)'});
+    b.addEventListener('pointerleave',function(){b.style.transform=''});
+  });
+  // cursor glow + hero parallax
+  var g=document.getElementById('cursor-glow'),h1=document.querySelector('.hg1'),h2=document.querySelector('.hg2');
+  var tx=0,ty=0,cx=innerWidth/2,cy=innerHeight/2;
+  window.addEventListener('pointermove',function(e){tx=e.clientX;ty=e.clientY;document.body.classList.add('has-cursor');
+    var px=(e.clientX/innerWidth-.5),py=(e.clientY/innerHeight-.5);
+    if(h1)h1.style.transform='translate('+(px*40)+'px,'+(py*30)+'px)';
+    if(h2)h2.style.transform='translate('+(px*-30)+'px,'+(py*-20)+'px)';
+  },{passive:true});
+  (function loop(){cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;g.style.transform='translate('+(cx-260)+'px,'+(cy-260)+'px)';requestAnimationFrame(loop)})();
+})();
+</script>
+</body>
+</html>
