@@ -404,15 +404,49 @@ body.has-cursor #cursor-glow{opacity:1}
 @media(max-width:860px){
   body{overflow-x:hidden}
   div[style*="max-width:960px"],div[style*="max-width:1240px"]{padding-left:24px!important;padding-right:24px!important}
-  .prob-grid,.mgrid,.sgrid,.port-grid,.sites-grid{display:flex!important;grid-template-columns:none!important;overflow-x:auto;overflow-y:hidden;gap:14px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:4px 24px 18px;margin-left:-24px;margin-right:-24px;scrollbar-width:none}
-  .prob-grid::-webkit-scrollbar,.mgrid::-webkit-scrollbar,.port-grid::-webkit-scrollbar,.sites-grid::-webkit-scrollbar{display:none}
-  .prob-grid>*,.mgrid>*,.port-grid>*,.sites-grid>*{flex:0 0 82%;max-width:82%;scroll-snap-align:center}
+  .prob-grid,.mgrid,.sgrid,.port-grid{display:flex!important;grid-template-columns:none!important;overflow-x:auto;overflow-y:hidden;gap:14px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:4px 24px 18px;margin-left:-24px;margin-right:-24px;scrollbar-width:none}
+  .prob-grid::-webkit-scrollbar,.mgrid::-webkit-scrollbar,.port-grid::-webkit-scrollbar{display:none}
+  .prob-grid>*,.mgrid>*,.port-grid>*{flex:0 0 82%;max-width:82%;scroll-snap-align:center}
   .port-grid>.port-item.lg{flex-basis:82%;grid-column:auto!important;grid-row:auto!important}
-  .prob-grid>*.reveal,.mgrid>*.reveal,.port-grid>*.reveal,.sites-grid>*.reveal{transition-delay:0s!important}
+  .prob-grid>*.reveal,.mgrid>*.reveal,.port-grid>*.reveal{transition-delay:0s!important}
   .carousel-hint{display:block;text-align:center;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dm);margin-top:6px}
 }
 .carousel-hint{display:none}
 html,body{overflow-x:hidden}#hero,.band{overflow:hidden}
+</style>
+
+<style id="miniform-css">
+.mf-wrap{max-width:960px;margin:0 auto;padding:0 60px 100px;position:relative;z-index:2}
+.mf{position:relative;background:linear-gradient(180deg,#141116,#0e0c10);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:26px 28px 22px;box-shadow:0 30px 80px -30px rgba(232,83,26,.35),0 0 0 1px rgba(232,83,26,.08) inset}
+.mf::before{content:"";position:absolute;inset:-1px;border-radius:20px;padding:1px;background:linear-gradient(120deg,rgba(232,83,26,.7),rgba(232,83,26,.05) 40%,rgba(232,83,26,.05) 60%,rgba(255,138,80,.5));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.mf-head{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--tx);margin-bottom:16px}
+.mf-bolt{color:var(--or);filter:drop-shadow(0 0 8px rgba(232,83,26,.8))}
+.mf-row{display:grid;grid-template-columns:1.1fr 1.1fr 1.3fr auto;gap:10px}
+.mf input,.mf select{width:100%;height:52px;padding:0 16px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);color:var(--tx);font:inherit;font-size:15px;outline:none;transition:border-color .2s,box-shadow .2s,background .2s;-webkit-appearance:none;appearance:none}
+.mf select{background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23999' stroke-width='1.6'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:34px;cursor:pointer}
+.mf select option{color:#111}
+.mf input::placeholder{color:rgba(255,255,255,.35)}
+.mf input:focus,.mf select:focus{border-color:var(--or);box-shadow:0 0 0 3px rgba(232,83,26,.18);background:rgba(255,255,255,.07)}
+.mf-btn{height:52px;padding:0 22px;border-radius:12px;border:0;background:linear-gradient(135deg,var(--or),#d94814);color:#fff;font:inherit;font-weight:700;font-size:15px;cursor:pointer;white-space:nowrap;box-shadow:0 0 24px rgba(232,83,26,.35);transition:transform .2s,box-shadow .2s}
+.mf-btn:hover{transform:translateY(-1px);box-shadow:0 0 36px rgba(232,83,26,.6)}
+.mf-btn[disabled]{opacity:.6;cursor:wait}
+.mf-note{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;font-size:13px;color:var(--dm)}
+.mf-ok{display:none;margin-top:14px;text-align:center;font-size:14px;color:#8fd9a8}
+.mf.sent .mf-row,.mf.sent .mf-note{display:none}.mf.sent .mf-ok{display:block}
+@media(max-width:860px){.mf-wrap{padding:0 24px 70px}.mf{padding:22px 18px 18px}.mf-row{grid-template-columns:1fr}.mf-btn{width:100%}}
+/* ===== SITES: carrossel com destaque central ===== */
+.sites-grid{display:flex!important;grid-template-columns:none!important;max-width:none!important;gap:28px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding:30px 0 40px!important;margin:0}
+.sites-grid::-webkit-scrollbar{display:none}
+.sites-grid::before,.sites-grid::after{content:"";flex:0 0 calc(50% - min(560px,72vw)/2 - 14px)}
+.sites-grid>.site-card{flex:0 0 min(560px,72vw);scroll-snap-align:center;transform:scale(.86);opacity:.45;transition:transform .5s cubic-bezier(.2,.7,.2,1),opacity .5s,box-shadow .5s}
+.sites-grid>.site-card.center{transform:scale(1);opacity:1;box-shadow:0 40px 100px -30px rgba(232,83,26,.45),0 30px 60px -30px rgba(0,0,0,.8);border-color:rgba(232,83,26,.5)}
+.sites-nav{display:flex;justify-content:center;align-items:center;gap:14px;margin:-16px 0 100px}
+.sites-nav button{width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.04);color:var(--tx);font-size:20px;cursor:pointer;transition:all .2s}
+.sites-nav button:hover{border-color:var(--or);color:var(--or)}
+.sites-dots{display:flex;gap:8px}
+.sites-dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);transition:all .3s}
+.sites-dots i.on{background:var(--or);width:22px;border-radius:4px;box-shadow:0 0 10px rgba(232,83,26,.6)}
+@media(max-width:860px){.sites-grid{gap:14px;padding:20px 0 24px!important;margin:0!important}.sites-grid::before,.sites-grid::after{flex-basis:calc(50% - 41vw)}.sites-grid>.site-card{flex:0 0 82vw;max-width:none}.sites-nav{margin:0 0 60px}}
 </style>
 </head>
 <body>
@@ -593,6 +627,29 @@ html,body{overflow-x:hidden}#hero,.band{overflow:hidden}
   </div>
 </div>
 
+
+<!-- MINI FORM 3 -->
+<div class="mf-wrap reveal">
+  <form class="mf" onsubmit="return mfEnviar(this)">
+    <div class="mf-head"><span class="mf-bolt">⚡</span><span data-pt="Solicite uma proposta" data-en="Request a proposal">Solicite uma proposta</span></div>
+    <div class="mf-row">
+      <input type="text" name="nome" required autocomplete="name" data-pt-ph="Seu nome" data-en-ph="Your name" placeholder="Seu nome">
+      <input type="tel" name="whatsapp" required autocomplete="tel" inputmode="tel" data-pt-ph="(92) 9 9999-9999" data-en-ph="+55 (92) 9 9999-9999" placeholder="(92) 9 9999-9999">
+      <select name="servico" required>
+        <option value="" disabled selected data-pt="Selecione um serviço" data-en="Select a service">Selecione um serviço</option>
+        <option value="Funil completo" data-pt="Funil completo (5 etapas)" data-en="Full funnel (5 stages)">Funil completo (5 etapas)</option>
+        <option value="Tráfego pago" data-pt="Tráfego pago" data-en="Paid ads">Tráfego pago</option>
+        <option value="Site" data-pt="Site ou landing page" data-en="Website or landing page">Site ou landing page</option>
+        <option value="Atendimento" data-pt="Atendimento no WhatsApp" data-en="WhatsApp follow-up">Atendimento no WhatsApp</option>
+        <option value="Identidade visual" data-pt="Identidade visual" data-en="Brand identity">Identidade visual</option>
+        <option value="Outro" data-pt="Outro" data-en="Other">Outro</option>
+      </select>
+      <button type="submit" class="mf-btn"><span data-pt="Quero mais clientes →" data-en="I want more customers →">Quero mais clientes →</span></button>
+    </div>
+    <div class="mf-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg><span data-pt="Respondemos no mesmo dia útil, pelo WhatsApp. Sem compromisso." data-en="We reply the same business day, on WhatsApp. No commitment.">Respondemos no mesmo dia útil, pelo WhatsApp. Sem compromisso.</span></div>
+    <div class="mf-ok" data-pt="Recebido! Abrindo o WhatsApp para continuarmos por lá…" data-en="Got it! Opening WhatsApp so we can continue there…">Recebido! Abrindo o WhatsApp para continuarmos por lá…</div>
+  </form>
+</div>
 <!-- CTA -->
 <section id="contato">
   <div class="ctag1"></div><div class="ctag2"></div>
@@ -951,6 +1008,40 @@ document.addEventListener('keydown', function(e){
     if(h2)h2.style.transform='translate('+(px*-30)+'px,'+(py*-20)+'px)';
   },{passive:true});
   (function loop(){cx+=(tx-cx)*.12;cy+=(ty-cy)*.12;g.style.transform='translate('+(cx-260)+'px,'+(cy-260)+'px)';requestAnimationFrame(loop)})();
+})();
+</script>
+
+<script id="miniform-js">
+var RISE_CAPTA_SLUG='rise', RISE_CAPTA_TOKEN='COLE_AQUI_O_INGEST_TOKEN';
+function mfEnviar(f){
+  var en=document.documentElement.lang==='en';
+  var nome=f.nome.value.trim(),tel=f.whatsapp.value.trim(),serv=f.servico.value;
+  if(!nome||!tel||!serv)return false;
+  var btn=f.querySelector('.mf-btn');btn.disabled=true;
+  var origem=(location.pathname.indexOf('/portfolio')===0?'site-portfolio':'site-home');
+  var payload={slug:RISE_CAPTA_SLUG,token:RISE_CAPTA_TOKEN,nome:nome,contato:tel,origem:origem,respostas:[{texto:'Serviço de interesse',label:serv,pontos:0}],extra:{pagina:location.href,idioma:en?'en':'pt'}};
+  var done=function(){f.classList.add('sent');if(window.gtag)gtag('event','generate_lead',{servico:serv,origem:origem});
+    var msg=(en?'Hi, I came from the RISE website.':'Olá, vim pelo site da RISE.')+'\n'+(en?'Name':'Nome')+': '+nome+'\nWhatsApp: '+tel+'\n'+(en?'Interest':'Interesse')+': '+serv;
+    setTimeout(function(){window.open('https://wa.me/5592991755756?text='+encodeURIComponent(msg),'_blank')},600)};
+  if(RISE_CAPTA_TOKEN.indexOf('COLE_AQUI')===0){done();return false}
+  fetch('https://capta.riseagencia.com/api/capta-ingest',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(function(){done()}).catch(function(){done()});
+  return false;
+}
+// placeholders bilíngues
+(function(){var o=window.setLang;if(typeof o==='function'){window.setLang=function(l){o(l);document.querySelectorAll('[data-pt-ph]').forEach(function(i){i.placeholder=i.getAttribute('data-'+l+'-ph')});document.querySelectorAll('.mf option[data-pt]').forEach(function(op){op.textContent=op.getAttribute('data-'+l)})}}})();
+// carrossel de sites
+(function(){
+  var g=document.querySelector('.sites-grid');if(!g)return;
+  var cards=[].slice.call(g.querySelectorAll('.site-card'));
+  var nav=document.createElement('div');nav.className='sites-nav';nav.innerHTML='<button type="button" aria-label="Anterior">‹</button><div class="sites-dots">'+cards.map(function(){return '<i></i>'}).join('')+'</div><button type="button" aria-label="Próximo">›</button>';
+  g.parentNode.insertBefore(nav,g.nextSibling);
+  var dots=[].slice.call(nav.querySelectorAll('.sites-dots i')),cur=0;
+  function goTo(i){cur=Math.max(0,Math.min(cards.length-1,i));var c=cards[cur];g.scrollTo({left:c.offsetLeft-(g.clientWidth-c.offsetWidth)/2,behavior:'smooth'})}
+  function update(){var mid=g.scrollLeft+g.clientWidth/2,best=0,bd=1e9;cards.forEach(function(c,i){var d=Math.abs(c.offsetLeft+c.offsetWidth/2-mid);c.classList.toggle('center',false);if(d<bd){bd=d;best=i}});cards[best].classList.add('center');cur=best;dots.forEach(function(d,i){d.classList.toggle('on',i===best)})}
+  nav.children[0].onclick=function(){goTo(cur-1)};nav.children[2].onclick=function(){goTo(cur+1)};
+  dots.forEach(function(d,i){d.onclick=function(){goTo(i)}});
+  g.addEventListener('scroll',update,{passive:true});window.addEventListener('resize',update);
+  setTimeout(function(){goTo(0);update()},50);setTimeout(update,600);
 })();
 </script>
 </body>
