@@ -76,7 +76,7 @@ nav.sc{background:rgba(7,5,8,.88);backdrop-filter:blur(24px);border-bottom:1px s
 
 /* BAND */
 .band{position:relative;z-index:1;border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);padding:20px 0;overflow:hidden;background:rgba(255,255,255,.012)}
-.band-track{display:flex;animation:slide 24s linear infinite;white-space:nowrap}
+.band-track{display:flex;animation:slide 11s linear infinite;white-space:nowrap}
 .bitem{flex-shrink:0;padding:0 44px;font-size:12px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;color:var(--dr);display:flex;align-items:center;gap:44px}
 .bitem::after{content:'';width:3px;height:3px;border-radius:50%;background:var(--or);opacity:.55}
 @keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -447,6 +447,14 @@ html,body{overflow-x:hidden}.band{overflow:hidden}#hero{overflow:visible}
 .sites-dots i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);transition:all .3s}
 .sites-dots i.on{background:var(--or);width:22px;border-radius:4px;box-shadow:0 0 10px rgba(232,83,26,.6)}
 @media(max-width:860px){.sites-grid{gap:14px;padding:20px 0 40px!important;margin:0!important}.sites-grid::before,.sites-grid::after{flex-basis:calc(50% - 41vw)}.sites-grid>.site-card{flex:0 0 82vw;max-width:none}.sites-nav{margin:0 0 60px}}
+</style>
+
+<style id="fix-css">
+#sites-web{padding-top:0!important}
+@media(max-width:860px){
+  .prob-grid,.mgrid,.sgrid,.port-grid{touch-action:pan-x pan-y;overscroll-behavior-x:contain}
+  .prob-grid>*,.mgrid>*,.sgrid>*,.port-grid>*{transform:none!important}
+}
 </style>
 </head>
 <body>
