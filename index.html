@@ -385,12 +385,11 @@ footer{background:var(--bg2);border-top:1px solid var(--bd);padding:48px 60px;z-
 
 <style id="motion-css">
 /* ===== MOTION (mouse-follow, tilt, magnetic, parallax) ===== */
-.mfx{position:relative;transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s;will-change:transform}
-.mfx::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(255,140,80,.9),rgba(232,83,26,.25) 40%,transparent 70%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .35s;pointer-events:none;z-index:3}
-.mfx::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(232,83,26,.14),transparent 60%);opacity:0;transition:opacity .35s;pointer-events:none;z-index:1}
+.mfx{position:relative;isolation:isolate;transform-style:preserve-3d;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s;will-change:transform}
+.mfx::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:radial-gradient(260px circle at var(--mx,50%) var(--my,50%),rgba(255,140,80,.9),rgba(232,83,26,.25) 40%,transparent 70%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .35s;pointer-events:none;z-index:-1}
+.mfx::after{content:"";position:absolute;inset:0;border-radius:inherit;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(232,83,26,.14),transparent 60%);opacity:0;transition:opacity .35s;pointer-events:none;z-index:-1}
 .mfx.hov::before,.mfx.hov::after{opacity:1}
 .mfx.hov{box-shadow:0 30px 80px -30px rgba(232,83,26,.45),0 20px 40px -20px rgba(0,0,0,.6)}
-.mfx>*{position:relative;z-index:2}
 .mag{transition:transform .25s cubic-bezier(.2,.7,.2,1)}
 #cursor-glow{position:fixed;left:0;top:0;width:520px;height:520px;border-radius:50%;pointer-events:none;z-index:0;background:radial-gradient(circle,rgba(232,83,26,.16),rgba(232,83,26,.06) 35%,transparent 65%);filter:blur(30px);transform:translate(-50%,-50%);opacity:0;transition:opacity .6s;mix-blend-mode:screen}
 body.has-cursor #cursor-glow{opacity:1}
@@ -399,6 +398,21 @@ body.has-cursor #cursor-glow{opacity:1}
 @keyframes shine{to{background-position:200% 0}}
 .reveal{transition-timing-function:cubic-bezier(.2,.7,.2,1)!important}
 @media (hover:none),(prefers-reduced-motion:reduce){.mfx::before,.mfx::after,#cursor-glow{display:none}.mfx,.mag,.hg1,.hg2{transform:none!important}.htitle .acc{animation:none}}
+</style>
+
+<style id="mobile-carousel-css">
+@media(max-width:860px){
+  body{overflow-x:hidden}
+  div[style*="max-width:960px"],div[style*="max-width:1240px"]{padding-left:24px!important;padding-right:24px!important}
+  .prob-grid,.mgrid,.port-grid,.sites-grid{display:flex!important;grid-template-columns:none!important;overflow-x:auto;overflow-y:hidden;gap:14px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:4px 24px 18px;margin-left:-24px;margin-right:-24px;scrollbar-width:none}
+  .prob-grid::-webkit-scrollbar,.mgrid::-webkit-scrollbar,.port-grid::-webkit-scrollbar,.sites-grid::-webkit-scrollbar{display:none}
+  .prob-grid>*,.mgrid>*,.port-grid>*,.sites-grid>*{flex:0 0 82%;max-width:82%;scroll-snap-align:center}
+  .port-grid>.port-item.lg{flex-basis:82%;grid-column:auto!important;grid-row:auto!important}
+  .prob-grid>*.reveal,.mgrid>*.reveal,.port-grid>*.reveal,.sites-grid>*.reveal{transition-delay:0s!important}
+  .carousel-hint{display:block;text-align:center;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dm);margin-top:6px}
+}
+.carousel-hint{display:none}
+html,body{overflow-x:hidden}#hero,.band{overflow:hidden}
 </style>
 </head>
 <body>
@@ -486,18 +500,18 @@ body.has-cursor #cursor-glow{opacity:1}
 
 <!-- BAND -->
 <div class="band"><div class="band-track">
-  <div class="bitem" data-pt="Identidade Visual" data-en="Visual Identity">Identidade Visual</div>
-  <div class="bitem" data-pt="Branding Estratégico" data-en="Strategic Branding">Branding Estratégico</div>
-  <div class="bitem" data-pt="Presença Digital" data-en="Digital Presence">Presença Digital</div>
-  <div class="bitem" data-pt="Posicionamento de Marca" data-en="Brand Positioning">Posicionamento de Marca</div>
-  <div class="bitem" data-pt="Gestão de Redes" data-en="Social Media">Gestão de Redes</div>
-  <div class="bitem" data-pt="Comunicação Estratégica" data-en="Strategic Communication">Comunicação Estratégica</div>
-  <div class="bitem" data-pt="Identidade Visual" data-en="Visual Identity">Identidade Visual</div>
-  <div class="bitem" data-pt="Branding Estratégico" data-en="Strategic Branding">Branding Estratégico</div>
-  <div class="bitem" data-pt="Presença Digital" data-en="Digital Presence">Presença Digital</div>
-  <div class="bitem" data-pt="Posicionamento de Marca" data-en="Brand Positioning">Posicionamento de Marca</div>
-  <div class="bitem" data-pt="Gestão de Redes" data-en="Social Media">Gestão de Redes</div>
-  <div class="bitem" data-pt="Comunicação Estratégica" data-en="Strategic Communication">Comunicação Estratégica</div>
+  <div class="bitem" data-pt="Marketing de Conversão" data-en="Conversion Marketing">Marketing de Conversão</div>
+  <div class="bitem" data-pt="Tráfego Pago" data-en="Paid Ads">Tráfego Pago</div>
+  <div class="bitem" data-pt="Sites que Convertem" data-en="Websites that Convert">Sites que Convertem</div>
+  <div class="bitem" data-pt="Captação de Leads" data-en="Lead Capture">Captação de Leads</div>
+  <div class="bitem" data-pt="Atendimento no WhatsApp" data-en="WhatsApp Follow-up">Atendimento no WhatsApp</div>
+  <div class="bitem" data-pt="Conversão em Vendas" data-en="Sales Conversion">Conversão em Vendas</div>
+  <div class="bitem" data-pt="Marketing de Conversão" data-en="Conversion Marketing">Marketing de Conversão</div>
+  <div class="bitem" data-pt="Tráfego Pago" data-en="Paid Ads">Tráfego Pago</div>
+  <div class="bitem" data-pt="Sites que Convertem" data-en="Websites that Convert">Sites que Convertem</div>
+  <div class="bitem" data-pt="Captação de Leads" data-en="Lead Capture">Captação de Leads</div>
+  <div class="bitem" data-pt="Atendimento no WhatsApp" data-en="WhatsApp Follow-up">Atendimento no WhatsApp</div>
+  <div class="bitem" data-pt="Conversão em Vendas" data-en="Sales Conversion">Conversão em Vendas</div>
 </div></div>
 
 <!-- PROBLEMA -->
