@@ -591,6 +591,8 @@ html,body{overflow-x:hidden}.band{overflow:hidden}#hero{overflow:visible}
       <button type="submit" class="mf-btn"><span data-pt="Quero mais clientes →" data-en="I want more customers →">Quero mais clientes →</span></button>
     </div>
     <div class="mf-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg><span data-pt="Respondemos no mesmo dia útil, pelo WhatsApp. Sem compromisso." data-en="We reply the same business day, on WhatsApp. No commitment.">Respondemos no mesmo dia útil, pelo WhatsApp. Sem compromisso.</span></div>
+    <div class="mf-note" style="margin-top:8px;font-size:12px"><span data-pt="Ao enviar, você autoriza a RISE a entrar em contato por WhatsApp ou telefone sobre a sua solicitação. Veja a <a href='/privacidade/' style='color:inherit;text-decoration:underline'>Política de Privacidade</a>." data-en="By submitting, you allow RISE to contact you by WhatsApp or phone about your request. See the <a href='/privacidade/' style='color:inherit;text-decoration:underline'>Privacy Policy</a>.">Ao enviar, você autoriza a RISE a entrar em contato por WhatsApp ou telefone sobre a sua solicitação. Veja a <a href="/privacidade/" style="color:inherit;text-decoration:underline">Política de Privacidade</a>.</span></div>
+    <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
     <div class="mf-ok" data-pt="Recebido! Abrindo o WhatsApp para continuarmos por lá…" data-en="Got it! Opening WhatsApp so we can continue there…">Recebido! Abrindo o WhatsApp para continuarmos por lá…</div>
   </form>
 </div>
@@ -837,6 +839,8 @@ html,body{overflow-x:hidden}.band{overflow:hidden}#hero{overflow:visible}
       <button type="submit" class="mf-btn"><span data-pt="Quero mais clientes →" data-en="I want more customers →">Quero mais clientes →</span></button>
     </div>
     <div class="mf-note"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/></svg><span data-pt="Respondemos no mesmo dia útil, pelo WhatsApp. Sem compromisso." data-en="We reply the same business day, on WhatsApp. No commitment.">Respondemos no mesmo dia útil, pelo WhatsApp. Sem compromisso.</span></div>
+    <div class="mf-note" style="margin-top:8px;font-size:12px"><span data-pt="Ao enviar, você autoriza a RISE a entrar em contato por WhatsApp ou telefone sobre a sua solicitação. Veja a <a href='/privacidade/' style='color:inherit;text-decoration:underline'>Política de Privacidade</a>." data-en="By submitting, you allow RISE to contact you by WhatsApp or phone about your request. See the <a href='/privacidade/' style='color:inherit;text-decoration:underline'>Privacy Policy</a>.">Ao enviar, você autoriza a RISE a entrar em contato por WhatsApp ou telefone sobre a sua solicitação. Veja a <a href="/privacidade/" style="color:inherit;text-decoration:underline">Política de Privacidade</a>.</span></div>
+    <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
     <div class="mf-ok" data-pt="Recebido! Abrindo o WhatsApp para continuarmos por lá…" data-en="Got it! Opening WhatsApp so we can continue there…">Recebido! Abrindo o WhatsApp para continuarmos por lá…</div>
   </form>
 </div>
@@ -1202,19 +1206,20 @@ document.addEventListener('keydown', function(e){
 </script>
 
 <script id="miniform-js">
-var RISE_CAPTA_SLUG='rise', RISE_CAPTA_TOKEN='COLE_AQUI_O_INGEST_TOKEN';
+var MF_T0=Date.now();
+function mfUtm(){var q=new URLSearchParams(location.search),o={};['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'].forEach(function(k){if(q.get(k))o[k]=q.get(k)});o.referrer=document.referrer||'';o.landing=location.href;return o}
 function mfEnviar(f){
   var en=document.documentElement.lang==='en';
   var nome=f.nome.value.trim(),tel=f.whatsapp.value.trim(),serv=f.servico.value;
   if(!nome||!tel||!serv)return false;
   var btn=f.querySelector('.mf-btn');btn.disabled=true;
   var origem=(location.pathname.indexOf('/portfolio')===0?'site-portfolio':'site-home');
-  var payload={slug:RISE_CAPTA_SLUG,token:RISE_CAPTA_TOKEN,nome:nome,contato:tel,origem:origem,respostas:[{texto:'Serviço de interesse',label:serv,pontos:0}],extra:{pagina:location.href,idioma:en?'en':'pt'}};
+  var payload={nome:nome,whatsapp:tel,servico:serv,origem:origem,pagina:location.href,utm:mfUtm(),website:f.website?f.website.value:'',t:Date.now()-MF_T0};
   var done=function(){f.classList.add('sent');if(window.gtag)gtag('event','generate_lead',{servico:serv,origem:origem});
     var msg=(en?'Hi, I came from the RISE website.':'Olá, vim pelo site da RISE.')+'\n'+(en?'Name':'Nome')+': '+nome+'\nWhatsApp: '+tel+'\n'+(en?'Interest':'Interesse')+': '+serv;
     setTimeout(function(){window.open('https://wa.me/5592991755756?text='+encodeURIComponent(msg),'_blank')},600)};
-  if(RISE_CAPTA_TOKEN.indexOf('COLE_AQUI')===0){done();return false}
-  fetch('https://capta.riseagencia.com/api/capta-ingest',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(function(){done()}).catch(function(){done()});
+  // O envio ao Capta passa pelo servidor (o token fica lá). Se falhar, o WhatsApp abre do mesmo jeito.
+  fetch('/api/home-lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(function(){done()}).catch(function(){done()});
   return false;
 }
 // placeholders bilíngues
