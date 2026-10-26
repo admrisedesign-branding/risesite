@@ -55,7 +55,7 @@ a{color:inherit}
 .acc{background:linear-gradient(100deg,var(--or),#ff9966);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 
 /* hero: promessa à esquerda, formulário já visível à direita */
-.hero{position:relative;padding:calc(68px + clamp(32px,6vw,72px)) 0 clamp(48px,8vw,96px)}
+.hero{position:relative;overflow-x:clip;padding:calc(68px + clamp(32px,6vw,72px)) 0 clamp(48px,8vw,96px)}
 .hero::before{content:'';position:absolute;width:760px;height:760px;max-width:120vw;border-radius:50%;background:radial-gradient(ellipse,rgba(232,83,26,.18) 0%,transparent 65%);top:-8%;left:-12%;pointer-events:none}
 .hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.92fr);gap:clamp(28px,5vw,72px);align-items:start}
 .badge{display:inline-flex;align-items:center;gap:8px;background:var(--os);border:1px solid rgba(232,83,26,.22);color:#ff8a5c;font-size:.75rem;font-weight:600;letter-spacing:.4px;padding:6px 16px;border-radius:100px;margin-bottom:22px}
