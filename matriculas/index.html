@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico gratuito do funil da sua escola | RISE</title>
+<meta name="description" content="Diagnóstico gratuito de 20 a 30 minutos para escolas e cursos de Manaus: descubra onde o caminho do anúncio à matrícula perde contatos antes das matrículas de 2027.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://riseagencia.com/matriculas/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RISE">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://riseagencia.com/matriculas/">
+<meta property="og:title" content="Descubra onde o funil da sua escola perde matrículas">
+<meta property="og:description" content="Diagnóstico gratuito de 20 a 30 minutos para escolas e cursos de Manaus. Matrículas 2027.">
+<meta property="og:image" content="https://riseagencia.com/og.png">
+<meta name="theme-color" content="#070508">
+<link rel="icon" type="image/png" href="https://riseagencia.com/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#070508;--ink2:#100c10;--line:rgba(242,237,232,.12);
+  --tx:#f2ede8;--dm:rgba(242,237,232,.68);--dr:rgba(242,237,232,.46);
+  --or:#E8531A;--or-d:#b83f12;
+  --paper:#f2ede8;--paper-tx:#1a1416;--paper-dm:#5c5256;--paper-line:#cdc3bc;
+  --gut:clamp(20px,5vw,56px);--max:1120px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--ink);color:var(--tx);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--or);outline-offset:3px;border-radius:4px}
+.wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+
+/* topo */
+.topo{display:flex;align-items:center;justify-content:space-between;padding:20px 0}
+.marca{font-weight:800;font-size:1.5rem;letter-spacing:-.04em;text-decoration:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;font:inherit;font-weight:700;font-size:1rem;letter-spacing:-.01em;background:var(--or);color:var(--ink);border:0;border-radius:100px;padding:15px 30px;text-decoration:none;cursor:pointer;transition:background .2s,transform .2s}
+.btn:hover{background:#f06a35}
+.btn:active{transform:translateY(1px)}
+.btn--p{padding:10px 22px;font-size:.9375rem}
+.btn--wa{background:transparent;color:var(--paper-tx);border:1.5px solid var(--paper-tx)}
+.btn--wa:hover{background:rgba(26,20,22,.07)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(32px,6vw,80px);align-items:center;padding:clamp(40px,8vw,104px) 0 clamp(56px,9vw,120px)}
+.hero h1{font-size:clamp(2.35rem,5.6vw,4.35rem);line-height:1.03;font-weight:800;letter-spacing:-.04em;max-width:15ch}
+.hero p{margin-top:24px;color:var(--dm);font-size:clamp(1.0625rem,1.6vw,1.25rem);max-width:44ch}
+.hero .acao{margin-top:36px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
+.hero .nota{color:var(--dr);font-size:.9375rem}
+
+/* funil desenhado: a peça marcante */
+.funil{list-style:none;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+.funil li{height:58px;border-radius:10px;display:flex;align-items:center;padding:0 20px;font-weight:700;font-size:1rem;letter-spacing:-.01em;width:var(--w);background:var(--c);color:var(--k,var(--tx));transform-origin:left center;animation:cresce .7s cubic-bezier(.2,.7,.2,1) both;animation-delay:calc(var(--i)*110ms + 150ms)}
+.funil li:nth-child(1){--w:100%;--c:#1d1618;--i:0}
+.funil li:nth-child(2){--w:84%;--c:#2b1c19;--i:1}
+.funil li:nth-child(3){--w:68%;--c:#4a2518;--i:2}
+.funil li:nth-child(4){--w:52%;--c:#8a3414;--i:3}
+.funil li:nth-child(5){--w:36%;--c:var(--or);--k:var(--ink);--i:4}
+@keyframes cresce{from{transform:scaleX(.08);opacity:0}to{transform:scaleX(1);opacity:1}}
+
+/* seções */
+section{padding:clamp(56px,8vw,104px) 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(1.75rem,3.6vw,2.75rem);line-height:1.1;font-weight:800;letter-spacing:-.035em;max-width:20ch}
+.lead{margin-top:18px;color:var(--dm);max-width:56ch}
+.dois{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,6vw,88px)}
+
+/* problemas */
+.lista{list-style:none}
+.lista li{padding:22px 0;border-top:1px solid var(--line)}
+.lista li:first-child{border-top:0;padding-top:0}
+.lista strong{display:block;font-size:1.1875rem;letter-spacing:-.02em;margin-bottom:4px}
+.lista span{color:var(--dm);display:block;max-width:56ch}
+
+/* método: aqui a ordem importa, então a numeração tem função */
+.etapas{list-style:none;margin-top:44px;counter-reset:e}
+.etapas li{display:grid;grid-template-columns:64px minmax(0,1fr);gap:8px 20px;padding:26px 0;border-top:1px solid var(--line);counter-increment:e}
+.etapas li::before{content:counter(e);font-size:2.25rem;line-height:1;font-weight:800;letter-spacing:-.04em;color:var(--or)}
+.etapas strong{font-size:1.3125rem;letter-spacing:-.025em;display:block}
+.etapas span{color:var(--dm);display:block;margin-top:4px;max-width:58ch}
+
+/* prova */
+.prova p{max-width:60ch;color:var(--dm)}
+.prova p+p{margin-top:16px}
+.prova strong{color:var(--tx)}
+
+/* diagnóstico */
+.recebe{list-style:none}
+.recebe li{padding:18px 0 18px 30px;border-top:1px solid var(--line);position:relative;max-width:60ch}
+.recebe li:first-child{border-top:0;padding-top:0}
+.recebe li::before{content:"";position:absolute;left:0;top:30px;width:12px;height:12px;border-radius:50%;background:var(--or)}
+.recebe li:first-child::before{top:12px}
+
+/* formulário: única superfície clara */
+.form-sec{border-top:0;padding-top:0}
+.cartao{background:var(--paper);color:var(--paper-tx);border-radius:24px;padding:clamp(24px,5vw,56px);display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(24px,5vw,64px)}
+.cartao h2{max-width:12ch}
+.cartao .lead{color:var(--paper-dm)}
+.campo{margin-bottom:18px}
+.campo label,.campo legend{display:block;font-weight:700;font-size:.9375rem;margin-bottom:7px}
+.campo input[type=text],.campo input[type=tel]{width:100%;font:inherit;font-size:1rem;padding:13px 14px;border:1.5px solid var(--paper-line);border-radius:12px;background:#fff;color:var(--paper-tx)}
+.campo input::placeholder{color:#8b8185}
+fieldset.campo{border:0;min-width:0}
+.opcoes{display:flex;flex-wrap:wrap;gap:8px;position:relative}
+.opcoes input{position:absolute;opacity:0;pointer-events:none}
+.opcoes label{margin:0;font-weight:500;font-size:.9375rem;padding:10px 16px;border:1.5px solid var(--paper-line);border-radius:100px;background:#fff;cursor:pointer;transition:border-color .15s,background .15s}
+.opcoes label:hover{border-color:var(--paper-tx)}
+.opcoes input:checked+label{background:var(--paper-tx);border-color:var(--paper-tx);color:var(--paper)}
+.opcoes input:focus-visible+label{outline:3px solid var(--or);outline-offset:2px}
+.aceite{display:flex;gap:12px;align-items:flex-start;font-size:.875rem;color:var(--paper-dm);line-height:1.5;margin:6px 0 22px}
+.aceite input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--or-d)}
+.aceite a{color:var(--paper-tx)}
+.cartao .btn{width:100%;padding:17px 30px;font-size:1.0625rem}
+.cartao .btn[disabled]{opacity:.6;cursor:wait}
+.erro{color:#a1260b;font-weight:600;font-size:.9375rem;margin-top:14px;min-height:1.4em}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.ok{display:none}
+.ok h3{font-size:1.75rem;line-height:1.15;letter-spacing:-.03em;font-weight:800}
+.ok p{margin-top:12px;color:var(--paper-dm);max-width:44ch}
+.ok .btn{width:auto;margin-top:24px}
+.enviado .ok{display:block}
+.enviado form{display:none}
+
+footer{border-top:1px solid var(--line);padding:32px 0 48px;color:var(--dr);font-size:.9375rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px 24px}
+
+@media (max-width:820px){
+  .hero,.dois,.cartao{grid-template-columns:minmax(0,1fr)}
+  .hero h1{max-width:none}
+  .cartao h2{max-width:none}
+  .etapas li{grid-template-columns:44px minmax(0,1fr)}
+  .etapas li::before{font-size:1.75rem}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .funil li{animation:none}
+  .btn{transition:none}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="topo">
+    <a class="marca" href="https://riseagencia.com/" aria-label="RISE, página inicial">RISE</a>
+    <a class="btn btn--p" href="#diagnostico" data-cta="topo">Solicitar diagnóstico</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <h1>Descubra onde o funil da sua escola perde matrículas</h1>
+        <p>Um diagnóstico gratuito de 20 a 30 minutos para donos de escolas e cursos de Manaus que querem chegar preparados às matrículas de 2027.</p>
+        <div class="acao">
+          <a class="btn" href="#diagnostico" data-cta="hero">Solicitar diagnóstico</a>
+          <span class="nota">Gratuito e sem compromisso.</span>
+        </div>
+      </div>
+      <ol class="funil" aria-label="As cinco etapas do caminho do interessado até a matrícula">
+        <li>Tráfego</li>
+        <li>Site</li>
+        <li>Captação de leads</li>
+        <li>Atendimento</li>
+        <li>Conversão</li>
+      </ol>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap dois">
+      <div>
+        <h2>Onde as matrículas costumam se perder</h2>
+      </div>
+      <ul class="lista">
+        <li><strong>O clique não vira contato</strong><span>O anúncio leva para uma página que não explica a escola nem mostra o próximo passo.</span></li>
+        <li><strong>A mensagem fica sem resposta</strong><span>O interessado escreve à noite ou no fim de semana e só é respondido horas depois.</span></li>
+        <li><strong>Ninguém acompanha quem ficou de voltar</strong><span>Quem pediu um tempo para pensar não recebe um segundo contato, e a matrícula vai para outra escola.</span></li>
+        <li><strong>Os contatos ficam espalhados</strong><span>Conversas no WhatsApp, planilhas e cadernos: ninguém enxerga o processo inteiro.</span></li>
+        <li><strong>Ninguém sabe quanto o anúncio rende</strong><span>Sem registrar de onde cada contato veio, não dá para saber qual campanha trouxe matrícula.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>O Método RISE cuida do caminho inteiro</h2>
+      <p class="lead">Em vez de contratar tráfego, site e atendimento separados, a escola conta com uma equipe responsável pelas cinco etapas, na ordem em que o interessado as percorre.</p>
+      <ol class="etapas">
+        <li><div><strong>Tráfego</strong><span>Anúncios que levam pais e alunos para uma página feita para a matrícula.</span></div></li>
+        <li><div><strong>Site</strong><span>Uma página clara, com cursos, valores e o próximo passo à vista.</span></div></li>
+        <li><div><strong>Captação de leads</strong><span>Formulário curto que registra o contato e o anúncio de onde ele veio.</span></div></li>
+        <li><div><strong>Atendimento</strong><span>Resposta no WhatsApp e acompanhamento de quem ficou de voltar.</span></div></li>
+        <li><div><strong>Conversão</strong><span>Acompanhamento até a matrícula, para saber o que cada campanha trouxe.</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap dois prova">
+      <div>
+        <h2>Já funciona na prática</h2>
+      </div>
+      <div>
+        <p>O Método RISE foi montado primeiro para a <strong>My Robot Manaus</strong>. Tráfego, site, captação, atendimento e acompanhamento até a matrícula passaram a funcionar como um único funil, medido do anúncio à matrícula.</p>
+        <p>É esse mesmo modelo que a RISE aplica agora em outras escolas e cursos.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap dois">
+      <div>
+        <h2>O que a escola recebe no diagnóstico</h2>
+      </div>
+      <ul class="recebe">
+        <li>O caminho do interessado na sua escola, do anúncio à matrícula, desenhado etapa por etapa.</li>
+        <li>Os pontos em que você perde contatos hoje.</li>
+        <li>As prioridades para chegar organizado às matrículas de 2027.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="form-sec" id="diagnostico">
+    <div class="wrap">
+      <div class="cartao" id="cartao">
+        <div>
+          <h2>Solicitar diagnóstico</h2>
+          <p class="lead">Leva menos de um minuto. Depois, chamamos você no WhatsApp para combinar o horário.</p>
+        </div>
+        <div>
+          <form id="form" novalidate>
+            <div class="campo">
+              <label for="nome">Seu nome</label>
+              <input type="text" id="nome" name="nome" autocomplete="name" maxlength="120" required>
+            </div>
+            <div class="campo">
+              <label for="escola">Nome da escola ou curso</label>
+              <input type="text" id="escola" name="escola" autocomplete="organization" maxlength="120" required>
+            </div>
+            <div class="campo">
+              <label for="whatsapp">WhatsApp com DDD</label>
+              <input type="tel" id="whatsapp" name="whatsapp" inputmode="tel" autocomplete="tel-national" placeholder="(92) 99999-9999" maxlength="20" required>
+            </div>
+            <fieldset class="campo">
+              <legend>Qual é o principal desafio da escola hoje?</legend>
+              <div class="opcoes">
+                <input type="radio" id="d1" name="desafio" value="Receber mais interessados" required><label for="d1">Receber mais interessados</label>
+                <input type="radio" id="d2" name="desafio" value="Melhorar o atendimento"><label for="d2">Melhorar o atendimento</label>
+                <input type="radio" id="d3" name="desafio" value="Transformar contatos em matrículas"><label for="d3">Transformar contatos em matrículas</label>
+                <input type="radio" id="d4" name="desafio" value="Organizar o processo todo"><label for="d4">Organizar o processo todo</label>
+              </div>
+            </fieldset>
+            <fieldset class="campo">
+              <legend>Quando você quer começar?</legend>
+              <div class="opcoes">
+                <input type="radio" id="q1" name="quando" value="Imediatamente" required><label for="q1">Imediatamente</label>
+                <input type="radio" id="q2" name="quando" value="Em novembro ou dezembro"><label for="q2">Em novembro ou dezembro</label>
+                <input type="radio" id="q3" name="quando" value="Em 2027"><label for="q3">Em 2027</label>
+              </div>
+            </fieldset>
+            <div class="hp" aria-hidden="true"><label>Não preencha<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+            <label class="aceite" for="aceite">
+              <input type="checkbox" id="aceite" name="aceite" required>
+              <span>Autorizo a RISE Design &amp; Branding a entrar em contato comigo por WhatsApp ou telefone sobre o diagnóstico gratuito do funil da minha escola e a usar os dados que informei só para essa finalidade, conforme a <a href="/privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</span>
+            </label>
+            <button class="btn" type="submit" id="enviar">Solicitar diagnóstico</button>
+            <p class="erro" id="erro" role="alert"></p>
+          </form>
+          <div class="ok" id="ok" tabindex="-1">
+            <h3 id="ok-titulo">Pedido recebido.</h3>
+            <p>Vamos chamar você no WhatsApp para combinar o horário do diagnóstico.</p>
+            <a class="btn btn--wa" id="ok-wa" href="#" target="_blank" rel="noopener">Falar agora no WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>RISE, Manaus</span>
+    <a href="/privacidade/">Política de Privacidade</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Ajustes da campanha. Deixe o pixel vazio até existir um pixel PRÓPRIO da RISE (nunca o de outro cliente).
+  var CFG={endpoint:'/api/matriculas-lead',whatsapp:'5592991755756',pixel:''};
+
+  var KEYS=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'];
+  function atribuicao(){
+    var saved={};
+    try{saved=JSON.parse(sessionStorage.getItem('rise_mat_utm')||'{}')}catch(e){}
+    var q=new URLSearchParams(location.search),mudou=false;
+    KEYS.forEach(function(k){var v=q.get(k);if(v){saved[k]=v.slice(0,300);mudou=true}});
+    if(!saved.landing){saved.landing=location.href.split('#')[0].slice(0,500);saved.referrer=(document.referrer||'').slice(0,500);mudou=true}
+    if(mudou){try{sessionStorage.setItem('rise_mat_utm',JSON.stringify(saved))}catch(e){}}
+    return saved;
+  }
+  var utm=atribuicao(), t0=Date.now();
+
+  // Pixel próprio da RISE, só se configurado
+  if(CFG.pixel){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init',CFG.pixel);fbq('track','PageView');
+  }
+
+  var form=document.getElementById('form'),erro=document.getElementById('erro'),btn=document.getElementById('enviar'),cartao=document.getElementById('cartao');
+  var fone=document.getElementById('whatsapp');
+  fone.addEventListener('input',function(){
+    var d=fone.value.replace(/\D/g,'').slice(0,11),s=d;
+    if(d.length>2)s='('+d.slice(0,2)+') '+d.slice(2,d.length>10?7:6)+(d.length>(d.length>10?7:6)?'-'+d.slice(d.length>10?7:6):'');
+    fone.value=s;
+  });
+
+  function falha(msg,campo){erro.textContent=msg;if(campo){var el=form.elements[campo];if(el&&el.focus)el.focus()}}
+
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();erro.textContent='';
+    var f=form.elements;
+    var nome=f.nome.value.trim(),escola=f.escola.value.trim(),digitos=f.whatsapp.value.replace(/\D/g,'');
+    var desafio=(form.querySelector('input[name=desafio]:checked')||{}).value,quando=(form.querySelector('input[name=quando]:checked')||{}).value;
+    if(nome.length<2)return falha('Informe seu nome.','nome');
+    if(escola.length<2)return falha('Informe o nome da escola ou curso.','escola');
+    if(digitos.length<10)return falha('Informe o WhatsApp com DDD.','whatsapp');
+    if(!desafio)return falha('Escolha o principal desafio da escola.','d1');
+    if(!quando)return falha('Escolha quando você quer começar.','q1');
+    if(!f.aceite.checked)return falha('Marque a autorização para receber o contato da RISE.','aceite');
+
+    btn.disabled=true;btn.textContent='Enviando…';
+    fetch(CFG.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      nome:nome,escola:escola,whatsapp:digitos,desafio:desafio,quando:quando,consentimento:true,
+      website:f.website.value,t:Date.now()-t0,utm:utm,pagina:location.href.slice(0,300)
+    })}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||!j.ok)throw new Error(j.erro||'falha')})})
+    .then(function(){
+      if(window.gtag)gtag('event','generate_lead',{origem:'matriculas_2027'});
+      if(window.fbq)fbq('track','Lead');
+      document.getElementById('ok-titulo').textContent='Pedido recebido, '+nome.split(' ')[0]+'.';
+      document.getElementById('ok-wa').href='https://wa.me/'+CFG.whatsapp+'?text='+encodeURIComponent('Olá, pedi o diagnóstico gratuito para a escola '+escola+'.');
+      cartao.classList.add('enviado');
+      var ok=document.getElementById('ok');ok.focus();
+    })
+    .catch(function(){
+      btn.disabled=false;btn.textContent='Solicitar diagnóstico';
+      falha('Não foi possível enviar agora. Tente de novo em instantes ou chame a RISE no WhatsApp.');
+    });
+  });
+
+  // medir cliques nos botões de chamada
+  [].forEach.call(document.querySelectorAll('[data-cta]'),function(a){a.addEventListener('click',function(){if(window.gtag)gtag('event','cta_click',{local:a.getAttribute('data-cta')})})});
+})();
+</script>
+</body>
+</html>
