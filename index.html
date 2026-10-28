@@ -76,6 +76,13 @@ nav.sc{background:rgba(7,5,8,.88);backdrop-filter:blur(24px);border-bottom:1px s
 .hg2{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(ellipse,rgba(100,30,160,.12) 0%,transparent 65%);bottom:-100px;right:-100px;pointer-events:none}
 @keyframes float1{0%,100%{transform:translate(-50%,-60%) scale(1)}50%{transform:translate(-50%,-60%) scale(1.07)}}
 .hero-inner{position:relative;z-index:2;max-width:820px;width:100%}
+.hnote{display:inline-flex;align-items:center;gap:10px;margin-bottom:18px;padding:9px 16px;border-radius:100px;border:1px solid rgba(232,83,26,.38);background:var(--os);color:var(--tx);font-size:13px;font-weight:500;text-decoration:none;line-height:1.35;transition:border-color .2s,background .2s}
+.hnote:hover{border-color:var(--or);background:rgba(232,83,26,.18)}
+.hnote b{color:var(--or);font-weight:700;letter-spacing:.3px;white-space:nowrap}
+.hnote i{font-style:normal;color:var(--or)}
+@media(max-width:600px){.hnote{font-size:12.5px;padding:9px 14px;text-align:left;max-width:100%}}
+.hero-inner .hnote{animation:fadeInUp .6s ease both;animation-delay:.05s}
+
 .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(232,83,26,.1);border:1px solid rgba(232,83,26,.22);color:#ff7a4a;font-size:12px;font-weight:600;letter-spacing:.4px;padding:6px 16px;border-radius:100px;margin-bottom:32px;backdrop-filter:blur(8px)}
 .bdot{width:6px;height:6px;border-radius:50%;background:#ff7a4a;animation:blink 2s infinite;flex-shrink:0}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
@@ -531,6 +538,7 @@ fbq('init','830244490126610');fbq('track','PageView');
     <li><a href="#projeto" data-pt="Projeto" data-en="Project">Projeto</a></li>
     <li><a href="#sites-web" data-pt="Sites" data-en="Sites">Sites</a></li>
     <li><a href="#sobre" data-pt="Sobre" data-en="About">Sobre</a></li>
+    <li><a href="/matriculas/" data-pt="Escolas" data-en="Schools">Escolas</a></li>
     <li><a href="/portfolio/" data-pt="Portfólio" data-en="Portfolio">Portfólio</a></li>
     <li><a href="/blog/" data-pt="Blog" data-en="Blog">Blog</a></li>
   </ul>
@@ -550,6 +558,7 @@ fbq('init','830244490126610');fbq('track','PageView');
   <a href="#projeto" onclick="closeMenu()" data-pt="Projeto" data-en="Project">Projeto</a>
   <a href="#sites-web" onclick="closeMenu()" data-pt="Sites" data-en="Sites">Sites</a>
   <a href="#sobre" onclick="closeMenu()" data-pt="Sobre" data-en="About">Sobre</a>
+  <a href="/matriculas/" data-pt="Escolas" data-en="Schools">Escolas</a>
   <a href="/portfolio/" data-pt="Portfólio" data-en="Portfolio">Portfólio</a>
   <a href="/blog/" data-pt="Blog" data-en="Blog">Blog</a>
   <a href="https://wa.me/5592991755756" class="mob-cta" target="_blank" data-pt="Falar com a Rise" data-en="Talk to Rise">Falar com a Rise</a>
@@ -563,6 +572,7 @@ fbq('init','830244490126610');fbq('track','PageView');
 <section id="hero">
   <div class="hg1"></div><div class="hg2"></div>
   <div class="hero-inner">
+    <a class="hnote" href="/matriculas/" onclick="if(window.gtag)gtag('event','cta_click',{origem:'home_matriculas'})"><b data-pt="Matrículas 2027" data-en="2027 Enrollment">Matrículas 2027</b><span data-pt="Diagnóstico gratuito para escolas e cursos de Manaus" data-en="Free funnel diagnosis for schools and courses in Manaus">Diagnóstico gratuito para escolas e cursos de Manaus</span><i>→</i></a><br>
     <div class="badge"><span class="bdot"></span><span data-pt="Marketing de Conversão" data-en="Conversion Marketing">Marketing de Conversão</span></div>
     <h1 class="htitle" data-pt="Mais clientes<br><span class='acc'>para a sua empresa.</span><br>Do anúncio ao fechamento." data-en="More customers<br><span class='acc'>for your business.</span><br>From the ad to the close.">Mais clientes<br><span class="acc">para a sua empresa.</span><br>Do anúncio ao fechamento.</h1>
     <p class="hsub" data-pt="Cuidamos do funil inteiro do seu negócio — tráfego, site, captação, atendimento e conversão — para que você receba clientes prontos para fechar." data-en="We own your entire funnel — ads, website, lead capture, follow-up and conversion — so you receive customers ready to close.">Cuidamos do funil inteiro do seu negócio — tráfego, site, captação, atendimento e conversão — para que você receba clientes prontos para fechar.</p>
