@@ -86,7 +86,7 @@ module.exports = async function handler(req, res) {
       { texto: PERGUNTA_DESAFIO, label: desafio, pontos: DESAFIO[desafio] },
       { texto: PERGUNTA_QUANDO, label: quando, pontos: QUANDO[quando] },
     ],
-    extra: { escola, fonte: utm.utm_source || origem, notas: 'Landing Matrículas 2027' },
+    extra: { escola, fonte: utm.utm_source || origem, notas: body.campanha === 'blackfriday_2026' ? 'Landing Black Friday 2026 (implantação do Capta sem custo se fechar até 30/11)' : 'Landing Matrículas 2027' },
     utm,
     consentimento: { contato: true, canal: 'site', versao: CONSENT_VERSAO, texto: CONSENT_TEXTO, url: txt(body.pagina, 300) },
   };
