@@ -140,6 +140,30 @@ footer p{font-size:.9375rem;line-height:1.6;max-width:420px}
 footer ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:center;font-size:.875rem}
 footer a{text-decoration:underline}
 
+/* contagem */
+.contagem{background:var(--bg2);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
+.contagem .wrap{padding-top:28px;padding-bottom:28px;display:flex;flex-wrap:wrap;gap:18px 32px;align-items:center;justify-content:center;text-align:center}
+.contagem p{font-weight:700;font-size:1rem;color:var(--dm)}
+.contagem p b{color:var(--or)}
+.tempo{display:flex;gap:10px}
+.tempo div{min-width:68px;background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:10px 8px;display:flex;flex-direction:column;align-items:center}
+.tempo strong{font-size:1.75rem;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+.tempo span{font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dr)}
+/* faq */
+.faq .wrap{max-width:760px;padding-top:72px;padding-bottom:72px;display:flex;flex-direction:column;gap:24px}
+.faq details{background:var(--sf);border:1px solid var(--bd);border-radius:18px;padding:0 22px}
+.faq summary{list-style:none;cursor:pointer;min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-weight:700;font-size:1.0625rem;padding:14px 0}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--or);font-size:1.5rem;font-weight:500;flex:none}
+.faq details[open] summary::after{content:"\2212"}
+.faq details p{padding:0 0 18px;font-size:1rem;line-height:1.65;color:var(--dm)}
+.faq-lista{display:flex;flex-direction:column;gap:10px}
+/* whatsapp fixo */
+.zap{position:fixed;right:16px;bottom:16px;z-index:50;display:inline-flex;align-items:center;gap:8px;min-height:52px;padding:0 20px;border-radius:999px;background:var(--bg2);border:1.5px solid var(--or);color:var(--tx);font-weight:800;font-size:.9375rem;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.zap svg{width:20px;height:20px;fill:var(--or);flex:none}
+footer{padding-bottom:96px}
+
+@media (max-width:700px){.tiles{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(var(--gut) * -1);padding:4px var(--gut) 16px;-webkit-overflow-scrolling:touch}.tile{flex:0 0 68vw;max-width:none;scroll-snap-align:start}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.barra i{transition:none}}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZZ46BRRSL"></script>
@@ -173,6 +197,18 @@ footer a{text-decoration:underline}
     </div>
   </div>
 </header>
+
+<section class="contagem" aria-label="Contagem regressiva para a Black Friday">
+  <div class="wrap">
+    <p>Black Friday em <b>27/11</b>. Vagas limitadas para as vitrines.</p>
+    <div class="tempo" id="tempo" role="timer" aria-live="off">
+      <div><strong id="t-d">--</strong><span>dias</span></div>
+      <div><strong id="t-h">--</strong><span>horas</span></div>
+      <div><strong id="t-m">--</strong><span>min</span></div>
+      <div><strong id="t-s">--</strong><span>seg</span></div>
+    </div>
+  </div>
+</section>
 
 <section class="ramos">
   <div class="wrap">
@@ -233,6 +269,20 @@ footer a{text-decoration:underline}
     <div class="promo">
       <h3>Black Friday RISE: serviços pela metade do preço</h3>
       <p>Captação de vídeo, artes, gestão de tráfego e site têm valor próprio. Na Black Friday, você paga metade do preço da nossa tabela. A condição da sua vitrine eu combino com você pelo WhatsApp.</p>
+    </div>
+  </div>
+</section>
+
+<section class="faq">
+  <div class="wrap">
+    <h2 class="titulo">Perguntas frequentes</h2>
+    <div class="faq-lista">
+      <details><summary>Quanto custa a vitrine?</summary><p>Você escolhe entre dois modelos: um valor fixo de pacote de Black Friday, ou sem custo inicial, com um percentual sobre as vendas que a vitrine gerar. No diagnóstico você diz qual prefere, e eu explico no WhatsApp qual vale mais a pena para o seu momento.</p></details>
+      <details><summary>O diagnóstico é gratuito?</summary><p>Sim. Responder o diagnóstico não custa nada e não te obriga a nada. Eu leio as suas respostas e te chamo no WhatsApp com uma sugestão.</p></details>
+      <details><summary>O que acontece depois que eu respondo?</summary><p>Eu analiso o seu negócio, sugiro a oferta de Black Friday que faz mais sentido e te chamo no WhatsApp para combinarmos as condições e os prazos. A ideia é você chegar à Black Friday com tudo pronto para divulgar.</p></details>
+      <details><summary>Preciso ter site ou Instagram?</summary><p>Não. Se você ainda não tem, a vitrine já resolve a parte digital. Se você já tem Instagram, ele entra como a principal porta de divulgação.</p></details>
+      <details><summary>O que é o Capta?</summary><p>É o painel da RISE onde chegam os contatos de quem se interessou pela sua vitrine. Quem faz a vitrine ganha acesso, para acompanhar cada contato e organizar as vendas.</p></details>
+      <details><summary>Qual a diferença entre orgânico e tráfego pago?</summary><p>Orgânico é divulgar sem pagar anúncio, no seu Instagram, nos Stories e no WhatsApp. Tráfego pago é investir em anúncios para a vitrine chegar a quem ainda não te conhece, inclusive em outros estados. O valor dos anúncios é pago à parte, direto à plataforma.</p></details>
     </div>
   </div>
 </section>
@@ -366,6 +416,8 @@ footer a{text-decoration:underline}
   <span style="font-size:.8125rem">© 2026 RISE, Manaus</span>
 </footer>
 
+<a class="zap" href="https://wa.me/5592991755756?text=Oi!%20Tenho%20uma%20d%C3%BAvida%20sobre%20a%20vitrine%20de%20Black%20Friday." target="_blank" rel="noopener" data-cta="zap" aria-label="Tirar uma dúvida no WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.300 1.200-1.800 1.200-.5.1-1 .2-3.300-.7-2.800-1.100-4.600-4-4.700-4.200-.1-.2-1.100-1.500-1.100-2.800s.7-2 1-2.300c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500l.8 2c.1.2.1.4 0 .5l-.4.600-.3.400c-.1.100-.3.300-.1.600.2.300.8 1.300 1.700 2.100 1.200 1 2.100 1.300 2.400 1.500.3.100.5.100.6-.1l.9-1.100c.2-.3.400-.2.700-.1l1.900.9c.3.1.5.2.5.400.1.100.1.700-.1 1.300z"/></svg>Tirar uma dúvida</a>
+
 <script>
 (function(){
   // Pixel PRÓPRIO da RISE (Rise Pixel, portfólio Rise Ads). Nunca usar o de outro cliente.
@@ -474,6 +526,24 @@ footer a{text-decoration:underline}
   [].forEach.call(document.querySelectorAll('[data-cta]'),function(a){a.addEventListener('click',function(){if(window.gtag)gtag('event','cta_click',{local:a.getAttribute('data-cta')})})});
 
   mostrar(0);
+})();
+</script>
+<script>
+(function(){
+  // Contagem até 27/11/2026, 00h (horário de Manaus, UTC-4).
+  var alvo=Date.UTC(2026,10,27,4,0,0);
+  var d=document.getElementById('t-d'),h=document.getElementById('t-h'),m=document.getElementById('t-m'),sg=document.getElementById('t-s');
+  if(!d)return;
+  function p(n){return n<10?'0'+n:''+n}
+  function tick(){
+    var f=alvo-Date.now();
+    if(f<0)f=0;
+    d.textContent=Math.floor(f/864e5);
+    h.textContent=p(Math.floor(f%864e5/36e5));
+    m.textContent=p(Math.floor(f%36e5/6e4));
+    sg.textContent=p(Math.floor(f%6e4/1e3));
+  }
+  tick();setInterval(tick,1000);
 })();
 </script>
 </body>
