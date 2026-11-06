@@ -21,7 +21,11 @@ const OPCOES = {
   onde: ['Instagram', 'WhatsApp', 'Loja ou atendimento presencial', 'Site'],
   trava: ['Falta de tempo', 'Não sei o que postar', 'Não tenho página ou site', 'Falta de arte e identidade'],
   precisa: ['Uma vitrine com a minha oferta', 'Artes para divulgar', 'Uma página de vendas', 'Só orientação'],
+  divulga: ['Organicamente', 'Com tráfego pago', 'Quero entender melhor'],
 };
+
+// Serviços da RISE (múltipla escolha, opcional).
+const SERVICOS = ['Captação de vídeo', 'Gestão de tráfego pago', 'Artes e identidade visual', 'Site ou página completa', 'Nenhum por enquanto'];
 
 // Texto mostrado ao lado do aceite. O servidor registra SEMPRE este texto (não o que vier do navegador).
 const CONSENT_VERSAO = 'rise-vitrine-v1';
@@ -57,6 +61,9 @@ module.exports = async function handler(req, res) {
     resp[k] = txt(body[k], 80);
     if (!OPCOES[k].includes(resp[k])) falta.push(k);
   }
+  const servicos = (Array.isArray(body.servicos) ? body.servicos : []).slice(0, 5).map((v) => txt(v, 40));
+  if (servicos.some((v) => !SERVICOS.includes(v))) falta.push('servicos');
+  const servicosOk = [...new Set(servicos)];
   if (nome.length < 2) falta.push('nome');
   if (fone.length < 10 || fone.length > 13) falta.push('whatsapp');
   if (body.consentimento !== true) falta.push('consentimento');
@@ -81,12 +88,14 @@ module.exports = async function handler(req, res) {
     slug: SLUG, token,
     nome, contato: fone, origem,
     respostas: [],
-    tags: ['black-friday', 'vitrine-grupo'],
+    tags: ['black-friday', 'vitrine-grupo', ...(resp.divulga === 'Com tráfego pago' || servicosOk.includes('Gestão de tráfego pago') ? ['quer-trafego'] : [])],
     extra: {
       fonte: utm.utm_source || origem,
       notas: 'Diagnóstico da vitrine de Black Friday (grupo de empreendedoras)',
       oferece: resp.oferece, ramo: resp.ramo, quer_vender: resp.quer, vende_onde: resp.onde,
       trava: resp.trava, precisa: resp.precisa,
+      divulgar: resp.divulga,
+      servicos_interesse: servicosOk.join(', ') || 'nenhum informado',
       ...(insta ? { instagram: '@' + insta } : {}),
     },
     utm,

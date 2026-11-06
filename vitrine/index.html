@@ -80,6 +80,19 @@ a{color:inherit}
 .leva-card strong{font-weight:700;font-size:.9375rem;letter-spacing:.08em;text-transform:uppercase;color:var(--vinho)}
 .leva-card span{font-size:.9375rem;line-height:1.6;color:var(--texto-2)}
 
+
+/* como divulgar */
+.divulga{background:#fff}
+.divulga .wrap{padding-top:72px;padding-bottom:72px;display:flex;flex-direction:column;gap:28px}
+.divulga .trilho{margin-bottom:0}
+.dv-card{flex:1 0 min(300px,82vw);scroll-snap-align:start;background:var(--rosa-fundo);border-radius:26px;padding:30px 26px;display:flex;flex-direction:column;gap:12px}
+.dv-card .tag{align-self:flex-start;background:var(--rosa);color:var(--vinho);font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
+.dv-card h3{font-weight:700;font-size:1.125rem;letter-spacing:.06em;text-transform:uppercase;color:var(--vinho)}
+.dv-card p{font-size:1rem;line-height:1.65;color:var(--texto-2)}
+.promo{background:var(--vinho);color:#fff;border-radius:26px;padding:32px 26px;display:flex;flex-direction:column;gap:10px}
+.promo h3{font-weight:800;font-size:clamp(1.125rem,3vw,1.5rem);letter-spacing:.06em;text-transform:uppercase;line-height:1.25}
+.promo p{font-size:1.0625rem;line-height:1.65;color:#FBE3EA;max-width:640px}
+
 /* diagnóstico */
 .diag .wrap{max-width:680px;padding-top:72px;padding-bottom:72px;display:flex;flex-direction:column;gap:28px}
 .diag-intro{display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
@@ -95,7 +108,10 @@ a{color:inherit}
 .passo legend{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .opc input{position:absolute;opacity:0;pointer-events:none}
 .opc label{display:block;border-radius:16px;padding:14px 18px;font-weight:600;font-size:.9375rem;min-height:52px;border:1.5px solid var(--linha);background:#fff;color:var(--vinho);cursor:pointer;line-height:1.4}
+.opc label small{display:block;font-weight:400;font-size:.8125rem;line-height:1.5;margin-top:4px}
 .opc input:checked+label{background:var(--vinho);border-color:var(--vinho);color:#fff}
+.dica{font-size:.875rem;line-height:1.55;color:var(--muted)}
+.continuar{margin-top:6px}
 .opc input:focus-visible+label{outline:3px solid var(--vinho);outline-offset:3px}
 .voltar{background:none;border:none;color:var(--muted);font:inherit;font-size:.9375rem;text-decoration:underline;align-self:flex-start;padding:10px 0;min-height:44px;cursor:pointer}
 .campo{display:flex;flex-direction:column;gap:6px}
@@ -200,6 +216,20 @@ footer a{text-decoration:underline}
   </div>
 </section>
 
+<section class="divulga">
+  <div class="wrap">
+    <h2 class="titulo">Como divulgar a sua vitrine</h2>
+    <div class="trilho">
+      <article class="dv-card"><span class="tag">Orgânico</span><h3>Divulgação orgânica</h3><p>Você divulga sem pagar por anúncios: no seu Instagram, nos Stories, no WhatsApp e para quem já conhece o seu trabalho. Não tem custo de anúncio, e o alcance cresce aos poucos.</p></article>
+      <article class="dv-card"><span class="tag">Impulsionado</span><h3>Divulgação impulsionada</h3><p>Você investe em anúncios para a vitrine chegar a pessoas que ainda não conhecem o seu trabalho, inclusive em outros estados. O valor dos anúncios é pago à parte, direto à plataforma.</p></article>
+    </div>
+    <div class="promo">
+      <h3>Black Friday: serviços da RISE pela metade do preço</h3>
+      <p>A vitrine é o nosso presente. Os outros serviços, como captação de vídeo, artes e gestão de tráfego, têm valor próprio. Na Black Friday, você paga metade do preço da nossa tabela.</p>
+    </div>
+  </div>
+</section>
+
 <section class="diag alvo" id="diagnostico">
   <div class="wrap">
     <div class="diag-intro">
@@ -209,7 +239,7 @@ footer a{text-decoration:underline}
 
     <div class="cartao" id="cartao">
       <div class="topo-cartao">
-        <span class="rotulo" id="rotulo" aria-live="polite">Pergunta 1 de 6</span>
+        <span class="rotulo" id="rotulo" aria-live="polite">Pergunta 1 de 8</span>
         <h3 id="pergunta" tabindex="-1">O que você oferece?</h3>
       </div>
       <div class="barra topo-cartao" aria-hidden="true"><i id="progresso"></i></div>
@@ -266,7 +296,25 @@ footer a{text-decoration:underline}
           <div class="opc"><input type="radio" id="f4" name="precisa" value="Só orientação"><label for="f4">Só orientação</label></div>
         </fieldset>
 
-        <fieldset class="passo" data-passo="7" data-pergunta="Para onde eu envio a sua vitrine?" data-rotulo="Último passo">
+        <fieldset class="passo" data-passo="7" data-campo="divulga" data-pergunta="Como você quer divulgar a sua vitrine?">
+          <legend>Como você quer divulgar a sua vitrine?</legend>
+          <div class="opc"><input type="radio" id="g1" name="divulga" value="Organicamente"><label for="g1">Organicamente<small>Sem pagar anúncios: no seu Instagram, nos Stories e no WhatsApp, para quem já conhece você.</small></label></div>
+          <div class="opc"><input type="radio" id="g2" name="divulga" value="Com tráfego pago"><label for="g2">Com tráfego pago<small>Investindo em anúncios para chegar a mais gente, inclusive em outros estados.</small></label></div>
+          <div class="opc"><input type="radio" id="g3" name="divulga" value="Quero entender melhor"><label for="g3">Quero entender melhor<small>Eu explico as duas opções e a gente escolhe a melhor para o seu momento.</small></label></div>
+        </fieldset>
+
+        <fieldset class="passo" data-passo="8" data-multi="1" data-pergunta="Algum destes serviços te interessa?">
+          <legend>Algum destes serviços te interessa?</legend>
+          <p class="dica">A vitrine é presente. Os serviços abaixo têm valor próprio, e na Black Friday saem pela metade do preço. Pode marcar mais de um.</p>
+          <div class="opc"><input type="checkbox" id="s1" name="servicos" value="Captação de vídeo"><label for="s1">Captação de vídeo</label></div>
+          <div class="opc"><input type="checkbox" id="s2" name="servicos" value="Gestão de tráfego pago"><label for="s2">Gestão de tráfego pago</label></div>
+          <div class="opc"><input type="checkbox" id="s3" name="servicos" value="Artes e identidade visual"><label for="s3">Artes e identidade visual</label></div>
+          <div class="opc"><input type="checkbox" id="s4" name="servicos" value="Site ou página completa"><label for="s4">Site ou página completa</label></div>
+          <div class="opc"><input type="checkbox" id="s5" name="servicos" value="Nenhum por enquanto" data-nenhum="1"><label for="s5">Nenhum por enquanto</label></div>
+          <button type="button" class="btn btn--vinho continuar" id="continuar">Continuar</button>
+        </fieldset>
+
+        <fieldset class="passo" data-passo="9" data-pergunta="Para onde eu envio a sua vitrine?" data-rotulo="Último passo">
           <legend>Para onde eu envio a sua vitrine?</legend>
           <div class="campo"><label for="nome">Seu nome</label><input type="text" id="nome" name="nome" autocomplete="name" maxlength="120" placeholder="Como posso te chamar?"></div>
           <div class="campo"><label for="insta">Seu Instagram</label><input type="text" id="insta" name="insta" autocomplete="off" autocapitalize="none" maxlength="60" placeholder="@seuperfil"></div>
@@ -351,6 +399,18 @@ footer a{text-decoration:underline}
       if(window.gtag)gtag('event','form_passo',{passo:atual+1});
       mostrar(atual+1);
     }
+    // Serviços: marcar "Nenhum" desmarca os outros, e marcar um serviço desmarca o "Nenhum".
+    if(el.type==='checkbox'&&el.name==='servicos'){
+      var todos=form.querySelectorAll('input[name=servicos]');
+      for(var i=0;i<todos.length;i++){
+        if(el.hasAttribute('data-nenhum')){if(todos[i]!==el)todos[i].checked=false}
+        else if(todos[i].hasAttribute('data-nenhum')){todos[i].checked=false}
+      }
+    }
+  });
+  document.getElementById('continuar').addEventListener('click',function(){
+    if(window.gtag)gtag('event','form_passo',{passo:atual+1});
+    mostrar(atual+1);
   });
   voltarBtn.addEventListener('click',function(){if(atual>0)mostrar(atual-1)});
 
@@ -363,12 +423,13 @@ footer a{text-decoration:underline}
 
   function falha(msg,campo){erro.textContent=msg;if(campo){var el=document.getElementById(campo);if(el&&el.focus)el.focus({preventScroll:true})}}
   function valor(n){var c=form.querySelector('input[name='+n+']:checked');return c?c.value:''}
+  function servicos(){var r=[],c=form.querySelectorAll('input[name=servicos]:checked');for(var i=0;i<c.length;i++)r.push(c[i].value);return r}
 
   form.addEventListener('submit',function(ev){
     ev.preventDefault();erro.textContent='';
     var f=form.elements;
     var nome=f.nome.value.trim(),insta=f.insta.value.trim(),digitos=f.whatsapp.value.replace(/\D/g,'');
-    var campos=['oferece','ramo','quer','onde','trava','precisa'];
+    var campos=['oferece','ramo','quer','onde','trava','precisa','divulga'];
     for(var i=0;i<campos.length;i++){if(!valor(campos[i])){mostrar(i);return falha('Escolha uma opção para continuar.')}}
     if(nome.length<2)return falha('Informe seu nome.','nome');
     if(digitos.length<10)return falha('Informe o WhatsApp com DDD.','whatsapp');
@@ -376,7 +437,7 @@ footer a{text-decoration:underline}
 
     btn.disabled=true;btn.textContent='Enviando…';
     fetch(CFG.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
-      oferece:valor('oferece'),ramo:valor('ramo'),quer:valor('quer'),onde:valor('onde'),trava:valor('trava'),precisa:valor('precisa'),
+      oferece:valor('oferece'),ramo:valor('ramo'),quer:valor('quer'),onde:valor('onde'),trava:valor('trava'),precisa:valor('precisa'),divulga:valor('divulga'),servicos:servicos(),
       nome:nome,insta:insta,whatsapp:digitos,consentimento:true,
       website:f.website.value,t:Date.now()-t0,utm:utm,pagina:location.href.slice(0,300)
     })}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||!j.ok)throw new Error(j.erro||'falha')})})
