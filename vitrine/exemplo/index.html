@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exemplo de vitrine de Black Friday | RISE</title>
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://riseagencia.com/vitrine/exemplo/">
+<meta name="theme-color" content="#070508">
+<link rel="icon" type="image/png" href="https://riseagencia.com/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --or:#E8531A;--or2:#d94814;--og:rgba(232,83,26,.32);--os:rgba(232,83,26,.12);
+  --bg:#070508;--bg2:#0c0a0e;--sf:rgba(255,255,255,.045);--bd:rgba(255,255,255,.09);
+  --tx:#f2ede8;--dm:rgba(242,237,232,.72);--dr:rgba(242,237,232,.55);
+  --gut:clamp(20px,5vw,40px);--max:1120px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;background:var(--bg)}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--tx);font-size:1.0625rem;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--or);outline-offset:3px;border-radius:6px}
+.wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+.alvo{scroll-margin-top:16px}
+
+.faixa{background:var(--or);color:#fff;padding:10px 20px;text-align:center;font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase}
+
+.titulo{font-weight:800;font-size:clamp(1.5rem,4vw,2.25rem);letter-spacing:-.01em;color:var(--tx);line-height:1.15;text-align:center}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 34px;border-radius:999px;background:var(--or);color:#fff;font:inherit;font-weight:800;font-size:1rem;text-decoration:none;border:0;cursor:pointer;box-shadow:0 10px 30px var(--og)}
+.btn:hover{background:var(--or2)}
+.btn:disabled{background:#4a3f44;box-shadow:none;cursor:default}
+.btn--contorno{background:transparent;color:var(--tx);border:2px solid var(--or);box-shadow:none}
+
+/* hero */
+.hero{background:radial-gradient(900px 500px at 85% 0%,rgba(232,83,26,.22),transparent 60%),var(--bg)}
+.hero .wrap{padding-top:32px;padding-bottom:72px;display:flex;flex-direction:column;gap:40px}
+.marca{text-align:center;font-weight:800;font-size:1.5rem;letter-spacing:.04em;text-decoration:none;text-transform:lowercase}
+.hero-corpo{display:flex;flex-wrap:wrap;gap:40px;align-items:center;justify-content:center}
+.hero-texto{flex:1 1 400px;min-width:0;display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+.hero h1{font-weight:800;font-size:clamp(2.125rem,6vw,3.75rem);line-height:1.06;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--or)}
+.hero p{font-size:1.125rem;line-height:1.65;max-width:540px;color:var(--dm)}
+.hero small{font-size:.875rem;color:var(--dr)}
+.selo{flex:0 1 340px;min-width:0;display:flex;justify-content:center}
+.selo svg{width:100%;max-width:340px;height:auto}
+
+/* ramos */
+.ramos{background:var(--bg2)}
+.ramos .wrap{padding-top:72px;padding-bottom:72px;display:flex;flex-direction:column;gap:32px}
+.tiles{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+.tile{flex:1 1 220px;max-width:260px;display:flex;flex-direction:column;gap:10px}
+.foto{position:relative;aspect-ratio:1/1;border-radius:22px;overflow:hidden;background:var(--sf)}
+.foto svg,.foto img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.foto img{object-fit:cover}
+.foto::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(7,5,8,.45));pointer-events:none}
+.tile span{font-size:.875rem;font-weight:700;color:var(--tx)}
+.nota{text-align:center;font-size:1rem;color:var(--dm);max-width:560px;margin:0 auto}
+
+/* como funciona: carrossel com snap no celular */
+.como .wrap{padding-top:72px;padding-bottom:56px}
+.como .titulo{margin-bottom:28px}
+.trilho{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 var(--gut);padding:4px var(--gut) 20px;margin:0 calc(var(--gut) * -1);-webkit-overflow-scrolling:touch}
+.passo-card{flex:1 0 min(290px,80vw);scroll-snap-align:start;background:var(--sf);border:1px solid var(--bd);border-radius:24px;padding:30px 26px;display:flex;flex-direction:column;gap:14px}
+.passo-card .n{width:46px;height:46px;border-radius:50%;background:var(--os);border:1px solid var(--or);color:var(--or);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.25rem}
+.passo-card h3{font-weight:800;font-size:1.125rem}
+.passo-card p{font-size:1rem;line-height:1.65;color:var(--dm)}
+
+/* o que leva */
+.leva{background:var(--bg2)}
+.leva .wrap{padding-top:72px;padding-bottom:72px;display:flex;flex-direction:column;gap:28px}
+.leva-grade{display:flex;flex-wrap:wrap;gap:16px}
+.leva-card{flex:1 1 240px;min-width:0;background:var(--sf);border:1px solid var(--bd);border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:8px}
+.leva-card strong{font-weight:800;font-size:1rem;color:var(--tx)}
+.leva-card span{font-size:.9375rem;line-height:1.6;color:var(--dm)}
+
+/* como divulgar */
+.divulga .wrap{padding-top:72px;padding-bottom:72px;display:flex;flex-direction:column;gap:28px}
+.divulga .trilho{margin-bottom:0}
+.dv-card{flex:1 0 min(300px,82vw);scroll-snap-align:start;background:var(--sf);border:1px solid var(--bd);border-radius:24px;padding:30px 26px;display:flex;flex-direction:column;gap:12px}
+.dv-card .tag{align-self:flex-start;background:var(--os);color:var(--or);border:1px solid var(--or);font-size:.75rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:6px 14px;border-radius:999px}
+.dv-card h3{font-weight:800;font-size:1.1875rem}
+.dv-card p{font-size:1rem;line-height:1.65;color:var(--dm)}
+.promo{background:linear-gradient(135deg,var(--or),#b83a0f);color:#fff;border-radius:24px;padding:32px 26px;display:flex;flex-direction:column;gap:10px}
+.promo h3{font-weight:800;font-size:clamp(1.25rem,3vw,1.625rem);line-height:1.2}
+.promo p{font-size:1.0625rem;line-height:1.65;color:#fff;opacity:.92;max-width:640px}
+
+/* diagnóstico */
+.diag{background:var(--bg2)}
+.diag .wrap{max-width:680px;padding-top:72px;padding-bottom:72px;display:flex;flex-direction:column;gap:28px}
+.diag-intro{display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+.diag-intro p{font-size:1.0625rem;line-height:1.65;max-width:520px;color:var(--dm)}
+.cartao{background:var(--sf);border:1px solid var(--bd);border-radius:28px;padding:32px 26px;display:flex;flex-direction:column;gap:20px}
+.rotulo{font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--or)}
+.cartao h3{font-weight:800;font-size:1.375rem;line-height:1.25;color:var(--tx)}
+.cartao h3:focus{outline:none}
+.barra{height:6px;border-radius:99px;background:var(--bd)}
+.barra i{display:block;height:6px;border-radius:99px;background:var(--or);width:0;transition:width .25s}
+.passo{display:none;flex-direction:column;gap:10px;border:0;min-width:0}
+.passo.ativo{display:flex}
+.passo legend{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.opc input{position:absolute;opacity:0;pointer-events:none}
+.opc label{display:block;border-radius:16px;padding:14px 18px;font-weight:600;font-size:1rem;min-height:52px;border:1.5px solid var(--bd);background:rgba(255,255,255,.03);color:var(--tx);cursor:pointer;line-height:1.4}
+.opc label small{display:block;font-weight:400;font-size:.8125rem;line-height:1.5;margin-top:4px;color:var(--dm)}
+.opc input:checked+label{background:var(--or);border-color:var(--or);color:#fff}
+.opc input:checked+label small{color:#fff}
+.dica{font-size:.875rem;line-height:1.55;color:var(--dm)}
+.continuar{margin-top:6px}
+.opc input:focus-visible+label{outline:3px solid var(--or);outline-offset:3px}
+.voltar{background:none;border:none;color:var(--dm);font:inherit;font-size:.9375rem;text-decoration:underline;align-self:flex-start;padding:10px 0;min-height:44px;cursor:pointer}
+.campo{display:flex;flex-direction:column;gap:6px}
+.campo label{font-size:.875rem;font-weight:700;color:var(--tx)}
+.campo input{font:inherit;font-size:1rem;padding:14px 16px;border:1.5px solid var(--bd);border-radius:14px;min-height:50px;background:rgba(255,255,255,.05);color:var(--tx);width:100%}
+.campo input::placeholder{color:var(--dr)}
+.aceite{display:flex;gap:11px;align-items:flex-start;font-size:.8125rem;color:var(--dm);line-height:1.5}
+.aceite input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--or)}
+.aceite a{color:var(--or)}
+.erro{color:#ff8a6b;font-weight:600;font-size:.9375rem;min-height:1.3em}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.ok{display:none;flex-direction:column;gap:14px}
+.ok h3{font-size:1.5rem}
+.ok p{font-size:1.0625rem;line-height:1.65;color:var(--dm)}
+.enviado .ok{display:flex}
+.enviado form,.enviado .barra,.enviado .topo-cartao{display:none}
+
+footer{background:var(--bg);border-top:1px solid var(--bd);color:var(--dm);padding:40px 20px;text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center}
+footer .marca-f{font-weight:800;font-size:1.375rem;color:var(--tx)}
+footer p{font-size:.9375rem;line-height:1.6;max-width:420px}
+footer ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:center;font-size:.875rem}
+footer a{text-decoration:underline}
+
+/* contagem */
+.contagem{background:var(--bg2);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
+.contagem .wrap{padding-top:28px;padding-bottom:28px;display:flex;flex-wrap:wrap;gap:18px 32px;align-items:center;justify-content:center;text-align:center}
+.contagem p{font-weight:700;font-size:1rem;color:var(--dm)}
+.contagem p b{color:var(--or)}
+.tempo{display:flex;gap:10px}
+.tempo div{min-width:68px;background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:10px 8px;display:flex;flex-direction:column;align-items:center}
+.tempo strong{font-size:1.75rem;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+.tempo span{font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dr)}
+/* faq */
+.faq .wrap{max-width:760px;padding-top:72px;padding-bottom:72px;display:flex;flex-direction:column;gap:24px}
+.faq details{background:var(--sf);border:1px solid var(--bd);border-radius:18px;padding:0 22px}
+.faq summary{list-style:none;cursor:pointer;min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-weight:700;font-size:1.0625rem;padding:14px 0}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--or);font-size:1.5rem;font-weight:500;flex:none}
+.faq details[open] summary::after{content:"\2212"}
+.faq details p{padding:0 0 18px;font-size:1rem;line-height:1.65;color:var(--dm)}
+.faq-lista{display:flex;flex-direction:column;gap:10px}
+/* whatsapp fixo */
+.zap{position:fixed;right:16px;bottom:16px;z-index:50;display:inline-flex;align-items:center;gap:8px;min-height:52px;padding:0 20px;border-radius:999px;background:var(--bg2);border:1.5px solid var(--or);color:var(--tx);font-weight:800;font-size:.9375rem;text-decoration:none;box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.zap svg{width:20px;height:20px;fill:var(--or);flex:none}
+footer{padding-bottom:96px}
+
+@media (max-width:700px){.tiles{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 calc(var(--gut) * -1);padding:4px var(--gut) 16px;-webkit-overflow-scrolling:touch}.tile{flex:0 0 68vw;max-width:none;scroll-snap-align:start}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.barra i{transition:none}}
+
+.ex-faixa{background:var(--bg2);border-bottom:1px solid var(--bd);padding:10px 20px;text-align:center;font-size:.8125rem;color:var(--dm)}
+.ex-faixa a{color:var(--or);font-weight:700}
+.ex-hero .wrap{padding-top:48px;padding-bottom:56px;display:flex;flex-direction:column;gap:20px;align-items:flex-start}
+.ex-hero .sel{font-size:.75rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--or)}
+.ex-hero h1{font-weight:800;font-size:clamp(2rem,6vw,3.5rem);line-height:1.08;letter-spacing:-.02em}
+.ex-hero p{color:var(--dm);max-width:520px;font-size:1.125rem}
+.ex-of .wrap{padding-top:56px;padding-bottom:56px;display:flex;flex-direction:column;gap:24px}
+.of{flex:1 0 min(300px,82vw);scroll-snap-align:start;background:var(--sf);border:1px solid var(--bd);border-radius:24px;overflow:hidden;display:flex;flex-direction:column}
+.of svg{width:100%;height:auto;display:block}
+.of .corpo{padding:22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.of h3{font-weight:800;font-size:1.1875rem}
+.of p{font-size:.9375rem;color:var(--dm);line-height:1.6}
+.of .preco{display:flex;align-items:baseline;gap:10px;margin-top:4px}
+.of .preco s{color:var(--dr);font-size:.9375rem}
+.of .preco b{font-size:1.5rem;font-weight:800;color:var(--or)}
+.of .btn{margin-top:auto;min-height:50px;font-size:.9375rem}
+.sobre .wrap{padding-top:40px;padding-bottom:56px;max-width:680px}
+.sobre p{color:var(--dm)}
+.cta-final{background:var(--bg2);border-top:1px solid var(--bd)}
+.cta-final .wrap{padding-top:56px;padding-bottom:56px;display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center}
+.cta-final p{color:var(--dm);max-width:480px}
+</style>
+</head>
+<body>
+<div class="ex-faixa">Exemplo fictício de vitrine, feito pela RISE. <a href="/vitrine/#diagnostico">Quero a minha</a></div>
+<main>
+<header class="ex-hero"><div class="wrap">
+  <span class="sel">Black Friday · 27/11</span>
+  <h1>Ateliê Flor de Sal: doces finos com até 40% off</h1>
+  <p>Caixas de brigadeiro gourmet, bolos no pote e kits para presentear. Vagas limitadas para a semana da Black Friday.</p>
+  <a class="btn" href="#ofertas">Ver as ofertas</a>
+</div></header>
+
+<section class="ex-of" id="ofertas"><div class="wrap">
+  <h2 class="titulo">Ofertas da Black Friday</h2>
+  <div class="trilho">
+    <article class="of"><svg viewBox="0 0 300 200" aria-hidden="true"><rect width="300" height="200" fill="#2a1a14"/><circle cx="120" cy="110" r="52" fill="#E8531A"/><circle cx="190" cy="96" r="34" fill="#f2ede8"/><rect x="70" y="150" width="160" height="10" rx="5" fill="#f2ede8" opacity=".35"/></svg><div class="corpo"><h3>Caixa com 12 brigadeiros</h3><p>Sabores sortidos, embalagem de presente.</p><div class="preco"><s>R$ 69</s><b>R$ 49</b></div><a class="btn" href="https://wa.me/5592991755756?text=Oi!%20Vi%20o%20exemplo%20de%20vitrine%20e%20quero%20a%20minha." target="_blank" rel="noopener">Quero esta oferta</a></div></article>
+    <article class="of"><svg viewBox="0 0 300 200" aria-hidden="true"><rect width="300" height="200" fill="#33190f"/><circle cx="120" cy="110" r="52" fill="#f2ede8"/><circle cx="190" cy="96" r="34" fill="#b83a0f"/><rect x="70" y="150" width="160" height="10" rx="5" fill="#f2ede8" opacity=".35"/></svg><div class="corpo"><h3>Kit bolo no pote (4 un.)</h3><p>Quatro sabores para experimentar e dividir.</p><div class="preco"><s>R$ 56</s><b>R$ 39</b></div><a class="btn" href="https://wa.me/5592991755756?text=Oi!%20Vi%20o%20exemplo%20de%20vitrine%20e%20quero%20a%20minha." target="_blank" rel="noopener">Quero esta oferta</a></div></article>
+    <article class="of"><svg viewBox="0 0 300 200" aria-hidden="true"><rect width="300" height="200" fill="#241713"/><circle cx="120" cy="110" r="52" fill="#E8531A"/><circle cx="190" cy="96" r="34" fill="#f2ede8"/><rect x="70" y="150" width="160" height="10" rx="5" fill="#f2ede8" opacity=".35"/></svg><div class="corpo"><h3>Vale-presente R$ 100</h3><p>Pague R$ 80 agora e use quando quiser.</p><div class="preco"><s>R$ 100</s><b>R$ 80</b></div><a class="btn" href="https://wa.me/5592991755756?text=Oi!%20Vi%20o%20exemplo%20de%20vitrine%20e%20quero%20a%20minha." target="_blank" rel="noopener">Quero esta oferta</a></div></article>
+  </div>
+</div></section>
+
+<section class="sobre"><div class="wrap">
+  <h2 class="titulo" style="text-align:left;font-size:1.5rem">Sobre o ateliê</h2>
+  <p style="margin-top:12px">Doces feitos à mão, em pequenas fornadas, para festas e presentes. Entregas em Manaus e envio para todo o Brasil.</p>
+</div></section>
+
+<section class="cta-final"><div class="wrap">
+  <h2 class="titulo">Quer uma vitrine assim para o seu negócio?</h2>
+  <p>Responda o diagnóstico gratuito e eu monto a sua, com as suas ofertas e o seu WhatsApp.</p>
+  <a class="btn" href="/vitrine/#diagnostico">Fazer o diagnóstico</a>
+</div></section>
+</main>
+<footer><span class="marca-f">rise</span><p>Página de exemplo. Marca e ofertas fictícias.</p></footer>
+</body>
+</html>

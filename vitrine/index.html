@@ -71,7 +71,7 @@ a{color:inherit}
 /* como funciona: carrossel com snap no celular */
 .como .wrap{padding-top:72px;padding-bottom:56px}
 .como .titulo{margin-bottom:28px}
-.trilho{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px var(--gut) 20px;margin:0 calc(var(--gut) * -1);-webkit-overflow-scrolling:touch}
+.trilho{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 var(--gut);padding:4px var(--gut) 20px;margin:0 calc(var(--gut) * -1);-webkit-overflow-scrolling:touch}
 .passo-card{flex:1 0 min(290px,80vw);scroll-snap-align:start;background:var(--sf);border:1px solid var(--bd);border-radius:24px;padding:30px 26px;display:flex;flex-direction:column;gap:14px}
 .passo-card .n{width:46px;height:46px;border-radius:50%;background:var(--os);border:1px solid var(--or);color:var(--or);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.25rem}
 .passo-card h3{font-weight:800;font-size:1.125rem}
@@ -139,6 +139,8 @@ footer .marca-f{font-weight:800;font-size:1.375rem;color:var(--tx)}
 footer p{font-size:.9375rem;line-height:1.6;max-width:420px}
 footer ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:center;font-size:.875rem}
 footer a{text-decoration:underline}
+
+.exemplo .wrap{padding-top:64px;padding-bottom:64px;display:flex;flex-direction:column;gap:20px}
 
 /* contagem */
 .contagem{background:var(--bg2);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
@@ -256,6 +258,14 @@ footer{padding-bottom:96px}
       <div class="leva-card"><strong>Acesso ao Capta</strong><span>Quem faz a vitrine ganha acesso ao Capta, o painel da RISE para acompanhar cada contato que chega e organizar suas vendas.</span></div>
       <div class="leva-card"><strong>Arte de divulgação</strong><span>Uma arte de capa no seu estilo para chamar atenção nas redes.</span></div>
     </div>
+  </div>
+</section>
+
+<section class="exemplo">
+  <div class="wrap">
+    <h2 class="titulo">Veja como fica</h2>
+    <p class="nota">Um exemplo de vitrine pronta, com ofertas, botão para o WhatsApp e tudo no celular.</p>
+    <a class="btn" href="/vitrine/exemplo/" data-cta="exemplo" style="align-self:center">Abrir a vitrine de exemplo</a>
   </div>
 </section>
 
