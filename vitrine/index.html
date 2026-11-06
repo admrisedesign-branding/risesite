@@ -55,7 +55,8 @@ a{color:inherit}
 /* hero */
 .hero{background:radial-gradient(900px 500px at 85% 0%,rgba(232,83,26,.22),transparent 60%),var(--bg)}
 .hero .wrap{padding-top:32px;padding-bottom:72px;display:flex;flex-direction:column;gap:40px}
-.marca{text-align:center;font-weight:800;font-size:1.5rem;letter-spacing:.04em;text-decoration:none;text-transform:lowercase}
+.marca{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:1.5rem;letter-spacing:-.01em;text-decoration:none;text-transform:lowercase}
+.marca img{width:34px;height:34px;border-radius:9px;display:block}
 .hero-corpo{display:flex;flex-wrap:wrap;gap:40px;align-items:center;justify-content:center}
 .hero-texto{flex:1 1 400px;min-width:0;display:flex;flex-direction:column;gap:22px;align-items:flex-start}
 .hero h1{font-weight:800;font-size:clamp(2.125rem,6vw,3.75rem);line-height:1.06;letter-spacing:-.02em}
@@ -187,7 +188,7 @@ footer{padding-bottom:96px}
 <main>
 <header class="hero">
   <div class="wrap">
-    <a class="marca" href="https://riseagencia.com/" aria-label="RISE, página inicial">rise</a>
+    <a class="marca" href="https://riseagencia.com/" aria-label="RISE, página inicial"><img src="/favicon.png" alt="" width="34" height="34">rise</a>
     <div class="hero-corpo">
       <div class="hero-texto">
         <h1>Não perca a <em>Black Friday</em>. Prepare a sua vitrine digital.</h1>
