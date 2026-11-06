@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sua vitrine de Black Friday, de presente | RISE</title>
+<meta name="description" content="Uma vitrine digital de Black Friday, sem custo, para empreendedoras. Responda o diagnóstico e a RISE prepara a parte digital para você divulgar.">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="https://riseagencia.com/vitrine/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="RISE">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:url" content="https://riseagencia.com/vitrine/">
+<meta property="og:title" content="Sua vitrine de Black Friday, de presente">
+<meta property="og:description" content="Responda o diagnóstico gratuito e a RISE prepara a parte digital da sua Black Friday.">
+<meta property="og:image" content="https://riseagencia.com/og.png">
+<meta name="theme-color" content="#F3BFCC">
+<link rel="icon" type="image/png" href="https://riseagencia.com/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --vinho:#5C1229;--rosa:#F3BFCC;--rosa-fundo:#FDF0F3;--rosa-medio:#F9DDE5;--rosa-faixa:#FBE3EA;--rosa-forte:#B84A6B;
+  --texto:#4A2230;--texto-2:#5A3946;--linha:#E3B7C3;--muted:#6B4553;--rotulo:#A03A5A;
+  --gut:clamp(20px,5vw,40px);--max:1120px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Montserrat',system-ui,sans-serif;background:var(--rosa-fundo);color:var(--texto);font-size:1rem;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--vinho);outline-offset:3px;border-radius:6px}
+.wrap{width:100%;max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+.alvo{scroll-margin-top:16px}
+
+.faixa{background:var(--rosa-faixa);color:var(--vinho);padding:10px 20px;text-align:center;font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+
+.titulo{font-weight:700;font-size:clamp(1.5rem,4vw,2.125rem);letter-spacing:.12em;text-transform:uppercase;color:var(--vinho);line-height:1.2;text-align:center}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:56px;padding:0 36px;border-radius:999px;background:#fff;color:var(--vinho);font:inherit;font-weight:800;font-size:.9375rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:0;cursor:pointer}
+.btn--vinho{background:var(--vinho);color:#fff}
+.btn--vinho:disabled{background:#7C6870;cursor:default}
+.btn--contorno{background:transparent;color:var(--vinho);border:2px solid var(--vinho)}
+
+/* hero */
+.hero{background:var(--rosa);color:var(--vinho)}
+.hero .wrap{padding-top:36px;padding-bottom:72px;display:flex;flex-direction:column;gap:40px}
+.marca{text-align:center;font-weight:700;font-size:1.625rem;letter-spacing:.22em;text-decoration:none}
+.hero-corpo{display:flex;flex-wrap:wrap;gap:40px;align-items:center;justify-content:center}
+.hero-texto{flex:1 1 400px;min-width:0;display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+.hero h1{font-weight:800;font-size:clamp(2.125rem,6vw,3.875rem);line-height:1.08;letter-spacing:.04em;text-transform:uppercase}
+.hero p{font-size:1.125rem;line-height:1.65;max-width:520px;font-weight:500}
+.hero small{font-size:.875rem;font-weight:500}
+.selo{flex:0 1 340px;min-width:0;display:flex;justify-content:center}
+.selo svg{width:100%;max-width:340px;height:auto}
+
+/* ramos */
+.ramos{background:#fff}
+.ramos .wrap{padding-top:72px;padding-bottom:72px;display:flex;flex-direction:column;gap:32px}
+.tiles{display:flex;flex-wrap:wrap;gap:16px;justify-content:center}
+.tile{flex:1 1 220px;max-width:260px;display:flex;flex-direction:column;gap:10px}
+.tile svg{width:100%;height:auto;border-radius:22px;display:block}
+.tile span{font-size:.8125rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--vinho)}
+.nota{text-align:center;font-size:1rem;color:var(--muted);max-width:560px;margin:0 auto}
+
+/* como funciona: carrossel com snap no celular */
+.como .wrap{padding-top:72px;padding-bottom:56px}
+.como .titulo{margin-bottom:28px}
+.trilho{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px var(--gut) 20px;margin:0 calc(var(--gut) * -1);-webkit-overflow-scrolling:touch}
+.passo-card{flex:1 0 min(290px,80vw);scroll-snap-align:start;background:#fff;border-radius:26px;padding:30px 26px;display:flex;flex-direction:column;gap:14px}
+.passo-card .n{width:46px;height:46px;border-radius:50%;background:var(--rosa);color:var(--vinho);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.25rem}
+.passo-card h3{font-weight:700;font-size:1.0625rem;letter-spacing:.08em;text-transform:uppercase;color:var(--vinho)}
+.passo-card p{font-size:1rem;line-height:1.65;color:var(--texto-2)}
+
+/* o que leva */
+.leva{background:var(--rosa-medio)}
+.leva .wrap{padding-top:72px;padding-bottom:72px;display:flex;flex-direction:column;gap:28px}
+.leva-grade{display:flex;flex-wrap:wrap;gap:16px}
+.leva-card{flex:1 1 240px;min-width:0;background:#fff;border-radius:22px;padding:24px;display:flex;flex-direction:column;gap:8px}
+.leva-card strong{font-weight:700;font-size:.9375rem;letter-spacing:.08em;text-transform:uppercase;color:var(--vinho)}
+.leva-card span{font-size:.9375rem;line-height:1.6;color:var(--texto-2)}
+
+/* diagnóstico */
+.diag .wrap{max-width:680px;padding-top:72px;padding-bottom:72px;display:flex;flex-direction:column;gap:28px}
+.diag-intro{display:flex;flex-direction:column;gap:12px;align-items:center;text-align:center}
+.diag-intro p{font-size:1.0625rem;line-height:1.65;max-width:520px;color:var(--texto-2)}
+.cartao{background:#fff;border-radius:28px;padding:32px 26px;display:flex;flex-direction:column;gap:20px}
+.rotulo{font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--rotulo)}
+.cartao h3{font-weight:700;font-size:1.375rem;line-height:1.25;color:var(--vinho)}
+.cartao h3:focus{outline:none}
+.barra{height:6px;border-radius:99px;background:var(--rosa-medio)}
+.barra i{display:block;height:6px;border-radius:99px;background:var(--vinho);width:0;transition:width .25s}
+.passo{display:none;flex-direction:column;gap:10px;border:0;min-width:0}
+.passo.ativo{display:flex}
+.passo legend{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.opc input{position:absolute;opacity:0;pointer-events:none}
+.opc label{display:block;border-radius:16px;padding:14px 18px;font-weight:600;font-size:.9375rem;min-height:52px;border:1.5px solid var(--linha);background:#fff;color:var(--vinho);cursor:pointer;line-height:1.4}
+.opc input:checked+label{background:var(--vinho);border-color:var(--vinho);color:#fff}
+.opc input:focus-visible+label{outline:3px solid var(--vinho);outline-offset:3px}
+.voltar{background:none;border:none;color:var(--muted);font:inherit;font-size:.9375rem;text-decoration:underline;align-self:flex-start;padding:10px 0;min-height:44px;cursor:pointer}
+.campo{display:flex;flex-direction:column;gap:6px}
+.campo label{font-size:.875rem;font-weight:700;color:var(--vinho)}
+.campo input{font:inherit;font-size:1rem;padding:14px 16px;border:1.5px solid var(--linha);border-radius:14px;min-height:50px;background:#fff;color:var(--texto);width:100%}
+.aceite{display:flex;gap:11px;align-items:flex-start;font-size:.8125rem;color:var(--muted);line-height:1.5}
+.aceite input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:var(--vinho)}
+.aceite a{color:var(--vinho)}
+.erro{color:#8E1B2F;font-weight:600;font-size:.9375rem;min-height:1.3em}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.ok{display:none;flex-direction:column;gap:14px}
+.ok h3{font-size:1.5rem}
+.ok p{font-size:1.0625rem;line-height:1.65}
+.enviado .ok{display:flex}
+.enviado form,.enviado .barra,.enviado .topo-cartao{display:none}
+
+footer{background:var(--vinho);color:var(--rosa-faixa);padding:40px 20px;text-align:center;display:flex;flex-direction:column;gap:10px;align-items:center}
+footer .marca-f{font-weight:700;font-size:1.375rem;letter-spacing:.22em;color:#fff}
+footer p{font-size:.9375rem;line-height:1.6;max-width:420px}
+footer ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px 20px;justify-content:center;font-size:.875rem}
+footer a{text-decoration:underline}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.barra i{transition:none}}
+</style>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZZ46BRRSL"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-0ZZ46BRRSL");</script>
+</head>
+<body>
+
+<div class="faixa">Vitrine digital de presente · sem custo · Black Friday 27/11</div>
+
+<main>
+<header class="hero">
+  <div class="wrap">
+    <a class="marca" href="https://riseagencia.com/" aria-label="RISE, página inicial">RISE</a>
+    <div class="hero-corpo">
+      <div class="hero-texto">
+        <h1>Sua vitrine de Black Friday, de presente</h1>
+        <p>Conte o que você oferece e o que quer vender. Eu cuido de toda a parte digital para você chegar à Black Friday com tudo pronto para divulgar.</p>
+        <a class="btn" href="#diagnostico" data-cta="hero">Quero minha vitrine</a>
+        <small>Leva cerca de 2 minutos</small>
+      </div>
+      <div class="selo">
+        <svg viewBox="0 0 300 300" role="img" aria-label="Black Friday, 27 de novembro">
+          <defs><path id="anel" d="M150,150 m-117,0 a117,117 0 1,1 234,0 a117,117 0 1,1 -234,0"/></defs>
+          <circle cx="150" cy="150" r="146" fill="#B84A6B"/>
+          <circle cx="150" cy="150" r="96" fill="none" stroke="#F3BFCC" stroke-width="1.5"/>
+          <text font-family="Montserrat,sans-serif" font-weight="700" font-size="14" fill="#FFFFFF"><textPath href="#anel" textLength="722" lengthAdjust="spacing">BLACK FRIDAY · VITRINE DE PRESENTE · BLACK FRIDAY · VITRINE DE PRESENTE · </textPath></text>
+          <text x="150" y="162" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="800" font-size="58" fill="#FFFFFF">27.11</text>
+          <text x="150" y="190" text-anchor="middle" font-family="Montserrat,sans-serif" font-weight="700" font-size="14" letter-spacing="4" fill="#FFFFFF">NOVEMBRO</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="ramos">
+  <div class="wrap">
+    <h2 class="titulo">Uma vitrine para cada ramo</h2>
+    <div class="tiles">
+      <div class="tile">
+        <svg viewBox="0 0 200 200" aria-hidden="true"><rect width="200" height="200" fill="#F6C9D4"/><rect x="72" y="58" width="38" height="96" rx="12" fill="#FFFFFF"/><rect x="80" y="36" width="22" height="28" rx="7" fill="#E9A8B9"/><circle cx="142" cy="132" r="26" fill="#B9A5E6"/></svg>
+        <span>Estética e saúde</span>
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 200 200" aria-hidden="true"><rect width="200" height="200" fill="#F2B3C3"/><rect x="55" y="48" width="90" height="116" rx="45" fill="#FBEAEE"/><circle cx="100" cy="112" r="22" fill="#B84A6B"/></svg>
+        <span>Moda e beleza</span>
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 200 200" aria-hidden="true"><rect width="200" height="200" fill="#F7D3DB"/><circle cx="82" cy="112" r="36" fill="#FFFFFF"/><circle cx="122" cy="102" r="28" fill="#E99AAE"/><circle cx="102" cy="68" r="18" fill="#B9A5E6"/></svg>
+        <span>Festas e eventos</span>
+      </div>
+      <div class="tile">
+        <svg viewBox="0 0 200 200" aria-hidden="true"><rect width="200" height="200" fill="#EDA9BB"/><rect x="48" y="56" width="104" height="90" rx="16" fill="none" stroke="#FFFFFF" stroke-width="7"/><circle cx="100" cy="101" r="22" fill="#FBEAEE"/></svg>
+        <span>Fotografia e imagem</span>
+      </div>
+    </div>
+    <p class="nota">Doces, consultoria, organização, nutrição, psicologia e mais: cada vitrine é feita do jeito do seu serviço.</p>
+  </div>
+</section>
+
+<section class="como">
+  <div class="wrap">
+    <h2 class="titulo">Como funciona</h2>
+    <div class="trilho">
+      <article class="passo-card"><div class="n">1</div><h3>Você responde</h3><p>Um diagnóstico rápido, direto no celular, sobre o que você oferece e o que quer vender.</p></article>
+      <article class="passo-card"><div class="n">2</div><h3>Eu monto a sua oferta</h3><p>Com as suas respostas, sugiro a oferta de Black Friday que faz mais sentido para o seu serviço.</p></article>
+      <article class="passo-card"><div class="n">3</div><h3>Sua vitrine fica pronta</h3><p>Você recebe a vitrine para divulgar no Instagram e onde mais quiser, ligada ao seu WhatsApp.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="leva">
+  <div class="wrap">
+    <h2 class="titulo">O que a sua vitrine leva</h2>
+    <div class="leva-grade">
+      <div class="leva-card"><strong>Página com a sua oferta</strong><span>Bonita no celular, com o seu serviço em destaque.</span></div>
+      <div class="leva-card"><strong>Formulário rápido</strong><span>Quem se interessa responde poucas perguntas e você recebe o contato organizado.</span></div>
+      <div class="leva-card"><strong>Botão para o seu WhatsApp</strong><span>A conversa começa com a pessoa já interessada.</span></div>
+      <div class="leva-card"><strong>Arte de divulgação</strong><span>Uma arte de capa no seu estilo para chamar atenção nas redes.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="diag alvo" id="diagnostico">
+  <div class="wrap">
+    <div class="diag-intro">
+      <h2 class="titulo">Pronta para a sua vitrine?</h2>
+      <p>Responda o diagnóstico gratuito e eu monto a vitrine e sugiro a oferta que faz mais sentido para a sua Black Friday.</p>
+    </div>
+
+    <div class="cartao" id="cartao">
+      <div class="topo-cartao">
+        <span class="rotulo" id="rotulo" aria-live="polite">Pergunta 1 de 6</span>
+        <h3 id="pergunta" tabindex="-1">O que você oferece?</h3>
+      </div>
+      <div class="barra topo-cartao" aria-hidden="true"><i id="progresso"></i></div>
+
+      <form id="form" novalidate>
+        <fieldset class="passo ativo" data-passo="1" data-campo="oferece" data-pergunta="O que você oferece?">
+          <legend>O que você oferece?</legend>
+          <div class="opc"><input type="radio" id="a1" name="oferece" value="Um serviço"><label for="a1">Um serviço</label></div>
+          <div class="opc"><input type="radio" id="a2" name="oferece" value="Um produto físico"><label for="a2">Um produto físico</label></div>
+          <div class="opc"><input type="radio" id="a3" name="oferece" value="Um produto digital ou curso"><label for="a3">Um produto digital ou curso</label></div>
+          <div class="opc"><input type="radio" id="a4" name="oferece" value="Serviço e produto"><label for="a4">Serviço e produto</label></div>
+        </fieldset>
+
+        <fieldset class="passo" data-passo="2" data-campo="ramo" data-pergunta="Qual é o seu ramo?">
+          <legend>Qual é o seu ramo?</legend>
+          <div class="opc"><input type="radio" id="b1" name="ramo" value="Estética e saúde"><label for="b1">Estética e saúde</label></div>
+          <div class="opc"><input type="radio" id="b2" name="ramo" value="Moda e beleza"><label for="b2">Moda e beleza</label></div>
+          <div class="opc"><input type="radio" id="b3" name="ramo" value="Festas e eventos"><label for="b3">Festas e eventos</label></div>
+          <div class="opc"><input type="radio" id="b4" name="ramo" value="Fotografia"><label for="b4">Fotografia</label></div>
+          <div class="opc"><input type="radio" id="b5" name="ramo" value="Consultoria e organização"><label for="b5">Consultoria e organização</label></div>
+          <div class="opc"><input type="radio" id="b6" name="ramo" value="Alimentação e doces"><label for="b6">Alimentação e doces</label></div>
+          <div class="opc"><input type="radio" id="b7" name="ramo" value="Outro"><label for="b7">Outro</label></div>
+        </fieldset>
+
+        <fieldset class="passo" data-passo="3" data-campo="quer" data-pergunta="O que você gostaria de vender na Black Friday?">
+          <legend>O que você gostaria de vender na Black Friday?</legend>
+          <div class="opc"><input type="radio" id="c1" name="quer" value="Um serviço ou pacote com desconto"><label for="c1">Um serviço ou pacote com desconto</label></div>
+          <div class="opc"><input type="radio" id="c2" name="quer" value="Um vale-presente"><label for="c2">Um vale-presente</label></div>
+          <div class="opc"><input type="radio" id="c3" name="quer" value="Vagas limitadas de um serviço"><label for="c3">Vagas limitadas de um serviço</label></div>
+          <div class="opc"><input type="radio" id="c4" name="quer" value="Ainda não sei, me ajude"><label for="c4">Ainda não sei, me ajude</label></div>
+        </fieldset>
+
+        <fieldset class="passo" data-passo="4" data-campo="onde" data-pergunta="Onde você mais vende hoje?">
+          <legend>Onde você mais vende hoje?</legend>
+          <div class="opc"><input type="radio" id="d1" name="onde" value="Instagram"><label for="d1">Instagram</label></div>
+          <div class="opc"><input type="radio" id="d2" name="onde" value="WhatsApp"><label for="d2">WhatsApp</label></div>
+          <div class="opc"><input type="radio" id="d3" name="onde" value="Loja ou atendimento presencial"><label for="d3">Loja ou atendimento presencial</label></div>
+          <div class="opc"><input type="radio" id="d4" name="onde" value="Site"><label for="d4">Site</label></div>
+        </fieldset>
+
+        <fieldset class="passo" data-passo="5" data-campo="trava" data-pergunta="O que mais trava você?">
+          <legend>O que mais trava você?</legend>
+          <div class="opc"><input type="radio" id="e1" name="trava" value="Falta de tempo"><label for="e1">Falta de tempo</label></div>
+          <div class="opc"><input type="radio" id="e2" name="trava" value="Não sei o que postar"><label for="e2">Não sei o que postar</label></div>
+          <div class="opc"><input type="radio" id="e3" name="trava" value="Não tenho página ou site"><label for="e3">Não tenho página ou site</label></div>
+          <div class="opc"><input type="radio" id="e4" name="trava" value="Falta de arte e identidade"><label for="e4">Falta de arte e identidade</label></div>
+        </fieldset>
+
+        <fieldset class="passo" data-passo="6" data-campo="precisa" data-pergunta="Do que você precisa agora?">
+          <legend>Do que você precisa agora?</legend>
+          <div class="opc"><input type="radio" id="f1" name="precisa" value="Uma vitrine com a minha oferta"><label for="f1">Uma vitrine com a minha oferta</label></div>
+          <div class="opc"><input type="radio" id="f2" name="precisa" value="Artes para divulgar"><label for="f2">Artes para divulgar</label></div>
+          <div class="opc"><input type="radio" id="f3" name="precisa" value="Uma página de vendas"><label for="f3">Uma página de vendas</label></div>
+          <div class="opc"><input type="radio" id="f4" name="precisa" value="Só orientação"><label for="f4">Só orientação</label></div>
+        </fieldset>
+
+        <fieldset class="passo" data-passo="7" data-pergunta="Para onde eu envio a sua vitrine?" data-rotulo="Último passo">
+          <legend>Para onde eu envio a sua vitrine?</legend>
+          <div class="campo"><label for="nome">Seu nome</label><input type="text" id="nome" name="nome" autocomplete="name" maxlength="120" placeholder="Como posso te chamar?"></div>
+          <div class="campo"><label for="insta">Seu Instagram</label><input type="text" id="insta" name="insta" autocomplete="off" autocapitalize="none" maxlength="60" placeholder="@seuperfil"></div>
+          <div class="campo"><label for="whatsapp">Seu WhatsApp</label><input type="tel" id="whatsapp" name="whatsapp" inputmode="tel" autocomplete="tel-national" maxlength="20" placeholder="(92) 99999-9999"></div>
+          <div class="hp" aria-hidden="true"><label>Não preencha<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+          <label class="aceite" for="aceite">
+            <input type="checkbox" id="aceite" name="aceite">
+            <span>Autorizo a RISE Design &amp; Branding a entrar em contato comigo por WhatsApp sobre a minha vitrine de Black Friday e o diagnóstico gratuito, e a usar os dados que informei só para essa finalidade, conforme a <a href="/privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</span>
+          </label>
+          <button class="btn btn--vinho" type="submit" id="enviar">Enviar meu diagnóstico</button>
+        </fieldset>
+
+        <p class="erro" id="erro" role="alert"></p>
+        <button type="button" class="voltar" id="voltar" hidden>Voltar</button>
+      </form>
+
+      <div class="ok" id="ok" tabindex="-1">
+        <h3 id="ok-titulo">Recebido com carinho.</h3>
+        <p>Vou ler o que você me contou e te chamo no WhatsApp para combinarmos a sua vitrine.</p>
+        <a class="btn btn--contorno" id="ok-wa" href="#" target="_blank" rel="noopener">Falar agora no WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span class="marca-f">RISE</span>
+  <p>Feito com carinho por Joice, para as empreendedoras do grupo.</p>
+  <ul>
+    <li><a href="/privacidade/">Política de Privacidade</a></li>
+    <li><a href="https://www.instagram.com/by.risedsgn/" target="_blank" rel="noopener">Instagram</a></li>
+    <li><a href="https://wa.me/5592991755756" target="_blank" rel="noopener">WhatsApp</a></li>
+  </ul>
+  <span style="font-size:.8125rem">© 2026 RISE, Manaus</span>
+</footer>
+
+<script>
+(function(){
+  // Pixel PRÓPRIO da RISE (Rise Pixel, portfólio Rise Ads). Nunca usar o de outro cliente.
+  var CFG={endpoint:'/api/vitrine-lead',whatsapp:'5592991755756',pixel:'830244490126610'};
+
+  var KEYS=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'];
+  function atribuicao(){
+    var saved={};
+    try{saved=JSON.parse(sessionStorage.getItem('rise_vit_utm')||'{}')}catch(e){}
+    var q=new URLSearchParams(location.search),mudou=false;
+    KEYS.forEach(function(k){var v=q.get(k);if(v){saved[k]=v.slice(0,300);mudou=true}});
+    if(!saved.landing){saved.landing=location.href.split('#')[0].slice(0,500);saved.referrer=(document.referrer||'').slice(0,500);mudou=true}
+    if(mudou){try{sessionStorage.setItem('rise_vit_utm',JSON.stringify(saved))}catch(e){}}
+    return saved;
+  }
+  var utm=atribuicao(),t0=Date.now();
+
+  if(CFG.pixel){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init',CFG.pixel);fbq('track','PageView');
+  }
+
+  var form=document.getElementById('form'),cartao=document.getElementById('cartao');
+  var passos=[].slice.call(form.querySelectorAll('.passo')),total=passos.length;
+  var rotulo=document.getElementById('rotulo'),pergunta=document.getElementById('pergunta'),prog=document.getElementById('progresso');
+  var voltarBtn=document.getElementById('voltar'),erro=document.getElementById('erro'),btn=document.getElementById('enviar');
+  var atual=0;
+
+  // Troca de pergunta no mesmo lugar: a tela não pula nem rola sozinha.
+  function mostrar(i){
+    atual=i;erro.textContent='';
+    passos.forEach(function(p,k){p.classList.toggle('ativo',k===i)});
+    var p=passos[i];
+    pergunta.textContent=p.getAttribute('data-pergunta');
+    rotulo.textContent=p.getAttribute('data-rotulo')||('Pergunta '+(i+1)+' de '+(total-1));
+    prog.style.width=Math.round(i/total*100)+'%';
+    voltarBtn.hidden=(i===0);
+    try{pergunta.focus({preventScroll:true})}catch(e){}
+  }
+
+  // Cada resposta avança sozinha para a próxima pergunta.
+  form.addEventListener('click',function(ev){
+    var el=ev.target;
+    if(el.type==='radio'&&atual<total-1){
+      if(window.gtag)gtag('event','form_passo',{passo:atual+1});
+      mostrar(atual+1);
+    }
+  });
+  voltarBtn.addEventListener('click',function(){if(atual>0)mostrar(atual-1)});
+
+  var fone=document.getElementById('whatsapp');
+  fone.addEventListener('input',function(){
+    var d=fone.value.replace(/\D/g,'').slice(0,11),s=d;
+    if(d.length>2)s='('+d.slice(0,2)+') '+d.slice(2,d.length>10?7:6)+(d.length>(d.length>10?7:6)?'-'+d.slice(d.length>10?7:6):'');
+    fone.value=s;
+  });
+
+  function falha(msg,campo){erro.textContent=msg;if(campo){var el=document.getElementById(campo);if(el&&el.focus)el.focus({preventScroll:true})}}
+  function valor(n){var c=form.querySelector('input[name='+n+']:checked');return c?c.value:''}
+
+  form.addEventListener('submit',function(ev){
+    ev.preventDefault();erro.textContent='';
+    var f=form.elements;
+    var nome=f.nome.value.trim(),insta=f.insta.value.trim(),digitos=f.whatsapp.value.replace(/\D/g,'');
+    var campos=['oferece','ramo','quer','onde','trava','precisa'];
+    for(var i=0;i<campos.length;i++){if(!valor(campos[i])){mostrar(i);return falha('Escolha uma opção para continuar.')}}
+    if(nome.length<2)return falha('Informe seu nome.','nome');
+    if(digitos.length<10)return falha('Informe o WhatsApp com DDD.','whatsapp');
+    if(!f.aceite.checked)return falha('Marque a autorização para receber o contato da RISE.','aceite');
+
+    btn.disabled=true;btn.textContent='Enviando…';
+    fetch(CFG.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+      oferece:valor('oferece'),ramo:valor('ramo'),quer:valor('quer'),onde:valor('onde'),trava:valor('trava'),precisa:valor('precisa'),
+      nome:nome,insta:insta,whatsapp:digitos,consentimento:true,
+      website:f.website.value,t:Date.now()-t0,utm:utm,pagina:location.href.slice(0,300)
+    })}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||!j.ok)throw new Error(j.erro||'falha')})})
+    .then(function(){
+      if(window.gtag)gtag('event','generate_lead',{origem:'vitrine_grupo'});
+      if(window.fbq)fbq('track','Lead');
+      document.getElementById('ok-titulo').textContent='Recebido com carinho, '+nome.split(' ')[0]+'.';
+      document.getElementById('ok-wa').href='https://wa.me/'+CFG.whatsapp+'?text='+encodeURIComponent('Oi, Joice! Enviei meu diagnóstico para a vitrine de Black Friday.');
+      cartao.classList.add('enviado');
+      try{document.getElementById('ok').focus({preventScroll:true})}catch(e){}
+    })
+    .catch(function(){
+      btn.disabled=false;btn.textContent='Enviar meu diagnóstico';
+      falha('Não foi possível enviar agora. Tente de novo em instantes ou chame a RISE no WhatsApp.');
+    });
+  });
+
+  var comecou=false;
+  form.addEventListener('focusin',function(){if(comecou)return;comecou=true;if(window.gtag)gtag('event','form_start',{origem:'vitrine_grupo'})});
+  [].forEach.call(document.querySelectorAll('[data-cta]'),function(a){a.addEventListener('click',function(){if(window.gtag)gtag('event','cta_click',{local:a.getAttribute('data-cta')})})});
+
+  mostrar(0);
+})();
+</script>
+</body>
+</html>
