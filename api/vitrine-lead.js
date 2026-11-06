@@ -22,7 +22,10 @@ const OPCOES = {
   trava: ['Falta de tempo', 'Não sei o que postar', 'Não tenho página ou site', 'Falta de arte e identidade'],
   precisa: ['Uma vitrine com a minha oferta', 'Artes para divulgar', 'Uma página de vendas', 'Só orientação'],
   divulga: ['Organicamente', 'Com tráfego pago', 'Quero entender melhor'],
+  modelo: ['Valor fixo (pacote)', 'Sem custo inicial, com percentual das vendas', 'Quero entender qual vale mais a pena'],
 };
+
+const MODELO_TAG = { 'Valor fixo (pacote)': 'modelo-fixo', 'Sem custo inicial, com percentual das vendas': 'modelo-percentual', 'Quero entender qual vale mais a pena': 'modelo-duvida' };
 
 // Serviços da RISE (múltipla escolha, opcional).
 const SERVICOS = ['Captação de vídeo', 'Gestão de tráfego pago', 'Artes e identidade visual', 'Site ou página completa', 'Nenhum por enquanto'];
@@ -88,13 +91,14 @@ module.exports = async function handler(req, res) {
     slug: SLUG, token,
     nome, contato: fone, origem,
     respostas: [],
-    tags: ['black-friday', 'vitrine-grupo', ...(resp.divulga === 'Com tráfego pago' || servicosOk.includes('Gestão de tráfego pago') ? ['quer-trafego'] : [])],
+    tags: ['black-friday', 'vitrine-grupo', ...(resp.divulga === 'Com tráfego pago' || servicosOk.includes('Gestão de tráfego pago') ? ['quer-trafego'] : []), ...(MODELO_TAG[resp.modelo] ? [MODELO_TAG[resp.modelo]] : [])],
     extra: {
       fonte: utm.utm_source || origem,
       notas: 'Diagnóstico da vitrine de Black Friday (grupo de empreendedoras)',
       oferece: resp.oferece, ramo: resp.ramo, quer_vender: resp.quer, vende_onde: resp.onde,
       trava: resp.trava, precisa: resp.precisa,
       divulgar: resp.divulga,
+      modelo_vitrine: resp.modelo,
       servicos_interesse: servicosOk.join(', ') || 'nenhum informado',
       ...(insta ? { instagram: '@' + insta } : {}),
     },

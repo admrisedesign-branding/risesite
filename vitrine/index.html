@@ -246,7 +246,7 @@ footer a{text-decoration:underline}
 
     <div class="cartao" id="cartao">
       <div class="topo-cartao">
-        <span class="rotulo" id="rotulo" aria-live="polite">Pergunta 1 de 8</span>
+        <span class="rotulo" id="rotulo" aria-live="polite">Pergunta 1 de 9</span>
         <h3 id="pergunta" tabindex="-1">O que você oferece?</h3>
       </div>
       <div class="barra topo-cartao" aria-hidden="true"><i id="progresso"></i></div>
@@ -321,7 +321,14 @@ footer a{text-decoration:underline}
           <button type="button" class="btn continuar" id="continuar">Continuar</button>
         </fieldset>
 
-        <fieldset class="passo" data-passo="9" data-pergunta="Para onde eu envio a sua vitrine?" data-rotulo="Último passo">
+        <fieldset class="passo" data-passo="9" data-campo="modelo" data-pergunta="Como você prefere ter a sua vitrine?">
+          <legend>Como você prefere ter a sua vitrine?</legend>
+          <div class="opc"><input type="radio" id="m1" name="modelo" value="Valor fixo (pacote)"><label for="m1">Pagar um valor fixo<small>Pacote de Black Friday: você paga uma vez e a vitrine é sua.</small></label></div>
+          <div class="opc"><input type="radio" id="m2" name="modelo" value="Sem custo inicial, com percentual das vendas"><label for="m2">Sem custo inicial, com percentual das vendas<small>Você não paga para ter a vitrine. A RISE ganha uma porcentagem das vendas que ela gerar.</small></label></div>
+          <div class="opc"><input type="radio" id="m3" name="modelo" value="Quero entender qual vale mais a pena"><label for="m3">Quero entender qual vale mais a pena<small>Eu comparo as duas opções com você, olhando o seu momento e o seu negócio.</small></label></div>
+        </fieldset>
+
+        <fieldset class="passo" data-passo="10" data-pergunta="Para onde eu envio a sua vitrine?" data-rotulo="Último passo">
           <legend>Para onde eu envio a sua vitrine?</legend>
           <div class="campo"><label for="nome">Seu nome</label><input type="text" id="nome" name="nome" autocomplete="name" maxlength="120" placeholder="Como posso te chamar?"></div>
           <div class="campo"><label for="insta">Seu Instagram</label><input type="text" id="insta" name="insta" autocomplete="off" autocapitalize="none" maxlength="60" placeholder="@seuperfil"></div>
@@ -436,7 +443,7 @@ footer a{text-decoration:underline}
     ev.preventDefault();erro.textContent='';
     var f=form.elements;
     var nome=f.nome.value.trim(),insta=f.insta.value.trim(),digitos=f.whatsapp.value.replace(/\D/g,'');
-    var campos=['oferece','ramo','quer','onde','trava','precisa','divulga'];
+    var campos=['oferece','ramo','quer','onde','trava','precisa','divulga','modelo'];
     for(var i=0;i<campos.length;i++){if(!valor(campos[i])){mostrar(i);return falha('Escolha uma opção para continuar.')}}
     if(nome.length<2)return falha('Informe seu nome.','nome');
     if(digitos.length<10)return falha('Informe o WhatsApp com DDD.','whatsapp');
@@ -444,7 +451,7 @@ footer a{text-decoration:underline}
 
     btn.disabled=true;btn.textContent='Enviando…';
     fetch(CFG.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
-      oferece:valor('oferece'),ramo:valor('ramo'),quer:valor('quer'),onde:valor('onde'),trava:valor('trava'),precisa:valor('precisa'),divulga:valor('divulga'),servicos:servicos(),
+      oferece:valor('oferece'),ramo:valor('ramo'),quer:valor('quer'),onde:valor('onde'),trava:valor('trava'),precisa:valor('precisa'),divulga:valor('divulga'),servicos:servicos(),modelo:valor('modelo'),
       nome:nome,insta:insta,whatsapp:digitos,consentimento:true,
       website:f.website.value,t:Date.now()-t0,utm:utm,pagina:location.href.slice(0,300)
     })}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||!j.ok)throw new Error(j.erro||'falha')})})
