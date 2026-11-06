@@ -454,6 +454,8 @@ footer{padding-bottom:96px}
     return saved;
   }
   var utm=atribuicao(),t0=Date.now();
+  var GRUPO=(utm.utm_campaign||'direto').slice(0,60);
+  if(window.gtag)gtag('set','user_properties',{grupo:GRUPO});
 
   if(CFG.pixel){
     !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
@@ -482,7 +484,7 @@ footer{padding-bottom:96px}
   form.addEventListener('click',function(ev){
     var el=ev.target;
     if(el.type==='radio'&&atual<total-1){
-      if(window.gtag)gtag('event','form_passo',{passo:atual+1});
+      if(window.gtag)gtag('event','form_passo',{passo:atual+1,grupo:GRUPO});
       mostrar(atual+1);
     }
     // Serviços: marcar "Nenhum" desmarca os outros, e marcar um serviço desmarca o "Nenhum".
@@ -495,7 +497,7 @@ footer{padding-bottom:96px}
     }
   });
   document.getElementById('continuar').addEventListener('click',function(){
-    if(window.gtag)gtag('event','form_passo',{passo:atual+1});
+    if(window.gtag)gtag('event','form_passo',{passo:atual+1,grupo:GRUPO});
     mostrar(atual+1);
   });
   voltarBtn.addEventListener('click',function(){if(atual>0)mostrar(atual-1)});
@@ -528,8 +530,8 @@ footer{padding-bottom:96px}
       website:f.website.value,t:Date.now()-t0,utm:utm,pagina:location.href.slice(0,300)
     })}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||!j.ok)throw new Error(j.erro||'falha')})})
     .then(function(){
-      if(window.gtag)gtag('event','generate_lead',{origem:'vitrine_grupo'});
-      if(window.fbq)fbq('track','Lead');
+      if(window.gtag)gtag('event','generate_lead',{origem:'vitrine_grupo',grupo:GRUPO});
+      if(window.fbq)fbq('track','Lead',{content_category:GRUPO});
       document.getElementById('ok-titulo').textContent='Recebido com carinho, '+nome.split(' ')[0]+'.';
       document.getElementById('ok-wa').href='https://wa.me/'+CFG.whatsapp+'?text='+encodeURIComponent('Oi, Joice! Enviei meu diagnóstico para a vitrine de Black Friday.');
       cartao.classList.add('enviado');
@@ -542,8 +544,8 @@ footer{padding-bottom:96px}
   });
 
   var comecou=false;
-  form.addEventListener('focusin',function(){if(comecou)return;comecou=true;if(window.gtag)gtag('event','form_start',{origem:'vitrine_grupo'})});
-  [].forEach.call(document.querySelectorAll('[data-cta]'),function(a){a.addEventListener('click',function(){if(window.gtag)gtag('event','cta_click',{local:a.getAttribute('data-cta')})})});
+  form.addEventListener('focusin',function(){if(comecou)return;comecou=true;if(window.gtag)gtag('event','form_start',{origem:'vitrine_grupo',grupo:GRUPO})});
+  [].forEach.call(document.querySelectorAll('[data-cta]'),function(a){a.addEventListener('click',function(){if(window.gtag)gtag('event','cta_click',{local:a.getAttribute('data-cta'),grupo:GRUPO})})});
 
   mostrar(0);
 })();
