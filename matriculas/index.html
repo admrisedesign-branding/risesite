@@ -219,14 +219,16 @@ html.vsl-on #vsl{display:flex}
 #vsl .vbar{width:min(100%,960px);height:4px;background:rgba(255,255,255,.14);border-radius:4px;margin-top:14px;overflow:hidden}
 #vsl .vbar b{display:block;height:100%;width:0;background:#E8531A}
 #vsl .vmsg{color:var(--dm);font-size:.9rem;margin-top:10px}
-#vsl .vtop{color:#fff;font-weight:700;margin-bottom:14px;font-size:clamp(1rem,2.4vw,1.25rem)}
+#vsl .vtop{color:#fff;font-weight:700;margin-bottom:16px;font-size:clamp(.95rem,2.2vw,1.2rem);line-height:1.2}
+#vsl .vtop span{display:block;color:var(--dm);font-weight:500}
+#vsl .vtop strong{display:block;margin-top:4px;color:#E8531A;font-weight:800;letter-spacing:-.03em;font-size:clamp(1.9rem,6.5vw,3.4rem);line-height:1.02}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZZ46BRRSL"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-0ZZ46BRRSL");</script>
 </head>
 <body>
 <div id="vsl" role="dialog" aria-label="Vídeo de apresentação">
-  <div class="vtop">Assista até o final para liberar o diagnóstico gratuito</div>
+  <div class="vtop"><span>Assista até o final para liberar o</span><strong>diagnóstico gratuito</strong></div>
   <div class="vbox">
     <video id="vsl-v" playsinline webkit-playsinline preload="metadata" controlslist="nodownload noplaybackrate" disablepictureinpicture src="/matriculas/video.mp4"></video>
     <button class="vplay" id="vsl-go" type="button"><i></i><span>Toque para assistir</span></button>
