@@ -195,11 +195,36 @@ footer a:hover{color:var(--tx)}
   .btn,.barra{transition:none}
 }
 
+
+/* Vídeo de abertura: libera a página só ao final */
+html.vsl-on,html.vsl-on body{overflow:hidden}
+#vsl{position:fixed;inset:0;z-index:1000;background:#070508;display:none;align-items:center;justify-content:center;flex-direction:column;padding:20px;text-align:center}
+html.vsl-on #vsl{display:flex}
+#vsl .vbox{position:relative;width:min(100%,960px);max-height:72vh;aspect-ratio:16/9;background:#000;border-radius:16px;overflow:hidden;border:1px solid var(--bd)}
+#vsl.vert .vbox{aspect-ratio:9/16;max-height:78vh;width:auto;height:78vh;max-width:100%}
+#vsl video{width:100%;height:100%;object-fit:contain;display:block;background:#000}
+#vsl .vplay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(7,5,8,.45);border:0;color:#fff;font:700 1.05rem 'DM Sans',sans-serif;cursor:pointer;gap:12px}
+#vsl .vplay i{width:68px;height:68px;border-radius:50%;background:#E8531A;display:grid;place-items:center;box-shadow:0 8px 30px rgba(232,83,26,.5)}
+#vsl .vplay i::after{content:'';border-left:20px solid #fff;border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:5px}
+#vsl .vplay.off{display:none}
+#vsl .vbar{width:min(100%,960px);height:4px;background:rgba(255,255,255,.14);border-radius:4px;margin-top:14px;overflow:hidden}
+#vsl .vbar b{display:block;height:100%;width:0;background:#E8531A}
+#vsl .vmsg{color:var(--dm);font-size:.9rem;margin-top:10px}
+#vsl .vtop{color:#fff;font-weight:700;margin-bottom:14px;font-size:clamp(1rem,2.4vw,1.25rem)}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZZ46BRRSL"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-0ZZ46BRRSL");</script>
 </head>
 <body>
+<div id="vsl" role="dialog" aria-label="Vídeo de apresentação">
+  <div class="vtop">Assista até o final para liberar o diagnóstico gratuito</div>
+  <div class="vbox">
+    <video id="vsl-v" playsinline webkit-playsinline preload="metadata" controlslist="nodownload noplaybackrate" disablepictureinpicture src="/matriculas/video.mp4"></video>
+    <button class="vplay" id="vsl-go" type="button"><i></i><span>Toque para assistir</span></button>
+  </div>
+  <div class="vbar"><b id="vsl-p"></b></div>
+  <div class="vmsg" id="vsl-t">O formulário abre quando o vídeo terminar.</div>
+</div>
 
 <header class="nav">
   <div class="wrap">
@@ -455,6 +480,54 @@ footer a:hover{color:var(--tx)}
 
   // medir cliques nos botões de chamada
   [].forEach.call(document.querySelectorAll('[data-cta]'),function(a){a.addEventListener('click',function(){if(window.gtag)gtag('event','cta_click',{local:a.getAttribute('data-cta')})})});
+})();
+</script>
+<script>
+(function(){
+  var de=document.documentElement,q=location.search;
+  var visto=false;try{visto=sessionStorage.getItem('rise_vsl')==='1'}catch(e){}
+  if(visto||/[?&]nogate=1/.test(q))return;
+  var v=document.getElementById('vsl-v'),go=document.getElementById('vsl-go'),bar=document.getElementById('vsl-p'),msg=document.getElementById('vsl-t'),box=document.getElementById('vsl');
+  var max=0,feitos={},iniciou=false,liberado=false;
+  function ev(n,p){if(window.gtag)gtag('event',n,p||{origem:'matriculas_2027'});}
+  function liberar(ok){
+    if(liberado)return;liberado=true;
+    de.classList.remove('vsl-on');
+    try{sessionStorage.setItem('rise_vsl','1')}catch(e){}
+    if(ok)ev('vsl_complete');
+    try{v.pause()}catch(e){}
+  }
+  // só trava a página se o vídeo realmente carregar
+  de.classList.add('vsl-on');
+  var timer=setTimeout(function(){liberar(false);ev('vsl_timeout')},7000);
+  v.addEventListener('loadedmetadata',function(){
+    clearTimeout(timer);
+    if(v.videoHeight>v.videoWidth)box.classList.add('vert');
+  });
+  v.addEventListener('error',function(){clearTimeout(timer);liberar(false);ev('vsl_erro')});
+  go.addEventListener('click',function(){
+    v.muted=false;
+    var pr=v.play();
+    if(pr&&pr.catch)pr.catch(function(){msg.textContent='Não foi possível reproduzir. Toque novamente.'});
+  });
+  v.addEventListener('click',function(){if(v.paused)v.play();else v.pause()});
+  v.addEventListener('play',function(){
+    go.classList.add('off');
+    if(!iniciou){iniciou=true;ev('vsl_play')}
+  });
+  v.addEventListener('pause',function(){if(!v.ended&&iniciou)go.classList.remove('off')});
+  v.addEventListener('timeupdate',function(){
+    if(!v.duration)return;
+    if(v.currentTime>max)max=v.currentTime;
+    var pc=v.currentTime/v.duration*100;
+    bar.style.width=pc+'%';
+    [25,50,75].forEach(function(m){if(pc>=m&&!feitos[m]){feitos[m]=1;ev('vsl_'+m)}});
+    var r=Math.ceil(v.duration-v.currentTime);
+    msg.textContent='Faltam '+r+' s para liberar o diagnóstico.';
+  });
+  // sem pular para frente (voltar é permitido)
+  v.addEventListener('seeking',function(){if(v.currentTime>max+1)v.currentTime=max});
+  v.addEventListener('ended',function(){liberar(true)});
 })();
 </script>
 </body>
