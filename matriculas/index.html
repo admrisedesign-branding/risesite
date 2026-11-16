@@ -470,7 +470,9 @@ html.vsl-on #vsl{display:flex}
       if(window.gtag)gtag('event','generate_lead',{origem:'matriculas_2027'});
       if(window.fbq)fbq('track','Lead');
       document.getElementById('ok-titulo').textContent='Pedido recebido, '+nome.split(' ')[0]+'.';
-      var msg='Olá, vim pelo site da RISE e pedi o diagnóstico gratuito.\nNome: '+nome+'\nEscola/curso: '+escola+'\nWhatsApp: '+f.whatsapp.value.trim()+'\nDesafio: '+desafio+'\nQuando quer começar: '+quando;
+      var QD={'Imediatamente':'o quanto antes','Em novembro ou dezembro':'ainda em novembro ou dezembro','Em 2027':'em 2027'};
+      var dz=desafio.charAt(0).toLowerCase()+desafio.slice(1);
+      var msg='Oi, André! Tudo bem? Aqui é '+nome.split(' ')[0]+', da '+escola+'. Assisti ao vídeo e pedi o diagnóstico gratuito pelo site da RISE. Hoje o que mais quero é '+dz+', e gostaria de começar '+(QD[quando]||quando.toLowerCase())+'. Podemos conversar?';
       var zap='https://wa.me/'+CFG.whatsapp+'?text='+encodeURIComponent(msg);
       var aw=document.getElementById('ok-wa');aw.href=zap;
       cartao.classList.add('enviado');
