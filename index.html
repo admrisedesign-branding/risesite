@@ -1246,7 +1246,10 @@ function mfEnviar(f){
   var origem=(location.pathname.indexOf('/portfolio')===0?'site-portfolio':'site-home');
   var payload={nome:nome,whatsapp:tel,servico:serv,origem:origem,pagina:location.href,utm:mfUtm(),website:f.website?f.website.value:'',t:Date.now()-MF_T0};
   var done=function(){f.classList.add('sent');if(window.gtag)gtag('event','generate_lead',{servico:serv,origem:origem});
-    var msg=(en?'Hi, I came from the RISE website.':'Olá, vim pelo site da RISE.')+'\n'+(en?'Name':'Nome')+': '+nome+'\nWhatsApp: '+tel+'\n'+(en?'Interest':'Interesse')+': '+serv;
+    var pn=nome.split(' ')[0],SV={'Funil completo':'o funil completo','Tráfego pago':'tráfego pago','Site':'um site novo','Atendimento':'organizar o atendimento','Identidade visual':'identidade visual'},sv=SV[serv]||serv.toLowerCase();
+    var msg=en?('Hi André! This is '+pn+'. I found RISE through the website and I\'m interested in '+serv+'. Can we talk?')
+      :(serv==='Outro'?'Oi, André! Tudo bem? Aqui é '+pn+'. Vim pelo site da RISE e queria conversar sobre o meu negócio. Podemos falar?'
+      :'Oi, André! Tudo bem? Aqui é '+pn+'. Vim pelo site da RISE e tenho interesse em '+sv+'. Podemos conversar?');
     setTimeout(function(){window.open('https://wa.me/5592991755756?text='+encodeURIComponent(msg),'_blank')},600)};
   // O envio ao Capta passa pelo servidor (o token fica lá). Se falhar, o WhatsApp abre do mesmo jeito.
   fetch('/api/home-lead',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)}).then(function(){done()}).catch(function(){done()});
