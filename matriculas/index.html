@@ -305,8 +305,9 @@ html.vsl-on #vsl{display:flex}
         </form>
         <div class="ok" id="ok" tabindex="-1">
           <h3 id="ok-titulo">Pedido recebido.</h3>
-          <p>Vamos chamar você no WhatsApp para combinar o horário do diagnóstico.</p>
-          <a class="btn btn--wa" id="ok-wa" href="#" target="_blank" rel="noopener">Falar agora no WhatsApp</a>
+          <p>Seu pedido já está com o André, da RISE. Ele chama você no WhatsApp para combinar o horário do diagnóstico.</p>
+          <p id="ok-aviso" style="margin-top:6px;opacity:.75"></p>
+          <a class="btn btn--wa" id="ok-wa" href="#" target="_blank" rel="noopener">Falar agora com o André no WhatsApp</a>
         </div>
       </div>
     </div>
@@ -469,9 +470,14 @@ html.vsl-on #vsl{display:flex}
       if(window.gtag)gtag('event','generate_lead',{origem:'matriculas_2027'});
       if(window.fbq)fbq('track','Lead');
       document.getElementById('ok-titulo').textContent='Pedido recebido, '+nome.split(' ')[0]+'.';
-      document.getElementById('ok-wa').href='https://wa.me/'+CFG.whatsapp+'?text='+encodeURIComponent('Olá, pedi o diagnóstico gratuito para a escola '+escola+'.');
+      var msg='Olá, vim pelo site da RISE e pedi o diagnóstico gratuito.\nNome: '+nome+'\nEscola/curso: '+escola+'\nWhatsApp: '+f.whatsapp.value.trim()+'\nDesafio: '+desafio+'\nQuando quer começar: '+quando;
+      var zap='https://wa.me/'+CFG.whatsapp+'?text='+encodeURIComponent(msg);
+      var aw=document.getElementById('ok-wa');aw.href=zap;
       cartao.classList.add('enviado');
       var ok=document.getElementById('ok');ok.focus();
+      // abre a conversa com o André já com os dados; o botão continua disponível se o aparelho bloquear
+      var av=document.getElementById('ok-aviso');if(av)av.textContent='Abrindo o WhatsApp do André…';
+      setTimeout(function(){location.href=zap},1800);
     })
     .catch(function(){
       btn.disabled=false;btn.textContent='Solicitar diagnóstico';
