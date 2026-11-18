@@ -217,8 +217,8 @@ footer a:hover{color:var(--tx)}
 .hvid video{width:100%;height:100%;object-fit:cover;display:block;background:#000}
 .hvid .vsom{position:absolute;left:12px;top:12px;display:inline-flex;align-items:center;gap:8px;font:700 .875rem 'DM Sans',sans-serif;color:#fff;background:rgba(7,5,8,.78);border:1px solid rgba(255,255,255,.22);border-radius:100px;padding:9px 16px;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .hvid .vsom.off{display:none}
-.hvid .btn{width:100%;margin-top:18px}
-.hvid .vnota{margin-top:10px;text-align:center;font-size:.8125rem;color:var(--dr)}
+.hside .btn{width:100%;margin-top:22px}
+.hside .vnota{margin-top:10px;text-align:center;font-size:.8125rem;color:var(--dr)}
 
 /* formulário em seção própria, logo abaixo do hero */
 .sec-form{border-top:0;padding-top:0}
@@ -230,19 +230,89 @@ footer a:hover{color:var(--tx)}
   .hero .badge{order:1;justify-self:start;margin-bottom:14px}
   .hero h1{order:2;font-size:clamp(1.7rem,7.2vw,2.2rem);line-height:1.08}
   .hero .hvid{order:3;margin:20px 0 6px}
-  .hero .sub{order:4}
+  .hero .hside{order:4}
+  .hero .sub{margin-top:18px}
   .hero .pontos{order:5}
   .hero .agora{order:6}
   .hvid .vbox{border-radius:16px}
-  .hvid .btn,.hvid .vnota{display:none}
+  .hside .btn,.hside .vnota{display:none}
   /* botões largos em uma linha só no celular */
   .cartao .btn:not(.btn--wa),.barra .btn{white-space:nowrap;padding-left:12px;padding-right:12px;font-size:clamp(.75rem,3.7vw,1.0625rem)}
 }
+
+/* ===== Hero em destaque (desktop): título de ponta a ponta, vídeo grande, apoio esticado embaixo ===== */
+@media (min-width:901px){
+  .hero{padding-top:calc(68px + 34px);padding-bottom:clamp(40px,6vw,72px)}
+  .hero .wrap{max-width:1320px;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);grid-template-areas:"selo selo" "titulo titulo" "video apoio" "itens itens" "agora agora";gap:0 clamp(32px,4.2vw,68px);align-items:start}
+  .hero .wrap>div:first-child{display:contents}
+  .hero .badge{grid-area:selo;justify-self:start;margin-bottom:16px}
+  .hero h1{grid-area:titulo;font-size:clamp(2.7rem,4.9vw,4.2rem);line-height:.97;letter-spacing:-.046em;text-wrap:balance;margin-bottom:28px}
+  .hero .hvid{grid-area:video}
+  .hero .hside{grid-area:apoio;align-self:center}
+  .hero .sub{margin-top:0;max-width:none;font-size:clamp(1.125rem,1.45vw,1.3125rem);line-height:1.55}
+  .hside .btn{padding:19px 28px;font-size:1.0625rem;margin-top:26px}
+  .hero .pontos{grid-area:itens;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 clamp(20px,3vw,44px);margin-top:clamp(36px,4.4vw,56px);padding-top:22px;border-top:1px solid var(--bd)}
+  .hero .pontos li{align-items:flex-start;font-size:1.0625rem;line-height:1.4}
+  .hero .pontos li::before{margin-top:2px}
+  .hero .agora{grid-area:agora;max-width:none;margin-top:26px}
+}
+
+/* vídeo: brilho que respira */
+.hvid .vbox{animation:brilho 5.5s ease-in-out infinite}
+@keyframes brilho{0%,100%{box-shadow:0 24px 80px rgba(0,0,0,.45),0 0 0 rgba(232,83,26,0)}50%{box-shadow:0 24px 80px rgba(0,0,0,.45),0 0 110px rgba(232,83,26,.34)}}
+
+/* entrada do hero: uma sequência só, ao abrir a página */
+@keyframes sobe{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes entra-video{from{opacity:0;transform:translateY(30px) scale(.95)}to{opacity:1;transform:none}}
+.hero .badge{animation:sobe .7s cubic-bezier(.2,.7,.2,1) .05s both}
+.hero h1{animation:sobe .9s cubic-bezier(.2,.7,.2,1) .12s both}
+.hero .hvid{animation:entra-video 1s cubic-bezier(.2,.7,.2,1) .3s both}
+.hero .hside{animation:sobe .8s cubic-bezier(.2,.7,.2,1) .48s both}
+.hero .pontos li{animation:sobe .7s cubic-bezier(.2,.7,.2,1) both}
+.hero .pontos li:nth-child(1){animation-delay:.62s}
+.hero .pontos li:nth-child(2){animation-delay:.72s}
+.hero .pontos li:nth-child(3){animation-delay:.82s}
+.hero .agora{animation:sobe .7s cubic-bezier(.2,.7,.2,1) .95s both}
+
+/* blocos que surgem ao rolar (só com JavaScript ativo; sem ele, tudo aparece normal) */
+.js .rv{opacity:0;transform:translateY(30px);transition:opacity .75s cubic-bezier(.2,.7,.2,1),transform .75s cubic-bezier(.2,.7,.2,1),border-color .3s;transition-delay:var(--d,0ms)}
+.js .rv.in{opacity:1;transform:none}
+.js .funil li{width:0;overflow:hidden;white-space:nowrap;transition:width 1s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0ms)}
+.js .funil.in li{width:var(--w)}
+
+@media (max-width:900px){
+  /* celular: cartões em carrossel horizontal com encaixe */
+  .grade,.passos{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 calc(var(--gut) * -1);padding:4px var(--gut) 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .grade::-webkit-scrollbar,.passos::-webkit-scrollbar{display:none}
+  .grade>*,.passos>*{flex:0 0 82%;scroll-snap-align:center}
+  .js .grade .rv,.js .passos .rv{transform:translateX(34px)}
+  .js .grade .rv.in,.js .passos .rv.in{transform:none}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .hvid .vbox,.hero .badge,.hero h1,.hero .hvid,.hero .hside,.hero .pontos li,.hero .agora{animation:none}
+  .js .rv{opacity:1;transform:none;transition:none}
+  .js .funil li{width:var(--w);transition:none}
+}
+
+/* ===== Fundo vivo: manchas laranja que derivam devagar e se deslocam conforme a rolagem ===== */
+.aura{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.aura i{position:absolute;border-radius:50%;will-change:transform,translate;translate:0 calc(var(--p,0) * var(--k,0vh));transition:translate .5s linear}
+.aura .a1{width:78vmax;height:78vmax;left:-30vmax;top:-26vmax;--k:46vh;background:radial-gradient(closest-side,rgba(232,83,26,.24),rgba(232,83,26,.07) 55%,transparent);animation:deriva1 24s ease-in-out infinite alternate}
+.aura .a2{width:64vmax;height:64vmax;right:-24vmax;top:28vh;--k:-58vh;background:radial-gradient(closest-side,rgba(255,138,76,.16),rgba(255,138,76,.05) 55%,transparent);animation:deriva2 31s ease-in-out infinite alternate}
+.aura .a3{width:58vmax;height:58vmax;left:18vw;bottom:-34vmax;--k:-36vh;background:radial-gradient(closest-side,rgba(190,60,14,.22),rgba(190,60,14,.06) 55%,transparent);animation:deriva3 37s ease-in-out infinite alternate}
+@keyframes deriva1{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(14vw,9vh,0) scale(1.12)}100%{transform:translate3d(5vw,20vh,0) scale(.94)}}
+@keyframes deriva2{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-16vw,-10vh,0) scale(1.16)}100%{transform:translate3d(-6vw,14vh,0) scale(.9)}}
+@keyframes deriva3{0%{transform:translate3d(0,0,0) scale(.92)}50%{transform:translate3d(18vw,-14vh,0) scale(1.1)}100%{transform:translate3d(-12vw,-6vh,0) scale(1)}}
+main,footer{position:relative;z-index:1}
+section.alt{background:rgba(255,255,255,.022)}
+@media (prefers-reduced-motion:reduce){.aura i{animation:none;transition:none;translate:none}}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZZ46BRRSL"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-0ZZ46BRRSL");</script>
 </head>
 <body>
+<div class="aura" aria-hidden="true"><i class="a1"></i><i class="a2"></i><i class="a3"></i></div>
 
 <header class="nav">
   <div class="wrap">
@@ -257,7 +327,6 @@ footer a:hover{color:var(--tx)}
       <div>
         <span class="badge"><i></i>Raio-X das Matrículas · gratuito</span>
         <h1>Quantas matrículas sua escola perde por mês <span class="acc">sem ninguém perceber?</span></h1>
-        <p class="sub">No Raio-X das Matrículas, um diagnóstico gratuito de 20 a 30 minutos, a RISE desenha o caminho do seu aluno, do primeiro contato até a matrícula, e mostra onde ele está escapando.</p>
         <ul class="pontos">
           <li>Você sai com o caminho do seu aluno desenhado, etapa por etapa</li>
           <li>E com as 3 correções mais urgentes para a sua escola</li>
@@ -272,6 +341,10 @@ footer a:hover{color:var(--tx)}
           <video id="vsl-v" autoplay muted playsinline webkit-playsinline controls preload="auto" poster="/matriculas/video-capa.jpg" controlslist="nodownload noplaybackrate" disablepictureinpicture src="/matriculas/video-rapido.mp4"></video>
           <button class="vsom" id="vsl-som" type="button">Ativar som</button>
         </div>
+      </div>
+
+      <div class="hside">
+        <p class="sub">No Raio-X das Matrículas, um diagnóstico gratuito de 20 a 30 minutos, a RISE desenha o caminho do seu aluno, do primeiro contato até a matrícula, e mostra onde ele está escapando.</p>
         <a class="btn" href="#diagnostico" data-cta="video">Quero o Raio-X da minha escola</a>
         <p class="vnota">Gratuito e sem compromisso. Não precisa assistir até o fim.</p>
       </div>
@@ -545,6 +618,50 @@ footer a:hover{color:var(--tx)}
   });
   v.addEventListener('ended',function(){ev('vsl_complete')});
   v.addEventListener('error',function(){ev('vsl_erro')});
+})();
+</script>
+<script>
+(function(){
+  var de=document.documentElement;de.classList.add('js');
+  var calmo=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  // blocos que surgem ao rolar, com pequeno atraso entre vizinhos
+  var grupos=['.topo-sec','.card','.etapas li','.prova>div','.passos li','.faq details','.dois>div:first-child>h2','.dois>div:first-child>.lead','.final .wrap>*'];
+  var alvos=[];
+  grupos.forEach(function(g){[].forEach.call(document.querySelectorAll('main '+g),function(el){
+    if(el.closest('.hero')||el.closest('#cartao'))return;
+    var irmaos=[].filter.call(el.parentNode.children,function(x){return x.tagName===el.tagName});
+    el.style.setProperty('--d',Math.min(irmaos.indexOf(el),5)*80+'ms');
+    el.classList.add('rv');alvos.push(el);
+  })});
+  var funil=document.querySelector('.funil');
+  if(funil)[].forEach.call(funil.children,function(li,i){li.style.setProperty('--d',i*110+'ms')});
+
+  if(!('IntersectionObserver' in window)||calmo){
+    alvos.forEach(function(el){el.classList.add('in')});if(funil)funil.classList.add('in');
+  }else{
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+    alvos.forEach(function(el){io.observe(el)});if(funil)io.observe(funil);
+    // rede de segurança: nada fica escondido se o observador falhar
+    setTimeout(function(){alvos.forEach(function(el){var r=el.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)el.classList.add('in')})},2500);
+  }
+
+  // fundo vivo: as manchas se deslocam com o avanço da rolagem
+  if(!calmo){
+    var tique=false;
+    var medir=function(){tique=false;var max=de.scrollHeight-innerHeight;de.style.setProperty('--p',max>0?(scrollY/max).toFixed(3):0)};
+    addEventListener('scroll',function(){if(!tique){tique=true;requestAnimationFrame(medir)}},{passive:true});medir();
+  }
+
+  // botão "magnético" do hero: acompanha o cursor de perto (só com mouse)
+  var mb=document.querySelector('.hside .btn');
+  if(mb&&!calmo&&window.matchMedia&&matchMedia('(hover:hover) and (pointer:fine)').matches){
+    document.addEventListener('mousemove',function(e){
+      var r=mb.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height/2);
+      var perto=Math.abs(dx)<r.width/2+70&&Math.abs(dy)<r.height/2+60;
+      mb.style.transform=perto?'translate('+(dx*.12).toFixed(1)+'px,'+(dy*.28).toFixed(1)+'px)':'';
+    },{passive:true});
+  }
 })();
 </script>
 </body>
