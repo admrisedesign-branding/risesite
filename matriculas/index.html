@@ -70,12 +70,13 @@ a{color:inherit}
 .badge{display:inline-flex;align-items:center;gap:8px;background:var(--os);border:1px solid rgba(232,83,26,.22);color:#ff8a5c;font-size:.75rem;font-weight:600;letter-spacing:.4px;padding:6px 16px;border-radius:100px;margin-bottom:22px}
 .badge i{width:6px;height:6px;border-radius:50%;background:#ff7a4a;animation:pisca 2s infinite}
 @keyframes pisca{0%,100%{opacity:1}50%{opacity:.25}}
-.hero h1{font-size:clamp(2.4rem,5.4vw,4.1rem);line-height:1.02;font-weight:800;letter-spacing:-.04em}
+.hero h1{font-size:clamp(2.2rem,4.3vw,3.3rem);line-height:1.02;font-weight:800;letter-spacing:-.04em}
 .hero .sub{margin-top:22px;color:var(--dm);font-size:clamp(1.0625rem,1.6vw,1.1875rem);max-width:46ch}
 .pontos{list-style:none;margin-top:28px;display:grid;gap:10px}
 .pontos li{display:flex;gap:12px;align-items:center;color:var(--tx);font-weight:500}
 .pontos li::before{content:'';flex:none;width:20px;height:20px;border-radius:50%;background:var(--os) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-7' fill='none' stroke='%23E8531A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat;border:1px solid var(--bo)}
 .hero .cta-mob{display:none;margin-top:28px}
+.hero .agora{margin-top:22px;padding-left:14px;border-left:2px solid var(--or);color:var(--dm);font-size:.9375rem;max-width:46ch}
 
 /* seções */
 section{padding:clamp(56px,8vw,104px) 0;border-top:1px solid var(--bd);position:relative}
@@ -165,6 +166,8 @@ fieldset.campo{border:0;min-width:0}
 .cartao .btn[disabled]{opacity:.6;cursor:wait}
 .cartao .btn--wa{width:auto}
 .garantia{margin-top:12px;text-align:center;font-size:.8125rem;color:var(--paper-dm)}
+.campo .opc{font-weight:500;color:var(--paper-dm)}
+.zapdireto{display:block;text-align:center;margin-top:14px;font-weight:700;font-size:.9375rem;color:var(--paper-tx);text-decoration:underline;text-underline-offset:3px}
 .erro{color:#a1260b;font-weight:600;font-size:.9375rem;margin-top:12px;min-height:1.3em}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .ok{display:none}
@@ -205,42 +208,35 @@ footer a:hover{color:var(--tx)}
 }
 
 
-/* Vídeo de abertura: libera a página só ao final */
-html.vsl-on,html.vsl-on body{overflow:hidden}
-#vsl{position:fixed;inset:0;z-index:1000;background:#070508;display:none;align-items:center;justify-content:center;flex-direction:column;padding:20px;text-align:center}
-html.vsl-on #vsl{display:flex}
-#vsl .vbox{position:relative;width:min(100%,960px);max-height:72vh;aspect-ratio:16/9;background:#000;border-radius:16px;overflow:hidden;border:1px solid var(--bd)}
-#vsl.vert .vbox{aspect-ratio:9/16;max-height:78vh;width:auto;height:78vh;max-width:100%}
-#vsl video{width:100%;height:100%;object-fit:contain;display:block;background:#000}
-#vsl .vplay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(7,5,8,.45);border:0;color:#fff;font:700 1.05rem 'DM Sans',sans-serif;cursor:pointer;gap:12px}
-#vsl .vplay i{width:68px;height:68px;border-radius:50%;background:#E8531A;display:grid;place-items:center;box-shadow:0 8px 30px rgba(232,83,26,.5)}
-#vsl .vplay i::after{content:'';border-left:20px solid #fff;border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:5px}
-#vsl .vplay.off{display:none}
-#vsl .vbar{width:min(100%,960px);height:4px;background:rgba(255,255,255,.14);border-radius:4px;margin-top:14px;overflow:hidden}
-#vsl .vbar b{display:block;height:100%;width:0;background:#E8531A}
-#vsl .vmsg{color:var(--dm);font-size:.9rem;margin-top:10px}
-#vsl .vtop{color:#fff;font-weight:700;margin-bottom:16px;font-size:clamp(.95rem,2.2vw,1.2rem);line-height:1.2}
-#vsl .vtop span{display:block;color:var(--dm);font-weight:500}
-#vsl .vtop strong{display:block;margin-top:4px;color:#E8531A;font-weight:800;letter-spacing:-.03em;font-size:clamp(1.9rem,6.5vw,3.4rem);line-height:1.02}
+/* Vídeo no hero: toca sozinho (sem som), não trava nada */
+.hero .wrap{align-items:start}
+.hvid{min-width:0}
+.hvid .vcap{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1rem;letter-spacing:-.01em;margin-bottom:14px}
+.hvid .vcap i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--or)}
+.hvid .vbox{position:relative;aspect-ratio:16/9;background:#000;border-radius:20px;overflow:hidden;border:1px solid var(--bd);box-shadow:0 24px 80px rgba(0,0,0,.45)}
+.hvid video{width:100%;height:100%;object-fit:cover;display:block;background:#000}
+.hvid .vsom{position:absolute;left:12px;top:12px;display:inline-flex;align-items:center;gap:8px;font:700 .875rem 'DM Sans',sans-serif;color:#fff;background:rgba(7,5,8,.78);border:1px solid rgba(255,255,255,.22);border-radius:100px;padding:9px 16px;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.hvid .vsom.off{display:none}
+.hvid .btn{width:100%;margin-top:18px}
+.hvid .vnota{margin-top:10px;text-align:center;font-size:.8125rem;color:var(--dr)}
+
+/* formulário em seção própria, logo abaixo do hero */
+.sec-form{border-top:0;padding-top:0}
+.sec-form .cartao{max-width:680px;margin:0 auto}
+@media (max-width:900px){
+  .hero .hvid{order:-1}
+  .hvid .vbox{border-radius:16px}
+}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZZ46BRRSL"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-0ZZ46BRRSL");</script>
 </head>
 <body>
-<div id="vsl" role="dialog" aria-label="Vídeo de apresentação">
-  <div class="vtop"><span>Assista até o final para liberar o</span><strong>diagnóstico gratuito</strong></div>
-  <div class="vbox">
-    <video id="vsl-v" playsinline webkit-playsinline preload="auto" poster="/matriculas/video-capa.jpg" controlslist="nodownload noplaybackrate" disablepictureinpicture src="/matriculas/video-rapido.mp4"></video>
-    <button class="vplay" id="vsl-go" type="button"><i></i><span>Toque para assistir</span></button>
-  </div>
-  <div class="vbar"><b id="vsl-p"></b></div>
-  <div class="vmsg" id="vsl-t">O formulário abre quando o vídeo terminar.</div>
-</div>
 
 <header class="nav">
   <div class="wrap">
     <a class="logo" href="https://riseagencia.com/" aria-label="RISE, página inicial"><img src="/matriculas/rise-logo.png" width="26" height="26" alt=""><span>rise</span></a>
-    <a class="btn btn--p" href="#diagnostico" data-cta="topo">Solicitar diagnóstico</a>
+    <a class="btn btn--p" href="#diagnostico" data-cta="topo">Quero meu diagnóstico</a>
   </div>
 </header>
 
@@ -249,20 +245,34 @@ html.vsl-on #vsl{display:flex}
     <div class="wrap">
       <div>
         <span class="badge"><i></i>Diagnóstico gratuito · Matrículas 2027</span>
-        <h1>Descubra onde o funil da sua escola <span class="acc">perde matrículas</span></h1>
-        <p class="sub">Um diagnóstico de 20 a 30 minutos para donos de escolas e cursos de Manaus que querem chegar preparados às matrículas de 2027.</p>
+        <h1>Quantas matrículas sua escola perde por mês <span class="acc">sem ninguém perceber?</span></h1>
+        <p class="sub">Em uma conversa gratuita de 20 a 30 minutos, a RISE desenha o caminho do seu aluno, do primeiro contato até a matrícula, e mostra onde ele está escapando.</p>
         <ul class="pontos">
-          <li>O caminho do interessado, do anúncio à matrícula, desenhado etapa por etapa</li>
-          <li>Os pontos em que você perde contatos hoje</li>
-          <li>As prioridades para chegar organizado a 2027</li>
+          <li>Você sai com o caminho do seu aluno desenhado, etapa por etapa</li>
+          <li>E com as 3 correções mais urgentes para a sua escola</li>
+          <li>Vale mesmo que você não contrate nada</li>
         </ul>
-        <a class="btn cta-mob" href="#diagnostico" data-cta="hero">Solicitar diagnóstico</a>
+        <p class="agora">As matrículas de 2027 se decidem entre novembro e janeiro. Quem organiza o atendimento agora entra em janeiro na frente.</p>
       </div>
 
+      <div class="hvid">
+        <p class="vcap"><i></i>Em 1 minuto você entende como funciona</p>
+        <div class="vbox">
+          <video id="vsl-v" autoplay muted playsinline webkit-playsinline controls preload="auto" poster="/matriculas/video-capa.jpg" controlslist="nodownload noplaybackrate" disablepictureinpicture src="/matriculas/video-rapido.mp4"></video>
+          <button class="vsom" id="vsl-som" type="button">Ativar som</button>
+        </div>
+        <a class="btn" href="#diagnostico" data-cta="video">Solicitar diagnóstico agora</a>
+        <p class="vnota">Gratuito e sem compromisso. Não precisa assistir até o fim.</p>
+      </div>
+    </div>
+  </div>
+
+  <section class="sec-form">
+    <div class="wrap">
       <div class="cartao alvo" id="cartao">
         <div class="intro" id="diagnostico">
-          <h2>Solicitar diagnóstico</h2>
-          <p class="lead">Leva menos de um minuto. Depois, chamamos você no WhatsApp para combinar o horário.</p>
+          <h2>Peça seu diagnóstico gratuito</h2>
+          <p class="lead">Leva menos de um minuto. O André, da RISE, chama você no WhatsApp para combinar o horário.</p>
         </div>
         <form id="form" novalidate>
           <div class="campo">
@@ -278,20 +288,12 @@ html.vsl-on #vsl{display:flex}
             <input type="tel" id="whatsapp" name="whatsapp" inputmode="tel" autocomplete="tel-national" placeholder="(92) 99999-9999" maxlength="20" required>
           </div>
           <fieldset class="campo">
-            <legend>Qual é o principal desafio da escola hoje?</legend>
+            <legend>Qual é o principal desafio da escola hoje? <span class="opc">(opcional)</span></legend>
             <div class="opcoes">
-              <input type="radio" id="d1" name="desafio" value="Receber mais interessados" required><label for="d1">Receber mais interessados</label>
+              <input type="radio" id="d1" name="desafio" value="Receber mais interessados"><label for="d1">Receber mais interessados</label>
               <input type="radio" id="d2" name="desafio" value="Melhorar o atendimento"><label for="d2">Melhorar o atendimento</label>
               <input type="radio" id="d3" name="desafio" value="Transformar contatos em matrículas"><label for="d3">Transformar contatos em matrículas</label>
               <input type="radio" id="d4" name="desafio" value="Organizar o processo todo"><label for="d4">Organizar o processo todo</label>
-            </div>
-          </fieldset>
-          <fieldset class="campo">
-            <legend>Quando você quer começar?</legend>
-            <div class="opcoes">
-              <input type="radio" id="q1" name="quando" value="Imediatamente" required><label for="q1">Imediatamente</label>
-              <input type="radio" id="q2" name="quando" value="Em novembro ou dezembro"><label for="q2">Em novembro ou dezembro</label>
-              <input type="radio" id="q3" name="quando" value="Em 2027"><label for="q3">Em 2027</label>
             </div>
           </fieldset>
           <div class="hp" aria-hidden="true"><label>Não preencha<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
@@ -299,8 +301,9 @@ html.vsl-on #vsl{display:flex}
             <input type="checkbox" id="aceite" name="aceite" required>
             <span>Autorizo a RISE Design &amp; Branding a entrar em contato comigo por WhatsApp ou telefone sobre o diagnóstico gratuito do funil da minha escola e a usar os dados que informei só para essa finalidade, conforme a <a href="/privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</span>
           </label>
-          <button class="btn" type="submit" id="enviar">Solicitar diagnóstico</button>
+          <button class="btn" type="submit" id="enviar">Quero meu diagnóstico gratuito</button>
           <p class="garantia">Gratuito e sem compromisso.</p>
+          <a class="zapdireto" id="zap-direto" href="#" target="_blank" rel="noopener">Prefiro chamar o André no WhatsApp</a>
           <p class="erro" id="erro" role="alert"></p>
         </form>
         <div class="ok" id="ok" tabindex="-1">
@@ -311,7 +314,7 @@ html.vsl-on #vsl{display:flex}
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   <section class="alt">
     <div class="wrap">
@@ -330,6 +333,21 @@ html.vsl-on #vsl{display:flex}
   </section>
 
   <section>
+    <div class="wrap prova">
+      <div>
+        <span class="eye">Na prática</span>
+        <h2>Já funciona na prática</h2>
+      </div>
+      <div>
+        <span class="selo">Case · My Robot Manaus</span>
+        <p>O Método RISE foi montado primeiro para a <strong>My Robot Manaus</strong>. Tráfego, site, captação, atendimento e acompanhamento até a matrícula passaram a funcionar como um único funil, medido do anúncio à matrícula.</p>
+        <p>É esse mesmo modelo que a RISE aplica agora em outras escolas e cursos.</p>
+        <!-- Quando a Joice enviar os números validados do case, entram aqui (cartões com resultado). Não inventar dados. -->
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
     <div class="wrap dois">
       <div>
         <span class="eye">O método</span>
@@ -349,21 +367,6 @@ html.vsl-on #vsl{display:flex}
     </div>
   </section>
 
-  <section class="alt">
-    <div class="wrap prova">
-      <div>
-        <span class="eye">Na prática</span>
-        <h2>Já funciona na prática</h2>
-      </div>
-      <div>
-        <span class="selo">Case · My Robot Manaus</span>
-        <p>O Método RISE foi montado primeiro para a <strong>My Robot Manaus</strong>. Tráfego, site, captação, atendimento e acompanhamento até a matrícula passaram a funcionar como um único funil, medido do anúncio à matrícula.</p>
-        <p>É esse mesmo modelo que a RISE aplica agora em outras escolas e cursos.</p>
-        <!-- Quando a Joice enviar os números validados do case, entram aqui (cartões com resultado). Não inventar dados. -->
-      </div>
-    </div>
-  </section>
-
   <section>
     <div class="wrap">
       <div class="topo-sec">
@@ -373,7 +376,7 @@ html.vsl-on #vsl{display:flex}
       <ol class="passos">
         <li><strong>Você preenche o formulário</strong><span>Menos de um minuto, com o nome da escola e o seu WhatsApp.</span></li>
         <li><strong>Combinamos o horário</strong><span>Chamamos você no WhatsApp para marcar o diagnóstico.</span></li>
-        <li><strong>Fazemos o diagnóstico</strong><span>De 20 a 30 minutos, com o caminho do seu interessado desenhado e as prioridades para 2027.</span></li>
+        <li><strong>Fazemos o diagnóstico</strong><span>De 20 a 30 minutos. Você sai com o caminho do seu aluno desenhado e as 3 correções mais urgentes.</span></li>
       </ol>
     </div>
   </section>
@@ -386,6 +389,7 @@ html.vsl-on #vsl{display:flex}
       </div>
       <div class="faq">
         <details><summary>Quanto custa o diagnóstico?</summary><p>Nada. O diagnóstico é gratuito e sem compromisso.</p></details>
+        <details><summary>Vão tentar me vender alguma coisa?</summary><p>No fim, se fizer sentido, mostramos como a RISE pode ajudar. Quem decide é você, sem pressão, e o diagnóstico fica com você de qualquer forma.</p></details>
         <details><summary>Quanto tempo leva?</summary><p>De 20 a 30 minutos. O horário é combinado com você pelo WhatsApp.</p></details>
         <details><summary>Para quem é?</summary><p>Para donos e gestores de escolas e cursos de Manaus que querem organizar o caminho do interessado até a matrícula.</p></details>
         <details><summary>O que vocês fazem com os meus dados?</summary><p>Usamos só para falar com você sobre o diagnóstico, com a sua autorização. Os detalhes estão na <a href="/privacidade/">Política de Privacidade</a>.</p></details>
@@ -397,7 +401,7 @@ html.vsl-on #vsl{display:flex}
     <div class="wrap">
       <h2>Chegue às matrículas de 2027 com o funil em ordem</h2>
       <p class="lead">Diagnóstico gratuito de 20 a 30 minutos, sem compromisso.</p>
-      <a class="btn" href="#cartao" data-cta="final">Solicitar diagnóstico</a>
+      <a class="btn" href="#cartao" data-cta="final">Quero meu diagnóstico gratuito</a>
     </div>
   </section>
 </main>
@@ -414,7 +418,7 @@ html.vsl-on #vsl{display:flex}
   </div>
 </footer>
 
-<div class="barra" id="barra"><a class="btn" href="#cartao" data-cta="barra">Solicitar diagnóstico</a></div>
+<div class="barra" id="barra"><a class="btn" href="#cartao" data-cta="barra">Quero meu diagnóstico gratuito</a></div>
 
 <script>
 (function(){
@@ -453,26 +457,23 @@ html.vsl-on #vsl{display:flex}
     ev.preventDefault();erro.textContent='';
     var f=form.elements;
     var nome=f.nome.value.trim(),escola=f.escola.value.trim(),digitos=f.whatsapp.value.replace(/\D/g,'');
-    var desafio=(form.querySelector('input[name=desafio]:checked')||{}).value,quando=(form.querySelector('input[name=quando]:checked')||{}).value;
+    var desafio=(form.querySelector('input[name=desafio]:checked')||{}).value;
     if(nome.length<2)return falha('Informe seu nome.','nome');
     if(escola.length<2)return falha('Informe o nome da escola ou curso.','escola');
     if(digitos.length<10)return falha('Informe o WhatsApp com DDD.','whatsapp');
-    if(!desafio)return falha('Escolha o principal desafio da escola.','d1');
-    if(!quando)return falha('Escolha quando você quer começar.','q1');
     if(!f.aceite.checked)return falha('Marque a autorização para receber o contato da RISE.','aceite');
 
     btn.disabled=true;btn.textContent='Enviando…';
     fetch(CFG.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
-      nome:nome,escola:escola,whatsapp:digitos,desafio:desafio,quando:quando,consentimento:true,
+      nome:nome,escola:escola,whatsapp:digitos,desafio:desafio||'',consentimento:true,
       website:f.website.value,t:Date.now()-t0,utm:utm,pagina:location.href.slice(0,300)
     })}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||!j.ok)throw new Error(j.erro||'falha')})})
     .then(function(){
       if(window.gtag)gtag('event','generate_lead',{origem:'matriculas_2027'});
       if(window.fbq)fbq('track','Lead');
       document.getElementById('ok-titulo').textContent='Pedido recebido, '+nome.split(' ')[0]+'.';
-      var QD={'Imediatamente':'o quanto antes','Em novembro ou dezembro':'ainda em novembro ou dezembro','Em 2027':'em 2027'};
-      var dz=desafio.charAt(0).toLowerCase()+desafio.slice(1);
-      var msg='Oi, André! Tudo bem? Aqui é '+nome.split(' ')[0]+', da '+escola+'. Assisti ao vídeo e pedi o diagnóstico gratuito pelo site da RISE. Hoje o que mais quero é '+dz+', e gostaria de começar '+(QD[quando]||quando.toLowerCase())+'. Podemos conversar?';
+      var dz=desafio?desafio.charAt(0).toLowerCase()+desafio.slice(1):'';
+      var msg='Oi, André! Tudo bem? Aqui é '+nome.split(' ')[0]+', da '+escola+'. Pedi o diagnóstico gratuito pelo site da RISE.'+(dz?' Hoje o que mais quero é '+dz+'.':'')+' Podemos combinar um horário?';
       var zap='https://wa.me/'+CFG.whatsapp+'?text='+encodeURIComponent(msg);
       var aw=document.getElementById('ok-wa');aw.href=zap;
       cartao.classList.add('enviado');
@@ -482,10 +483,17 @@ html.vsl-on #vsl{display:flex}
       setTimeout(function(){location.href=zap},1800);
     })
     .catch(function(){
-      btn.disabled=false;btn.textContent='Solicitar diagnóstico';
+      btn.disabled=false;btn.textContent='Quero meu diagnóstico gratuito';
       falha('Não foi possível enviar agora. Tente de novo em instantes ou chame a RISE no WhatsApp.');
     });
   });
+
+  // atalho: quem não preenche formulário fala direto com o André
+  var zd=document.getElementById('zap-direto');
+  if(zd){
+    zd.href='https://wa.me/'+CFG.whatsapp+'?text='+encodeURIComponent('Oi, André! Vi a página da RISE e quero o diagnóstico gratuito da minha escola. Podemos combinar um horário?');
+    zd.addEventListener('click',function(){if(window.gtag)gtag('event','whatsapp_click',{origem:'matriculas_2027'});if(window.fbq)fbq('track','Contact')});
+  }
 
   // início do preenchimento (mede quem começa e não termina)
   var comecou=false;
@@ -503,50 +511,29 @@ html.vsl-on #vsl{display:flex}
 </script>
 <script>
 (function(){
-  var de=document.documentElement,q=location.search;
-  var visto=false;try{visto=sessionStorage.getItem('rise_vsl')==='1'}catch(e){}
-  if(visto||/[?&]nogate=1/.test(q))return;
-  var v=document.getElementById('vsl-v'),go=document.getElementById('vsl-go'),bar=document.getElementById('vsl-p'),msg=document.getElementById('vsl-t'),box=document.getElementById('vsl');
-  var max=0,feitos={},iniciou=false,liberado=false;
-  function ev(n,p){if(window.gtag)gtag('event',n,p||{origem:'matriculas_2027'});}
-  function liberar(ok){
-    if(liberado)return;liberado=true;
-    de.classList.remove('vsl-on');
-    try{sessionStorage.setItem('rise_vsl','1')}catch(e){}
-    if(ok)ev('vsl_complete');
-    try{v.pause()}catch(e){}
+  var v=document.getElementById('vsl-v'),som=document.getElementById('vsl-som');
+  if(!v)return;
+  var feitos={},iniciou=false;
+  function ev(n){if(window.gtag)gtag('event',n,{origem:'matriculas_2027'});}
+  // toca sozinho e sem som (regra dos navegadores); o som é escolha da pessoa
+  v.muted=true;
+  var pr=v.play();if(pr&&pr.catch)pr.catch(function(){});
+  function ligarSom(){
+    if(!v.muted)return;
+    v.muted=false;v.currentTime=0;
+    var p=v.play();if(p&&p.catch)p.catch(function(){});
+    som.classList.add('off');ev('vsl_som');
   }
-  // só trava a página se o vídeo realmente carregar
-  de.classList.add('vsl-on');
-  var timer=setTimeout(function(){liberar(false);ev('vsl_timeout')},7000);
-  v.addEventListener('loadedmetadata',function(){
-    clearTimeout(timer);
-    if(v.videoHeight>v.videoWidth)box.classList.add('vert');
-  });
-  v.addEventListener('error',function(){clearTimeout(timer);liberar(false);ev('vsl_erro')});
-  go.addEventListener('click',function(){
-    v.muted=false;
-    var pr=v.play();
-    if(pr&&pr.catch)pr.catch(function(){msg.textContent='Não foi possível reproduzir. Toque novamente.'});
-  });
-  v.addEventListener('click',function(){if(v.paused)v.play();else v.pause()});
-  v.addEventListener('play',function(){
-    go.classList.add('off');
-    if(!iniciou){iniciou=true;ev('vsl_play')}
-  });
-  v.addEventListener('pause',function(){if(!v.ended&&iniciou)go.classList.remove('off')});
+  som.addEventListener('click',ligarSom);
+  v.addEventListener('volumechange',function(){if(!v.muted)som.classList.add('off')});
+  v.addEventListener('playing',function(){if(!iniciou){iniciou=true;ev('vsl_play')}});
   v.addEventListener('timeupdate',function(){
     if(!v.duration)return;
-    if(v.currentTime>max)max=v.currentTime;
     var pc=v.currentTime/v.duration*100;
-    bar.style.width=pc+'%';
     [25,50,75].forEach(function(m){if(pc>=m&&!feitos[m]){feitos[m]=1;ev('vsl_'+m)}});
-    var r=Math.ceil(v.duration-v.currentTime);
-    msg.textContent='Faltam '+r+' s para liberar o diagnóstico.';
   });
-  // sem pular para frente (voltar é permitido)
-  v.addEventListener('seeking',function(){if(v.currentTime>max+1)v.currentTime=max});
-  v.addEventListener('ended',function(){liberar(true)});
+  v.addEventListener('ended',function(){ev('vsl_complete')});
+  v.addEventListener('error',function(){ev('vsl_erro')});
 })();
 </script>
 </body>
