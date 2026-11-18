@@ -307,6 +307,14 @@ footer a:hover{color:var(--tx)}
 main,footer{position:relative;z-index:1}
 section.alt{background:rgba(255,255,255,.022)}
 @media (prefers-reduced-motion:reduce){.aura i{animation:none;transition:none;translate:none}}
+
+/* frase de urgência: faixa de destaque entre o hero e o formulário */
+section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
+.frase .wrap{max-width:1320px}
+.frase p{position:relative;overflow:hidden;margin:0;padding:clamp(20px,2.6vw,30px) clamp(20px,3.4vw,44px);border:1px solid var(--bo);border-radius:20px;background:linear-gradient(100deg,rgba(232,83,26,.22),rgba(232,83,26,.06) 55%,rgba(255,255,255,.03));font-size:clamp(1.0625rem,1.75vw,1.4375rem);line-height:1.35;letter-spacing:-.015em;color:var(--dm);text-align:center;text-wrap:balance}
+.frase p strong{color:var(--tx);font-weight:800}
+.frase p::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--or),#ff9966)}
+@media (max-width:900px){.frase p{text-align:left;border-radius:16px}.frase p strong{display:block;margin-bottom:4px}}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZZ46BRRSL"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-0ZZ46BRRSL");</script>
@@ -332,7 +340,6 @@ section.alt{background:rgba(255,255,255,.022)}
           <li>E com as 3 correções mais urgentes para a sua escola</li>
           <li>Vale mesmo que você não contrate nada</li>
         </ul>
-        <p class="agora">As matrículas de 2027 se decidem entre novembro e janeiro. Quem organiza o atendimento agora entra em janeiro na frente.</p>
       </div>
 
       <div class="hvid">
@@ -350,6 +357,12 @@ section.alt{background:rgba(255,255,255,.022)}
       </div>
     </div>
   </div>
+
+  <section class="frase">
+    <div class="wrap">
+      <p><strong>As matrículas de 2027 se decidem entre novembro e janeiro.</strong> Quem organiza o atendimento agora entra em janeiro na frente.</p>
+    </div>
+  </section>
 
   <section class="sec-form">
     <div class="wrap">
@@ -626,7 +639,7 @@ section.alt{background:rgba(255,255,255,.022)}
   var calmo=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
 
   // blocos que surgem ao rolar, com pequeno atraso entre vizinhos
-  var grupos=['.topo-sec','.card','.etapas li','.prova>div','.passos li','.faq details','.dois>div:first-child>h2','.dois>div:first-child>.lead','.final .wrap>*'];
+  var grupos=['.frase p','.topo-sec','.card','.etapas li','.prova>div','.passos li','.faq details','.dois>div:first-child>h2','.dois>div:first-child>.lead','.final .wrap>*'];
   var alvos=[];
   grupos.forEach(function(g){[].forEach.call(document.querySelectorAll('main '+g),function(el){
     if(el.closest('.hero')||el.closest('#cartao'))return;
