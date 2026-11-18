@@ -59,8 +59,9 @@ module.exports = async function handler(req, res) {
   if (nome.length < 2) falta.push('nome');
   if (escola.length < 2) falta.push('escola');
   if (fone.length < 10 || fone.length > 13) falta.push('whatsapp');
-  if (!(desafio in DESAFIO)) falta.push('desafio');
-  if (!(quando in QUANDO)) falta.push('quando');
+  // desafio e "quando" são opcionais; se vierem, têm de ser uma das opções conhecidas
+  if (desafio && !(desafio in DESAFIO)) falta.push('desafio');
+  if (quando && !(quando in QUANDO)) falta.push('quando');
   if (body.consentimento !== true) falta.push('consentimento');
   if (falta.length) return res.status(400).json({ ok: false, erro: 'Confira os campos.', campos: falta });
 
@@ -83,9 +84,9 @@ module.exports = async function handler(req, res) {
     slug: SLUG, token,
     nome, contato: fone, origem,
     respostas: [
-      { texto: PERGUNTA_DESAFIO, label: desafio, pontos: DESAFIO[desafio] },
-      { texto: PERGUNTA_QUANDO, label: quando, pontos: QUANDO[quando] },
-    ],
+      desafio ? { texto: PERGUNTA_DESAFIO, label: desafio, pontos: DESAFIO[desafio] } : null,
+      quando ? { texto: PERGUNTA_QUANDO, label: quando, pontos: QUANDO[quando] } : null,
+    ].filter(Boolean),
     extra: { escola, fonte: utm.utm_source || origem, notas: body.campanha === 'blackfriday_2026' ? 'Landing Black Friday 2026 (implantação do Capta sem custo se fechar até 30/11)' : 'Landing Matrículas 2027' },
     utm,
     consentimento: { contato: true, canal: 'site', versao: CONSENT_VERSAO, texto: CONSENT_TEXTO, url: txt(body.pagina, 300) },
