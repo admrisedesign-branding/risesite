@@ -224,7 +224,15 @@ footer a:hover{color:var(--tx)}
 .sec-form{border-top:0;padding-top:0}
 .sec-form .cartao{max-width:680px;margin:0 auto}
 @media (max-width:900px){
-  .hero .hvid{order:-1}
+  /* celular: selo e título primeiro, depois o vídeo e o botão, depois o resto do texto */
+  .hero .wrap{gap:0}
+  .hero .wrap>div:first-child{display:contents}
+  .hero .badge{order:1;justify-self:start;margin-bottom:14px}
+  .hero h1{order:2;font-size:clamp(1.7rem,7.2vw,2.2rem);line-height:1.08}
+  .hero .hvid{order:3;margin:20px 0 6px}
+  .hero .sub{order:4}
+  .hero .pontos{order:5}
+  .hero .agora{order:6}
   .hvid .vbox{border-radius:16px}
 }
 </style>
