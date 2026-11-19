@@ -319,6 +319,26 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
 .frase p strong{color:var(--tx);font-weight:800}
 .frase p::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--or),#ff9966)}
 @media (max-width:900px){.frase p{text-align:left;border-radius:16px}.frase p strong{display:block;margin-bottom:4px}}
+
+/* formulário dentro do hero: aparece logo, sem rolar */
+.hform{min-width:0}
+.hform .cartao{margin:0}
+.hform .intro h2{font-size:clamp(1.3rem,2.2vw,1.6rem)}
+.hside .btn{display:none}
+@media (max-width:900px){
+  .hero .hform{order:3;margin:18px 0 6px}
+  .hero .hvid{order:4;margin:22px 0 6px}
+  .hero .hside{order:5}
+  .hero .pontos{order:6}
+  .hero .agora{order:7}
+  .hform .intro .lead{display:none}
+  .hform .intro h2{margin-bottom:14px}
+}
+@media (min-width:901px){
+  .hero .wrap{grid-template-areas:"selo selo" "titulo titulo" "video form" "apoio form" "itens itens" "agora agora";grid-template-rows:auto auto auto 1fr auto auto}
+  .hero .hform{grid-area:form;align-self:start}
+  .hero .hside{align-self:start;margin-top:22px}
+}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZZ46BRRSL"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-0ZZ46BRRSL");</script>
@@ -346,6 +366,43 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
         </ul>
       </div>
 
+      <div class="hform">
+        <div class="cartao alvo" id="cartao">
+        <div class="intro" id="diagnostico">
+          <h2>Peça o Raio-X das Matrículas</h2>
+          <p class="lead">Leva menos de um minuto. O André, da RISE, chama você no WhatsApp para combinar o horário.</p>
+        </div>
+        <form id="form" novalidate>
+          <div class="campo">
+            <label for="nome">Seu nome</label>
+            <input type="text" id="nome" name="nome" autocomplete="name" maxlength="120" required>
+          </div>
+          <div class="campo">
+            <label for="escola">Nome da escola ou curso</label>
+            <input type="text" id="escola" name="escola" autocomplete="organization" maxlength="120" required>
+          </div>
+          <div class="campo">
+            <label for="whatsapp">WhatsApp com DDD</label>
+            <input type="tel" id="whatsapp" name="whatsapp" inputmode="tel" autocomplete="tel-national" placeholder="(92) 99999-9999" maxlength="20" required>
+          </div>
+          
+          <div class="hp" aria-hidden="true"><label>Não preencha<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+          
+          <button class="btn" type="submit" id="enviar">Quero o Raio-X da minha escola</button>
+          <p class="garantia">Gratuito e sem compromisso.</p>
+          <p class="aceite">Ao enviar, você autoriza a RISE a falar com você pelo WhatsApp sobre o Raio-X, conforme a <a href="/privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
+          <a class="zapdireto" id="zap-direto" href="#" target="_blank" rel="noopener">Prefiro chamar o André no WhatsApp</a>
+          <p class="erro" id="erro" role="alert"></p>
+        </form>
+        <div class="ok" id="ok" tabindex="-1">
+          <h3 id="ok-titulo">Pedido recebido.</h3>
+          <p>Seu pedido já está com o André, da RISE. Ele chama você no WhatsApp para combinar o horário do Raio-X.</p>
+          <p id="ok-aviso" style="margin-top:6px;opacity:.75"></p>
+          <a class="btn btn--wa" id="ok-wa" href="#" target="_blank" rel="noopener">Falar agora com o André no WhatsApp</a>
+        </div>
+        </div>
+      </div>
+
       <div class="hvid">
         <p class="vcap"><i></i>Em 1 minuto você entende como funciona</p>
         <div class="vbox">
@@ -369,52 +426,7 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
     </div>
   </section>
 
-  <section class="sec-form">
-    <div class="wrap">
-      <div class="cartao alvo" id="cartao">
-        <div class="intro" id="diagnostico">
-          <h2>Peça o Raio-X das Matrículas</h2>
-          <p class="lead">Leva menos de um minuto. O André, da RISE, chama você no WhatsApp para combinar o horário.</p>
-        </div>
-        <form id="form" novalidate>
-          <div class="campo">
-            <label for="nome">Seu nome</label>
-            <input type="text" id="nome" name="nome" autocomplete="name" maxlength="120" required>
-          </div>
-          <div class="campo">
-            <label for="escola">Nome da escola ou curso</label>
-            <input type="text" id="escola" name="escola" autocomplete="organization" maxlength="120" required>
-          </div>
-          <div class="campo">
-            <label for="whatsapp">WhatsApp com DDD</label>
-            <input type="tel" id="whatsapp" name="whatsapp" inputmode="tel" autocomplete="tel-national" placeholder="(92) 99999-9999" maxlength="20" required>
-          </div>
-          <fieldset class="campo">
-            <legend>Qual é o principal desafio da escola hoje? <span class="opc">(opcional)</span></legend>
-            <div class="opcoes">
-              <input type="radio" id="d1" name="desafio" value="Receber mais interessados"><label for="d1">Receber mais interessados</label>
-              <input type="radio" id="d2" name="desafio" value="Melhorar o atendimento"><label for="d2">Melhorar o atendimento</label>
-              <input type="radio" id="d3" name="desafio" value="Transformar contatos em matrículas"><label for="d3">Transformar contatos em matrículas</label>
-              <input type="radio" id="d4" name="desafio" value="Organizar o processo todo"><label for="d4">Organizar o processo todo</label>
-            </div>
-          </fieldset>
-          <div class="hp" aria-hidden="true"><label>Não preencha<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
-          
-          <button class="btn" type="submit" id="enviar">Quero o Raio-X da minha escola</button>
-          <p class="garantia">Gratuito e sem compromisso.</p>
-          <p class="aceite">Ao enviar, você autoriza a RISE a falar com você pelo WhatsApp sobre o Raio-X, conforme a <a href="/privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
-          <a class="zapdireto" id="zap-direto" href="#" target="_blank" rel="noopener">Prefiro chamar o André no WhatsApp</a>
-          <p class="erro" id="erro" role="alert"></p>
-        </form>
-        <div class="ok" id="ok" tabindex="-1">
-          <h3 id="ok-titulo">Pedido recebido.</h3>
-          <p>Seu pedido já está com o André, da RISE. Ele chama você no WhatsApp para combinar o horário do Raio-X.</p>
-          <p id="ok-aviso" style="margin-top:6px;opacity:.75"></p>
-          <a class="btn btn--wa" id="ok-wa" href="#" target="_blank" rel="noopener">Falar agora com o André no WhatsApp</a>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 
   <section class="alt">
     <div class="wrap">
