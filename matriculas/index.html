@@ -425,6 +425,20 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
   .hero .hform{grid-area:form}
 }
 @media (max-width:900px){.hero .hform{order:3;margin-top:22px}}
+
+/* storytelling: adivinho as dores -> o método resolve */
+.hist{max-width:760px}
+.hist-tit{font-size:clamp(1.6rem,3.4vw,2.5rem);font-weight:800;letter-spacing:-.04em;line-height:1.1;color:#fff;margin-bottom:22px}
+.hist-tit span{color:#E8531A}
+.hist-l{list-style:none;display:grid;gap:12px;margin:0;padding:0}
+.hist-l li{position:relative;padding:16px 18px 16px 52px;border:1px solid var(--bd);border-radius:16px;background:rgba(255,255,255,.03);font-size:clamp(1rem,1.6vw,1.1875rem);line-height:1.45;color:var(--dm)}
+.hist-l li b{color:#fff}
+.hist-l li::before{position:absolute;left:16px;top:15px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:.8125rem;font-weight:800}
+.dorl li::before{content:'✕';background:rgba(255,255,255,.08);color:#d9cfcc}
+.resl li{border-color:rgba(232,83,26,.3);background:linear-gradient(160deg,rgba(232,83,26,.12),rgba(232,83,26,.02) 70%)}
+.resl li::before{content:'✓';background:#E8531A;color:#fff}
+.hist-btn{margin-top:22px}
+@media (max-width:900px){.hist-btn{width:100%}}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZZ46BRRSL"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-0ZZ46BRRSL");</script>
@@ -489,7 +503,32 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
   </div>
 
 
+
+
+  <section class="bloco bloco-alt"><div class="wrap">
+        <div class="hist">
+          <p class="hist-tit">Deixa eu adivinhar…</p>
+          <ul class="hist-l dorl">
+            <li>Você investe em anúncio e <b>não sabe quantos viraram aluno.</b></li>
+            <li>Você recebe mensagens, mas o interessado <b>esfria antes de visitar a escola.</b></li>
+            <li>Você faz um pouco de tudo, post, banner, panfleto, e <b>nada conversa entre si.</b></li>
+          </ul>
+        </div>
+  </div></section>
+
   <section class="bloco"><div class="wrap">
+        <div class="hist">
+          <p class="hist-tit">O Método RISE <span>resolve isso.</span></p>
+          <ul class="hist-l resl">
+            <li><b>Resolve o escuro:</b> cada contato é rastreado do anúncio até a matrícula.</li>
+            <li><b>Resolve a demora:</b> atendimento em minutos e acompanhamento até a aula experimental.</li>
+            <li><b>Resolve a bagunça:</b> anúncio, site, atendimento e matrícula em um caminho só.</li>
+          </ul>
+          <a class="btn hist-btn" href="#cartao" data-cta="resolve">Quero conhecer o Método RISE</a>
+        </div>
+  </div></section>
+
+  <section class="bloco bloco-alt"><div class="wrap">
         <div class="nums" aria-label="Resultados do Método RISE">
           <p class="nums-tit">O Método RISE em uma escola de Manaus:</p>
           <div class="nums-g">
@@ -499,17 +538,6 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
           </div>
           <p class="nums-2027">Em 2027, a próxima pode ser <span>a sua escola.</span></p>
           <p class="nums-fonte">Caso My Robot Manaus, julho a novembro de 2026.</p>
-        </div>
-  </div></section>
-
-  <section class="bloco bloco-alt"><div class="wrap">
-        <div class="dores">
-          <p class="dores-tit">O que trava a matrícula e como o Método RISE resolve</p>
-          <div class="dores-g">
-            <div class="dorc"><p class="dd"><i>1</i>Investe em anúncio e não sabe quantos viraram aluno.</p><p class="dr">Cada contato é rastreado do anúncio até a matrícula, com relatório que você entende.</p></div>
-            <div class="dorc"><p class="dd"><i>2</i>O interessado chama e esfria sem resposta.</p><p class="dr">Atendimento em minutos e acompanhamento até a visita ou a aula experimental.</p></div>
-            <div class="dorc"><p class="dd"><i>3</i>Um banner aqui, um post ali, e nada conversa.</p><p class="dr">Um caminho só: anúncio, site, atendimento e matrícula organizados juntos.</p></div>
-          </div>
         </div>
   </div></section>
 
