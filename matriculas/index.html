@@ -448,6 +448,14 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
 }
 .hero{padding-bottom:clamp(28px,5vw,56px)}
 @media (min-width:901px){.bloco>.wrap{max-width:1320px}}
+
+.promessa{margin-top:16px;font-size:clamp(1.0625rem,1.8vw,1.375rem);line-height:1.45;color:var(--dm);max-width:44ch}
+.promessa b{color:#fff}
+.hero-btn{margin-top:22px}
+.urg{margin-top:22px;padding-left:14px;border-left:2px solid #E8531A;font-weight:700;color:#fff;font-size:1rem}
+.urg+.hist-btn{margin-top:14px}
+@media (max-width:900px){.hero .promessa{order:3}.hero .hero-btn{order:4;width:100%}}
+@media (min-width:901px){.hero .hero-btn{justify-self:start;padding:18px 34px}}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZZ46BRRSL"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-0ZZ46BRRSL");</script>
@@ -468,6 +476,8 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
       <div>
         <span class="badge"><i></i>Método RISE · Raio-X gratuito</span>
         <h1 class="h1-dor">Você investe em marketing e em propaganda, mas não consegue ver se esse dinheiro está <span class="acc">voltando em alunos.</span></h1>
+        <p class="promessa">Em 20 minutos, a gente mostra onde sua escola está perdendo alunos. <b>Raio-X gratuito.</b></p>
+        <a class="btn hero-btn" href="#cartao" data-cta="hero">Quero conhecer o Método RISE</a>
       </div>
     </div>
   </div>
@@ -479,9 +489,9 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
         <div class="nums" aria-label="Resultados do Método RISE">
           <p class="nums-tit">O Método RISE em uma escola de Manaus:</p>
           <div class="nums-g">
-            <div class="num"><b data-to="362" data-suf=" mil">362 mil</b><span>pessoas alcançadas em Manaus</span></div>
-            <div class="num"><b data-to="117">117</b><span>pedidos de aula experimental pelos anúncios</span></div>
             <div class="num"><b data-to="41" data-pre="R$ " data-suf=" mil">R$ 41 mil</b><span>em matrículas registradas em 3 meses</span></div>
+            <div class="num"><b data-to="117">117</b><span>pedidos de aula experimental pelos anúncios</span></div>
+            <div class="num"><b data-to="362" data-suf=" mil">362 mil</b><span>pessoas alcançadas em Manaus</span></div>
           </div>
           <p class="nums-2027">Em 2027, a próxima pode ser <span>a sua escola.</span></p>
           <p class="nums-fonte">Caso My Robot Manaus, julho a novembro de 2026.</p>
@@ -507,6 +517,7 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
             <li><b>Resolve a demora:</b> atendimento em minutos e acompanhamento até a aula experimental.</li>
             <li><b>Resolve a bagunça:</b> anúncio, site, atendimento e matrícula em um caminho só.</li>
           </ul>
+          <p class="urg">As matrículas de 2027 se decidem entre novembro e janeiro.</p>
           <a class="btn hist-btn" href="#cartao" data-cta="resolve">Quero conhecer o Método RISE</a>
         </div>
   </div></section>
@@ -547,7 +558,7 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
           <div class="hp" aria-hidden="true"><label>Não preencha<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
           
           <button class="btn" type="submit" id="enviar">Quero conhecer o Método RISE</button>
-          <p class="garantia">Gratuito e sem compromisso.</p>
+          <p class="garantia">Raio-X gratuito de 20 minutos, pelo WhatsApp. Sem compromisso.</p>
           
           <p class="aceite">Ao enviar, você autoriza a RISE a falar com você pelo WhatsApp sobre o Raio-X, conforme a <a href="/privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
           <a class="zapdireto" id="zap-direto" href="#" target="_blank" rel="noopener">Prefiro chamar o André no WhatsApp</a>
@@ -757,7 +768,10 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
   // barra fixa de chamada no celular: aparece só quando o formulário está fora da tela
   var barra=document.getElementById('barra');
   if(barra&&'IntersectionObserver' in window){
-    new IntersectionObserver(function(es){barra.classList.toggle('on',!es[0].isIntersecting&&!cartao.classList.contains('enviado'))},{threshold:0}).observe(cartao);
+    var vis={};var hb=document.querySelector('.hero-btn');
+    var io2=new IntersectionObserver(function(es){es.forEach(function(e){vis[e.target===cartao?'c':'h']=e.isIntersecting});
+      barra.classList.toggle('on',!vis.c&&!vis.h&&!cartao.classList.contains('enviado'))},{threshold:0});
+    io2.observe(cartao);if(hb)io2.observe(hb);
   }
 
   // medir cliques nos botões de chamada
