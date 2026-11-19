@@ -344,8 +344,9 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
 .hero .metodo .sub b{color:#fff;font-weight:700}
 @media (max-width:900px){.hero .dor{order:2;margin:10px 0 0;font-size:1rem}}
 @media (min-width:901px){.hero .dor{grid-area:dor}.hero .wrap{grid-template-areas:"selo selo" "titulo titulo" "dor dor" "video form" "apoio form" "itens itens" "agora agora";grid-template-rows:auto auto auto auto 1fr auto auto}}
-.prova{margin:6px 0 14px;padding:10px 12px;border-left:3px solid var(--or);background:rgba(232,83,26,.07);border-radius:0 8px 8px 0;font-size:.875rem;line-height:1.45;color:#3a2a24}
-.prova b{color:#E8531A}
+.casoreal{margin:6px 0 14px;padding:10px 12px;border-left:3px solid var(--or);background:rgba(232,83,26,.07);border-radius:0 8px 8px 0;font-size:.875rem;line-height:1.45;color:#3a2a24}
+.casoreal b{color:#E8531A;display:inline}
+.casoreal{text-align:left;margin:12px 0 4px}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZZ46BRRSL"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-0ZZ46BRRSL");</script>
@@ -378,7 +379,6 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
         <div class="cartao alvo" id="cartao">
         <div class="intro" id="diagnostico">
           <h2>Vamos conversar?</h2>
-          <p class="prova"><b>Caso real:</b> na My Robot Manaus, os contatos vindos de anúncios passaram de 3 para 39 em um mês, com custo por contato 74% menor.</p>
           <p class="lead">Leva menos de um minuto. O André, da RISE, chama você no WhatsApp para combinar o horário.</p>
         </div>
         <form id="form" novalidate>
@@ -399,6 +399,7 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
           
           <button class="btn" type="submit" id="enviar">Quero conversar com a RISE</button>
           <p class="garantia">Gratuito e sem compromisso.</p>
+          <p class="casoreal"><b>Caso real:</b> na My Robot Manaus, os contatos vindos de anúncios passaram de 3 para 39 em um mês, com custo por contato 74% menor.</p>
           <p class="aceite">Ao enviar, você autoriza a RISE a falar com você pelo WhatsApp sobre o Raio-X, conforme a <a href="/privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
           <a class="zapdireto" id="zap-direto" href="#" target="_blank" rel="noopener">Prefiro chamar o André no WhatsApp</a>
           <p class="erro" id="erro" role="alert"></p>
