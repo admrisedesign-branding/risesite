@@ -354,12 +354,12 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
 .nums-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
 .num{position:relative;border:1px solid rgba(232,83,26,.28);background:linear-gradient(160deg,rgba(232,83,26,.16),rgba(232,83,26,.03) 60%);border-radius:18px;padding:16px 14px 14px;overflow:hidden}
 .num::after{content:'';position:absolute;inset:auto -30% -60% auto;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(232,83,26,.35),transparent 70%);pointer-events:none}
-.num b{display:block;font-weight:800;letter-spacing:-.05em;line-height:1;font-size:clamp(2.3rem,4.6vw,3.6rem);background:linear-gradient(180deg,#ffb48f,#E8531A);-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums}
+.num b{display:block;font-weight:800;letter-spacing:-.05em;line-height:1;white-space:nowrap;font-size:clamp(1.6rem,2.9vw,2.55rem);background:linear-gradient(180deg,#ffb48f,#E8531A);-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums}
 .num span{display:block;margin-top:8px;font-size:.8125rem;line-height:1.35;color:var(--dm)}
 .nums-2027{margin-top:16px;font-weight:800;font-size:clamp(1.125rem,2vw,1.5rem);letter-spacing:-.03em}
 .nums-2027 span{color:#E8531A}
 .nums-fonte{margin-top:6px;font-size:.6875rem;color:var(--dm);opacity:.7}
-@media (max-width:560px){.nums-g{gap:8px}.num{padding:12px 10px}.num b{font-size:2rem}.num span{font-size:.75rem}}
+@media (max-width:560px){.nums-g{gap:8px}.num{padding:12px 10px}.num b{font-size:clamp(1.05rem,5vw,1.4rem)}.num span{font-size:.75rem}}
 
 /* ===== formulário escuro, no visual do site ===== */
 .hform .cartao{--paper:#151014;--paper-tx:#f5f1ed;--paper-dm:#a69c9b;--paper-line:rgba(255,255,255,.14);background:linear-gradient(180deg,#1b1418,#120e11);border:1px solid rgba(232,83,26,.32);box-shadow:0 30px 90px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.03) inset,0 0 80px rgba(232,83,26,.12)}
@@ -406,12 +406,12 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
         <div class="nums" aria-label="Resultados do Método RISE">
           <p class="nums-tit">O Método RISE em uma escola de Manaus:</p>
           <div class="nums-g">
-            <div class="num"><b data-to="13" data-suf="x">13x</b><span>mais contatos vindos de anúncios, em um mês</span></div>
-            <div class="num"><b data-to="74" data-pre="−" data-suf="%">−74%</b><span>no custo de cada contato</span></div>
-            <div class="num"><b data-to="5">5</b><span>matrículas vindas do tráfego</span></div>
+            <div class="num"><b data-to="362" data-suf=" mil">362 mil</b><span>pessoas alcançadas em Manaus</span></div>
+            <div class="num"><b data-to="117">117</b><span>pedidos de aula experimental pelos anúncios</span></div>
+            <div class="num"><b data-to="41" data-pre="R$ " data-suf=" mil">R$ 41 mil</b><span>em matrículas registradas em 3 meses</span></div>
           </div>
           <p class="nums-2027">Em 2027, a próxima pode ser <span>a sua escola.</span></p>
-          <p class="nums-fonte">Caso My Robot Manaus, junho → julho de 2026.</p>
+          <p class="nums-fonte">Caso My Robot Manaus, julho a novembro de 2026.</p>
         </div>
         <ul class="pontos">
           <li>Você sai com o caminho do seu aluno desenhado, etapa por etapa</li>
