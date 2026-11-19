@@ -159,7 +159,7 @@ fieldset.campo{border:0;min-width:0}
 .opcoes label:hover{border-color:var(--paper-tx)}
 .opcoes input:checked+label{background:var(--paper-tx);border-color:var(--paper-tx);color:var(--paper)}
 .opcoes input:focus-visible+label{outline:3px solid var(--or);outline-offset:2px}
-.aceite{display:flex;gap:11px;align-items:flex-start;font-size:.8125rem;color:var(--paper-dm);line-height:1.5;margin:4px 0 18px}
+.aceite{font-size:.75rem;color:var(--paper-dm);line-height:1.5;margin:10px 0 0;text-align:center}
 .aceite input{width:20px;height:20px;margin-top:2px;flex:none;accent-color:#b83f12}
 .aceite a{color:var(--paper-tx)}
 .cartao .btn{width:100%;padding:16px 28px;font-size:1.0625rem}
@@ -217,6 +217,10 @@ footer a:hover{color:var(--tx)}
 .hvid video{width:100%;height:100%;object-fit:cover;display:block;background:#000}
 .hvid .vsom{position:absolute;left:12px;top:12px;display:inline-flex;align-items:center;gap:8px;font:700 .875rem 'DM Sans',sans-serif;color:#fff;background:rgba(7,5,8,.78);border:1px solid rgba(255,255,255,.22);border-radius:100px;padding:9px 16px;cursor:pointer;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .hvid .vsom.off{display:none}
+.hvid .vsom.vplay{left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap;padding:14px 22px 14px 16px;font-size:1rem;background:rgba(7,5,8,.72)}
+.hvid .vsom.vplay span{width:34px;height:34px;border-radius:50%;background:var(--or);display:grid;place-items:center}
+.hvid .vsom.vplay span::after{content:'';border-left:12px solid #fff;border-top:7px solid transparent;border-bottom:7px solid transparent;margin-left:3px}
+.zaptopo{display:block;text-align:center;margin-top:14px;font-weight:700;font-size:.9375rem;color:#fff;text-decoration:underline;text-underline-offset:3px}
 .hside .btn{width:100%;margin-top:22px}
 .hside .vnota{margin-top:10px;text-align:center;font-size:.8125rem;color:var(--dr)}
 
@@ -345,8 +349,8 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
       <div class="hvid">
         <p class="vcap"><i></i>Em 1 minuto você entende como funciona</p>
         <div class="vbox">
-          <video id="vsl-v" autoplay muted playsinline webkit-playsinline controls preload="auto" poster="/matriculas/video-capa.jpg" controlslist="nodownload noplaybackrate" disablepictureinpicture src="/matriculas/video-rapido.mp4"></video>
-          <button class="vsom" id="vsl-som" type="button">Ativar som</button>
+          <video id="vsl-v" playsinline webkit-playsinline controls preload="none" poster="/matriculas/video-capa.jpg" controlslist="nodownload noplaybackrate" disablepictureinpicture src="/matriculas/video-rapido.mp4"></video>
+          <button class="vsom vplay" id="vsl-som" type="button" aria-label="Assistir ao vídeo"><span></span>Assistir (1 min)</button>
         </div>
       </div>
 
@@ -354,6 +358,7 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
         <p class="sub">No Raio-X das Matrículas, um diagnóstico gratuito de 20 a 30 minutos, a RISE desenha o caminho do seu aluno, do primeiro contato até a matrícula, e mostra onde ele está escapando.</p>
         <a class="btn" href="#diagnostico" data-cta="video">Quero o Raio-X da minha escola</a>
         <p class="vnota">Gratuito e sem compromisso. Não precisa assistir até o fim.</p>
+        <a class="zaptopo" id="zap-topo" href="#" target="_blank" rel="noopener">Prefere conversar? Chame o André no WhatsApp</a>
       </div>
     </div>
   </div>
@@ -394,12 +399,10 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
             </div>
           </fieldset>
           <div class="hp" aria-hidden="true"><label>Não preencha<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
-          <label class="aceite" for="aceite">
-            <input type="checkbox" id="aceite" name="aceite" required>
-            <span>Autorizo a RISE Design &amp; Branding a entrar em contato comigo por WhatsApp ou telefone sobre o diagnóstico gratuito do funil da minha escola e a usar os dados que informei só para essa finalidade, conforme a <a href="/privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</span>
-          </label>
+          
           <button class="btn" type="submit" id="enviar">Quero o Raio-X da minha escola</button>
           <p class="garantia">Gratuito e sem compromisso.</p>
+          <p class="aceite">Ao enviar, você autoriza a RISE a falar com você pelo WhatsApp sobre o Raio-X, conforme a <a href="/privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
           <a class="zapdireto" id="zap-direto" href="#" target="_blank" rel="noopener">Prefiro chamar o André no WhatsApp</a>
           <p class="erro" id="erro" role="alert"></p>
         </form>
@@ -558,7 +561,6 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
     if(nome.length<2)return falha('Informe seu nome.','nome');
     if(escola.length<2)return falha('Informe o nome da escola ou curso.','escola');
     if(digitos.length<10)return falha('Informe o WhatsApp com DDD.','whatsapp');
-    if(!f.aceite.checked)return falha('Marque a autorização para receber o contato da RISE.','aceite');
 
     btn.disabled=true;btn.textContent='Enviando…';
     fetch(CFG.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
@@ -586,11 +588,12 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
   });
 
   // atalho: quem não preenche formulário fala direto com o André
-  var zd=document.getElementById('zap-direto');
+  [document.getElementById('zap-direto'),document.getElementById('zap-topo')].forEach(function(zd){
   if(zd){
     zd.href='https://wa.me/'+CFG.whatsapp+'?text='+encodeURIComponent('Oi, André! Vi a página da RISE e quero o Raio-X das Matrículas da minha escola. Podemos combinar um horário?');
     zd.addEventListener('click',function(){if(window.gtag)gtag('event','whatsapp_click',{origem:'matriculas_2027'});if(window.fbq)fbq('track','Contact')});
   }
+  });
 
   // início do preenchimento (mede quem começa e não termina)
   var comecou=false;
@@ -612,17 +615,14 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
   if(!v)return;
   var feitos={},iniciou=false;
   function ev(n){if(window.gtag)gtag('event',n,{origem:'matriculas_2027'});}
-  // toca sozinho e sem som (regra dos navegadores); o som é escolha da pessoa
-  v.muted=true;
-  var pr=v.play();if(pr&&pr.catch)pr.catch(function(){});
-  function ligarSom(){
-    if(!v.muted)return;
-    v.muted=false;v.currentTime=0;
+  // não toca sozinho: a página abre leve, só com a capa; o vídeo baixa quando a pessoa toca
+  function assistir(){
+    v.muted=false;
     var p=v.play();if(p&&p.catch)p.catch(function(){});
-    som.classList.add('off');ev('vsl_som');
+    som.classList.add('off');
   }
-  som.addEventListener('click',ligarSom);
-  v.addEventListener('volumechange',function(){if(!v.muted)som.classList.add('off')});
+  som.addEventListener('click',assistir);
+  v.addEventListener('play',function(){som.classList.add('off')});
   v.addEventListener('playing',function(){if(!iniciou){iniciou=true;ev('vsl_play')}});
   v.addEventListener('timeupdate',function(){
     if(!v.duration)return;
