@@ -382,6 +382,25 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
   .hero .hside{margin-top:26px}
   .hero .hvid{grid-area:video;max-width:820px;width:100%;justify-self:center;margin-top:clamp(40px,5vw,64px)}
 }
+
+/* título = dor */
+.hero h1.h1-dor{font-size:clamp(1.65rem,6.4vw,2.05rem);line-height:1.12}
+@media (min-width:901px){.hero h1.h1-dor{font-size:clamp(2.2rem,3.7vw,3.3rem);line-height:1.04;max-width:22ch}}
+.nums-sub{margin-top:6px;color:var(--dm);font-size:.9375rem;max-width:52ch}
+/* dores x solução */
+.dores-tit{font-weight:800;letter-spacing:-.02em;font-size:1.0625rem;margin-bottom:12px}
+.dores-g{display:grid;gap:10px}
+.dorc{border:1px solid var(--bd);background:rgba(255,255,255,.03);border-radius:16px;padding:14px 16px}
+.dd{font-weight:700;color:#fff;display:flex;gap:10px;align-items:flex-start;line-height:1.35}
+.dd i{flex:none;width:24px;height:24px;border-radius:50%;background:rgba(232,83,26,.18);color:#E8531A;font-style:normal;font-size:.8125rem;display:grid;place-items:center;margin-top:-1px}
+.dr{margin:8px 0 0 34px;color:var(--dm);font-size:.9375rem;line-height:1.45;position:relative}
+.dr::before{content:'→';position:absolute;left:-20px;color:#E8531A;font-weight:800}
+@media (max-width:900px){
+  .dores-g{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 var(--gut);gap:10px;margin:0 calc(-1*var(--gut));padding:0 0 6px;scrollbar-width:none}
+  .dores-g::before,.dores-g::after{content:'';flex:0 0 calc(var(--gut) - 10px)}
+  .dores-g::-webkit-scrollbar{display:none}
+  .dorc{flex:0 0 82%;scroll-snap-align:start}
+}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZZ46BRRSL"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-0ZZ46BRRSL");</script>
@@ -401,8 +420,7 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
     <div class="wrap">
       <div>
         <span class="badge"><i></i>Método RISE · Raio-X gratuito</span>
-        <h1>Se você clicou aqui, é porque quer <span class="acc">mais matrículas na sua escola.</span></h1>
-        <p class="dor">Você investe em marketing e em propaganda, mas não consegue ver se esse dinheiro está voltando em alunos.</p>
+        <h1 class="h1-dor">Você investe em marketing e em propaganda, mas não consegue ver se esse dinheiro está <span class="acc">voltando em alunos.</span></h1>
         <div class="nums" aria-label="Resultados do Método RISE">
           <p class="nums-tit">O Método RISE em uma escola de Manaus:</p>
           <div class="nums-g">
@@ -411,6 +429,7 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
             <div class="num"><b data-to="41" data-pre="R$ " data-suf=" mil">R$ 41 mil</b><span>em matrículas registradas em 3 meses</span></div>
           </div>
           <p class="nums-2027">Em 2027, a próxima pode ser <span>a sua escola.</span></p>
+          <p class="nums-sub">Com mais pessoas alcançadas, mais pedidos de aula experimental e mais matrículas registradas.</p>
           <p class="nums-fonte">Caso My Robot Manaus, julho a novembro de 2026.</p>
         </div>
         <ul class="pontos">
@@ -467,10 +486,13 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
       </div>
 
       <div class="hside">
-        <div class="metodo">
-          <p class="sub"><b>Existe um jeito de organizar a escola primeiro, para depois estar pronta para receber mais matrículas.</b> Esse é o Método RISE: arrumar o agora pensando no futuro.</p>
-          <p class="sub">Pare de gastar com campanhas avulsas e banners espalhados por aí. Antes de investir mais, é preciso parar e se organizar. O Método RISE faz isso com você.</p>
-          <p class="sub">Chega de fazer a mesma coisa e não ter resultado. No Raio-X gratuito, a gente mostra onde sua escola está perdendo alunos e por onde começar.</p>
+        <div class="dores">
+          <p class="dores-tit">O que trava a matrícula e como o Método RISE resolve</p>
+          <div class="dores-g">
+            <div class="dorc"><p class="dd"><i>1</i>Investe em anúncio e não sabe quantos viraram aluno.</p><p class="dr">Cada contato é rastreado do anúncio até a matrícula, com relatório que você entende.</p></div>
+            <div class="dorc"><p class="dd"><i>2</i>O interessado chama e esfria sem resposta.</p><p class="dr">Atendimento em minutos e acompanhamento até a visita ou a aula experimental.</p></div>
+            <div class="dorc"><p class="dd"><i>3</i>Um banner aqui, um post ali, e nada conversa.</p><p class="dr">Um caminho só: anúncio, site, atendimento e matrícula organizados juntos.</p></div>
+          </div>
         </div>
         <a class="btn" href="#diagnostico" data-cta="video">Quero o Raio-X da minha escola</a>
         <p class="vnota">Gratuito e sem compromisso. Não precisa assistir até o fim.</p>
