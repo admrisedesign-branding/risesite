@@ -439,6 +439,15 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
 .resl li::before{content:'✓';background:#E8531A;color:#fff}
 .hist-btn{margin-top:22px}
 @media (max-width:900px){.hist-btn{width:100%}}
+
+/* hero só com o título; formulário no fim */
+.bloco-form .hform{max-width:620px;margin:0 auto}
+@media (min-width:901px){
+  .hero .wrap{grid-template-areas:"selo" "titulo";grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto}
+  .hero h1.h1-dor{max-width:24ch;font-size:clamp(2.6rem,4.6vw,4.2rem)}
+}
+.hero{padding-bottom:clamp(28px,5vw,56px)}
+@media (min-width:901px){.bloco>.wrap{max-width:1320px}}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZZ46BRRSL"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-0ZZ46BRRSL");</script>
@@ -459,8 +468,62 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
       <div>
         <span class="badge"><i></i>Método RISE · Raio-X gratuito</span>
         <h1 class="h1-dor">Você investe em marketing e em propaganda, mas não consegue ver se esse dinheiro está <span class="acc">voltando em alunos.</span></h1>
-              </div>
+      </div>
+    </div>
+  </div>
 
+
+
+
+  <section class="bloco bloco-alt"><div class="wrap">
+        <div class="nums" aria-label="Resultados do Método RISE">
+          <p class="nums-tit">O Método RISE em uma escola de Manaus:</p>
+          <div class="nums-g">
+            <div class="num"><b data-to="362" data-suf=" mil">362 mil</b><span>pessoas alcançadas em Manaus</span></div>
+            <div class="num"><b data-to="117">117</b><span>pedidos de aula experimental pelos anúncios</span></div>
+            <div class="num"><b data-to="41" data-pre="R$ " data-suf=" mil">R$ 41 mil</b><span>em matrículas registradas em 3 meses</span></div>
+          </div>
+          <p class="nums-2027">Em 2027, a próxima pode ser <span>a sua escola.</span></p>
+          <p class="nums-fonte">Caso My Robot Manaus, julho a novembro de 2026.</p>
+        </div>
+  </div></section>
+
+  <section class="bloco bloco-alt"><div class="wrap">
+        <div class="hist">
+          <p class="hist-tit">Deixa eu adivinhar…</p>
+          <ul class="hist-l dorl">
+            <li>Você investe em anúncio e <b>não sabe quantos viraram aluno.</b></li>
+            <li>Você recebe mensagens, mas o interessado <b>esfria antes de visitar a escola.</b></li>
+            <li>Você faz um pouco de tudo, post, banner, panfleto, e <b>nada conversa entre si.</b></li>
+          </ul>
+        </div>
+  </div></section>
+
+  <section class="bloco"><div class="wrap">
+        <div class="hist">
+          <p class="hist-tit">O Método RISE <span>resolve isso.</span></p>
+          <ul class="hist-l resl">
+            <li><b>Resolve o escuro:</b> cada contato é rastreado do anúncio até a matrícula.</li>
+            <li><b>Resolve a demora:</b> atendimento em minutos e acompanhamento até a aula experimental.</li>
+            <li><b>Resolve a bagunça:</b> anúncio, site, atendimento e matrícula em um caminho só.</li>
+          </ul>
+          <a class="btn hist-btn" href="#cartao" data-cta="resolve">Quero conhecer o Método RISE</a>
+        </div>
+  </div></section>
+
+
+
+  <section class="bloco"><div class="wrap">
+      <div class="hvid">
+        <p class="vcap"><i></i>Em 1 minuto você entende como funciona</p>
+        <div class="vbox">
+          <video id="vsl-v" playsinline webkit-playsinline controls preload="none" poster="/matriculas/video-capa.jpg" controlslist="nodownload noplaybackrate" disablepictureinpicture src="/matriculas/video-rapido.mp4"></video>
+          <button class="vsom vplay" id="vsl-som" type="button" aria-label="Assistir ao vídeo"><span></span>Assistir (1 min)</button>
+        </div>
+      </div>
+  </div></section>
+
+  <section class="bloco bloco-form"><div class="wrap">
       <div class="hform">
         <div class="cartao alvo" id="cartao">
         <div class="intro" id="diagnostico">
@@ -496,57 +559,6 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
           <p id="ok-aviso" style="margin-top:6px;opacity:.75"></p>
           <a class="btn btn--wa" id="ok-wa" href="#" target="_blank" rel="noopener">Falar agora com o André no WhatsApp</a>
         </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-
-
-
-  <section class="bloco bloco-alt"><div class="wrap">
-        <div class="hist">
-          <p class="hist-tit">Deixa eu adivinhar…</p>
-          <ul class="hist-l dorl">
-            <li>Você investe em anúncio e <b>não sabe quantos viraram aluno.</b></li>
-            <li>Você recebe mensagens, mas o interessado <b>esfria antes de visitar a escola.</b></li>
-            <li>Você faz um pouco de tudo, post, banner, panfleto, e <b>nada conversa entre si.</b></li>
-          </ul>
-        </div>
-  </div></section>
-
-  <section class="bloco"><div class="wrap">
-        <div class="hist">
-          <p class="hist-tit">O Método RISE <span>resolve isso.</span></p>
-          <ul class="hist-l resl">
-            <li><b>Resolve o escuro:</b> cada contato é rastreado do anúncio até a matrícula.</li>
-            <li><b>Resolve a demora:</b> atendimento em minutos e acompanhamento até a aula experimental.</li>
-            <li><b>Resolve a bagunça:</b> anúncio, site, atendimento e matrícula em um caminho só.</li>
-          </ul>
-          <a class="btn hist-btn" href="#cartao" data-cta="resolve">Quero conhecer o Método RISE</a>
-        </div>
-  </div></section>
-
-  <section class="bloco bloco-alt"><div class="wrap">
-        <div class="nums" aria-label="Resultados do Método RISE">
-          <p class="nums-tit">O Método RISE em uma escola de Manaus:</p>
-          <div class="nums-g">
-            <div class="num"><b data-to="362" data-suf=" mil">362 mil</b><span>pessoas alcançadas em Manaus</span></div>
-            <div class="num"><b data-to="117">117</b><span>pedidos de aula experimental pelos anúncios</span></div>
-            <div class="num"><b data-to="41" data-pre="R$ " data-suf=" mil">R$ 41 mil</b><span>em matrículas registradas em 3 meses</span></div>
-          </div>
-          <p class="nums-2027">Em 2027, a próxima pode ser <span>a sua escola.</span></p>
-          <p class="nums-fonte">Caso My Robot Manaus, julho a novembro de 2026.</p>
-        </div>
-  </div></section>
-
-  <section class="bloco"><div class="wrap">
-      <div class="hvid">
-        <p class="vcap"><i></i>Em 1 minuto você entende como funciona</p>
-        <div class="vbox">
-          <video id="vsl-v" playsinline webkit-playsinline controls preload="none" poster="/matriculas/video-capa.jpg" controlslist="nodownload noplaybackrate" disablepictureinpicture src="/matriculas/video-rapido.mp4"></video>
-          <button class="vsom vplay" id="vsl-som" type="button" aria-label="Assistir ao vídeo"><span></span>Assistir (1 min)</button>
         </div>
       </div>
   </div></section>
