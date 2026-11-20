@@ -488,6 +488,10 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
 @media (prefers-reduced-motion:reduce){.hero h1.h1-dor .acc{animation:none}}
 .hero .promessa{font-size:clamp(1.125rem,2vw,1.5rem);margin-top:24px}
 .hero{padding-top:calc(68px + clamp(36px,6vw,80px));padding-bottom:clamp(48px,7vw,96px)}
+
+/* hero ocupa a altura da tela */
+.hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;box-sizing:border-box;padding-top:calc(68px + 28px);padding-bottom:40px}
+.hero>.wrap{width:100%}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZZ46BRRSL"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-0ZZ46BRRSL");</script>
@@ -509,6 +513,7 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
         <span class="badge"><i></i>Método RISE · Raio-X gratuito</span>
         <h1 class="h1-dor">Você investe em marketing, banner e divulgação para ter mais matrículas.<br><span class="acc">E quase nada vira aluno.</span></h1>
         <p class="promessa">Em 20 minutos, a gente mostra onde sua escola está perdendo alunos.<br><b>Raio-X gratuito.</b></p>
+        <a class="btn hero-btn" href="#cartao" data-cta="hero">Quero conhecer o Método RISE</a>
       </div>
     </div>
   </div>
