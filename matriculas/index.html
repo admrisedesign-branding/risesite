@@ -479,6 +479,15 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
 @media (min-width:901px){.hero h1.h1-dor{font-size:clamp(3rem,5.2vw,4.6rem);max-width:22ch;line-height:1}}
 .faqsec .wrap>.selo,.faqsec .wrap>h2,.faqsec h2,.faqsec .selo{text-align:center;display:block}
 .faqsec .faq{max-width:760px;margin-left:auto;margin-right:auto}
+
+/* hero no estilo da home: frase grande */
+.hero h1.h1-dor{font-size:clamp(38px,10.4vw,46px);font-weight:800;letter-spacing:-2px;line-height:1.02;max-width:none}
+@media (min-width:901px){.hero h1.h1-dor{font-size:clamp(56px,6.6vw,96px);letter-spacing:-3.5px;line-height:.98;max-width:20ch}}
+.hero h1.h1-dor .acc{background:linear-gradient(90deg,#ff9a63,#E8531A 45%,#ff7a3d 70%,#ffb27a);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:brilhoTxt 6s linear infinite}
+@keyframes brilhoTxt{to{background-position:200% 0}}
+@media (prefers-reduced-motion:reduce){.hero h1.h1-dor .acc{animation:none}}
+.hero .promessa{font-size:clamp(1.125rem,2vw,1.5rem);margin-top:24px}
+.hero{padding-top:calc(68px + clamp(36px,6vw,80px));padding-bottom:clamp(48px,7vw,96px)}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZZ46BRRSL"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-0ZZ46BRRSL");</script>
