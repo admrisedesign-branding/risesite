@@ -344,8 +344,118 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
 .hero .metodo .sub b{color:#fff;font-weight:700}
 @media (max-width:900px){.hero .dor{order:2;margin:10px 0 0;font-size:1rem}}
 @media (min-width:901px){.hero .dor{grid-area:dor}.hero .wrap{grid-template-areas:"selo selo" "titulo titulo" "dor dor" "video form" "apoio form" "itens itens" "agora agora";grid-template-rows:auto auto auto auto 1fr auto auto}}
-.prova{margin:6px 0 14px;padding:10px 12px;border-left:3px solid var(--or);background:rgba(232,83,26,.07);border-radius:0 8px 8px 0;font-size:.875rem;line-height:1.45;color:#3a2a24}
-.prova b{color:#E8531A}
+.casoreal{margin:6px 0 14px;padding:10px 12px;border-left:3px solid var(--or);background:rgba(232,83,26,.07);border-radius:0 8px 8px 0;font-size:.875rem;line-height:1.45;color:#3a2a24}
+.casoreal b{color:#E8531A;display:inline}
+.casoreal{text-align:left;margin:12px 0 4px}
+
+/* ===== números do Método RISE ===== */
+.nums{margin-top:4px}
+.nums-tit{font-weight:700;font-size:.9375rem;color:var(--dm);letter-spacing:-.01em;margin-bottom:12px}
+.nums-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.num{position:relative;border:1px solid rgba(232,83,26,.28);background:linear-gradient(160deg,rgba(232,83,26,.16),rgba(232,83,26,.03) 60%);border-radius:18px;padding:16px 14px 14px;overflow:hidden}
+.num::after{content:'';position:absolute;inset:auto -30% -60% auto;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(232,83,26,.35),transparent 70%);pointer-events:none}
+.num b{display:block;font-weight:800;letter-spacing:-.05em;line-height:1;white-space:nowrap;font-size:clamp(1.6rem,2.9vw,2.55rem);background:linear-gradient(180deg,#ffb48f,#E8531A);-webkit-background-clip:text;background-clip:text;color:transparent;font-variant-numeric:tabular-nums}
+.num span{display:block;margin-top:8px;font-size:.8125rem;line-height:1.35;color:var(--dm)}
+.nums-2027{margin-top:16px;font-weight:800;font-size:clamp(1.125rem,2vw,1.5rem);letter-spacing:-.03em}
+.nums-2027 span{color:#E8531A}
+.nums-fonte{margin-top:6px;font-size:.6875rem;color:var(--dm);opacity:.7}
+@media (max-width:560px){.nums-g{gap:8px}.num{padding:12px 10px}.num b{font-size:clamp(1.05rem,5vw,1.4rem)}.num span{font-size:.75rem}}
+
+/* ===== formulário escuro, no visual do site ===== */
+.hform .cartao{--paper:#151014;--paper-tx:#f5f1ed;--paper-dm:#a69c9b;--paper-line:rgba(255,255,255,.14);background:linear-gradient(180deg,#1b1418,#120e11);border:1px solid rgba(232,83,26,.32);box-shadow:0 30px 90px rgba(0,0,0,.55),0 0 0 1px rgba(255,255,255,.03) inset,0 0 80px rgba(232,83,26,.12)}
+.hform .campo input[type=text],.hform .campo input[type=tel]{background:rgba(255,255,255,.04);color:#f5f1ed;border-color:rgba(255,255,255,.16)}
+.hform .campo input::placeholder{color:#7d7273}
+.hform .erro{color:#ff8a6a}
+.hform .aceite a,.hform .zapdireto{color:#f5f1ed}
+.hform .ok .btn--wa{color:#f5f1ed;border-color:#f5f1ed}
+
+/* ===== ordem: números e formulário primeiro; vídeo depois ===== */
+@media (max-width:900px){
+  .hero .nums{order:2;margin-top:18px}
+  .hero .hform{order:3}
+  .hero .hvid{order:5}
+  .hero .hside{order:4;margin-top:18px}
+}
+@media (min-width:901px){
+  .hero .wrap{grid-template-areas:"selo selo" "titulo titulo" "dor form" "nums form" "apoio form" "video video" "itens itens" "agora agora";grid-template-rows:auto auto auto auto 1fr auto auto auto}
+  .hero .nums{grid-area:nums;margin-top:6px}
+  .hero .hside{margin-top:26px}
+  .hero .hvid{grid-area:video;max-width:820px;width:100%;justify-self:center;margin-top:clamp(40px,5vw,64px)}
+}
+
+/* título = dor */
+.hero h1.h1-dor{font-size:clamp(1.65rem,6.4vw,2.05rem);line-height:1.12}
+@media (min-width:901px){.hero h1.h1-dor{font-size:clamp(2.2rem,3.7vw,3.3rem);line-height:1.04;max-width:22ch}}
+.nums-sub{margin-top:6px;color:var(--dm);font-size:.9375rem;max-width:52ch}
+/* dores x solução */
+.dores-tit{font-weight:800;letter-spacing:-.02em;font-size:1.0625rem;margin-bottom:12px}
+.dores-g{display:grid;gap:10px}
+.dorc{border:1px solid var(--bd);background:rgba(255,255,255,.03);border-radius:16px;padding:14px 16px}
+.dd{font-weight:700;color:#fff;display:flex;gap:10px;align-items:flex-start;line-height:1.35}
+.dd i{flex:none;width:24px;height:24px;border-radius:50%;background:rgba(232,83,26,.18);color:#E8531A;font-style:normal;font-size:.8125rem;display:grid;place-items:center;margin-top:-1px}
+.dr{margin:8px 0 0 34px;color:var(--dm);font-size:.9375rem;line-height:1.45;position:relative}
+.dr::before{content:'→';position:absolute;left:-20px;color:#E8531A;font-weight:800}
+@media (max-width:900px){
+  .dores-g{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 var(--gut);gap:10px;margin:0 calc(-1*var(--gut));padding:0 0 6px;scrollbar-width:none}
+  .dores-g::before,.dores-g::after{content:'';flex:0 0 calc(var(--gut) - 10px)}
+  .dores-g::-webkit-scrollbar{display:none}
+  .dorc{flex:0 0 82%;scroll-snap-align:start}
+}
+
+/* ===== versão enxuta: hero = título + formulário; blocos separados ===== */
+.bloco{padding:clamp(44px,7vw,80px) 0}
+.bloco-alt{background:rgba(255,255,255,.02);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)}
+.bloco .nums-tit,.bloco .dores-tit{font-size:clamp(1.25rem,2.4vw,1.75rem);font-weight:800;letter-spacing:-.03em;color:#fff;margin-bottom:20px}
+.bloco .nums-2027{margin-top:22px}
+.bloco .hvid{max-width:820px;margin:0 auto}
+.bloco .dores-g{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0;padding:0;overflow:visible}
+.bloco .dores-g::before,.bloco .dores-g::after{display:none}
+.bloco .dorc{padding:20px}
+@media (max-width:900px){
+  .bloco .nums-g{grid-template-columns:minmax(0,1fr);gap:10px}
+  .bloco .num{display:flex;align-items:center;gap:16px;padding:16px 18px}
+  .bloco .num b{font-size:2rem;min-width:7.2ch}
+  .bloco .num span{margin-top:0;font-size:.9375rem}
+  .bloco .dores-g{grid-template-columns:minmax(0,1fr);gap:10px}
+  .bloco .dorc{flex:none}
+}
+@media (min-width:901px){
+  .hero .wrap{grid-template-areas:". form" "selo form" "titulo form" ". form";grid-template-rows:1fr auto auto 1fr;align-items:start}
+  .hero h1.h1-dor{margin-top:6px;max-width:16ch;font-size:clamp(2.4rem,4vw,3.6rem)}
+  .hero .hform{grid-area:form}
+}
+@media (max-width:900px){.hero .hform{order:3;margin-top:22px}}
+
+/* storytelling: adivinho as dores -> o método resolve */
+.hist{max-width:760px}
+.hist-tit{font-size:clamp(1.6rem,3.4vw,2.5rem);font-weight:800;letter-spacing:-.04em;line-height:1.1;color:#fff;margin-bottom:22px}
+.hist-tit span{color:#E8531A}
+.hist-l{list-style:none;display:grid;gap:12px;margin:0;padding:0}
+.hist-l li{position:relative;padding:16px 18px 16px 52px;border:1px solid var(--bd);border-radius:16px;background:rgba(255,255,255,.03);font-size:clamp(1rem,1.6vw,1.1875rem);line-height:1.45;color:var(--dm)}
+.hist-l li b{color:#fff}
+.hist-l li::before{position:absolute;left:16px;top:15px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:.8125rem;font-weight:800}
+.dorl li::before{content:'✕';background:rgba(255,255,255,.08);color:#d9cfcc}
+.resl li{border-color:rgba(232,83,26,.3);background:linear-gradient(160deg,rgba(232,83,26,.12),rgba(232,83,26,.02) 70%)}
+.resl li::before{content:'✓';background:#E8531A;color:#fff}
+.hist-btn{margin-top:22px}
+@media (max-width:900px){.hist-btn{width:100%}}
+
+/* hero só com o título; formulário no fim */
+.bloco-form .hform{max-width:620px;margin:0 auto}
+@media (min-width:901px){
+  .hero .wrap{grid-template-areas:"selo" "titulo";grid-template-columns:minmax(0,1fr);grid-template-rows:auto auto}
+  .hero h1.h1-dor{max-width:24ch;font-size:clamp(2.6rem,4.6vw,4.2rem)}
+}
+.hero{padding-bottom:clamp(28px,5vw,56px)}
+@media (min-width:901px){.bloco>.wrap{max-width:1320px}}
+
+.promessa{margin-top:16px;font-size:clamp(1.0625rem,1.8vw,1.375rem);line-height:1.45;color:var(--dm);max-width:44ch}
+.promessa b{color:#fff}
+.hero-btn{margin-top:22px}
+.urg{margin-top:22px;padding-left:14px;border-left:2px solid #E8531A;font-weight:700;color:#fff;font-size:1rem}
+.urg+.hist-btn{margin-top:14px}
+@media (max-width:900px){.hero .promessa{order:3}.hero .hero-btn{order:4;width:100%}}
+@media (min-width:901px){.hero .hero-btn{justify-self:start;padding:18px 34px}}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZZ46BRRSL"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-0ZZ46BRRSL");</script>
@@ -356,7 +466,7 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
 <header class="nav">
   <div class="wrap">
     <a class="logo" href="https://riseagencia.com/" aria-label="RISE, página inicial"><img src="/matriculas/rise-logo.png" width="26" height="26" alt=""><span>rise</span></a>
-    <a class="btn btn--p" href="#diagnostico" data-cta="topo">Quero o Raio-X</a>
+    <a class="btn btn--p" href="#diagnostico" data-cta="topo">Quero conhecer o Método RISE</a>
   </div>
 </header>
 
@@ -364,21 +474,71 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
   <div class="hero">
     <div class="wrap">
       <div>
-        <span class="badge"><i></i>Raio-X das Matrículas · gratuito</span>
-        <h1>Se você clicou aqui, é porque quer <span class="acc">mais matrículas na sua escola.</span></h1>
-        <p class="dor">Você investe em marketing e em propaganda, mas não consegue ver se esse dinheiro está voltando em alunos.</p>
-        <ul class="pontos">
-          <li>Você sai com o caminho do seu aluno desenhado, etapa por etapa</li>
-          <li>E com as 3 correções mais urgentes para a sua escola</li>
-          <li>Vale mesmo que você não contrate nada</li>
-        </ul>
+        <span class="badge"><i></i>Método RISE · Raio-X gratuito</span>
+        <h1 class="h1-dor">Você investe em marketing e em propaganda, mas não consegue ver se esse dinheiro está <span class="acc">voltando em alunos.</span></h1>
+        <p class="promessa">Em 20 minutos, a gente mostra onde sua escola está perdendo alunos. <b>Raio-X gratuito.</b></p>
+        <a class="btn hero-btn" href="#cartao" data-cta="hero">Quero conhecer o Método RISE</a>
       </div>
+    </div>
+  </div>
 
+
+
+
+  <section class="bloco bloco-alt"><div class="wrap">
+        <div class="nums" aria-label="Resultados do Método RISE">
+          <p class="nums-tit">O Método RISE em uma escola de Manaus:</p>
+          <div class="nums-g">
+            <div class="num"><b data-to="41" data-pre="R$ " data-suf=" mil">R$ 41 mil</b><span>em matrículas registradas em 3 meses</span></div>
+            <div class="num"><b data-to="117">117</b><span>pedidos de aula experimental pelos anúncios</span></div>
+            <div class="num"><b data-to="362" data-suf=" mil">362 mil</b><span>pessoas alcançadas em Manaus</span></div>
+          </div>
+          <p class="nums-2027">Em 2027, a próxima pode ser <span>a sua escola.</span></p>
+          <p class="nums-fonte">Caso My Robot Manaus, julho a novembro de 2026.</p>
+        </div>
+  </div></section>
+
+  <section class="bloco bloco-alt"><div class="wrap">
+        <div class="hist">
+          <p class="hist-tit">Deixa eu adivinhar…</p>
+          <ul class="hist-l dorl">
+            <li>Você investe em anúncio e <b>não sabe quantos viraram aluno.</b></li>
+            <li>Você recebe mensagens, mas o interessado <b>esfria antes de visitar a escola.</b></li>
+            <li>Você faz um pouco de tudo, post, banner, panfleto, e <b>nada conversa entre si.</b></li>
+          </ul>
+        </div>
+  </div></section>
+
+  <section class="bloco"><div class="wrap">
+        <div class="hist">
+          <p class="hist-tit">O Método RISE <span>resolve isso.</span></p>
+          <ul class="hist-l resl">
+            <li><b>Resolve o escuro:</b> cada contato é rastreado do anúncio até a matrícula.</li>
+            <li><b>Resolve a demora:</b> atendimento em minutos e acompanhamento até a aula experimental.</li>
+            <li><b>Resolve a bagunça:</b> anúncio, site, atendimento e matrícula em um caminho só.</li>
+          </ul>
+          <p class="urg">As matrículas de 2027 se decidem entre novembro e janeiro.</p>
+          <a class="btn hist-btn" href="#cartao" data-cta="resolve">Quero conhecer o Método RISE</a>
+        </div>
+  </div></section>
+
+
+
+  <section class="bloco"><div class="wrap">
+      <div class="hvid">
+        <p class="vcap"><i></i>Em 1 minuto você entende como funciona</p>
+        <div class="vbox">
+          <video id="vsl-v" playsinline webkit-playsinline controls preload="none" poster="/matriculas/video-capa.jpg" controlslist="nodownload noplaybackrate" disablepictureinpicture src="/matriculas/video-rapido.mp4"></video>
+          <button class="vsom vplay" id="vsl-som" type="button" aria-label="Assistir ao vídeo"><span></span>Assistir (1 min)</button>
+        </div>
+      </div>
+  </div></section>
+
+  <section class="bloco bloco-form"><div class="wrap">
       <div class="hform">
         <div class="cartao alvo" id="cartao">
         <div class="intro" id="diagnostico">
           <h2>Vamos conversar?</h2>
-          <p class="prova"><b>Caso real:</b> na My Robot Manaus, os contatos vindos de anúncios passaram de 3 para 39 em um mês, com custo por contato 74% menor.</p>
           <p class="lead">Leva menos de um minuto. O André, da RISE, chama você no WhatsApp para combinar o horário.</p>
         </div>
         <form id="form" novalidate>
@@ -397,8 +557,9 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
           
           <div class="hp" aria-hidden="true"><label>Não preencha<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
           
-          <button class="btn" type="submit" id="enviar">Quero conversar com a RISE</button>
-          <p class="garantia">Gratuito e sem compromisso.</p>
+          <button class="btn" type="submit" id="enviar">Quero conhecer o Método RISE</button>
+          <p class="garantia">Raio-X gratuito de 20 minutos, pelo WhatsApp. Sem compromisso.</p>
+          
           <p class="aceite">Ao enviar, você autoriza a RISE a falar com você pelo WhatsApp sobre o Raio-X, conforme a <a href="/privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
           <a class="zapdireto" id="zap-direto" href="#" target="_blank" rel="noopener">Prefiro chamar o André no WhatsApp</a>
           <p class="erro" id="erro" role="alert"></p>
@@ -411,27 +572,7 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
         </div>
         </div>
       </div>
-
-      <div class="hvid">
-        <p class="vcap"><i></i>Em 1 minuto você entende como funciona</p>
-        <div class="vbox">
-          <video id="vsl-v" playsinline webkit-playsinline controls preload="none" poster="/matriculas/video-capa.jpg" controlslist="nodownload noplaybackrate" disablepictureinpicture src="/matriculas/video-rapido.mp4"></video>
-          <button class="vsom vplay" id="vsl-som" type="button" aria-label="Assistir ao vídeo"><span></span>Assistir (1 min)</button>
-        </div>
-      </div>
-
-      <div class="hside">
-        <div class="metodo">
-          <p class="sub"><b>Existe um jeito de organizar a escola primeiro, para depois estar pronta para receber mais matrículas.</b> Esse é o Método RISE: arrumar o agora pensando no futuro.</p>
-          <p class="sub">Pare de gastar com campanhas avulsas e banners espalhados por aí. Antes de investir mais, é preciso parar e se organizar. O Método RISE faz isso com você.</p>
-          <p class="sub">Chega de fazer a mesma coisa e não ter resultado. No Raio-X gratuito, a gente mostra onde sua escola está perdendo alunos e por onde começar.</p>
-        </div>
-        <a class="btn" href="#diagnostico" data-cta="video">Quero o Raio-X da minha escola</a>
-        <p class="vnota">Gratuito e sem compromisso. Não precisa assistir até o fim.</p>
-        <a class="zaptopo" id="zap-topo" href="#" target="_blank" rel="noopener">Prefere conversar? Chame o André no WhatsApp</a>
-      </div>
-    </div>
-  </div>
+  </div></section>
 
   <section class="frase">
     <div class="wrap">
@@ -526,7 +667,7 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
     <div class="wrap">
       <h2>Chegue às matrículas de 2027 com o funil em ordem</h2>
       <p class="lead">Raio-X das Matrículas: um diagnóstico gratuito de 20 a 30 minutos, sem compromisso.</p>
-      <a class="btn" href="#cartao" data-cta="final">Quero o Raio-X da minha escola</a>
+      <a class="btn" href="#cartao" data-cta="final">Quero conhecer o Método RISE</a>
     </div>
   </section>
 </main>
@@ -543,7 +684,7 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
   </div>
 </footer>
 
-<div class="barra" id="barra"><a class="btn" href="#cartao" data-cta="barra">Quero o Raio-X da minha escola</a></div>
+<div class="barra" id="barra"><a class="btn" href="#cartao" data-cta="barra">Quero conhecer o Método RISE</a></div>
 
 <script>
 (function(){
@@ -607,7 +748,7 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
       setTimeout(function(){location.href=zap},1800);
     })
     .catch(function(){
-      btn.disabled=false;btn.textContent='Quero o Raio-X da minha escola';
+      btn.disabled=false;btn.textContent='Quero conhecer o Método RISE';
       falha('Não foi possível enviar agora. Tente de novo em instantes ou chame a RISE no WhatsApp.');
     });
   });
@@ -627,7 +768,10 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
   // barra fixa de chamada no celular: aparece só quando o formulário está fora da tela
   var barra=document.getElementById('barra');
   if(barra&&'IntersectionObserver' in window){
-    new IntersectionObserver(function(es){barra.classList.toggle('on',!es[0].isIntersecting&&!cartao.classList.contains('enviado'))},{threshold:0}).observe(cartao);
+    var vis={};var hb=document.querySelector('.hero-btn');
+    var io2=new IntersectionObserver(function(es){es.forEach(function(e){vis[e.target===cartao?'c':'h']=e.isIntersecting});
+      barra.classList.toggle('on',!vis.c&&!vis.h&&!cartao.classList.contains('enviado'))},{threshold:0});
+    io2.observe(cartao);if(hb)io2.observe(hb);
   }
 
   // medir cliques nos botões de chamada
@@ -700,6 +844,21 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
       mb.style.transform=perto?'translate('+(dx*.12).toFixed(1)+'px,'+(dy*.28).toFixed(1)+'px)':'';
     },{passive:true});
   }
+})();
+</script>
+<script>
+(function(){
+  var els=document.querySelectorAll('.num b[data-to]');
+  if(!els.length||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  els.forEach(function(el){el.textContent=(el.dataset.pre||'')+'0'+(el.dataset.suf||'')});
+  function conta(el){
+    var to=+el.dataset.to,t0=null,dur=1500;
+    function f(t){if(!t0)t0=t;var k=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-k,3);
+      el.textContent=(el.dataset.pre||'')+Math.round(to*e)+(el.dataset.suf||'');if(k<1)requestAnimationFrame(f)}
+    requestAnimationFrame(f);
+  }
+  var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){conta(x.target);io.unobserve(x.target)}})},{threshold:.4});
+  els.forEach(function(el){io.observe(el)});
 })();
 </script>
 </body>
