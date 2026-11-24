@@ -24,6 +24,27 @@ const QUANDO = {
 };
 
 // Texto mostrado ao lado do aceite. O servidor registra SEMPRE este texto (não o que vier do navegador).
+// Respostas do Raio-X interativo da landing: só valores conhecidos entram (vão para as notas do lead no Capta).
+const RX_OPC = {
+  tipo: ['Educação infantil', 'Fundamental e Médio', 'Idiomas e cursos livres', 'Cursinho e técnico'],
+  mensagens: ['Até 30', '30 a 100', 'Mais de 100', 'Não sei'],
+  resposta: ['Na hora', 'Em algumas horas', 'No dia seguinte', 'Depende do dia'],
+  divulgacao: ['Instagram', 'Anúncios pagos', 'Panfleto e banner', 'Indicação'],
+};
+function raioX(b) {
+  const r = b && typeof b === 'object' ? b : {};
+  const um = (k) => (RX_OPC[k].includes(txt(r[k], 60)) ? txt(r[k], 60) : '');
+  const div = Array.isArray(r.divulgacao) ? r.divulgacao.map((v) => txt(v, 40)).filter((v) => RX_OPC.divulgacao.includes(v)) : [];
+  const est = Number(r.estimativa);
+  return {
+    tipo_escola: um('tipo'),
+    mensagens_por_mes: um('mensagens'),
+    tempo_de_resposta: um('resposta'),
+    divulga_em: [...new Set(div)].join(', '),
+    raio_x_familias_perdidas_mes: Number.isFinite(est) && est > 0 && est < 1000 ? String(Math.round(est)) : '',
+  };
+}
+
 const CONSENT_VERSAO = 'rise-matriculas-v1';
 const CONSENT_TEXTO = 'Autorizo a RISE Design & Branding a entrar em contato comigo por WhatsApp ou telefone sobre o diagnóstico gratuito do funil da minha escola e a usar os dados que informei só para essa finalidade, conforme a Política de Privacidade.';
 
@@ -87,7 +108,7 @@ module.exports = async function handler(req, res) {
       desafio ? { texto: PERGUNTA_DESAFIO, label: desafio, pontos: DESAFIO[desafio] } : null,
       quando ? { texto: PERGUNTA_QUANDO, label: quando, pontos: QUANDO[quando] } : null,
     ].filter(Boolean),
-    extra: { escola, fonte: utm.utm_source || origem, notas: body.campanha === 'blackfriday_2026' ? 'Landing Black Friday 2026 (implantação do Capta sem custo se fechar até 30/11)' : 'Landing Matrículas 2027' },
+    extra: { escola, ...raioX(body.raiox), fonte: utm.utm_source || origem, notas: body.campanha === 'blackfriday_2026' ? 'Landing Black Friday 2026 (implantação do Capta sem custo se fechar até 30/11)' : 'Landing Matrículas 2027' },
     utm,
     consentimento: { contato: true, canal: 'site', versao: CONSENT_VERSAO, texto: CONSENT_TEXTO, url: txt(body.pagina, 300) },
   };

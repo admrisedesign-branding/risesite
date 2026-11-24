@@ -502,6 +502,42 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
 /* hero ocupa a altura da tela */
 .hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;box-sizing:border-box;padding-top:calc(68px + 28px);padding-bottom:40px}
 .hero>.wrap{width:100%}
+
+/* Raio-X interativo */
+.rx-topo{display:flex;justify-content:space-between;align-items:center;font-size:.875rem;color:var(--paper-dm);margin:4px 0 8px}
+.rx-volta{background:none;border:0;color:var(--paper-dm);font:inherit;font-size:.875rem;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:4px 0}
+.rx-trilho{height:6px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden;margin-bottom:20px}
+.rx-trilho i{display:block;height:100%;background:linear-gradient(90deg,#ff7a3d,var(--or));border-radius:6px;transition:width .4s ease}
+.rx-etapa{display:none;border:0;margin:0;padding:0;min-width:0}
+.rx-etapa.on{display:block;animation:rxEntra .35s ease both}
+@keyframes rxEntra{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+.rx-etapa legend{font-weight:800;font-size:clamp(1.25rem,4.6vw,1.5rem);line-height:1.2;letter-spacing:-.02em;margin-bottom:16px;padding:0}
+.rx-etapa legend small{display:block;font-weight:500;font-size:.9375rem;color:var(--paper-dm);letter-spacing:0;margin-top:4px}
+.rx-op{display:block;width:100%;text-align:left;font:inherit;color:var(--paper-tx);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1.5px solid rgba(255,255,255,.12);border-radius:16px;padding:16px 48px 16px 18px;margin-bottom:10px;cursor:pointer;position:relative;transition:border-color .2s,background .2s,box-shadow .2s}
+.rx-op b{display:block;font-size:1.0625rem}
+.rx-op small{display:block;color:var(--paper-dm);font-size:.875rem;margin-top:2px}
+.rx-op::after{content:"";position:absolute;right:16px;top:50%;width:22px;height:22px;margin-top:-11px;border-radius:50%;border:1.5px solid rgba(255,255,255,.22)}
+.rx-op:hover{border-color:rgba(232,83,26,.55)}
+.rx-op.sel{border-color:var(--or);background:rgba(232,83,26,.10);box-shadow:0 0 0 3px rgba(232,83,26,.15)}
+.rx-op.sel::after{border-color:var(--or);background:var(--or) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12l5 5 9-10'/%3E%3C/svg%3E") center/14px no-repeat}
+.rx-op:focus-visible{outline:3px solid rgba(232,83,26,.5);outline-offset:2px}
+.rx-seguir{width:100%;margin-top:8px}
+.rx-seguir:disabled{opacity:.45;cursor:not-allowed}
+.rx-calc{padding:8px 0 4px}
+.rx-calc-topo{display:flex;justify-content:space-between;font-weight:700;margin-bottom:10px}
+.rx-calc-topo b{color:var(--or)}
+.rx-calc p{color:var(--paper-dm);margin-top:-6px}
+.rx-res{border:1px solid rgba(232,83,26,.35);background:rgba(232,83,26,.07);border-radius:18px;padding:18px 18px 14px;margin-bottom:18px;animation:rxEntra .35s ease both}
+.rx-res-rot{font-size:.8125rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--or)}
+.rx-res-num{font-weight:800;font-size:clamp(1.3rem,5vw,1.6rem);line-height:1.2;letter-spacing:-.02em;margin:6px 0 12px}
+.rx-res-num em{font-style:normal;color:var(--or)}
+.rx-res-pts{list-style:none;margin:0 0 10px;padding:0}
+.rx-res-pts li{position:relative;padding-left:22px;margin-bottom:8px;line-height:1.45}
+.rx-res-pts li::before{content:"✕";position:absolute;left:0;color:var(--or);font-weight:800}
+.rx-res-base{font-size:.8125rem;color:var(--paper-dm);line-height:1.45}
+.rx-res-cta{font-weight:700;margin-top:12px}
+.cartao.enviado .rx{display:none}
+.rx [hidden],form[hidden]{display:none!important}
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZZ46BRRSL"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-0ZZ46BRRSL");</script>
@@ -601,10 +637,61 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
         <div class="cartao alvo" id="cartao">
         <div class="intro" id="diagnostico">
           <div class="quem"><img src="/matriculas/andre.jpg" alt="André Molinari, da RISE" width="56" height="56" loading="lazy"><p><b>Quem vai falar com você:</b> André, da RISE, aqui em Manaus.</p></div>
-          <h2>Vamos conversar?</h2>
-          <p class="lead">Leva menos de um minuto. O André, da RISE, chama você no WhatsApp para combinar o horário.</p>
+          <h2 id="rx-titulo">Faça o Raio-X da sua escola</h2>
+          <p class="lead" id="rx-lead">4 perguntas rápidas. No fim, você vê quanto sua escola pode estar perdendo de alunos.</p>
         </div>
-        <form id="form" novalidate>
+        <div class="rx" id="rx">
+          <div class="rx-topo"><span id="rx-passo">Passo 1 de 4</span><button type="button" class="rx-volta" id="rx-volta" hidden>Voltar</button></div>
+          <div class="rx-trilho"><i id="rx-barra" style="width:25%"></i></div>
+
+          <fieldset class="rx-etapa on" data-q="tipo">
+            <legend>Que tipo de escola é a sua?</legend>
+            <button type="button" class="rx-op" data-v="Educação infantil"><b>Educação infantil</b><small>Creche e pré-escola</small></button>
+            <button type="button" class="rx-op" data-v="Fundamental e Médio"><b>Fundamental e Médio</b><small>Escola regular</small></button>
+            <button type="button" class="rx-op" data-v="Idiomas e cursos livres"><b>Idiomas e cursos livres</b><small>Inglês, robótica, música, reforço</small></button>
+            <button type="button" class="rx-op" data-v="Cursinho e técnico"><b>Cursinho e técnico</b><small>Pré-vestibular, concursos, profissionalizante</small></button>
+          </fieldset>
+
+          <fieldset class="rx-etapa" data-q="mensagens">
+            <legend>Quantas mensagens de pais ou alunos chegam por mês?</legend>
+            <button type="button" class="rx-op" data-v="Até 30"><b>Até 30</b></button>
+            <button type="button" class="rx-op" data-v="30 a 100"><b>De 30 a 100</b></button>
+            <button type="button" class="rx-op" data-v="Mais de 100"><b>Mais de 100</b></button>
+            <button type="button" class="rx-op" data-v="Não sei"><b>Não sei dizer</b></button>
+          </fieldset>
+
+          <fieldset class="rx-etapa" data-q="resposta">
+            <legend>Em quanto tempo vocês respondem essas mensagens?</legend>
+            <button type="button" class="rx-op" data-v="Na hora"><b>Na hora</b><small>Em até 15 minutos</small></button>
+            <button type="button" class="rx-op" data-v="Em algumas horas"><b>Em algumas horas</b></button>
+            <button type="button" class="rx-op" data-v="No dia seguinte"><b>No dia seguinte</b></button>
+            <button type="button" class="rx-op" data-v="Depende do dia"><b>Depende do dia</b></button>
+          </fieldset>
+
+          <fieldset class="rx-etapa" data-q="divulgacao" data-multi="1">
+            <legend>Onde vocês divulgam hoje?<small>Pode marcar mais de uma.</small></legend>
+            <button type="button" class="rx-op" data-v="Instagram"><b>Instagram</b><small>Posts e stories</small></button>
+            <button type="button" class="rx-op" data-v="Anúncios pagos"><b>Anúncios pagos</b><small>Instagram, Facebook ou Google</small></button>
+            <button type="button" class="rx-op" data-v="Panfleto e banner"><b>Panfleto e banner</b></button>
+            <button type="button" class="rx-op" data-v="Indicação"><b>Indicação</b><small>Boca a boca de pais e alunos</small></button>
+            <button type="button" class="btn rx-seguir" id="rx-seguir" disabled>Ver meu Raio-X</button>
+          </fieldset>
+
+          <div class="rx-calc" id="rx-calc" hidden>
+            <div class="rx-calc-topo"><span>Montando seu Raio-X</span><b id="rx-pct">0%</b></div>
+            <div class="rx-trilho"><i id="rx-calc-barra"></i></div>
+            <p id="rx-calc-tx">Somando as mensagens do mês…</p>
+          </div>
+
+          <div class="rx-res" id="rx-res" hidden>
+            <p class="rx-res-rot">Seu Raio-X</p>
+            <p class="rx-res-num" id="rx-res-num"></p>
+            <ul class="rx-res-pts" id="rx-res-pts"></ul>
+            <p class="rx-res-base" id="rx-res-base"></p>
+            <p class="rx-res-cta">Receba o Raio-X completo com o André, em 20 minutos pelo WhatsApp.</p>
+          </div>
+        </div>
+        <form id="form" novalidate hidden>
           <div class="campo">
             <label for="nome">Seu nome</label>
             <input type="text" id="nome" name="nome" placeholder="Seu nome" autocomplete="name" maxlength="120" required>
@@ -620,7 +707,7 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
           
           <div class="hp" aria-hidden="true"><label>Não preencha<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
           
-          <button class="btn" type="submit" id="enviar">Quero conhecer o Método RISE</button>
+          <button class="btn" type="submit" id="enviar">Quero meu Raio-X completo</button>
           <p class="garantia">Raio-X gratuito de 20 minutos, pelo WhatsApp. Sem compromisso.</p>
           
           <p class="aceite">Ao enviar, você autoriza a RISE a falar com você pelo WhatsApp sobre o Raio-X, conforme a <a href="/privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
@@ -689,6 +776,101 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
 
   function falha(msg,campo){erro.textContent=msg;if(campo){var el=form.elements[campo];if(el&&el.focus)el.focus()}}
 
+  // ===== Raio-X interativo: 4 perguntas, cálculo transparente, contato só no fim =====
+  var RX={},rxEtapas=[].slice.call(document.querySelectorAll('.rx-etapa')),rxI=0,rxIniciou=false;
+  var MSG_MEDIA={'Até 30':20,'30 a 100':60,'Mais de 100':130};
+  var PERDA={'Na hora':.10,'Em algumas horas':.30,'No dia seguinte':.50,'Depende do dia':.35};
+  var RESP_TX={'Na hora':'na hora','Em algumas horas':'em algumas horas','No dia seguinte':'no dia seguinte','Depende do dia':'sem um tempo certo'};
+  function gev(n,o){if(window.gtag)gtag('event',n,Object.assign({origem:'matriculas_2027'},o||{}))}
+  function rxMostra(i){
+    rxEtapas.forEach(function(e,k){e.classList.toggle('on',k===i)});
+    rxI=i;
+    document.getElementById('rx-passo').textContent='Passo '+(i+1)+' de '+rxEtapas.length;
+    document.getElementById('rx-barra').style.width=((i+1)/rxEtapas.length*100)+'%';
+    document.getElementById('rx-volta').hidden=(i===0);
+  }
+  rxEtapas.forEach(function(et,i){
+    var q=et.getAttribute('data-q'),multi=et.hasAttribute('data-multi');
+    [].forEach.call(et.querySelectorAll('.rx-op'),function(b){
+      b.setAttribute('aria-pressed','false');
+      b.addEventListener('click',function(){
+        if(!rxIniciou){rxIniciou=true;gev('form_start');gev('raiox_inicio')}
+        if(multi){
+          b.classList.toggle('sel');b.setAttribute('aria-pressed',b.classList.contains('sel'));
+          RX[q]=[].map.call(et.querySelectorAll('.rx-op.sel'),function(x){return x.getAttribute('data-v')});
+          document.getElementById('rx-seguir').disabled=!RX[q].length;
+          return;
+        }
+        [].forEach.call(et.querySelectorAll('.rx-op'),function(x){x.classList.remove('sel');x.setAttribute('aria-pressed','false')});
+        b.classList.add('sel');b.setAttribute('aria-pressed','true');
+        RX[q]=b.getAttribute('data-v');
+        gev('raiox_passo',{passo:i+1});
+        setTimeout(function(){rxMostra(i+1)},260);
+      });
+    });
+  });
+  document.getElementById('rx-volta').addEventListener('click',function(){if(rxI>0)rxMostra(rxI-1)});
+
+  function rxResultado(){
+    var m=MSG_MEDIA[RX.mensagens],perda=PERDA[RX.resposta],div=RX.divulgacao||[];
+    var num=document.getElementById('rx-res-num'),pts=[],base='';
+    if(m){
+      var n=Math.max(1,Math.round(m*perda));
+      RX.estimativa=n;
+      num.innerHTML='Sua escola pode estar perdendo cerca de <em>'+n+' famílias por mês</em> antes da visita.';
+      base='Estimativa: cerca de '+m+' mensagens por mês × '+Math.round(perda*100)+'% de pais que desistem quando a resposta chega '+RESP_TX[RX.resposta]+'. No Raio-X com o André, você vê o número real da sua escola.';
+    }else{
+      RX.estimativa='';
+      num.innerHTML='Primeiro ponto: você <em>não sabe quantas mensagens chegam</em> por mês.';
+      base='Sem esse número, não dá para saber quantos alunos estão se perdendo. No Raio-X, o André mostra como medir isso já na primeira semana.';
+    }
+    if(RX.resposta==='No dia seguinte'||RX.resposta==='Depende do dia'||RX.resposta==='Em algumas horas')
+      pts.push('Responder '+RESP_TX[RX.resposta]+' dá tempo do pai falar com outra escola.');
+    if(div.indexOf('Panfleto e banner')>-1&&div.indexOf('Anúncios pagos')<0)
+      pts.push('Panfleto e banner não mostram quantos pais trouxeram.');
+    if(div.length===1&&div[0]==='Indicação')
+      pts.push('Depender só de indicação deixa as matrículas na sorte.');
+    if(div.indexOf('Anúncios pagos')>-1)
+      pts.push('Anúncio sem acompanhamento até a visita vira gasto, não matrícula.');
+    if(div.indexOf('Instagram')>-1&&div.indexOf('Anúncios pagos')<0)
+      pts.push('Post no Instagram sem anúncio só chega em quem já segue a escola.');
+    if(!pts.length)pts.push('Você já faz muita coisa certa. O Raio-X mostra o que falta para virar matrícula.');
+    document.getElementById('rx-res-pts').innerHTML=pts.slice(0,3).map(function(t){return '<li>'+t+'</li>'}).join('');
+    document.getElementById('rx-res-base').textContent=base;
+  }
+
+  document.getElementById('rx-seguir').addEventListener('click',function(){
+    gev('raiox_passo',{passo:4});
+    rxEtapas.forEach(function(e){e.classList.remove('on')});
+    document.querySelector('.rx-topo').hidden=true;
+    document.querySelector('#rx > .rx-trilho').hidden=true;
+    var calc=document.getElementById('rx-calc'),bar=document.getElementById('rx-calc-barra'),pct=document.getElementById('rx-pct'),tx=document.getElementById('rx-calc-tx');
+    calc.hidden=false;
+    var etapas=['Somando as mensagens do mês…','Calculando o tempo de resposta…','Olhando onde vocês divulgam…','Montando seu Raio-X…'],t=0;
+    var it=setInterval(function(){
+      t+=4;if(t>100)t=100;
+      bar.style.width=t+'%';pct.textContent=t+'%';
+      tx.textContent=etapas[Math.min(etapas.length-1,Math.floor(t/26))];
+      if(t>=100){
+        clearInterval(it);
+        rxResultado();
+        calc.hidden=true;
+        document.getElementById('rx-res').hidden=false;
+        document.getElementById('rx-titulo').textContent='Seu Raio-X está pronto';
+        document.getElementById('rx-lead').textContent='Veja o resultado e receba a análise completa com o André.';
+        form.hidden=false;
+        gev('raiox_resultado',{estimativa:RX.estimativa||0});
+        if(window.fbq)fbq('trackCustom','RaioXResultado');
+      }
+    },90);
+  });
+  function desafioDe(){
+    if(RX.mensagens==='Não sei')return 'Organizar o processo todo';
+    if(RX.resposta&&RX.resposta!=='Na hora')return 'Melhorar o atendimento';
+    if(RX.mensagens==='Até 30')return 'Receber mais interessados';
+    return 'Transformar contatos em matrículas';
+  }
+
   form.addEventListener('submit',function(ev){
     ev.preventDefault();erro.textContent='';
     var f=form.elements;
@@ -700,15 +882,18 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
 
     btn.disabled=true;btn.textContent='Enviando…';
     fetch(CFG.endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
-      nome:nome,escola:escola,whatsapp:digitos,desafio:desafio||'',consentimento:true,
+      nome:nome,escola:escola,whatsapp:digitos,desafio:desafio||desafioDe(),consentimento:true,raiox:{tipo:RX.tipo||'',mensagens:RX.mensagens||'',resposta:RX.resposta||'',divulgacao:RX.divulgacao||[],estimativa:RX.estimativa||''},
       website:f.website.value,t:Date.now()-t0,utm:utm,pagina:location.href.slice(0,300)
     })}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||!j.ok)throw new Error(j.erro||'falha')})})
     .then(function(){
       if(window.gtag)gtag('event','generate_lead',{origem:'matriculas_2027'});
       if(window.fbq)fbq('track','Lead');
       document.getElementById('ok-titulo').textContent='Pedido recebido, '+nome.split(' ')[0]+'.';
-      var dz=desafio?desafio.charAt(0).toLowerCase()+desafio.slice(1):'';
-      var msg='Oi, André! Tudo bem? Aqui é '+nome.split(' ')[0]+', da '+escola+'. Pedi o Raio-X das Matrículas pelo site da RISE.'+(dz?' Hoje o que mais quero é '+dz+'.':'')+' Podemos combinar um horário?';
+      var resumo=[];
+      if(RX.tipo)resumo.push('escola de '+RX.tipo.toLowerCase());
+      if(RX.mensagens)resumo.push(RX.mensagens==='Não sei'?'não sei quantas mensagens chegam por mês':RX.mensagens.toLowerCase()+' mensagens por mês');
+      if(RX.resposta)resumo.push('respondemos '+(RESP_TX[RX.resposta]||RX.resposta.toLowerCase()));
+      var msg='Oi, André! Tudo bem? Aqui é '+nome.split(' ')[0]+', da '+escola+'. Fiz o Raio-X das Matrículas no site da RISE'+(resumo.length?' ('+resumo.join(', ')+')':'')+'. Podemos combinar um horário para ver o resultado completo?';
       var zap='https://wa.me/'+CFG.whatsapp+'?text='+encodeURIComponent(msg);
       var aw=document.getElementById('ok-wa');aw.href=zap;
       cartao.classList.add('enviado');
@@ -718,7 +903,7 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
       setTimeout(function(){location.href=zap},1800);
     })
     .catch(function(){
-      btn.disabled=false;btn.textContent='Quero conhecer o Método RISE';
+      btn.disabled=false;btn.textContent='Quero meu Raio-X completo';
       falha('Não foi possível enviar agora. Tente de novo em instantes ou chame a RISE no WhatsApp.');
     });
   });
@@ -733,7 +918,7 @@ section.frase{padding:0 0 clamp(36px,5vw,64px);border-top:0}
 
   // início do preenchimento (mede quem começa e não termina)
   var comecou=false;
-  form.addEventListener('focusin',function(){if(comecou)return;comecou=true;if(window.gtag)gtag('event','form_start',{origem:'matriculas_2027'})});
+  form.addEventListener('focusin',function(){if(comecou)return;comecou=true;if(window.gtag)gtag('event','contato_start',{origem:'matriculas_2027'})});
 
   // barra fixa de chamada no celular: aparece só quando o formulário está fora da tela
   var barra=document.getElementById('barra');
