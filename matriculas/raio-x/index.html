@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seu Raio-X das Matrículas | Método RISE</title>
+<meta name="description" content="Raio-X das Matrículas: onde a sua escola está perdendo alunos e o plano de ações para 2027.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#070508">
+<link rel="icon" type="image/png" href="https://riseagencia.com/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700;9..40,800&display=swap" rel="stylesheet">
+<style>
+:root{--or:#E8531A;--bg:#070508;--tx:#f2ede8;--dm:rgba(242,237,232,.70);--dr:rgba(242,237,232,.52);--line:rgba(255,255,255,.10);--card:#141014;--gut:clamp(16px,5vw,40px)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--tx);line-height:1.55;font-size:1.0625rem;
+  background-image:radial-gradient(900px 500px at 10% -10%,rgba(232,83,26,.20),transparent 60%)}
+a{color:inherit}
+.wrap{max-width:760px;margin:0 auto;padding:0 var(--gut)}
+header{border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.25rem;text-decoration:none}
+.logo img{width:28px;height:28px}
+.capa{padding:40px 0 8px}
+.eye{display:inline-block;font-size:.8125rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--or);margin-bottom:10px}
+h1{font-size:clamp(1.9rem,7vw,2.75rem);line-height:1.05;letter-spacing:-.035em;font-weight:800}
+h1 span{color:var(--or)}
+.data{color:var(--dr);font-size:.9375rem;margin-top:10px}
+.acoes{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-weight:800;font-size:1rem;border:0;border-radius:999px;padding:15px 24px;cursor:pointer;text-decoration:none;background:linear-gradient(180deg,#f0652b,var(--or));color:#fff;box-shadow:0 10px 30px rgba(232,83,26,.35)}
+.btn--sec{background:transparent;border:1.5px solid rgba(255,255,255,.22);box-shadow:none}
+.btn--wa{background:linear-gradient(180deg,#2bd46b,#1fa855);box-shadow:0 10px 30px rgba(37,211,102,.25)}
+section{padding:26px 0;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:0}
+h2{font-size:clamp(1.3rem,4.6vw,1.6rem);letter-spacing:-.02em;line-height:1.2;margin-bottom:14px}
+.cartao{background:var(--card);border:1px solid rgba(232,83,26,.32);border-radius:20px;padding:20px}
+.num{font-size:clamp(1.35rem,5vw,1.75rem);font-weight:800;line-height:1.2;letter-spacing:-.02em}
+.num em{font-style:normal;color:var(--or)}
+.base{color:var(--dr);font-size:.875rem;margin-top:10px}
+.resp{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.resp div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 14px}
+.resp small{display:block;color:var(--dr);font-size:.8125rem}
+.resp b{font-size:1rem}
+@media (max-width:480px){.resp{grid-template-columns:1fr}}
+.pts{list-style:none}
+.pts li{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px 14px 44px;margin-bottom:10px;position:relative}
+.pts li::before{content:"✕";position:absolute;left:16px;top:14px;color:var(--or);font-weight:800}
+.pts b{display:block}
+.pts span{color:var(--dm)}
+.plano{list-style:none;counter-reset:p}
+.plano li{counter-increment:p;position:relative;padding:0 0 18px 50px}
+.plano li::before{content:counter(p);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;background:rgba(232,83,26,.14);border:1px solid rgba(232,83,26,.45);color:var(--or);font-weight:800;display:flex;align-items:center;justify-content:center}
+.plano b{display:block;font-size:1.0625rem}
+.plano span{color:var(--dm)}
+.caso{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 8px}
+.caso div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center}
+.caso b{display:block;font-size:1.35rem;color:var(--or);letter-spacing:-.02em}
+.caso small{color:var(--dm);font-size:.8125rem;line-height:1.3;display:block}
+@media (max-width:480px){.caso{grid-template-columns:1fr}}
+.fonte{color:var(--dr);font-size:.8125rem}
+.fim{text-align:center}
+.fim p{color:var(--dm);max-width:46ch;margin:0 auto 18px}
+.quem{display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:14px}
+.quem img{width:52px;height:52px;border-radius:50%;border:2px solid var(--or);object-fit:cover}
+.vazio{padding:60px 0;text-align:center}
+.vazio p{color:var(--dm);margin:12px 0 22px}
+.so-print{display:none}
+footer{color:var(--dr);font-size:.8125rem;text-align:center;padding:26px 0 40px}
+@media print{
+  body{background:#fff;color:#1a1416;font-size:11pt}
+  :root{--tx:#1a1416;--dm:#4a4044;--dr:#6b6064;--line:#ddd;--card:#fff}
+  .acoes,.fim .btn,header .btn{display:none!important}
+  .cartao,.pts li,.resp div,.caso div{border-color:#ccc}
+  section{break-inside:avoid}
+  .so-print{display:block}
+  .btn{box-shadow:none}
+}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="logo" href="/matriculas/" aria-label="RISE"><img src="/matriculas/rise-logo.png" width="28" height="28" alt=""><span>rise</span></a>
+</div></header>
+
+<main class="wrap" id="rel" hidden>
+  <div class="capa">
+    <span class="eye">Raio-X das Matrículas 2027</span>
+    <h1>Raio-X da <span id="escola">sua escola</span></h1>
+    <p class="data" id="data"></p>
+    <div class="acoes">
+      <a class="btn btn--wa" id="wa-topo" href="#" target="_blank" rel="noopener">Receber no WhatsApp</a>
+      <button class="btn btn--sec" type="button" id="pdf">Baixar em PDF</button>
+    </div>
+  </div>
+
+  <section>
+    <h2>O resultado</h2>
+    <div class="cartao"><p class="num" id="num"></p><p class="base" id="base"></p></div>
+  </section>
+
+  <section>
+    <h2>O que você respondeu</h2>
+    <div class="resp" id="resp"></div>
+  </section>
+
+  <section>
+    <h2>Onde sua escola está perdendo alunos</h2>
+    <ul class="pts" id="pts"></ul>
+  </section>
+
+  <section>
+    <h2>Plano de ações para as matrículas de 2027</h2>
+    <p style="color:var(--dm);margin:-6px 0 18px">As matrículas de 2027 se decidem entre novembro e janeiro. Comece pela ação 1 ainda esta semana.</p>
+    <ol class="plano" id="plano"></ol>
+  </section>
+
+  <section>
+    <h2>Uma escola de Manaus que fez isso</h2>
+    <p style="color:var(--dm)">Com o Método RISE, de junho a novembro de 2026:</p>
+    <div class="caso">
+      <div><b>R$ 93 mil</b><small>em matrículas vindas do digital</small></div>
+      <div><b>241</b><small>aulas experimentais agendadas</small></div>
+      <div><b>409 mil</b><small>pessoas alcançadas em Manaus</small></div>
+    </div>
+    <p class="fonte">Caso My Robot Manaus.</p>
+  </section>
+
+  <section class="fim">
+    <div class="quem"><img src="/matriculas/andre.jpg" alt="André, da RISE" width="52" height="52"><p style="margin:0;text-align:left"><b>André, da RISE</b><br><span style="color:var(--dm)">aqui em Manaus</span></p></div>
+    <h2>Quer ajuda para colocar o plano em prática?</h2>
+    <p>Mande seu Raio-X para o André no WhatsApp. Ele olha com você o que fazer primeiro na sua escola. Sem compromisso.</p>
+    <p class="so-print"><b>WhatsApp do André: (92) 99175-5756</b></p>
+    <a class="btn btn--wa" id="wa-fim" href="#" target="_blank" rel="noopener">Falar com o André no WhatsApp</a>
+  </section>
+</main>
+
+<main class="wrap vazio" id="vazio" hidden>
+  <h1>Raio-X não encontrado</h1>
+  <p>Este link está incompleto. Faça o Raio-X da sua escola em menos de 2 minutos.</p>
+  <a class="btn" href="/matriculas/#cartao">Fazer o Raio-X</a>
+</main>
+
+<footer>RISE · Manaus · <a href="/privacidade/">Política de Privacidade</a></footer>
+
+<script>
+(function(){
+  var WA='5592991755756';
+  // Os dados vêm depois do # (não vão para o servidor) e só valores conhecidos são aceitos.
+  var OPC={
+    t:['Educação infantil','Fundamental e Médio','Idiomas e cursos livres','Cursinho e técnico'],
+    m:['Até 30','30 a 100','Mais de 100','Não sei'],
+    r:['Na hora','Em algumas horas','No dia seguinte','Depende do dia'],
+    d:['Instagram','Anúncios pagos','Panfleto e banner','Indicação']
+  };
+  var q=new URLSearchParams(location.hash.slice(1));
+  function um(k){var v=q.get(k)||'';return OPC[k].indexOf(v)>-1?v:''}
+  var R={t:um('t'),m:um('m'),r:um('r'),d:(q.get('d')||'').split('|').filter(function(v){return OPC.d.indexOf(v)>-1}),
+         e:(q.get('e')||'').replace(/[<>]/g,'').slice(0,80).trim()};
+  if(!R.t||!R.m||!R.r){document.getElementById('vazio').hidden=false;return}
+  document.getElementById('rel').hidden=false;
+
+  var MEDIA={'Até 30':20,'30 a 100':60,'Mais de 100':130};
+  var PERDA={'Na hora':.10,'Em algumas horas':.30,'No dia seguinte':.50,'Depende do dia':.35};
+  var RT={'Na hora':'na hora','Em algumas horas':'em algumas horas','No dia seguinte':'no dia seguinte','Depende do dia':'sem um tempo certo'};
+  function el(id){return document.getElementById(id)}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+
+  if(R.e)el('escola').textContent=R.e;
+  el('data').textContent='Gerado em '+new Date().toLocaleDateString('pt-BR',{day:'2-digit',month:'long',year:'numeric'});
+
+  // resultado
+  var m=MEDIA[R.m],p=PERDA[R.r];
+  if(m){
+    var n=Math.max(1,Math.round(m*p));
+    el('num').innerHTML='Sua escola pode estar perdendo cerca de <em>'+n+' famílias por mês</em> antes da visita.';
+    el('base').textContent='Estimativa: cerca de '+m+' mensagens por mês × '+Math.round(p*100)+'% de pais que desistem quando a resposta chega '+RT[R.r]+'. É uma conta aproximada; o número real aparece quando a escola passa a medir.';
+  }else{
+    el('num').innerHTML='Primeiro ponto: a escola <em>não sabe quantas mensagens chegam</em> por mês.';
+    el('base').textContent='Sem esse número, não dá para saber quantos alunos estão se perdendo. A ação 1 do plano resolve isso.';
+  }
+
+  // respostas
+  el('resp').innerHTML=[['Tipo de escola',R.t],['Mensagens por mês',R.m==='Não sei'?'Não sabe dizer':R.m],['Tempo de resposta',R.r],['Onde divulga',R.d.length?R.d.join(', '):'Não informado']]
+    .map(function(x){return '<div><small>'+x[0]+'</small><b>'+esc(x[1])+'</b></div>'}).join('');
+
+  // pontos fracos
+  var P=[];
+  if(R.m==='Não sei')P.push(['A escola não mede as mensagens','Sem saber quantos pais chamam, não dá para saber se o problema é falta de interessados ou de atendimento.']);
+  if(R.r!=='Na hora')P.push(['Resposta '+RT[R.r],'O pai que pede informação costuma chamar mais de uma escola. Quem responde primeiro sai na frente.']);
+  if(R.d.indexOf('Panfleto e banner')>-1)P.push(['Panfleto e banner sem medição','Eles não mostram quantos pais trouxeram, então é difícil saber se vale repetir.']);
+  if(R.d.indexOf('Anúncios pagos')>-1)P.push(['Anúncio sem acompanhamento até a visita','Se ninguém acompanha o interessado até a visita, o anúncio vira gasto, não matrícula.']);
+  if(R.d.indexOf('Instagram')>-1&&R.d.indexOf('Anúncios pagos')<0)P.push(['Instagram só para quem já segue','Post sem anúncio chega principalmente em quem já conhece a escola.']);
+  if(R.d.length===1&&R.d[0]==='Indicação')P.push(['Matrículas dependendo só de indicação','Indicação é ótima, mas não dá para prever nem aumentar quando a turma precisa.']);
+  if(!P.length)P.push(['O caminho até a matrícula','A escola já faz muita coisa certa. O próximo passo é acompanhar cada interessado até a visita.']);
+  el('pts').innerHTML=P.map(function(x){return '<li><b>'+x[0]+'</b><span>'+x[1]+'</span></li>'}).join('');
+
+  // plano de ações
+  var VISITA={
+    'Educação infantil':'uma visita com a criança para conhecer a escola',
+    'Fundamental e Médio':'uma visita guiada com os pais',
+    'Idiomas e cursos livres':'uma aula experimental',
+    'Cursinho e técnico':'uma aula aberta ou simulado'
+  };
+  var A=[];
+  A.push(['Conte as mensagens toda semana','Anote quantos pais chamaram, quantos visitaram e quantos matricularam. Uma planilha simples já mostra onde está a perda.']);
+  if(R.r==='Na hora')A.push(['Mantenha a resposta rápida','Vocês já respondem na hora. Garanta isso também à noite e no fim de semana, com uma mensagem automática que já convida para a visita.']);
+  else A.push(['Responda em até 15 minutos','Defina quem responde em cada horário e deixe uma mensagem automática fora do expediente, já com o convite para a visita.']);
+  A.push(['Toda conversa termina com um convite','Não só envie preço: ofereça '+VISITA[R.t]+', com dia e horário.']);
+  A.push(['Chame de novo quem sumiu','Quem não respondeu, chame no dia seguinte e de novo em 3 dias. Boa parte das matrículas sai dessa segunda conversa.']);
+  if(R.d.indexOf('Anúncios pagos')>-1)A.push(['Ligue cada anúncio a um número','Use um link ou mensagem diferente em cada anúncio para saber qual trouxe matrícula, e corte o que não traz.']);
+  else if(R.d.indexOf('Panfleto e banner')>-1)A.push(['Coloque um QR code no panfleto','O QR abre o WhatsApp da escola com uma mensagem pronta. Assim você conta quantos pais vieram do panfleto.']);
+  else if(R.d.indexOf('Indicação')>-1)A.push(['Transforme indicação em programa','Ofereça um benefício para a família que indicar uma nova matrícula, com prazo até janeiro.']);
+  else A.push(['Anuncie para o seu bairro','Um anúncio simples para famílias perto da escola, levando direto para o WhatsApp, já alcança quem ainda não segue vocês.']);
+  el('plano').innerHTML=A.map(function(x){return '<li><b>'+x[0]+'</b><span>'+x[1]+'</span></li>'}).join('');
+
+  // WhatsApp com o link deste Raio-X
+  var msg='Oi, André! Fiz o Raio-X das Matrículas da '+(R.e||'minha escola')+' no site da RISE. Segue o meu: '+location.href+' Pode me ajudar a colocar o plano em prática?';
+  var wa='https://wa.me/'+WA+'?text='+encodeURIComponent(msg);
+  ['wa-topo','wa-fim'].forEach(function(id){var a=el(id);a.href=wa;a.addEventListener('click',function(){if(window.gtag)gtag('event','whatsapp_click',{origem:'raiox_completo'});if(window.fbq)fbq('track','Contact')})});
+  el('pdf').addEventListener('click',function(){if(window.gtag)gtag('event','raiox_pdf');window.print()});
+})();
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0ZZ46BRRSL"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-0ZZ46BRRSL',{page_location:location.origin+location.pathname});</script>
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','830244490126610');fbq('track','PageView');
+</script>
+</body>
+</html>
