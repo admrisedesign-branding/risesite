@@ -43,7 +43,8 @@ h1,h2,h3{font-family:var(--serif);font-weight:400;letter-spacing:-.015em;line-he
 h2{font-size:clamp(34px,4.4vw,52px)}
 em{font-style:italic;color:var(--clay)}
 .lead{font-size:16px;color:var(--ink-soft);max-width:560px}
-section{padding:104px 0}
+section{padding:84px 0}
+section[id]{scroll-margin-top:118px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 28px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;transition:background .2s,color .2s,border-color .2s}
 .btn-clay{background:var(--clay);color:#fff}.btn-clay:hover{background:var(--clay-deep)}
 .btn-ghost{border:1px solid rgba(58,34,54,.35);color:var(--ink)}.btn-ghost:hover{border-color:var(--ink)}
@@ -60,15 +61,18 @@ section{padding:104px 0}
 /* Cabeçalho */
 header{position:sticky;top:0;z-index:40;background:rgba(252,244,243,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
 header.rolou{border-color:var(--line)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
 .marca{font-family:var(--serif);font-size:22px;letter-spacing:.01em}
 .marca i{color:var(--clay)}
-nav.menu{display:flex;gap:30px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+nav.menu{display:flex;justify-content:center;gap:30px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;padding:0 22px 12px;overflow-x:auto;scrollbar-width:none;white-space:nowrap}
+nav.menu::-webkit-scrollbar{display:none}
+nav.menu a.ativo{color:var(--clay-deep);box-shadow:inset 0 -2px 0 var(--clay)}
+nav.menu a{padding:6px 0}
 nav.menu a{color:var(--ink-soft)}nav.menu a:hover{color:var(--ink)}
 .hdr-cta{height:42px;padding:0 20px;font-size:11px}
 
 /* Hero */
-.hero{position:relative;padding:120px 0 140px;background:
+.hero{position:relative;padding:110px 0 120px;background:
   radial-gradient(60% 70% at 88% 20%,rgba(224,86,127,.18),transparent 70%),
   radial-gradient(55% 60% at 10% 90%,rgba(196,170,230,.38),transparent 70%),
   linear-gradient(180deg,var(--linen) 0%,#FFF9F9 100%);overflow:hidden}
@@ -224,6 +228,12 @@ nav.menu a{color:var(--ink-soft)}nav.menu a:hover{color:var(--ink)}
 .palestras h3{font-size:30px}
 .palestras p{font-size:14.5px;color:#FFE3EC;margin-top:6px;max-width:560px}
 
+.link-pal{color:var(--clay-deep);font-weight:500;border-bottom:1px solid currentColor}
+.faixa-curso{display:flex;justify-content:space-between;align-items:center;gap:30px;flex-wrap:wrap;background:#fff;border:1px solid var(--line);padding:34px 40px}
+.faixa-curso h3{font-size:28px;margin:10px 0 6px}
+.faixa-curso p{color:var(--ink-soft);font-size:14.5px}
+.curso{padding:56px 0}
+@media (max-width:700px){.faixa-curso{padding:28px 22px}.hero{padding:72px 0 84px}}
 /* FAQ */
 .faq-lista{margin-top:40px;border-top:1px solid var(--line)}
 .faq-lista details{border-bottom:1px solid var(--line)}
@@ -262,7 +272,7 @@ footer a:hover{color:#fff}
 
 /* Celular */
 @media (max-width:960px){
-  nav.menu{display:none}
+  nav.menu{justify-content:flex-start;gap:22px}
   .hero{padding:64px 0 80px}
   .hero .wrap{grid-template-columns:1fr;gap:44px}
   .pilha{height:400px}
@@ -277,7 +287,7 @@ footer a:hover{color:#fff}
 @media (max-width:700px){
   section{padding:76px 0}
   .wrap{padding:0 22px}
-  .hdr-cta{display:none}
+  .hdr-cta{height:38px;padding:0 14px;font-size:10.5px;letter-spacing:.12em}
   .cartao{padding:30px 22px;min-height:500px}
   .perg{font-size:23px}
   /* Cards rolam na horizontal, com encaixe */
@@ -289,58 +299,78 @@ footer a:hover{color:#fff}
   .vit-topo{margin-bottom:32px}
   .palestras .faixa{padding:34px 24px}
   .zap span{display:none}.zap{padding:0 14px}
-  .bf-bar .wrap{gap:10px;font-size:11.5px}
+  .bf-bar .wrap{gap:10px;font-size:11.5px;flex-wrap:nowrap}
+  .bf-txt{display:none}
+  .vit-cd{display:none}
 }
 </style>
 </head>
 <body>
 
 <div class="bf-bar" role="region" aria-label="Black Friday">
-  <div class="wrap"><b>Black Friday</b><span>Condições especiais nas consultorias até 01/12</span><span class="cd" data-cd aria-label="Tempo restante"><span data-d>00d</span><span data-h>00h</span><span data-m>00m</span></span></div>
+  <div class="wrap"><b>Black Friday</b><span class="bf-txt">Condições especiais nas consultorias até 01/12</span><span class="cd" data-cd aria-label="Tempo restante"><span data-d>00d</span><span data-h>00h</span><span data-m>00m</span></span></div>
 </div>
 
 <header id="hdr">
   <div class="wrap">
     <a class="marca" href="#inicio">Kátia <i>Margarida</i></a>
-    <nav class="menu" aria-label="Seções">
-      <a href="#teste">Teste</a><a href="#black-friday">Consultorias</a><a href="#como">Como funciona</a><a href="#sobre">Sobre</a><a href="#duvidas">Dúvidas</a>
-    </nav>
-    <a class="btn btn-clay hdr-cta" href="#black-friday" data-cta="topo">Ver ofertas</a>
+    <a class="btn btn-clay hdr-cta" href="#ofertas" data-cta="topo">Garantir vaga</a>
   </div>
+  <nav class="menu" aria-label="Seções">
+    <a href="#ofertas">Ofertas</a><a href="#teste">Teste</a><a href="#como">Como funciona</a><a href="#sobre">Sobre</a><a href="#duvidas">Dúvidas</a>
+  </nav>
 </header>
 
 <main>
+
 <section class="hero" id="inicio">
   <div class="hero-video" aria-hidden="true"><video autoplay muted loop playsinline preload="auto" poster="https://images.pexels.com/videos/8890976/pexels-photo-8890976.jpeg?auto=compress&amp;w=1280"><source src="https://videos.pexels.com/video-files/8890976/8890976-hd_1280_720_25fps.mp4" type="video/mp4"><source src="https://videos.pexels.com/video-files/8890976/8890976-sd_960_540_25fps.mp4" type="video/mp4"></video></div>
   <div class="wrap">
     <div>
       <div class="eyebrow">Rotina · Organização de ambientes</div>
-      <h1>Uma rotina que cabe na sua vida. Uma casa que <em>trabalha a seu favor.</em></h1>
-      <p class="lead">Consultorias online para você organizar o seu dia e os seus ambientes do seu jeito: com um plano feito para você, e alguém do lado quando precisar.</p>
+      <h1>Rotina em ordem. Casa <em>a seu favor.</em></h1>
+      <p class="lead">Consultorias online de rotina e de organização de ambientes. Na Black Friday, com condição especial até 01/12.</p>
       <div class="acoes">
-        <a class="btn btn-clay" href="#teste" data-cta="hero-teste">Descobrir minha consultoria</a>
-        <a class="btn btn-ghost" href="#black-friday" data-cta="hero-ofertas">Ver Black Friday</a>
+        <a class="btn btn-clay" href="#ofertas" data-cta="hero-ofertas">Ver ofertas</a>
+        <a class="btn btn-ghost" href="#teste" data-cta="hero-teste">Qual é a minha?</a>
       </div>
       <div class="selos"><span>100% online</span><span>Para todo o Brasil</span><span>Com ou sem acompanhamento</span></div>
     </div>
   </div>
 </section>
 
-<div class="destaques">
+<section class="vitrine" id="ofertas">
   <div class="wrap">
-    <div><strong>Rotina</strong><small>Plano sob medida</small></div>
-    <div><strong>Ambientes</strong><small>Dossiê de organização</small></div>
-    <div><strong>Online</strong><small>Fotos, vídeos e conversa</small></div>
-    <div><strong>Acompanhamento</strong><small>Para quem quer alguém junto</small></div>
+    <div class="vit-topo">
+      <div>
+        <div class="eyebrow">Black Friday · Vagas limitadas</div>
+        <h2>Escolha a sua <em>consultoria.</em></h2>
+        <p class="lead">Condição especial até 01/12. Vagas limitadas nos acompanhamentos.</p>
+      </div>
+      <div class="vit-cd"><small>Termina em</small><div class="cd" data-cd><span data-d>00</span><span data-h>00</span><span data-m>00</span></div></div>
+    </div>
+
+    <div class="grupo">
+      <h3>Consultoria de rotina</h3>
+      <p>Você me conta o seu dia, eu monto a sua rotina e a gente ajusta junto.</p>
+      <div class="planos" id="planos-rotina"></div>
+    </div>
+    <div class="grupo">
+      <h3>Organização de ambientes</h3>
+      <p>Você manda fotos e vídeos, eu entrego o passo a passo de personal organizer.</p>
+      <div class="planos dois" id="planos-ambientes"></div>
+    </div>
+    <p class="vit-nota">Tudo online, por WhatsApp e videochamada. Pagamento combinado direto com a Kátia.</p>
   </div>
-</div>
+</section>
+
 
 <section class="teste" id="teste">
   <div class="wrap">
     <div class="topo">
       <div class="eyebrow center">Teste rápido · 1 minuto</div>
-      <h2>Qual consultoria é <em>a sua?</em></h2>
-      <p>Responda três perguntas e veja por onde começar. No fim, a Kátia recebe o seu resultado e te chama no WhatsApp.</p>
+      <h2>Ficou em dúvida? <em>Faça o teste.</em></h2>
+      <p>Três perguntas e você descobre por onde começar.</p>
     </div>
     <div class="cartao" id="cartao">
       <form id="form" novalidate>
@@ -385,30 +415,6 @@ footer a:hover{color:#fff}
   </div>
 </section>
 
-<section class="vitrine" id="black-friday">
-  <div class="wrap">
-    <div class="vit-topo">
-      <div>
-        <div class="eyebrow">Black Friday · Vagas limitadas</div>
-        <h2>As consultorias com <em>condição especial.</em></h2>
-        <p class="lead">Escolha o formato que combina com você. A condição vale até 01/12 ou enquanto houver vagas nos acompanhamentos.</p>
-      </div>
-      <div class="vit-cd"><small>Termina em</small><div class="cd" data-cd><span data-d>00</span><span data-h>00</span><span data-m>00</span></div></div>
-    </div>
-
-    <div class="grupo">
-      <h3>Consultoria de rotina</h3>
-      <p>Você me passa a sua rotina pelo formulário e eu monto uma sugestão que inclui o que você quer encaixar. Depois a gente testa e ajusta junto.</p>
-      <div class="planos" id="planos-rotina"></div>
-    </div>
-    <div class="grupo">
-      <h3>Organização de ambientes</h3>
-      <p>Você manda fotos e vídeos do ambiente e recebe um dossiê de personal organizer: como organizar, dicas de dobra e quais organizadores comprar.</p>
-      <div class="planos dois" id="planos-ambientes"></div>
-    </div>
-    <p class="vit-nota">Tudo online, por WhatsApp e videochamada. Pagamento combinado direto com a Kátia.</p>
-  </div>
-</section>
 
 <section class="como" id="como">
   <div class="wrap">
@@ -423,18 +429,20 @@ footer a:hover{color:#fff}
   </div>
 </section>
 
+
 <section class="sobre" id="sobre">
   <div class="grade">
     <div class="foto"><div class="marca-d" id="foto-vazia">KM</div></div>
     <div class="txt">
       <div class="eyebrow">Quem sou</div>
       <h2>Prazer, sou a <em>Kátia.</em></h2>
-      <p>Ajudo pessoas a colocarem a rotina e a casa a favor delas, com consultorias online de rotina e de organização de ambientes.</p>
       <p>Uso o olhar de personal organizer para montar planos possíveis de seguir. Para quem tem disciplina, eu entrego o caminho. Para quem precisa de alguém do lado, eu acompanho de perto, cobro e comemoro cada gaveta arrumada.</p>
+      <p><a class="link-pal" href="#" data-plano="Palestra" data-cta="palestra">Também faço palestras para empresas e grupos →</a></p>
       <div class="assin">Kátia Margarida<small>Consultora de rotina e organização</small></div>
     </div>
   </div>
 </section>
+
 
 <section class="depo hide" id="depoimentos">
   <div class="wrap">
@@ -444,23 +452,12 @@ footer a:hover{color:#fff}
   </div>
 </section>
 
-<section class="curso" id="curso">
-  <div class="wrap caixa">
-    <div class="capa" aria-hidden="true"><small>Em breve · Curso online</small><strong>Organização <i>que fica</i></strong></div>
-    <div>
-      <div class="eyebrow">Em breve</div>
-      <h2>Um curso para você <em>organizar sozinha.</em></h2>
-      <p>Estou preparando um curso online com o passo a passo para organizar a casa e a rotina no seu tempo. Entre na lista e seja a primeira a saber, com condição de lançamento.</p>
-      <button class="btn btn-clay" type="button" data-plano="Lista do curso online" data-cta="curso">Quero entrar na lista</button>
-    </div>
-  </div>
-</section>
 
-<section class="palestras" aria-label="Palestras">
+<section class="curso" id="curso">
   <div class="wrap">
-    <div class="faixa">
-      <div><h3>Também faço palestras</h3><p>Sobre rotina e organização, para empresas, igrejas e grupos. Conte o seu evento e eu monto uma proposta.</p></div>
-      <button class="btn btn-light" type="button" data-plano="Palestra" data-cta="palestra">Pedir proposta</button>
+    <div class="faixa-curso">
+      <div><div class="eyebrow">Em breve</div><h3>Curso online: organização <em>que fica.</em></h3><p>Entre na lista e receba a condição de lançamento.</p></div>
+      <button class="btn btn-clay" type="button" data-plano="Lista do curso online" data-cta="curso">Entrar na lista</button>
     </div>
   </div>
 </section>
@@ -470,8 +467,6 @@ footer a:hover{color:#fff}
     <div class="eyebrow">Dúvidas</div>
     <h2>Antes de você <em>escolher</em></h2>
     <div class="faq-lista">
-      <details><summary>Como funciona uma consultoria online de organização?</summary><p>Você manda fotos e vídeos do ambiente pelo WhatsApp. Eu monto um dossiê com a organização sugerida, dicas de dobra e lista de organizadores, e você executa. No formato com acompanhamento, a gente combina uma meta por semana e eu acompanho pelas fotos.</p></details>
-      <details><summary>E a consultoria de rotina?</summary><p>Você preenche um formulário sobre o seu dia e o que quer encaixar. Eu monto uma sugestão de rotina, a gente testa e ajusta. Você pode seguir sozinha, com um encontro de retorno, ou ter acompanhamento trimestral ou semestral.</p></details>
       <details><summary>Preciso comprar organizadores?</summary><p>Não necessariamente. O dossiê diz o que dá para fazer com o que você já tem e o que vale a pena comprar, se quiser.</p></details>
       <details><summary>Qual formato é para mim?</summary><p>Se você costuma seguir um plano sozinha, a entrega com retorno resolve. Se precisa de alguém cobrando para não desistir, escolha um acompanhamento. Na dúvida, faça o teste aqui na página.</p></details>
       <details><summary>Até quando vale a Black Friday?</summary><p>Até 01/12 ou enquanto houver vagas. Os acompanhamentos têm vagas limitadas para eu dar atenção de verdade a cada cliente.</p></details>
@@ -479,20 +474,12 @@ footer a:hover{color:#fff}
   </div>
 </section>
 
-<section class="final">
-  <div class="wrap">
-    <div class="eyebrow center">Comece por um passo</div>
-    <h2>A organização que você quer <em>começa por uma gaveta.</em></h2>
-    <p>Faça o teste e descubra qual consultoria combina com o seu momento.</p>
-    <a class="btn btn-clay" href="#teste" data-cta="final">Fazer o teste</a>
-  </div>
-</section>
 </main>
 
 <footer>
   <div class="wrap">
     <div class="marca">Kátia <i style="color:#FFC6D6">Margarida</i></div>
-    <nav><a href="#black-friday">Consultorias</a><a href="#como">Como funciona</a><a href="#duvidas">Dúvidas</a><a id="ft-insta" href="#" target="_blank" rel="noopener" class="hide">Instagram</a><a href="/privacidade/">Privacidade</a></nav>
+    <nav><a href="#ofertas">Consultorias</a><a href="#como">Como funciona</a><a href="#duvidas">Dúvidas</a><a id="ft-insta" href="#" target="_blank" rel="noopener" class="hide">Instagram</a><a href="/privacidade/">Privacidade</a></nav>
     <div class="feito">Feito pela RISE · Automação &amp; IA</div>
   </div>
 </footer>
@@ -601,6 +588,13 @@ var KATIA = {
   // Cabeçalho com borda ao rolar.
   var hdr=document.getElementById('hdr');
   window.addEventListener('scroll',function(){hdr.classList.toggle('rolou',window.scrollY>10)},{passive:true});
+
+  // Menu: marca a seção que está na tela.
+  var links=[].slice.call(document.querySelectorAll('nav.menu a'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){var on=a.getAttribute('href')==='#'+e.target.id;a.classList.toggle('ativo',on);if(on&&a.parentNode.scrollWidth>a.parentNode.clientWidth)a.parentNode.scrollTo({left:a.offsetLeft-22,behavior:'smooth'})})}})},{rootMargin:'-45% 0px -50% 0px'});
+    links.forEach(function(a){var el=document.querySelector(a.getAttribute('href'));if(el)io.observe(el)});
+  }
 
   function mascara(inp){inp.addEventListener('input',function(){
     var d=inp.value.replace(/\D/g,'').slice(0,11),c=d.length>10?7:6;
