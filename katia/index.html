@@ -68,11 +68,11 @@ nav.menu a{color:var(--ink-soft)}nav.menu a:hover{color:var(--ink)}
 .hdr-cta{height:42px;padding:0 20px;font-size:11px}
 
 /* Hero */
-.hero{position:relative;padding:96px 0 120px;background:
+.hero{position:relative;padding:120px 0 140px;background:
   radial-gradient(60% 70% at 88% 20%,rgba(224,86,127,.18),transparent 70%),
   radial-gradient(55% 60% at 10% 90%,rgba(196,170,230,.38),transparent 70%),
   linear-gradient(180deg,var(--linen) 0%,#FFF9F9 100%);overflow:hidden}
-.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,640px);gap:56px;align-items:center}
 .hero h1{font-size:clamp(46px,6.6vw,86px);margin:22px 0 26px}
 .hero .lead{font-size:17px}
 .hero .acoes{display:flex;gap:14px;margin-top:36px;flex-wrap:wrap}
@@ -92,6 +92,12 @@ nav.menu a{color:var(--ink-soft)}nav.menu a:hover{color:var(--ink)}
 .folha.f2 .check li:before{border-color:#FFC6D6}
 .folha.f2 .check li.marcado:before{background:#FFC6D6;box-shadow:inset 0 0 0 2px var(--sage-deep)}
 
+.hero-video{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-video video{width:100%;height:100%;object-fit:cover;object-position:70% center}
+.hero-video:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(252,244,243,.97) 0%,rgba(252,244,243,.9) 38%,rgba(252,244,243,.45) 68%,rgba(224,86,127,.18) 100%)}
+.hero .wrap{position:relative;z-index:1}
+@media (prefers-reduced-motion:reduce){.hero-video video{display:none}}
+@media (max-width:960px){.hero-video:after{background:linear-gradient(180deg,rgba(252,244,243,.93) 0%,rgba(252,244,243,.86) 60%,rgba(252,244,243,.97) 100%)}}
 /* Faixa de destaques */
 .destaques{border-bottom:1px solid var(--line);background:#fff}
 .destaques .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
@@ -305,6 +311,7 @@ footer a:hover{color:#fff}
 
 <main>
 <section class="hero" id="inicio">
+  <div class="hero-video" aria-hidden="true"><video autoplay muted loop playsinline preload="auto" poster="https://images.pexels.com/videos/8890976/pexels-photo-8890976.jpeg?auto=compress&amp;w=1280"><source src="https://videos.pexels.com/video-files/8890976/8890976-hd_1280_720_25fps.mp4" type="video/mp4"><source src="https://videos.pexels.com/video-files/8890976/8890976-sd_960_540_25fps.mp4" type="video/mp4"></video></div>
   <div class="wrap">
     <div>
       <div class="eyebrow">Rotina · Organização de ambientes</div>
@@ -315,18 +322,6 @@ footer a:hover{color:#fff}
         <a class="btn btn-ghost" href="#black-friday" data-cta="hero-ofertas">Ver Black Friday</a>
       </div>
       <div class="selos"><span>100% online</span><span>Para todo o Brasil</span><span>Com ou sem acompanhamento</span></div>
-    </div>
-    <div class="pilha" aria-hidden="true">
-      <div class="folha f1">
-        <div class="tag">Minha semana</div>
-        <h3>Rotina possível</h3>
-        <ul class="check"><li class="marcado">Manhã com tempo para mim</li><li class="marcado">Casa em dia sem virar faxina</li><li>Pausas que eu respeito</li><li>Domingo livre de verdade</li></ul>
-      </div>
-      <div class="folha f2">
-        <div class="tag">Guarda-roupa</div>
-        <h3>Tudo à vista</h3>
-        <ul class="check"><li class="marcado">Dobras por categoria</li><li class="marcado">Organizadores certos</li><li>Fácil de manter</li></ul>
-      </div>
     </div>
   </div>
 </section>
