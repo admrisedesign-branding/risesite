@@ -114,7 +114,8 @@ body.menu-aberto{overflow:hidden}
 .hero-video:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(252,244,243,.97) 0%,rgba(252,244,243,.9) 38%,rgba(252,244,243,.45) 68%,rgba(224,86,127,.18) 100%)}
 .hero .wrap{position:relative;z-index:1}
 @media (prefers-reduced-motion:reduce){.hero-video video{display:none}}
-@media (max-width:960px){.hero-video:after{background:linear-gradient(180deg,rgba(252,244,243,.93) 0%,rgba(252,244,243,.86) 60%,rgba(252,244,243,.97) 100%)}}
+@media (max-width:960px){
+  .foto{min-height:440px}.hero-video:after{background:linear-gradient(180deg,rgba(252,244,243,.93) 0%,rgba(252,244,243,.86) 60%,rgba(252,244,243,.97) 100%)}}
 /* Faixa de destaques */
 .destaques{border-bottom:1px solid var(--line);background:#fff}
 .destaques .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
@@ -208,7 +209,9 @@ body.menu-aberto{overflow:hidden}
 .sobre{padding:0;background:var(--linen)}
 .sobre .grade{display:grid;grid-template-columns:1fr 1fr;min-height:560px}
 .foto{background:linear-gradient(150deg,var(--sage-soft),var(--linen-2));position:relative;overflow:hidden}
-.foto img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+.foto img{width:100%;height:100%;object-fit:cover;object-position:50% 8%;position:absolute;inset:0}
+.foto:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(58,34,54,.45) 100%);pointer-events:none}
+.foto .legenda{position:absolute;left:24px;bottom:20px;z-index:1;color:#fff;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase}
 .foto .marca-d{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:140px;color:rgba(122,62,106,.18);font-style:italic}
 .sobre .txt{padding:90px 70px;display:flex;flex-direction:column;justify-content:center}
 .sobre h2{margin:16px 0 22px}
@@ -538,7 +541,7 @@ footer a:hover{color:#fff}
 var KATIA = {
   whatsapp: '',            // só números, com DDI e DDD. Ex.: '5592999999999'
   instagram: '',           // ex.: 'katiamargarida'
-  foto: '',                // ex.: '/katia/katia.jpg'
+  foto: '/katia/katia.jpg',
   fimBlackFriday: Date.UTC(2026, 11, 2, 3, 59, 0), // 01/12/2026 23h59 em Manaus
   rotina: [
     { id: 'rotina-essencial', tipo: 'Entrega + retorno', nome: 'Rotina sob medida', desc: 'Para quem segue sozinha.', itens: ['Formulário da sua rotina', 'Sugestão de rotina montada para você', 'Ajustes e um encontro de retorno'], de: '', por: '', parcelas: '' },
@@ -578,7 +581,7 @@ var KATIA = {
   // WhatsApp fixo, Instagram e foto só aparecem quando configurados.
   if(K.whatsapp){var z=document.getElementById('zap');z.href=zap('Oi, Kátia! Vim pelo seu site e quero saber mais sobre as consultorias.');z.classList.remove('hide')}
   if(K.instagram){var ig=document.getElementById('ft-insta');ig.href='https://instagram.com/'+K.instagram;ig.classList.remove('hide')}
-  if(K.foto){var f=document.querySelector('.foto');f.innerHTML='<img src="'+esc(K.foto)+'" alt="Kátia Margarida" loading="lazy">'}
+  if(K.foto){var f=document.querySelector('.foto');f.innerHTML='<img src="'+esc(K.foto)+'" alt="Kátia Margarida sorrindo durante uma palestra" loading="lazy"><span class="legenda">Kátia em palestra</span>'}
 
   // Cards da vitrine.
   function cartao(p){
