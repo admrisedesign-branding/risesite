@@ -44,7 +44,7 @@ h2{font-size:clamp(34px,4.4vw,52px)}
 em{font-style:italic;color:var(--clay)}
 .lead{font-size:16px;color:var(--ink-soft);max-width:560px}
 section{padding:84px 0}
-section[id]{scroll-margin-top:118px}
+section[id]{scroll-margin-top:72px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 28px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;transition:background .2s,color .2s,border-color .2s}
 .btn-clay{background:var(--clay);color:#fff}.btn-clay:hover{background:var(--clay-deep)}
 .btn-ghost{border:1px solid rgba(58,34,54,.35);color:var(--ink)}.btn-ghost:hover{border-color:var(--ink)}
@@ -61,16 +61,29 @@ section[id]{scroll-margin-top:118px}
 /* Cabeçalho */
 header{position:sticky;top:0;z-index:40;background:rgba(252,244,243,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:border-color .2s}
 header.rolou{border-color:var(--line)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:70px}
 .marca{font-family:var(--serif);font-size:22px;letter-spacing:.01em}
 .marca i{color:var(--clay)}
-nav.menu{display:flex;justify-content:center;gap:30px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500;padding:0 22px 12px;overflow-x:auto;scrollbar-width:none;white-space:nowrap}
+nav.menu{display:flex;gap:28px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
 nav.menu::-webkit-scrollbar{display:none}
 nav.menu a.ativo{color:var(--clay-deep);box-shadow:inset 0 -2px 0 var(--clay)}
 nav.menu a{padding:6px 0}
 nav.menu a{color:var(--ink-soft)}nav.menu a:hover{color:var(--ink)}
 .hdr-cta{height:42px;padding:0 20px;font-size:11px}
 
+.burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;padding:0 9px}
+.burger span{display:block;height:1.5px;background:var(--ink)}
+.gaveta-fundo{position:fixed;inset:0;z-index:70;background:rgba(40,20,36,.45);opacity:0;pointer-events:none;transition:opacity .25s}
+.gaveta{position:fixed;top:0;right:0;bottom:0;z-index:71;width:min(84vw,340px);background:var(--linen);padding:26px 26px 30px;display:flex;flex-direction:column;gap:26px;transform:translateX(100%);visibility:hidden;transition:transform .3s ease,visibility 0s .3s}
+.gaveta .marca{font-size:22px}
+.gaveta-fechar{position:absolute;right:14px;top:14px;width:40px;height:40px;font-size:28px;line-height:1;color:var(--ink-soft)}
+.gaveta-links{display:flex;flex-direction:column}
+.gaveta-links a{font-family:var(--serif);font-size:21px;padding:14px 0;border-bottom:1px solid var(--line)}
+.gaveta-links a.ativo{color:var(--clay)}
+.gaveta .btn{margin-top:auto}
+body.menu-aberto .gaveta{transform:none;visibility:visible;transition:transform .3s ease;box-shadow:-20px 0 50px -20px rgba(58,34,54,.35)}
+body.menu-aberto .gaveta-fundo{opacity:1;pointer-events:auto}
+body.menu-aberto{overflow:hidden}
 /* Hero */
 .hero{position:relative;padding:110px 0 120px;background:
   radial-gradient(60% 70% at 88% 20%,rgba(224,86,127,.18),transparent 70%),
@@ -272,7 +285,9 @@ footer a:hover{color:#fff}
 
 /* Celular */
 @media (max-width:960px){
-  nav.menu{justify-content:flex-start;gap:22px}
+  nav.menu{display:none}
+  .burger{display:flex}
+  .hdr-cta{margin-left:auto}
   .hero{padding:64px 0 80px}
   .hero .wrap{grid-template-columns:1fr;gap:44px}
   .pilha{height:400px}
@@ -287,7 +302,9 @@ footer a:hover{color:#fff}
 @media (max-width:700px){
   section{padding:76px 0}
   .wrap{padding:0 22px}
-  .hdr-cta{height:38px;padding:0 14px;font-size:10.5px;letter-spacing:.12em}
+  .hdr-cta{height:38px;padding:0 14px;font-size:10.5px;letter-spacing:.12em;white-space:nowrap}
+  header .marca{font-size:19px;white-space:nowrap}
+  header .wrap{gap:10px;height:64px}
   .cartao{padding:30px 22px;min-height:500px}
   .perg{font-size:23px}
   /* Cards rolam na horizontal, com encaixe */
@@ -314,12 +331,22 @@ footer a:hover{color:#fff}
 <header id="hdr">
   <div class="wrap">
     <a class="marca" href="#inicio">Kátia <i>Margarida</i></a>
+    <nav class="menu" aria-label="Seções">
+      <a href="#ofertas">Ofertas</a><a href="#teste">Teste</a><a href="#como">Como funciona</a><a href="#sobre">Sobre</a><a href="#duvidas">Dúvidas</a>
+    </nav>
     <a class="btn btn-clay hdr-cta" href="#ofertas" data-cta="topo">Garantir vaga</a>
+    <button type="button" class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="gaveta"><span></span><span></span><span></span></button>
   </div>
-  <nav class="menu" aria-label="Seções">
-    <a href="#ofertas">Ofertas</a><a href="#teste">Teste</a><a href="#como">Como funciona</a><a href="#sobre">Sobre</a><a href="#duvidas">Dúvidas</a>
-  </nav>
 </header>
+<div class="gaveta-fundo" id="gaveta-fundo"></div>
+<aside class="gaveta" id="gaveta" aria-label="Menu" aria-hidden="true">
+  <button type="button" class="gaveta-fechar" id="gaveta-fechar" aria-label="Fechar menu">×</button>
+  <div class="marca">Kátia <i>Margarida</i></div>
+  <nav class="gaveta-links">
+    <a href="#ofertas">Ofertas de Black Friday</a><a href="#teste">Qual consultoria é a minha?</a><a href="#como">Como funciona</a><a href="#sobre">Sobre a Kátia</a><a href="#duvidas">Dúvidas</a>
+  </nav>
+  <a class="btn btn-clay" href="#ofertas" data-cta="menu">Garantir vaga</a>
+</aside>
 
 <main>
 
@@ -589,10 +616,19 @@ var KATIA = {
   var hdr=document.getElementById('hdr');
   window.addEventListener('scroll',function(){hdr.classList.toggle('rolou',window.scrollY>10)},{passive:true});
 
+  // Menu lateral (celular).
+  var gav=document.getElementById('gaveta'),burger=document.getElementById('burger');
+  function menu(abrir){document.body.classList.toggle('menu-aberto',abrir);burger.setAttribute('aria-expanded',abrir);gav.setAttribute('aria-hidden',!abrir);if(abrir)try{document.getElementById('gaveta-fechar').focus({preventScroll:true})}catch(e){}else try{burger.focus({preventScroll:true})}catch(e){}}
+  burger.addEventListener('click',function(){menu(true)});
+  document.getElementById('gaveta-fechar').addEventListener('click',function(){menu(false)});
+  document.getElementById('gaveta-fundo').addEventListener('click',function(){menu(false)});
+  [].forEach.call(gav.querySelectorAll('a'),function(a){a.addEventListener('click',function(){menu(false)})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.body.classList.contains('menu-aberto'))menu(false)});
+
   // Menu: marca a seção que está na tela.
-  var links=[].slice.call(document.querySelectorAll('nav.menu a'));
+  var links=[].slice.call(document.querySelectorAll('nav.menu a, .gaveta-links a'));
   if('IntersectionObserver' in window){
-    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){var on=a.getAttribute('href')==='#'+e.target.id;a.classList.toggle('ativo',on);if(on&&a.parentNode.scrollWidth>a.parentNode.clientWidth)a.parentNode.scrollTo({left:a.offsetLeft-22,behavior:'smooth'})})}})},{rootMargin:'-45% 0px -50% 0px'});
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){var on=a.getAttribute('href')==='#'+e.target.id;a.classList.toggle('ativo',on);})}})},{rootMargin:'-45% 0px -50% 0px'});
     links.forEach(function(a){var el=document.querySelector(a.getAttribute('href'));if(el)io.observe(el)});
   }
 
