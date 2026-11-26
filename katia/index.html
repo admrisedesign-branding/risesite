@@ -109,13 +109,10 @@ body.menu-aberto{overflow:hidden}
 .janela-bar{display:flex;align-items:center;gap:7px;padding:2px 6px 12px}
 .janela-bar i{width:11px;height:11px;border-radius:50%;border:1.5px solid rgba(46,39,69,.25)}
 .janela-bar span{margin-left:auto;font-size:12.5px;font-weight:600;color:var(--ink-soft)}
-.ba{--p:50%;position:relative;aspect-ratio:16/7.5;width:100%;border-radius:18px 18px 0 0;overflow:hidden;background:#EDEDF1;user-select:none;-webkit-user-select:none}
-.ba-lado{position:absolute;top:0;bottom:0;overflow:hidden}
-.ba-a{left:0;width:var(--p)}
-.ba-b{left:var(--p);right:0}
-.ba-lado img{width:100%;height:100%;object-fit:cover;display:block}
-.ba-a img{object-position:right 22%}
-.ba-b img{object-position:left 22%}
+.ba{--p:50%;position:relative;aspect-ratio:16/8.4;width:100%;border-radius:18px 18px 0 0;overflow:hidden;background:#EDEDF1;user-select:none;-webkit-user-select:none}
+.ba-lado{position:absolute;inset:0}
+.ba-lado img{width:100%;height:100%;object-fit:cover;object-position:50% 40%;display:block}
+.ba-a{z-index:1;clip-path:inset(0 calc(100% - var(--p)) 0 0)}
 .ba-linha{position:absolute;top:0;bottom:0;left:var(--p);width:3px;margin-left:-1.5px;background:#fff;pointer-events:none;z-index:2}
 .ba-linha i{position:absolute;top:50%;left:50%;width:50px;height:50px;margin:-25px 0 0 -25px;border-radius:50%;background:#fff;color:var(--ink);display:grid;place-items:center;font-style:normal;font-size:20px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
 .ba-tag{position:absolute;top:16px;z-index:2;padding:6px 13px;border-radius:999px;font-size:12px;font-weight:700;pointer-events:none}
@@ -394,11 +391,11 @@ footer a:hover{color:var(--ink)}
     <div class="janela" id="diferenca">
       <div class="janela-bar"><i></i><i></i><i></i><span>Arraste e veja a diferença</span></div>
       <div class="ba" id="ba">
-        <div class="ba-lado ba-a"><img src="/katia/hero-caos.jpg" alt="Mulher cansada numa mesa bagunçada, cheia de papéis e prazos atrasados"></div>
-        <div class="ba-lado ba-b"><img src="/katia/hero-leveza.jpg" alt="A mesma mulher tranquila num espaço organizado, com calendário e planner em dia"></div>
+        <div class="ba-lado ba-a"><img src="/katia/antes.jpg" alt="Mulher exausta numa mesa escura e bagunçada, cheia de papéis amassados"></div>
+        <div class="ba-lado ba-b"><img src="/katia/depois.jpg" alt="A mesma mulher sorrindo num escritório claro e organizado"></div>
         <span class="ba-tag l">Antes</span><span class="ba-tag r">Depois</span>
         <div class="ba-linha" aria-hidden="true"><i>&#8596;</i></div>
-        <input type="range" min="18" max="82" value="50" aria-label="Arraste para comparar o antes e o depois">
+        <input type="range" min="4" max="96" value="50" aria-label="Arraste para comparar o antes e o depois">
       </div>
     </div>
   </div>
@@ -667,7 +664,7 @@ var KATIA = {
     function set(v){ba.style.setProperty('--p',v+'%')}
     r.addEventListener('input',function(){mexeu=true;set(r.value)});
     if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-    var pts=[50,64,36,50],i=0,t0=null,dur=900;
+    var pts=[50,72,28,50],i=0,t0=null,dur=900;
     function passo(ts){if(mexeu)return;if(t0===null)t0=ts;var k=Math.min(1,(ts-t0)/dur),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2,v=pts[i]+(pts[i+1]-pts[i])*e;set(v.toFixed(2));r.value=v;if(k<1)requestAnimationFrame(passo);else if(++i<pts.length-1){t0=null;requestAnimationFrame(passo)}}
     if('IntersectionObserver' in window){var vo=new IntersectionObserver(function(es){if(es[0].isIntersecting){vo.disconnect();setTimeout(function(){requestAnimationFrame(passo)},500)}},{threshold:.5});vo.observe(ba)}else setTimeout(function(){requestAnimationFrame(passo)},900);
   })();
