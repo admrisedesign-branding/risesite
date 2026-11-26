@@ -137,7 +137,7 @@ body.menu-aberto{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
 
 /* Teste */
-.teste{background:var(--linen)}
+.teste{background:linear-gradient(160deg,#E6F2EE 0%,#F3EEFC 100%)}
 .teste .topo{text-align:center;max-width:640px;margin:0 auto 40px}
 .teste .topo h2{margin:16px 0 12px}
 .teste .topo p{color:var(--ink-soft)}
@@ -348,7 +348,7 @@ footer a:hover{color:var(--ink)}
   <div class="wrap">
     <a class="marca" href="#inicio"><span class="logo-k">K</span>Kátia Margarida</a>
     <nav class="menu" aria-label="Seções">
-      <a href="#ofertas">Ofertas</a><a href="#teste">Teste</a><a href="#como">Como funciona</a><a href="#sobre">Sobre</a><a href="#duvidas">Dúvidas</a>
+      <a href="#como">Como funciona</a><a href="#ofertas">Ofertas</a><a href="#teste">Teste</a><a href="#sobre">Sobre</a><a href="#duvidas">Dúvidas</a>
     </nav>
     <a class="btn btn-clay hdr-cta" href="#ofertas" data-cta="topo">Garantir vaga</a>
     <button type="button" class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="gaveta"><span></span><span></span><span></span></button>
@@ -359,7 +359,7 @@ footer a:hover{color:var(--ink)}
   <button type="button" class="gaveta-fechar" id="gaveta-fechar" aria-label="Fechar menu">×</button>
   <div class="marca"><span class="logo-k">K</span>Kátia Margarida</div>
   <nav class="gaveta-links">
-    <a href="#ofertas">Ofertas de Black Friday</a><a href="#teste">Qual consultoria é a minha?</a><a href="#como">Como funciona</a><a href="#sobre">Sobre a Kátia</a><a href="#duvidas">Dúvidas</a>
+    <a href="#como">Como funciona</a><a href="#ofertas">Ofertas de Black Friday</a><a href="#teste">Qual consultoria é a minha?</a><a href="#sobre">Sobre a Kátia</a><a href="#duvidas">Dúvidas</a>
   </nav>
   <a class="btn btn-clay" href="#ofertas" data-cta="menu">Garantir vaga</a>
 </aside>
@@ -401,6 +401,19 @@ footer a:hover{color:var(--ink)}
   </div>
 </section>
 
+<section class="como" id="como">
+  <div class="wrap">
+    <div class="eyebrow">Como funciona</div>
+    <h2>Quatro passos, <em>no seu ritmo</em></h2>
+    <div class="passos4">
+      <div class="passo-card" style="background-image:url(https://images.pexels.com/photos/7034454/pexels-photo-7034454.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700)"><b>01</b><h3>Você conta</h3><p>Pelo formulário, fotos e vídeos: o seu dia ou o ambiente.</p></div>
+      <div class="passo-card" style="background-image:url(https://images.pexels.com/photos/8346226/pexels-photo-8346226.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700)"><b>02</b><h3>Eu monto</h3><p>A sua rotina ou o dossiê do ambiente, sob medida.</p></div>
+      <div class="passo-card" style="background-image:url(https://images.pexels.com/photos/4440574/pexels-photo-4440574.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700)"><b>03</b><h3>Você faz</h3><p>No seu tempo ou comigo acompanhando de perto.</p></div>
+      <div class="passo-card" style="background-image:url(https://images.pexels.com/photos/12945027/pexels-photo-12945027.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700)"><b>04</b><h3>A gente ajusta</h3><p>No retorno, o que deu certo fica. O resto, a gente muda.</p></div>
+    </div>
+  </div>
+</section>
+
 <section class="vitrine" id="ofertas">
   <div class="wrap">
     <div class="vit-topo">
@@ -430,12 +443,19 @@ footer a:hover{color:var(--ink)}
   </div>
 </section>
 
+<section class="depo hide" id="depoimentos">
+  <div class="wrap">
+    <div class="eyebrow center">Quem já fez</div>
+    <h2 style="text-align:center">O que dizem <em>as clientes</em></h2>
+    <div class="grade3 dois" id="depo-lista"></div>
+  </div>
+</section>
 
 <section class="teste" id="teste">
   <div class="wrap">
     <div class="topo">
       <div class="eyebrow center">Teste rápido · 1 minuto</div>
-      <h2>Ficou em dúvida? <em>faça o teste</em></h2>
+      <h2>Ficou em dúvida?<br><em>Faça o teste</em></h2>
       <p>Três perguntas e você descobre por onde começar.</p>
     </div>
     <div class="cartao" id="cartao">
@@ -481,21 +501,6 @@ footer a:hover{color:var(--ink)}
   </div>
 </section>
 
-
-<section class="como" id="como">
-  <div class="wrap">
-    <div class="eyebrow">Como funciona</div>
-    <h2>Quatro passos, <em>no seu ritmo</em></h2>
-    <div class="passos4">
-      <div class="passo-card" style="background-image:url(https://images.pexels.com/photos/7034454/pexels-photo-7034454.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700)"><b>01</b><h3>Você conta</h3><p>Pelo formulário, fotos e vídeos: o seu dia ou o ambiente.</p></div>
-      <div class="passo-card" style="background-image:url(https://images.pexels.com/photos/8346226/pexels-photo-8346226.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700)"><b>02</b><h3>Eu monto</h3><p>A sua rotina ou o dossiê do ambiente, sob medida.</p></div>
-      <div class="passo-card" style="background-image:url(https://images.pexels.com/photos/4440574/pexels-photo-4440574.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700)"><b>03</b><h3>Você faz</h3><p>No seu tempo ou comigo acompanhando de perto.</p></div>
-      <div class="passo-card" style="background-image:url(https://images.pexels.com/photos/12945027/pexels-photo-12945027.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=700)"><b>04</b><h3>A gente ajusta</h3><p>No retorno, o que deu certo fica. O resto, a gente muda.</p></div>
-    </div>
-  </div>
-</section>
-
-
 <section class="sobre" id="sobre">
   <div class="wrap grade">
     <div class="foto"><div class="marca-d" id="foto-vazia">KM</div></div>
@@ -508,16 +513,6 @@ footer a:hover{color:var(--ink)}
     </div>
   </div>
 </section>
-
-
-<section class="depo hide" id="depoimentos">
-  <div class="wrap">
-    <div class="eyebrow center">Quem já fez</div>
-    <h2 style="text-align:center">O que dizem <em>as clientes</em></h2>
-    <div class="grade3 dois" id="depo-lista"></div>
-  </div>
-</section>
-
 
 <section class="curso" id="curso">
   <div class="wrap">
