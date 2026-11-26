@@ -101,9 +101,9 @@ body.menu-aberto{overflow:hidden}
 .t4{right:9%;top:110px;animation-delay:-.8s}.t5{right:4%;top:270px;animation-delay:-2.2s;width:76px;height:76px}.t6{right:13%;top:420px;animation-delay:-4s}
 @keyframes boia{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-12px) rotate(2deg)}}
 .hero-glow{position:absolute;left:-10%;right:-10%;bottom:-120px;height:520px;z-index:0;background:
-  radial-gradient(35% 60% at 15% 80%,rgba(160,214,200,.8),transparent 70%),
+  radial-gradient(35% 60% at 15% 80%,rgba(120,196,182,.8),transparent 70%),
   radial-gradient(30% 55% at 50% 70%,rgba(185,162,234,.75),transparent 70%),
-  radial-gradient(35% 60% at 85% 80%,rgba(150,185,140,.6),transparent 70%);filter:blur(30px)}
+  radial-gradient(35% 60% at 85% 80%,rgba(143,208,194,.65),transparent 70%);filter:blur(30px)}
 .janela-wrap{position:relative;z-index:2;margin-top:64px}
 .janela{background:rgba(255,255,255,.55);border:1px solid rgba(255,255,255,.8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-radius:28px 28px 0 0;padding:12px 12px 0;box-shadow:0 -10px 50px -20px rgba(46,39,69,.25)}
 .janela-bar{display:flex;align-items:center;gap:7px;padding:2px 6px 12px}
@@ -122,15 +122,23 @@ body.menu-aberto{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.tile{animation:none}}
 
 /* Flores e efeito suave nas imagens */
-.flor{position:absolute;z-index:0;pointer-events:none;background:center/cover no-repeat;filter:blur(1.5px) saturate(.9);opacity:.85;border-radius:50%}
-.flor.f-a{left:-150px;top:-130px;width:520px;height:520px;-webkit-mask-image:radial-gradient(circle,#000 35%,transparent 70%);mask-image:radial-gradient(circle,#000 35%,transparent 70%)}
-.flor.f-b{right:-170px;top:-90px;width:560px;height:560px;-webkit-mask-image:radial-gradient(circle,#000 30%,transparent 70%);mask-image:radial-gradient(circle,#000 30%,transparent 70%)}
 .hero h1 em{font-family:var(--script);font-weight:400;font-size:1.55em;line-height:.8;letter-spacing:0;background:none;-webkit-text-fill-color:currentColor;color:var(--rose);padding:0 .06em;display:inline-block;vertical-align:-.08em}
 .tile img,.passo-card,.grupo-foto,.faixa-curso .img{filter:saturate(.85) brightness(1.04)}
 .tile:after{content:"";position:absolute;inset:6px;border-radius:16px;background:linear-gradient(140deg,rgba(185,162,234,.35),rgba(160,214,200,.25));mix-blend-mode:soft-light}
 .passo-card:before{background:linear-gradient(180deg,rgba(185,162,234,.22) 0%,rgba(46,39,69,.1) 35%,rgba(46,39,69,.8) 100%)!important}
 .foto:after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,rgba(185,162,234,.18),rgba(160,214,200,.12));pointer-events:none}
-@media (max-width:700px){.flor.f-a{left:-190px;top:-200px;width:420px;height:420px}.flor.f-b{right:-210px;top:-170px;width:440px;height:440px}.hero h1 em{font-size:1.5em}}
+@media (max-width:700px){.hero h1 em{font-size:1.5em}}
+/* Hero artístico: papel com relevo e manchas em blur */
+.hero{background:#FAF6EE!important}
+.hero:before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='440' height='440' fill='none' stroke-linecap='round' stroke-width='1.6'%3E%3Cpath d='M60 300 C90 220 150 190 210 210 C170 250 120 290 60 300Z M60 300 C120 262 165 232 210 210 M250 90 C300 60 360 80 390 130 C330 140 280 125 250 90Z M250 90 C300 100 345 112 390 130 M40 120 C60 60 110 30 160 40 C140 90 95 118 40 120Z M40 120 C85 92 122 66 160 40 M300 380 C310 320 350 285 400 280 C395 335 355 372 300 380Z M300 380 C335 345 368 312 400 280 M180 400 C190 370 215 350 245 350 M120 190 C150 170 190 165 220 175' stroke='rgba(120,100,80,.13)' transform='translate(1.2 1.4)'/%3E%3Cpath d='M60 300 C90 220 150 190 210 210 C170 250 120 290 60 300Z M60 300 C120 262 165 232 210 210 M250 90 C300 60 360 80 390 130 C330 140 280 125 250 90Z M250 90 C300 100 345 112 390 130 M40 120 C60 60 110 30 160 40 C140 90 95 118 40 120Z M40 120 C85 92 122 66 160 40 M300 380 C310 320 350 285 400 280 C395 335 355 372 300 380Z M300 380 C335 345 368 312 400 280 M180 400 C190 370 215 350 245 350 M120 190 C150 170 190 165 220 175' stroke='rgba(255,255,255,.95)'/%3E%3C/svg%3E") 0 0/440px,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35  0 0 0 0 .3  0 0 0 0 .25  0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.9;mix-blend-mode:multiply;-webkit-mask-image:linear-gradient(180deg,#000 55%,transparent 100%);mask-image:linear-gradient(180deg,#000 55%,transparent 100%)}
+.mancha{position:absolute;z-index:0;border-radius:50%;filter:blur(70px);pointer-events:none;animation:deriva 16s ease-in-out infinite alternate}
+.m-a{left:-140px;top:-80px;width:520px;height:460px;background:#8FD0C2;opacity:.55}
+.m-b{right:-160px;top:40px;width:560px;height:480px;background:#C4AEF2;opacity:.55;animation-delay:-6s}
+.m-c{left:32%;top:300px;width:420px;height:300px;background:#F3D9E6;opacity:.5;animation-delay:-11s}
+@keyframes deriva{from{transform:translate(0,0) scale(1)}to{transform:translate(40px,30px) scale(1.12)}}
+.hero-dor{background:rgba(255,255,255,.7)!important;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+@media (prefers-reduced-motion:reduce){.mancha{animation:none}}
+@media (max-width:700px){.m-a{width:300px;height:300px;left:-120px}.m-b{width:320px;height:320px;right:-140px;top:120px}.m-c{display:none}.mancha{filter:blur(55px)}}
 /* Aparecer ao rolar */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
 .rv.on{opacity:1;transform:none}
@@ -367,8 +375,9 @@ footer a:hover{color:var(--ink)}
 <main>
 
 <section class="hero" id="inicio">
-  <div class="flor f-a" aria-hidden="true" style="background-image:url(https://images.pexels.com/photos/37452954/pexels-photo-37452954.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900)"></div>
-  <div class="flor f-b" aria-hidden="true" style="background-image:url(https://images.pexels.com/photos/37362898/pexels-photo-37362898.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900)"></div>
+  <div class="mancha m-a" aria-hidden="true"></div>
+  <div class="mancha m-b" aria-hidden="true"></div>
+  <div class="mancha m-c" aria-hidden="true"></div>
   <div class="flutua" aria-hidden="true">
     <figure class="tile t1"><img src="https://images.pexels.com/photos/7034454/pexels-photo-7034454.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=240" alt="" loading="lazy"></figure>
     <figure class="tile t2"><img src="https://images.pexels.com/photos/4440574/pexels-photo-4440574.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=240" alt="" loading="lazy"></figure>
