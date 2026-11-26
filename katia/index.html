@@ -86,27 +86,40 @@ body.menu-aberto .gaveta{transform:none;visibility:visible;transition:transform 
 body.menu-aberto .gaveta-fundo{opacity:1;pointer-events:auto}
 body.menu-aberto{overflow:hidden}
 
-/* Hero azul com card de vídeo */
-.hero{position:relative;padding:72px 0 88px;background:linear-gradient(160deg,#B7CDE2 0%,var(--blue) 55%,#97B4D0 100%);overflow:hidden}
-.hero:before{content:"";position:absolute;right:-120px;top:-120px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(217,112,143,.28),transparent 70%)}
-.hero .wrap{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
-.hero .eyebrow{color:var(--brown-2)}
-.hero h1{font-size:clamp(48px,6.4vw,84px);margin:22px 0 30px;color:var(--brown)}
-.hero h1 em{color:#fff;text-shadow:0 2px 18px rgba(62,37,25,.18)}
-.hero .lead{font-size:17px;color:#3F3A44}
-.hero .acoes{display:flex;gap:14px;margin-top:34px;flex-wrap:wrap}
-.hero .btn-ghost{border-color:rgba(62,37,25,.5)}
-.hero .selos{margin-top:22px;font-size:12.5px;color:#4E5563;display:flex;gap:16px;flex-wrap:wrap}
-.hero .selos span:before{content:"✓ ";color:var(--brown-2)}
-.card-video{position:relative;aspect-ratio:4/5;border-radius:var(--r);overflow:hidden;background:var(--brown-2) center/cover;box-shadow:0 40px 70px -35px rgba(62,37,25,.55)}
-.card-video video{width:100%;height:100%;object-fit:cover}
-.card-video:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(62,37,25,.55) 100%)}
-.card-video .selo-bf{position:absolute;left:20px;bottom:22px;z-index:1;color:#fff}
-.card-video .selo-bf small{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.85}
-.card-video .selo-bf strong{font-family:var(--script);font-weight:400;font-size:44px;line-height:1;color:var(--tan-light)}
-.card-video .tag{position:absolute;top:18px;right:18px;z-index:1;background:var(--clay);color:#fff;font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:7px 12px;border-radius:999px}
-@media (prefers-reduced-motion:reduce){.card-video video{display:none}}
 
+/* Hero: régua antes e depois */
+.hero{position:relative;height:calc(100svh - 42px);min-height:600px;max-height:940px;margin-top:-70px;overflow:hidden;background:#2A201B;color:#fff}
+.ba{--p:50%;position:absolute;inset:0;user-select:none;-webkit-user-select:none}
+.ba-lado{position:absolute;top:0;bottom:0;overflow:hidden}
+.ba-a{left:0;width:var(--p)}
+.ba-b{left:var(--p);right:0}
+.ba-lado img{width:100%;height:100%;object-fit:cover;display:block}
+.ba-a img{object-position:right 18%}
+.ba-b img{object-position:left 18%}
+.ba-lado:after{content:"";position:absolute;inset:0;pointer-events:none}
+.ba-a:after{background:linear-gradient(180deg,rgba(20,14,11,.35) 0%,rgba(20,14,11,.15) 35%,rgba(20,14,11,.72) 100%)}
+.ba-b:after{background:linear-gradient(180deg,rgba(20,14,11,.25) 0%,rgba(20,14,11,.05) 35%,rgba(20,14,11,.62) 100%)}
+.ba-linha{position:absolute;top:0;bottom:0;left:var(--p);width:2px;margin-left:-1px;background:rgba(255,255,255,.9);pointer-events:none;z-index:2}
+.ba-linha i{position:absolute;top:34%;left:50%;width:48px;height:48px;margin:-24px 0 0 -24px;border-radius:50%;background:#fff;color:var(--brown);display:grid;place-items:center;font-style:normal;font-size:20px;box-shadow:0 6px 22px rgba(0,0,0,.35)}
+.ba-tag{position:absolute;top:96px;z-index:2;padding:6px 14px;border-radius:999px;font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;pointer-events:none;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.ba-tag.l{left:24px;background:rgba(20,14,11,.55);color:#fff}
+.ba-tag.r{right:24px;background:rgba(255,255,255,.85);color:var(--brown)}
+.ba input{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:ew-resize;touch-action:pan-y;z-index:3}
+.hero-txt{position:absolute;left:0;right:0;bottom:9%;z-index:4;text-align:center;padding:0 24px;pointer-events:none}
+.hero-txt .acoes{pointer-events:auto;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}
+.hero-dor{display:inline-block;font-size:13px;letter-spacing:.04em;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:7px 16px;border-radius:999px;margin-bottom:18px}
+.hero h1{font-size:clamp(50px,7.4vw,104px);color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.35)}
+.hero h1 em{color:var(--tan-light)}
+.hero .lead{color:rgba(255,255,255,.9);margin:14px auto 0;max-width:520px;font-size:16.5px;text-shadow:0 2px 14px rgba(0,0,0,.4)}
+.btn-vidro{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.btn-vidro:hover{background:rgba(255,255,255,.26)}
+/* Cabeçalho transparente sobre o hero */
+header.topo-hero:not(.rolou){background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none}
+header.topo-hero:not(.rolou) .marca,header.topo-hero:not(.rolou) nav.menu a{color:#fff}
+header.topo-hero:not(.rolou) nav.menu{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+header.topo-hero:not(.rolou) .marca i{color:var(--tan-light)}
+header.topo-hero:not(.rolou) .burger span{background:#fff}
+nav.menu{padding:9px 22px;border-radius:999px;border:1px solid transparent}
 /* Teste */
 .teste{background:var(--blue-soft)}
 .teste .topo{text-align:center;max-width:640px;margin:0 auto 40px}
@@ -146,25 +159,25 @@ body.menu-aberto{overflow:hidden}
 .sucesso p{color:var(--ink-soft);max-width:420px;margin:0 auto 26px}
 
 /* Vitrine Black Friday — marrom chocolate */
-.vitrine{background:var(--brown);color:#fff;position:relative;overflow:hidden}
-.vitrine:before{content:"";position:absolute;inset:0;background:radial-gradient(45% 55% at 95% 0%,rgba(217,112,143,.30),transparent 70%),radial-gradient(40% 50% at 0% 100%,rgba(169,195,219,.22),transparent 70%);pointer-events:none}
+.vitrine{background:#EFE6DA;color:var(--ink);position:relative;overflow:hidden}
+.vitrine:before{content:"";position:absolute;inset:0;background:radial-gradient(45% 55% at 95% 0%,rgba(217,112,143,.14),transparent 70%),radial-gradient(40% 50% at 0% 100%,rgba(169,195,219,.3),transparent 70%);pointer-events:none}
 .vitrine .wrap{position:relative}
-.vitrine .eyebrow{color:var(--tan-light)}
+.vitrine .eyebrow{color:var(--clay-deep)}
 .vitrine h2{margin:16px 0 14px}
-.vitrine .lead{color:#E3D6CC}
+.vitrine .lead{color:var(--ink-soft)}
 .vit-topo{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap;margin-bottom:46px}
-.vit-cd{border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:16px 20px;text-align:center}
-.vit-cd small{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#E3D6CC;margin-bottom:8px}
-.vit-cd .cd span{background:rgba(255,255,255,.08);font-size:20px;font-family:var(--serif);padding:6px 10px;min-width:54px;border-radius:10px}
+.vit-cd{border:1px solid var(--line);background:#fff;border-radius:16px;padding:16px 20px;text-align:center}
+.vit-cd small{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.vit-cd .cd span{background:var(--linen);color:var(--ink);font-size:20px;font-family:var(--serif);padding:6px 10px;min-width:54px;border-radius:10px}
 .vit-cd .cd em{display:block;font-family:var(--sans);font-style:normal;font-size:9px;letter-spacing:.18em;color:#C9B7A9;margin-top:2px;line-height:1.4}
 .grupo{margin-bottom:46px}
 .grupo-topo{display:flex;align-items:center;gap:18px;margin-bottom:22px}
-.grupo-foto{width:84px;height:84px;border-radius:50%;background:var(--brown-2) center/cover;flex:0 0 84px;border:2px solid rgba(232,205,169,.5)}
+.grupo-foto{width:84px;height:84px;border-radius:50%;background:var(--brown-2) center/cover;flex:0 0 84px;border:2px solid #fff;box-shadow:0 8px 20px -10px rgba(62,37,25,.4)}
 .grupo h3{font-size:30px;margin-bottom:4px}
-.grupo-topo p{color:#E3D6CC;font-size:15px}
+.grupo-topo p{color:var(--ink-soft);font-size:15px}
 .planos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .planos.dois{grid-template-columns:repeat(2,1fr);max-width:780px}
-.plano{background:var(--linen);color:var(--ink);padding:28px 26px;display:flex;flex-direction:column;position:relative;border-radius:var(--r)}
+.plano{background:#fff;box-shadow:0 20px 40px -30px rgba(62,37,25,.35);color:var(--ink);padding:28px 26px;display:flex;flex-direction:column;position:relative;border-radius:var(--r)}
 .plano.destaque{background:#fff;box-shadow:0 0 0 2px var(--clay)}
 .plano .selo{position:absolute;top:-11px;left:24px;background:var(--clay);color:#fff;font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:4px 12px;border-radius:999px}
 .plano .tipo{font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--clay-deep)}
@@ -187,7 +200,7 @@ body.menu-aberto{overflow:hidden}
 .entrega video{width:100%;height:100%;object-fit:cover;display:block}
 .entrega figcaption{position:absolute;left:12px;top:12px;background:rgba(62,37,25,.75);color:var(--tan-light);font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
 .depo .grade3.dois{grid-template-columns:repeat(2,1fr);max-width:900px;margin-left:auto;margin-right:auto}
-.vit-nota{margin-top:6px;font-size:12.5px;color:#C9B7A9}
+.vit-nota{margin-top:6px;font-size:12.5px;color:var(--muted)}
 
 /* Como funciona — cards com foto */
 .como{background:var(--linen)}
@@ -267,8 +280,6 @@ footer a:hover{color:#fff}
   nav.menu{display:none}
   .burger{display:flex}
   .hdr-cta{margin-left:auto}
-  .hero .wrap{grid-template-columns:1fr;gap:36px}
-  .card-video{aspect-ratio:4/3}
   .passos4{grid-template-columns:1fr 1fr}
   .sobre .grade{grid-template-columns:1fr;gap:36px}
   .faixa-curso{grid-template-columns:1fr}
@@ -281,7 +292,13 @@ footer a:hover{color:#fff}
   header .marca{font-size:18px}
   .burger span{width:22px}
   header .wrap{gap:10px;height:64px}
-  .hero{padding:48px 0 64px}
+  .hero{margin-top:-64px;height:calc(100svh - 42px);min-height:620px}
+  .ba-tag{top:80px}.ba-tag.l{left:14px}.ba-tag.r{right:14px}
+  .ba-linha i{top:30%;width:42px;height:42px;margin:-21px 0 0 -21px}
+  .hero-txt{bottom:6%}
+  .hero-dor{font-size:12px;border-radius:16px;max-width:300px}
+  .hero .lead{font-size:15px}
+  .hero-txt .btn{height:48px;padding:0 22px}
   .cartao{padding:30px 22px;min-height:500px}
   .perg{font-size:23px}
   .faixa-curso .txt{padding:28px 22px}
@@ -308,7 +325,7 @@ footer a:hover{color:#fff}
   <div class="wrap"><b>Black Friday</b><span class="bf-txt">Condições especiais nas consultorias até 01/12</span><span class="cd" data-cd aria-label="Tempo restante"><span data-d>00d</span><span data-h>00h</span><span data-m>00m</span></span></div>
 </div>
 
-<header id="hdr">
+<header id="hdr" class="topo-hero">
   <div class="wrap">
     <a class="marca" href="#inicio">Kátia <i>Margarida</i></a>
     <nav class="menu" aria-label="Seções">
@@ -331,21 +348,20 @@ footer a:hover{color:#fff}
 <main>
 
 <section class="hero" id="inicio">
-    <div class="wrap">
-    <div>
-      <div class="eyebrow">Rotina · Organização de ambientes</div>
-      <h1>Rotina em ordem. Casa <em>a seu favor</em></h1>
-      <p class="lead">Consultorias online de rotina e de organização de ambientes. Na Black Friday, com condição especial até 01/12.</p>
-      <div class="acoes">
-        <a class="btn btn-clay" href="#ofertas" data-cta="hero-ofertas">Ver ofertas</a>
-        <a class="btn btn-ghost" href="#teste" data-cta="hero-teste">Qual é a minha?</a>
-      </div>
-      <div class="selos"><span>100% online</span><span>Para todo o Brasil</span><span>Com ou sem acompanhamento</span></div>
-    </div>
-    <div class="card-video" aria-hidden="true" style="background-image:url(https://images.pexels.com/photos/8580765/pexels-photo-8580765.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900)">
-      <video autoplay muted loop playsinline preload="auto"><source src="https://videos.pexels.com/video-files/8890976/8890976-hd_1280_720_25fps.mp4" type="video/mp4"><source src="https://videos.pexels.com/video-files/8890976/8890976-sd_960_540_25fps.mp4" type="video/mp4"></video>
-      <span class="tag">Black Friday</span>
-      <div class="selo-bf"><small>Condição especial até 01/12</small><strong>organize-se</strong></div>
+  <div class="ba" id="ba">
+    <div class="ba-lado ba-a"><img src="/katia/hero-caos.jpg" alt="Mulher cansada numa mesa bagunçada, cheia de papéis e prazos atrasados" fetchpriority="high"></div>
+    <div class="ba-lado ba-b"><img src="/katia/hero-leveza.jpg" alt="A mesma mulher tranquila num espaço organizado, com calendário e planner em dia" fetchpriority="high"></div>
+    <span class="ba-tag l">Caos</span><span class="ba-tag r">Leveza</span>
+    <div class="ba-linha" aria-hidden="true"><i>&#8596;</i></div>
+    <input type="range" min="22" max="78" value="50" aria-label="Arraste para comparar o caos e a leveza">
+  </div>
+  <div class="hero-txt">
+    <p class="hero-dor">Cansada de arrumar e ver tudo bagunçado de novo?</p>
+    <h1>Do caos à <em>leveza</em></h1>
+    <p class="lead">Consultorias online de rotina e de organização para a sua casa e o seu dia funcionarem a seu favor.</p>
+    <div class="acoes">
+      <a class="btn btn-clay" href="#ofertas" data-cta="hero-ofertas">Quero sair do caos</a>
+      <a class="btn btn-vidro" href="#teste" data-cta="hero-teste">Fazer o teste</a>
     </div>
   </div>
 </section>
@@ -605,6 +621,18 @@ var KATIA = {
   // Cabeçalho com borda ao rolar.
   var hdr=document.getElementById('hdr');
   window.addEventListener('scroll',function(){hdr.classList.toggle('rolou',window.scrollY>10)},{passive:true});
+
+  // Régua do hero: arrastar e uma varredura curta ao abrir.
+  (function(){
+    var ba=document.getElementById('ba');if(!ba)return;
+    var r=ba.querySelector('input'),mexeu=false;
+    function set(v){ba.style.setProperty('--p',v+'%')}
+    r.addEventListener('input',function(){mexeu=true;set(r.value)});
+    if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    var pts=[50,64,36,50],i=0,t0=null,dur=900;
+    function passo(ts){if(mexeu)return;if(t0===null)t0=ts;var k=Math.min(1,(ts-t0)/dur),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2,v=pts[i]+(pts[i+1]-pts[i])*e;set(v.toFixed(2));r.value=v;if(k<1)requestAnimationFrame(passo);else if(++i<pts.length-1){t0=null;requestAnimationFrame(passo)}}
+    setTimeout(function(){requestAnimationFrame(passo)},900);
+  })();
 
   // Menu lateral (celular).
   var gav=document.getElementById('gaveta'),burger=document.getElementById('burger');
