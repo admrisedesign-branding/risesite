@@ -181,6 +181,12 @@ body.menu-aberto{overflow:hidden}
 .preco .parc{font-size:12px;color:var(--muted)}
 .preco .consulta{font-family:var(--serif);font-size:20px;line-height:1.25}
 .plano .btn{width:100%}
+.grupo-corpo{display:grid;grid-template-columns:230px 1fr;gap:20px;align-items:stretch}
+.grupo-corpo .planos.dois{max-width:none}
+.entrega{position:relative;border-radius:var(--r);overflow:hidden;background:#2A180F;aspect-ratio:9/16;align-self:start}
+.entrega video{width:100%;height:100%;object-fit:cover;display:block}
+.entrega figcaption{position:absolute;left:12px;top:12px;background:rgba(62,37,25,.75);color:var(--tan-light);font-size:10px;letter-spacing:.18em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
+.depo .grade3.dois{grid-template-columns:repeat(2,1fr);max-width:900px;margin-left:auto;margin-right:auto}
 .vit-nota{margin-top:6px;font-size:12.5px;color:#C9B7A9}
 
 /* Como funciona — cards com foto */
@@ -287,6 +293,8 @@ footer a:hover{color:#fff}
   .vit-topo{margin-bottom:28px}
   .grupo-foto{width:64px;height:64px;flex-basis:64px}
   .grupo h3{font-size:25px}
+  .grupo-corpo{grid-template-columns:1fr}
+  .entrega{width:62%;max-width:240px;margin:0 auto 6px}
   .zap span{display:none}.zap{padding:0 14px}
   .bf-bar .wrap{gap:10px;font-size:11.5px;flex-wrap:nowrap}
   .bf-txt{display:none}
@@ -354,14 +362,20 @@ footer a:hover{color:#fff}
     </div>
 
     <div class="grupo">
-      <div class="grupo-topo"><div class="grupo-foto" style="background-image:url(https://images.pexels.com/photos/7034454/pexels-photo-7034454.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=300)"></div><div><h3>Consultoria de rotina</h3><p>Você me conta o seu dia, eu monto a sua rotina e a gente ajusta junto.</p></div></div>
-      <div class="planos" id="planos-rotina"></div>
+      <div class="grupo-topo"><div class="grupo-foto" style="background-image:url(https://images.pexels.com/photos/7034454/pexels-photo-7034454.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=300)"></div><div><h3>Rotina Possível</h3><p>Eu monto um plano de rotina feito para a sua realidade, e a gente ajusta junto.</p></div></div>
+      <div class="grupo-corpo">
+        <figure class="entrega"><video src="/katia/entrega-rotina.mp4" poster="/katia/entrega-rotina.jpg" muted loop playsinline autoplay preload="metadata"></video><figcaption>Exemplo de entrega</figcaption></figure>
+        <div class="planos dois" id="planos-rotina"></div>
+      </div>
     </div>
     <div class="grupo">
-      <div class="grupo-topo"><div class="grupo-foto" style="background-image:url(https://images.pexels.com/photos/4440574/pexels-photo-4440574.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=300)"></div><div><h3>Organização de ambientes</h3><p>Você manda fotos e vídeos, eu entrego o passo a passo de personal organizer.</p></div></div>
-      <div class="planos dois" id="planos-ambientes"></div>
+      <div class="grupo-topo"><div class="grupo-foto" style="background-image:url(https://images.pexels.com/photos/4440574/pexels-photo-4440574.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=300)"></div><div><h3>Organização de ambientes</h3><p>Você escolhe o móvel ou o setor da casa, manda as fotos e recebe um dossiê com o passo a passo.</p></div></div>
+      <div class="grupo-corpo">
+        <figure class="entrega"><video src="/katia/entrega-ambientes.mp4" poster="/katia/entrega-ambientes.jpg" muted loop playsinline autoplay preload="metadata"></video><figcaption>Exemplo de entrega</figcaption></figure>
+        <div class="planos dois" id="planos-ambientes"></div>
+      </div>
     </div>
-    <p class="vit-nota">Tudo online, por WhatsApp e videochamada. Pagamento combinado direto com a Kátia.</p>
+    <p class="vit-nota">Tudo online, com encontros de cerca de 45 minutos. Em ambientes maiores, o valor é ajustado conforme as horas do projeto. Pagamento combinado direto com a Kátia.</p>
   </div>
 </section>
 
@@ -449,7 +463,7 @@ footer a:hover{color:#fff}
   <div class="wrap">
     <div class="eyebrow center">Quem já fez</div>
     <h2 style="text-align:center">O que dizem <em>as clientes</em></h2>
-    <div class="grade3" id="depo-lista"></div>
+    <div class="grade3 dois" id="depo-lista"></div>
   </div>
 </section>
 
@@ -471,6 +485,7 @@ footer a:hover{color:#fff}
     <div class="faq-lista">
       <details><summary>Preciso comprar organizadores?</summary><p>Não necessariamente. O dossiê diz o que dá para fazer com o que você já tem e o que vale a pena comprar, se quiser.</p></details>
       <details><summary>Qual formato é para mim?</summary><p>Se você costuma seguir um plano sozinha, a entrega com retorno resolve. Se precisa de alguém cobrando para não desistir, escolha um acompanhamento. Na dúvida, faça o teste aqui na página.</p></details>
+      <details><summary>Como são os encontros?</summary><p>Todos online, com cerca de 45 minutos. Nos planos com acompanhamento, são 4 encontros para ver o que funcionou, ajustar o que ficou difícil e definir o próximo passo.</p></details>
       <details><summary>Até quando vale a Black Friday?</summary><p>Até 01/12 ou enquanto houver vagas. Os acompanhamentos têm vagas limitadas para eu dar atenção de verdade a cada cliente.</p></details>
     </div>
   </div>
@@ -511,21 +526,21 @@ footer a:hover{color:#fff}
    Preço vazio ('') mostra "Condição especial no WhatsApp".
    ========================================================= */
 var KATIA = {
-  whatsapp: '',            // só números, com DDI e DDD. Ex.: '5592999999999'
-  instagram: '',           // ex.: 'katiamargarida'
+  whatsapp: '5592981451212',
+  instagram: 'katiamargaridaorganizer',
   foto: '/katia/katia.jpg',
   fimBlackFriday: Date.UTC(2026, 11, 2, 3, 59, 0), // 01/12/2026 23h59 em Manaus
   rotina: [
-    { id: 'rotina-essencial', tipo: 'Entrega + retorno', nome: 'Rotina sob medida', desc: 'Para quem segue sozinha.', itens: ['Formulário da sua rotina', 'Sugestão de rotina montada para você', 'Ajustes e um encontro de retorno'], de: '', por: '', parcelas: '' },
-    { id: 'rotina-trimestral', tipo: 'Acompanhamento', nome: 'Trimestral', desc: 'Três meses com alguém do seu lado.', itens: ['Tudo da rotina sob medida', 'Acompanhamento com cobrança e incentivo', 'Ajustes ao longo dos 3 meses'], de: '', por: '', parcelas: '', destaque: true },
-    { id: 'rotina-semestral', tipo: 'Acompanhamento', nome: 'Semestral', desc: 'Seis meses para criar hábito de verdade.', itens: ['Tudo do trimestral', 'Seis meses de acompanhamento', 'Para quem quer mudar a rotina de vez'], de: '', por: '', parcelas: '' }
+    { id: 'rotina-possivel', tipo: 'Entrega + 1 retorno', nome: 'Rotina Possível', desc: 'Para quem segue no próprio ritmo.', itens: ['Diagnóstico e alinhamento', 'Rotina personalizada para a sua realidade', '2 encontros online + 1 de retorno'], de: 'R$ 447', por: 'R$ 347', parcelas: '' },
+    { id: 'rotina-com-voce', tipo: 'Entrega + 4 encontros', nome: 'Rotina Possível Com Você', desc: 'Para quem quer alguém do lado.', itens: ['Tudo da Rotina Possível', '4 encontros de acompanhamento', 'Ajustes até a rotina funcionar'], de: 'R$ 647', por: 'R$ 557', parcelas: '', destaque: true }
   ],
   ambientes: [
-    { id: 'ambiente-dossie', tipo: 'Entrega', nome: 'Dossiê do ambiente', desc: 'Para fazer no seu tempo.', itens: ['Análise por fotos e vídeos', 'Dossiê com a organização sugerida', 'Dicas de dobra e lista de organizadores'], de: '', por: '', parcelas: '' },
-    { id: 'ambiente-semanal', tipo: 'Acompanhamento', nome: 'Acompanhamento semanal', desc: 'Uma meta por semana, com cobrança.', itens: ['Tudo do dossiê', 'Meta da semana combinada', 'Acompanhamento por fotos'], de: '', por: '', parcelas: '', destaque: true }
+    { id: 'ambientes-essencial', tipo: 'Entrega + 1 retorno', nome: 'Ambientes Essencial', desc: 'Um móvel ou setor da casa, no seu tempo.', itens: ['Análise das fotos e vídeos', 'Dossiê com o passo a passo', '2 encontros online + 1 de retorno'], de: 'R$ 457', por: 'R$ 357', parcelas: '' },
+    { id: 'ambientes-na-pratica', tipo: 'Entrega + 4 encontros', nome: 'Ambientes Na Prática', desc: 'Para organizar com acompanhamento.', itens: ['Tudo do Ambientes Essencial', '4 encontros de acompanhamento', 'Ajustes até ficar fácil de manter'], de: 'R$ 657', por: 'R$ 567', parcelas: '', destaque: true }
   ],
   depoimentos: [
-    // { texto: 'Depoimento real da cliente', nome: 'Nome S.', info: 'Consultoria de rotina' }
+    { texto: 'Eu até arrumava, mas desarrumava rápido, porque não sabia a forma certa de guardar cada coisa. Com a consultoria, aprendi a usar melhor cada espaço. Hoje já consigo visualizar melhor cada espaço, e isso me ajuda a manter a organização.', nome: 'Juliana Moraes', info: 'Organização do guarda-roupa' },
+    { texto: 'A consultoria da Kátia me ajudou a priorizar e organizar a rotina de uma forma bem funcional!', nome: 'Daniela Marat', info: 'Consultoria de rotina' }
   ]
 };
 </script>
@@ -627,11 +642,11 @@ var KATIA = {
   function recomendacao(){
     var foco=valor('foco'),inicio=valor('inicio'),jeito=valor('jeito'),acomp=jeito==='Quero alguém me acompanhando';
     var rotina=inicio==='A rotina da semana'||(foco==='Minha rotina'&&!inicio);
-    if(rotina)return acomp?['Consultoria de rotina com acompanhamento','Trimestral ou semestral: eu monto a sua rotina e acompanho de perto até virar hábito.']
-                          :['Consultoria de rotina sob medida','Eu monto a sua rotina, você segue no seu tempo e a gente faz um encontro de retorno.'];
+    if(rotina)return acomp?['Rotina Possível Com Você','Eu monto a sua rotina e acompanho você em 4 encontros até ela funcionar.']
+                          :['Rotina Possível','Eu monto a sua rotina, você segue no seu tempo e a gente faz um encontro de retorno.'];
     var amb=inicio&&inicio!=='Outro ambiente da casa'?inicio.toLowerCase():'o ambiente que mais incomoda';
-    return acomp?['Organização com acompanhamento semanal','Começando por '+amb+', com uma meta por semana e eu acompanhando pelas fotos.']
-                :['Dossiê de organização','Começando por '+amb+': você recebe o passo a passo e organiza no seu tempo.'];
+    return acomp?['Ambientes Na Prática','Começando por '+amb+', com o dossiê e 4 encontros de acompanhamento.']
+                :['Ambientes Essencial','Começando por '+amb+': você recebe o dossiê com o passo a passo e organiza no seu tempo.'];
   }
   // Troca de pergunta no mesmo lugar: a tela não pula nem rola sozinha.
   function mostrar(i){

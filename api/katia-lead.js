@@ -20,19 +20,16 @@ const TESTE = {
   inicio: ['A rotina da semana', 'Guarda-roupa', 'Cozinha e despensa', 'Outro ambiente da casa'],
   jeito: ['Recebo o plano e sigo sozinha', 'Quero alguém me acompanhando', 'Ainda não sei'],
 };
-const RECOMENDACOES = [
-  'Consultoria de rotina com acompanhamento', 'Consultoria de rotina sob medida',
-  'Organização com acompanhamento semanal', 'Dossiê de organização',
-];
+const RECOMENDACOES = ['Rotina Possível Com Você', 'Rotina Possível', 'Ambientes Na Prática', 'Ambientes Essencial'];
 // Nomes dos planos da página (KATIA.rotina / KATIA.ambientes) e dos dois botões extras.
 const PLANOS = [
-  'Rotina sob medida', 'Trimestral', 'Semestral', 'Dossiê do ambiente', 'Acompanhamento semanal',
+  'Rotina Possível', 'Rotina Possível Com Você', 'Ambientes Essencial', 'Ambientes Na Prática',
   'Lista do curso online', 'Palestra',
 ];
 const PLANO_TAG = {
   'Lista do curso online': 'lista-curso', 'Palestra': 'palestra',
-  'Rotina sob medida': 'rotina', 'Trimestral': 'rotina', 'Semestral': 'rotina',
-  'Dossiê do ambiente': 'ambientes', 'Acompanhamento semanal': 'ambientes',
+  'Rotina Possível': 'rotina', 'Rotina Possível Com Você': 'rotina',
+  'Ambientes Essencial': 'ambientes', 'Ambientes Na Prática': 'ambientes',
 };
 
 const CONSENT_VERSAO = 'katia-site-v1';
