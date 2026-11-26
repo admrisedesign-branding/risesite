@@ -1,7 +1,24 @@
 {
   "rewrites": [
-    { "source": "/blog", "destination": "https://blog.riseagencia.com/blog/" },
-    { "source": "/blog/:path*", "destination": "https://blog.riseagencia.com/blog/:path*" },
-    { "source": "/og/:path*", "destination": "https://blog.riseagencia.com/og/:path*" }
+    {
+      "source": "/blog",
+      "destination": "https://blog.riseagencia.com/blog/"
+    },
+    {
+      "source": "/blog/:path*",
+      "destination": "https://blog.riseagencia.com/blog/:path*"
+    },
+    {
+      "source": "/og/:path*",
+      "destination": "https://blog.riseagencia.com/og/:path*"
+    },
+    {
+      "source": "/katiamargaridaorganizer",
+      "destination": "/katia/index.html"
+    },
+    {
+      "source": "/katiamargaridaorganizer/",
+      "destination": "/katia/index.html"
+    }
   ]
 }
