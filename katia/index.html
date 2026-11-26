@@ -87,21 +87,30 @@ body.menu-aberto .gaveta-fundo{opacity:1;pointer-events:auto}
 body.menu-aberto{overflow:hidden}
 
 
-/* Hero claro com régua antes e depois */
-.hero{position:relative;padding:64px 0 0;text-align:center;overflow:hidden;background:
-  radial-gradient(40% 50% at 12% 18%,rgba(169,195,219,.45),transparent 70%),
-  radial-gradient(38% 45% at 88% 12%,rgba(217,112,143,.16),transparent 70%),
-  linear-gradient(180deg,#F8F3EC 0%,#F1E8DC 100%)}
-.hero:after{content:"";position:absolute;left:0;right:0;bottom:0;height:180px;background:#EFE6DA;z-index:0}
-.hero .wrap{position:relative;z-index:1}
-.hero-txt{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:0 24px 44px}
-.hero-dor{display:inline-block;font-size:13px;color:var(--clay-deep);background:#fff;border:1px solid var(--line);padding:8px 18px;border-radius:999px;margin-bottom:20px;box-shadow:0 10px 24px -18px rgba(62,37,25,.4)}
-.hero h1{font-size:clamp(50px,7vw,96px);color:var(--brown)}
-.hero h1 em{color:var(--clay)}
-.hero .lead{margin:16px auto 0;max-width:540px;font-size:17px}
+/* Hero com foto clara em tela cheia (estilo Remodix) */
+.hero{position:relative;height:calc(100svh - 42px);min-height:600px;max-height:900px;margin-top:-70px;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;background:#CDBBA8 center 60%/cover no-repeat}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,28,20,.42) 0%,rgba(40,28,20,.22) 38%,rgba(40,28,20,.3) 70%,rgba(40,28,20,.5) 100%)}
+.hero-txt{position:relative;z-index:1;max-width:860px;padding:70px 24px 0}
+.hero-dor{display:inline-flex;align-items:center;gap:8px;font-size:13px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:7px 16px;border-radius:999px;margin-bottom:20px}
+.hero-dor:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--clay)}
+.hero h1{font-size:clamp(52px,7.4vw,104px);color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.25)}
+.hero h1 em{color:#FBE3D3}
+.hero .lead{color:rgba(255,255,255,.92);margin:16px auto 0;max-width:540px;font-size:17px;text-shadow:0 2px 14px rgba(0,0,0,.3)}
 .hero-txt .acoes{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
-.btn-claro{background:#fff;color:var(--ink);border:1px solid var(--line)}
-.btn-claro:hover{border-color:var(--ink)}
+.btn-vidro{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.5);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.btn-vidro:hover{background:rgba(255,255,255,.28)}
+/* Cabeçalho transparente sobre o hero */
+nav.menu{padding:9px 22px;border-radius:999px;border:1px solid transparent}
+header.topo-hero:not(.rolou){background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none}
+header.topo-hero:not(.rolou) .marca,header.topo-hero:not(.rolou) nav.menu a{color:#fff}
+header.topo-hero:not(.rolou) .marca i{color:#FBE3D3}
+header.topo-hero:not(.rolou) nav.menu{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.3);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+header.topo-hero:not(.rolou) .burger span{background:#fff}
+header.topo-hero:not(.rolou) .hdr-cta{background:#fff;color:var(--ink)}
+/* Antes e depois */
+.antes-depois{background:var(--linen);padding:76px 0 40px}
+.ad-topo{text-align:center;margin-bottom:30px}
+.ad-topo h2{margin-top:14px}
 .ba{--p:50%;position:relative;aspect-ratio:16/8;max-height:620px;width:100%;border-radius:28px;overflow:hidden;background:#E4D7C8;box-shadow:0 50px 90px -50px rgba(62,37,25,.55);user-select:none;-webkit-user-select:none;border:6px solid #fff}
 .ba-lado{position:absolute;top:0;bottom:0;overflow:hidden}
 .ba-a{left:0;width:var(--p)}
@@ -287,11 +296,10 @@ footer a:hover{color:#fff}
   header .marca{font-size:18px}
   .burger span{width:22px}
   header .wrap{gap:10px;height:64px}
-  .hero{padding-top:40px}
-  .hero:after{height:120px}
-  .hero-txt{padding-bottom:30px}
+  .hero{margin-top:-64px;height:calc(100svh - 42px);min-height:620px;background-position:60% center}
   .hero-dor{font-size:12px;border-radius:16px;max-width:300px}
   .hero .lead{font-size:15.5px}
+  .antes-depois{padding:56px 0 24px}
   .ba{aspect-ratio:4/5;border-radius:22px;border-width:4px}
   .ba-tag{top:12px;font-size:9.5px;padding:6px 10px}.ba-tag.l{left:12px}.ba-tag.r{right:12px}
   .ba-linha i{width:44px;height:44px;margin:-22px 0 0 -22px}
@@ -321,7 +329,7 @@ footer a:hover{color:#fff}
   <div class="wrap"><b>Black Friday</b><span class="bf-txt">Condições especiais nas consultorias até 01/12</span><span class="cd" data-cd aria-label="Tempo restante"><span data-d>00d</span><span data-h>00h</span><span data-m>00m</span></span></div>
 </div>
 
-<header id="hdr">
+<header id="hdr" class="topo-hero">
   <div class="wrap">
     <a class="marca" href="#inicio">Kátia <i>Margarida</i></a>
     <nav class="menu" aria-label="Seções">
@@ -343,20 +351,24 @@ footer a:hover{color:#fff}
 
 <main>
 
-<section class="hero" id="inicio">
+<section class="hero" id="inicio" style="background-image:url(https://images.pexels.com/photos/36777522/pexels-photo-36777522.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=1920)">
   <div class="hero-txt">
     <p class="hero-dor">Cansada de arrumar e ver tudo bagunçado de novo?</p>
     <h1>Do caos à <em>leveza</em></h1>
     <p class="lead">Consultorias online de rotina e de organização para a sua casa e o seu dia funcionarem a seu favor.</p>
     <div class="acoes">
       <a class="btn btn-clay" href="#ofertas" data-cta="hero-ofertas">Quero sair do caos</a>
-      <a class="btn btn-claro" href="#teste" data-cta="hero-teste">Fazer o teste</a>
+      <a class="btn btn-vidro" href="#teste" data-cta="hero-teste">Fazer o teste</a>
     </div>
   </div>
+</section>
+
+<section class="antes-depois" id="diferenca">
   <div class="wrap">
+    <div class="ad-topo"><div class="eyebrow center">Arraste e veja</div><h2>A diferença que a <em>organização</em> faz</h2></div>
     <div class="ba" id="ba">
-      <div class="ba-lado ba-a"><img src="/katia/hero-caos.jpg" alt="Mulher cansada numa mesa bagunçada, cheia de papéis e prazos atrasados" fetchpriority="high"></div>
-      <div class="ba-lado ba-b"><img src="/katia/hero-leveza.jpg" alt="A mesma mulher tranquila num espaço organizado, com calendário e planner em dia" fetchpriority="high"></div>
+      <div class="ba-lado ba-a"><img src="/katia/hero-caos.jpg" alt="Mulher cansada numa mesa bagunçada, cheia de papéis e prazos atrasados" loading="lazy"></div>
+      <div class="ba-lado ba-b"><img src="/katia/hero-leveza.jpg" alt="A mesma mulher tranquila num espaço organizado, com calendário e planner em dia" loading="lazy"></div>
       <span class="ba-tag l">Antes · Caos</span><span class="ba-tag r">Depois · Leveza</span>
       <div class="ba-linha" aria-hidden="true"><i>&#8596;</i></div>
       <input type="range" min="18" max="82" value="50" aria-label="Arraste para comparar o caos e a leveza">
